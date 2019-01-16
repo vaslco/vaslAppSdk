@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'vaslAppSdk_Example' do
+  pod 'vaslAppSdk', :path => '../'
+
+  target 'vaslAppSdk_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
