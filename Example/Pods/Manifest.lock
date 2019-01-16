@@ -1,0 +1,29 @@
+PODS:
+  - Alamofire (4.8.0)
+  - SwiftProtobuf (1.3.0)
+  - vaslAppSdk (0.1.0):
+    - Alamofire (~> 4.8.0)
+    - SwiftProtobuf (~> 1.3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - SwiftProtobuf (~> 1.0)
+  - vaslAppSdk (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  vaslAppSdk:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  SwiftProtobuf: df9b9211d610a426dbe9403e50111acb5b4fb49c
+  vaslAppSdk: 98ca6bbfde48fed6bdec13d000d25309090c3622
+
+PODFILE CHECKSUM: f72d133723be11dfb16560c39cee5ba4d7d3f712
+
+COCOAPODS: 1.5.3

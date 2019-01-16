@@ -1,8 +1,11 @@
 use_frameworks!
 
 target 'vaslAppSdk_Example' do
+    
   pod 'vaslAppSdk', :path => '../'
-
+  pod 'SwiftProtobuf', '~> 1.0'
+  pod 'Alamofire'
+  
   target 'vaslAppSdk_Tests' do
     inherit! :search_paths
 

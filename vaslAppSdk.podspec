@@ -21,22 +21,23 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/shatergholi6@gmail.com/vaslAppSdk'
+  s.homepage         = 'https://github.com/vaslapp/vaslAppSdk.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'shatergholi6@gmail.com' => 'shatergholi6@gmail.com' }
-  s.source           = { :git => 'https://github.com/shatergholi6@gmail.com/vaslAppSdk.git', :tag => s.version.to_s }
+  s.author           = { 'shatergholi6@gmail.com' => 'Ali Shatergholi' }
+  s.source           = { :git => 'https://github.com/vaslapp/vaslAppSdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'vaslAppSdk/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'vaslAppSdk' => ['vaslAppSdk/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+   s.dependency 'SwiftProtobuf', '~> 1.3.0'
+   s.dependency 'Alamofire'    , '~> 4.8.0'
 end
