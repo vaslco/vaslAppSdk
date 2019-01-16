@@ -22,7 +22,7 @@ pod 'vaslAppSdk'
 
 ## Author
 
-shatergholi6@gmail.com, shatergholi6@gmail.com
+[Ali Shatergholi](https://github.com/alishatergholi)
 
 ## License
 
