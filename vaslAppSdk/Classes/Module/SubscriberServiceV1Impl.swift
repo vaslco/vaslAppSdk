@@ -12,9 +12,9 @@ protocol SubscriberServiceV1 {
 
     func activateAndLoginForNationalId(mobile: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
-    func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void)
+    func saveProfileInfo(sessionId: String,nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void)
 
-    func getProfileInfo(completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
+    func getProfileInfo(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
 
     func saveProfileInfoJson(subscriberId: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel?,String?) -> Void)
 
@@ -231,11 +231,11 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void) {
-        saveProfileInfo(nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, imageUrl: imageUrl, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, completion: completion,force: true)
+    public func saveProfileInfo(sessionId: String,nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void) {
+        saveProfileInfo(sessionId: sessionId,nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, imageUrl: imageUrl, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, completion: completion,force: true)
     }
     
-    private func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void,force : Bool) {
+    private func saveProfileInfo(sessionId: String,nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, imageUrl: String, gender: String, birthDate: String, nationalId: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoModel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(nickName            , forKey: "nickName")
                     params.updateValue(firstName            , forKey: "firstName")
@@ -248,6 +248,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(birthDate            , forKey: "birthDate")
                     params.updateValue(nationalId            , forKey: "nationalId")
                     params.updateValue(data            , forKey: "data")
+                    params.updateValue(sessionId, forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -258,7 +259,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.saveProfileInfo(nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, imageUrl: imageUrl, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, completion: completion,force: false)
+                            self.saveProfileInfo(sessionId: sessionId,nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, imageUrl: imageUrl, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -271,11 +272,14 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func getProfileInfo(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
-        getProfileInfo( completion: completion,force: true)
+    public func getProfileInfo(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
+        getProfileInfo(sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getProfileInfo(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {        
+    private func getProfileInfo(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+        params.updateValue(sessionId, forKey: "sessionId")
+        
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfo", Dictionary<String,String>(), completion: { (result, error) in
             do{
                 if let result = result {
@@ -286,7 +290,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.getProfileInfo( completion: completion,force: false)
+                            self.getProfileInfo( sessionId: sessionId,completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
