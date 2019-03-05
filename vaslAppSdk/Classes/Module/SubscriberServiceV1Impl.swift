@@ -279,8 +279,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func getProfileInfo(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
         params.updateValue(sessionId, forKey: "sessionId")
-        
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfo", Dictionary<String,String>(), completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
