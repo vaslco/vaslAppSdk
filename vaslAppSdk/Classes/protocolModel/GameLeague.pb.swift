@@ -474,6 +474,10 @@ public struct Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionL
 
   public var data: [Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_Question] = []
 
+  public var page: Int64 = 0
+
+  public var totalPages: Int64 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1861,6 +1865,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionList:
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "data"),
+    5: .same(proto: "page"),
+    6: .same(proto: "totalPages"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1870,6 +1876,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionList:
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.page)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.totalPages)
       default: break
       }
     }
@@ -1888,6 +1896,12 @@ extension Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionList:
     if !self.data.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
     }
+    if self.page != 0 {
+      try visitor.visitSingularInt64Field(value: self.page, fieldNumber: 5)
+    }
+    if self.totalPages != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPages, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1896,6 +1910,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionList:
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.data != rhs.data {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalPages != rhs.totalPages {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

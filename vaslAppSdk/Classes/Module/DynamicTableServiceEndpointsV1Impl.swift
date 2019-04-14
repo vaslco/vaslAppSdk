@@ -2,19 +2,19 @@ import Foundation
 
 protocol DynamicTableServiceEndpointsV1 {
 
-    func endpointInsert(tableName: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointInsert?,String?) -> Void)
+    func endpointInsert(tableName: String, data: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void)
+    func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void)
+    func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointDeleteOne(tableName: String, find: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void)
+    func endpointDeleteOne(tableName: String, find: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointDeleteMany(tableName: String, find: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void)
+    func endpointDeleteMany(tableName: String, find: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointCount(tableName: String, find: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointCount?,String?) -> Void)
+    func endpointCount(tableName: String, find: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func endpointQuery(queryName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -25,11 +25,11 @@ protocol DynamicTableServiceEndpointsV1 {
 public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV1 {
 
 
-    public func endpointInsert(tableName: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointInsert?,String?) -> Void) {
+    public func endpointInsert(tableName: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointInsert(tableName: tableName, data: data, completion: completion,force: true)
     }
     
-    private func endpointInsert(tableName: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointInsert?,String?) -> Void,force : Bool) {
+    private func endpointInsert(tableName: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(data            , forKey: "data")
@@ -37,7 +37,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointInsert(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointInsert
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -45,7 +47,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointInsert(tableName: tableName, data: data, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -56,11 +58,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void) {
+    public func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointUpdateOne(tableName: tableName, upsert: upsert, find: find, data: data, completion: completion,force: true)
     }
     
-    private func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void,force : Bool) {
+    private func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(upsert            , forKey: "upsert")
@@ -70,7 +72,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -78,7 +82,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointUpdateOne(tableName: tableName, upsert: upsert, find: find, data: data, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -89,11 +93,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void) {
+    public func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointUpdateMany(tableName: tableName, upsert: upsert, find: find, data: data, completion: completion,force: true)
     }
     
-    private func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate?,String?) -> Void,force : Bool) {
+    private func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(upsert            , forKey: "upsert")
@@ -103,7 +107,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointUpdate
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -111,7 +117,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointUpdateMany(tableName: tableName, upsert: upsert, find: find, data: data, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -122,11 +128,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointDeleteOne(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void) {
+    public func endpointDeleteOne(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointDeleteOne(tableName: tableName, find: find, completion: completion,force: true)
     }
     
-    private func endpointDeleteOne(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void,force : Bool) {
+    private func endpointDeleteOne(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
@@ -134,7 +140,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -142,7 +150,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointDeleteOne(tableName: tableName, find: find, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -153,11 +161,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointDeleteMany(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void) {
+    public func endpointDeleteMany(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointDeleteMany(tableName: tableName, find: find, completion: completion,force: true)
     }
     
-    private func endpointDeleteMany(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete?,String?) -> Void,force : Bool) {
+    private func endpointDeleteMany(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
@@ -165,7 +173,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointDelete
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -173,7 +183,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointDeleteMany(tableName: tableName, find: find, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -199,16 +209,18 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", params, completion: { (result, error) in
             do{
                 if let result = result {
+                    
                     let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                    let webResult = webServiceResult.init()
-                    webResult.parseJsonResult(dictionary)
-                    if webResult.status == PublicValue.status_success {
-                        completion(webResult,nil)
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
                     } else {
-                        if webResult.code == 401 && force {
-                            self.endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: true)
+                        if serviceResponse.code == 401 && force {
+                            self.endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: false)
                         }else{
-                            completion(webResult,webResult.message)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -219,11 +231,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointCount(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointCount?,String?) -> Void) {
+    public func endpointCount(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         endpointCount(tableName: tableName, find: find, completion: completion,force: true)
     }
     
-    private func endpointCount(tableName: String, find: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointCount?,String?) -> Void,force : Bool) {
+    private func endpointCount(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
@@ -231,7 +243,9 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointCount(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_EndPointCount
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -239,7 +253,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         if serviceResponse.code == 401 && force {
                             self.endpointCount(tableName: tableName, find: find, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -265,16 +279,18 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/query/"+queryName+"", params, completion: { (result, error) in
             do{
                 if let result = result {
+                    
                     let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                    let webResult = webServiceResult.init()
-                    webResult.parseJsonResult(dictionary)
-                    if webResult.status == PublicValue.status_success {
-                        completion(webResult,nil)
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
                     } else {
-                        if webResult.code == 401 && force {
-                            self.endpointQuery(queryName: queryName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: true)
+                        if serviceResponse.code == 401 && force {
+                            self.endpointQuery(queryName: queryName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: false)
                         }else{
-                            completion(webResult,webResult.message)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }

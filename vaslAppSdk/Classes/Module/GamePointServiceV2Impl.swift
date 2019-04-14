@@ -2,7 +2,7 @@ import Foundation
 
 protocol GamePointServiceV2 {
 
-    func listPointsPackages(tag: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void)
+    func listPointsPackages(tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void)
 
     func gamePayment(packageId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
@@ -17,13 +17,14 @@ protocol GamePointServiceV2 {
 public class GamePointServiceV2Impl  : GamePointServiceV2 {
 
 
-    public func listPointsPackages(tag: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void) {
-        listPointsPackages(tag: tag, completion: completion,force: true)
+    public func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void) {
+        listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listPointsPackages(tag: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void,force : Bool) {
+    private func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(tag            , forKey: "tag")
+                    params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/rp/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -34,7 +35,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listPointsPackages(tag: tag, completion: completion,force: false)
+                            self.listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -117,7 +118,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
                     params.updateValue(packageName            , forKey: "packageName")
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/pachage/cafe/payment/confirm", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/package/cafe/payment/confirm", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
