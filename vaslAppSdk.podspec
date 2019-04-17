@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SwiftProtobuf'#, '~> 1.3.0'
-  s.dependency 'Alamofire'   # , '~> 4.8.0'
+  s.dependency 'SwiftProtobuf'
+  s.dependency 'Alamofire'
 end
