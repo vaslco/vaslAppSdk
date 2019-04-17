@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'vaslAppSdk'
-  s.version          = '0.1.5'
+  s.version          = '0.1.6'
   s.swift_version    = '5'
   s.summary          = 'vaslAppSdk is a Framework for connectin to Mbas-Vasl service '
 
@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-   s.dependency 'SwiftProtobuf', '~> 1.3.0'
-   s.dependency 'Alamofire'    , '~> 4.8.0'
+  s.dependency 'SwiftProtobuf'#, '~> 1.3.0'
+  s.dependency 'Alamofire'    #, '~> 4.8.0'
 end
