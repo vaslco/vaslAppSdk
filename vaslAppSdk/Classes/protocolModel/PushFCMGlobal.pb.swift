@@ -82,6 +82,10 @@ public struct Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_PushResult {
 
   public var id: String = String()
 
+  public var insertTime: String = String()
+
+  public var lastUpdate: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -105,7 +109,7 @@ public struct Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_UpserTopic {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.geo.global.proto.holder"
+fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.push.fcm.global.proto.holder"
 
 extension Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_SendMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SendMessage"
@@ -243,6 +247,8 @@ extension Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_PushResult: Swif
     2: .same(proto: "detail"),
     3: .same(proto: "msg"),
     4: .same(proto: "id"),
+    5: .same(proto: "insertTime"),
+    6: .same(proto: "lastUpdate"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -252,6 +258,8 @@ extension Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_PushResult: Swif
       case 2: try decoder.decodeSingularStringField(value: &self.detail)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeSingularStringField(value: &self.id)
+      case 5: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 6: try decoder.decodeSingularStringField(value: &self.lastUpdate)
       default: break
       }
     }
@@ -270,6 +278,12 @@ extension Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_PushResult: Swif
     if !self.id.isEmpty {
       try visitor.visitSingularStringField(value: self.id, fieldNumber: 4)
     }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 5)
+    }
+    if !self.lastUpdate.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastUpdate, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -278,6 +292,8 @@ extension Com_Vasl_Vaslapp_Modules_Push_Fcm_Global_Proto_Holder_PushResult: Swif
     if lhs.detail != rhs.detail {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.id != rhs.id {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.lastUpdate != rhs.lastUpdate {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

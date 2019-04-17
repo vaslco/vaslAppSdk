@@ -677,6 +677,16 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet {
     set {_uniqueStorage()._images = newValue}
   }
 
+  public var tags: [String] {
+    get {return _storage._tags}
+    set {_uniqueStorage()._tags = newValue}
+  }
+
+  public var score: Int32 {
+    get {return _storage._score}
+    set {_uniqueStorage()._score = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -702,6 +712,10 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel {
   public var sellerUpdateTime: String = String()
 
   public var color: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetPanel] = []
+
+  public var price: Int64 = 0
+
+  public var payable: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -851,6 +865,16 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi {
     set {_uniqueStorage()._images = newValue}
   }
 
+  public var tags: [String] {
+    get {return _storage._tags}
+    set {_uniqueStorage()._tags = newValue}
+  }
+
+  public var score: Int32 {
+    get {return _storage._score}
+    set {_uniqueStorage()._score = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -877,6 +901,10 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi {
 
   public var color: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi] = []
 
+  public var price: Int64 = 0
+
+  public var payable: Int64 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -895,6 +923,8 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi {
 
   public var count: Int32 = 0
 
+  public var value: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -908,6 +938,8 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature {
   public var key: String = String()
 
   public var value: String = String()
+
+  public var unit: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -956,6 +988,8 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images {
   public var path: String = String()
 
   public var imageDefaultActive: Bool = false
+
+  public var id: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1126,6 +1160,8 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Color {
 
   public var code: String = String()
 
+  public var value: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1182,6 +1218,8 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi {
 
   public var colorPerName: String = String()
 
+  public var colorVaue: String = String()
+
   public var price: Int64 = 0
 
   public var discountPrice: Int64 = 0
@@ -1209,6 +1247,639 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartA
   public var msg: String = String()
 
   public var productCart: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi] = []
+
+  public var totalPrice: Int64 = 0
+
+  public var totlaDiscountPrice: Int64 = 0
+
+  public var totalCount: Int32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transport {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var title: String = String()
+
+  public var description_p: String = String()
+
+  public var price: Int64 = 0
+
+  public var dayOfWeek: [Int32] = []
+
+  public var earliestTime: Int32 = 0
+
+  public var latestTime: Int32 = 0
+
+  public var possibleCities: [String] = []
+
+  public var capacity: Int32 = 0
+
+  public var status: String = String()
+
+  public var exceptionDays: [String] = []
+
+  public var possibleHours: [String] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SendPlan {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var date: String = String()
+
+  public var transportType: String = String()
+
+  public var orderIds: [String] = []
+
+  public var full: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransport {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transport] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSendPlan {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SendPlan] = []
+
+  public var page: Int32 = 0
+
+  public var totalPage: Int64 = 0
+
+  public var totalItem: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTime {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var title: String = String()
+
+  public var time: String = String()
+
+  public var full: Bool = false
+
+  public var id: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleDate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var date: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTime] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTransports {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var title: String = String()
+
+  public var description_p: String = String()
+
+  public var price: Int64 = 0
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleDate] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListPossibleTimes {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTransports] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Discount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var code: String = String()
+
+  public var expireTime: String = String()
+
+  public var `public`: Bool = false
+
+  public var discountPercent: Int32 = 0
+
+  public var discountAmount: Int64 = 0
+
+  public var minBuy: Int64 = 0
+
+  public var description_p: String = String()
+
+  public var insertTime: String = String()
+
+  public var id: String = String()
+
+  public var status: String = String()
+
+  public var allowedUsers: [String] = []
+
+  public var availableCount: Int32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListDiscount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Discount] = []
+
+  public var page: Int32 = 0
+
+  public var totalPage: Int64 = 0
+
+  public var totalItem: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Address {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var priority: Int32 = 0
+
+  public var nickName: String = String()
+
+  public var mobile: String = String()
+
+  public var phone: String = String()
+
+  ///استان
+  public var province: String = String()
+
+  ///شهرستان
+  public var city: String = String()
+
+  ///ناحیه (محله ویژه تهران)
+  public var sector: String = String()
+
+  ///آدرس پستی
+  public var address: String = String()
+
+  ///کد پستی
+  public var postalCode: String = String()
+
+  public var recipientName: String = String()
+
+  public var recipientPhone: String = String()
+
+  public var locationLatitude: Double = 0
+
+  public var locationLongitude: Double = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListAddress {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Address] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PaymentResult {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var orderID: String = String()
+
+  public var bankURL: String = String()
+
+  public var transactionID: String = String()
+
+  /// repeated ProductCartApi data = 6;
+  ///  string nextStatus = 7;
+  ///  string address = 8;
+  public var totalPrice: Int64 = 0
+
+  ///  int32 totalCount = 11;
+  public var totlaDiscountPrice: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_OrderProduct {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var count: Int32 = 0
+
+  public var price: Int64 = 0
+
+  public var payable: Int64 = 0
+
+  public var guaranteeDay: Int32 = 0
+
+  public var sellerID: String = String()
+
+  public var sellerName: String = String()
+
+  public var colorID: String = String()
+
+  public var colorName: String = String()
+
+  public var colorValue: String = String()
+
+  public var productStatus: String = String()
+
+  public var productID: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Order {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var subscriberID: String = String()
+
+  public var insertTime: String = String()
+
+  public var transportID: String = String()
+
+  public var transportPrice: Int64 = 0
+
+  public var totalPrice: Int64 = 0
+
+  public var totalPayable: Int64 = 0
+
+  public var orderStatus: String = String()
+
+  public var payStatus: String = String()
+
+  public var products: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_OrderProduct] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Order] = []
+
+  public var totalPage: Int32 = 0
+
+  public var page: Int32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var oldPrice: Int64 = 0
+
+  public var newPrice: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_City {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var state: String = String()
+
+  public var city: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_City] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Unit {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var prName: String = String()
+
+  public var enName: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Unit] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var orderID: String = String()
+
+  public var paymentID: String = String()
+
+  public var price: Int64 = 0
+
+  public var payable: Int64 = 0
+
+  public var agentID: String = String()
+
+  public var insertTime: String = String()
+
+  public var comment: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransactions {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction] = []
+
+  public var totalPrice: Int64 = 0
+
+  public var totalPayable: Int64 = 0
+
+  public var page: Int32 = 0
+
+  public var totalItem: Int64 = 0
+
+  public var totalPage: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Featur {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var unit: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListFeature {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Featur] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SaleReport {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var productID: String = String()
+
+  public var productName: String = String()
+
+  public var sellerID: String = String()
+
+  public var sellerName: String = String()
+
+  public var colorID: String = String()
+
+  public var colorName: String = String()
+
+  public var status: String = String()
+
+  public var count: Int32 = 0
+
+  public var totalPrice: Int64 = 0
+
+  public var totalPayable: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSaleReport {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SaleReport] = []
+
+  public var page: Int32 = 0
+
+  public var totalItem: Int64 = 0
+
+  public var totalPage: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2512,6 +3183,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
     22: .same(proto: "sellerDoc"),
     23: .same(proto: "description"),
     24: .same(proto: "images"),
+    25: .same(proto: "tags"),
+    26: .same(proto: "score"),
   ]
 
   fileprivate class _StorageClass {
@@ -2539,6 +3212,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
     var _sellerDoc: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel] = []
     var _description_p: String = String()
     var _images: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images] = []
+    var _tags: [String] = []
+    var _score: Int32 = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -2569,6 +3244,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
       _sellerDoc = source._sellerDoc
       _description_p = source._description_p
       _images = source._images
+      _tags = source._tags
+      _score = source._score
     }
   }
 
@@ -2608,6 +3285,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
         case 22: try decoder.decodeRepeatedMessageField(value: &_storage._sellerDoc)
         case 23: try decoder.decodeSingularStringField(value: &_storage._description_p)
         case 24: try decoder.decodeRepeatedMessageField(value: &_storage._images)
+        case 25: try decoder.decodeRepeatedStringField(value: &_storage._tags)
+        case 26: try decoder.decodeSingularInt32Field(value: &_storage._score)
         default: break
         }
       }
@@ -2688,6 +3367,12 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
       if !_storage._images.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._images, fieldNumber: 24)
       }
+      if !_storage._tags.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._tags, fieldNumber: 25)
+      }
+      if _storage._score != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._score, fieldNumber: 26)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -2721,6 +3406,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGet: SwiftPro
         if _storage._sellerDoc != rhs_storage._sellerDoc {return false}
         if _storage._description_p != rhs_storage._description_p {return false}
         if _storage._images != rhs_storage._images {return false}
+        if _storage._tags != rhs_storage._tags {return false}
+        if _storage._score != rhs_storage._score {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -2740,6 +3427,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel: Swif
     5: .same(proto: "sellerInsertTime"),
     6: .same(proto: "sellerUpdateTime"),
     7: .same(proto: "color"),
+    8: .same(proto: "price"),
+    9: .same(proto: "payable"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2752,6 +3441,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel: Swif
       case 5: try decoder.decodeSingularStringField(value: &self.sellerInsertTime)
       case 6: try decoder.decodeSingularStringField(value: &self.sellerUpdateTime)
       case 7: try decoder.decodeRepeatedMessageField(value: &self.color)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.payable)
       default: break
       }
     }
@@ -2779,6 +3470,12 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel: Swif
     if !self.color.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.color, fieldNumber: 7)
     }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 8)
+    }
+    if self.payable != 0 {
+      try visitor.visitSingularInt64Field(value: self.payable, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2790,6 +3487,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetPanel: Swif
     if lhs.sellerInsertTime != rhs.sellerInsertTime {return false}
     if lhs.sellerUpdateTime != rhs.sellerUpdateTime {return false}
     if lhs.color != rhs.color {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.payable != rhs.payable {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -2869,6 +3568,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
     22: .same(proto: "sellerDoc"),
     23: .same(proto: "description"),
     24: .same(proto: "images"),
+    25: .same(proto: "tags"),
+    26: .same(proto: "score"),
   ]
 
   fileprivate class _StorageClass {
@@ -2896,6 +3597,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
     var _sellerDoc: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi] = []
     var _description_p: String = String()
     var _images: [Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images] = []
+    var _tags: [String] = []
+    var _score: Int32 = 0
 
     static let defaultInstance = _StorageClass()
 
@@ -2926,6 +3629,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
       _sellerDoc = source._sellerDoc
       _description_p = source._description_p
       _images = source._images
+      _tags = source._tags
+      _score = source._score
     }
   }
 
@@ -2965,6 +3670,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
         case 22: try decoder.decodeRepeatedMessageField(value: &_storage._sellerDoc)
         case 23: try decoder.decodeSingularStringField(value: &_storage._description_p)
         case 24: try decoder.decodeRepeatedMessageField(value: &_storage._images)
+        case 25: try decoder.decodeRepeatedStringField(value: &_storage._tags)
+        case 26: try decoder.decodeSingularInt32Field(value: &_storage._score)
         default: break
         }
       }
@@ -3045,6 +3752,12 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
       if !_storage._images.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._images, fieldNumber: 24)
       }
+      if !_storage._tags.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._tags, fieldNumber: 25)
+      }
+      if _storage._score != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._score, fieldNumber: 26)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -3078,6 +3791,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi: Swift
         if _storage._sellerDoc != rhs_storage._sellerDoc {return false}
         if _storage._description_p != rhs_storage._description_p {return false}
         if _storage._images != rhs_storage._images {return false}
+        if _storage._tags != rhs_storage._tags {return false}
+        if _storage._score != rhs_storage._score {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3097,6 +3812,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi: SwiftP
     5: .same(proto: "sellerInsertTime"),
     6: .same(proto: "sellerUpdateTime"),
     7: .same(proto: "color"),
+    8: .same(proto: "price"),
+    9: .same(proto: "payable"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3109,6 +3826,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi: SwiftP
       case 5: try decoder.decodeSingularStringField(value: &self.sellerInsertTime)
       case 6: try decoder.decodeSingularStringField(value: &self.sellerUpdateTime)
       case 7: try decoder.decodeRepeatedMessageField(value: &self.color)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.payable)
       default: break
       }
     }
@@ -3136,6 +3855,12 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi: SwiftP
     if !self.color.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.color, fieldNumber: 7)
     }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 8)
+    }
+    if self.payable != 0 {
+      try visitor.visitSingularInt64Field(value: self.payable, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3147,6 +3872,8 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SellerGetApi: SwiftP
     if lhs.sellerInsertTime != rhs.sellerInsertTime {return false}
     if lhs.sellerUpdateTime != rhs.sellerUpdateTime {return false}
     if lhs.color != rhs.color {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.payable != rhs.payable {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3159,6 +3886,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi: SwiftPr
     2: .same(proto: "perName"),
     3: .same(proto: "code"),
     4: .same(proto: "count"),
+    5: .same(proto: "value"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3168,6 +3896,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi: SwiftPr
       case 2: try decoder.decodeSingularStringField(value: &self.perName)
       case 3: try decoder.decodeSingularStringField(value: &self.code)
       case 4: try decoder.decodeSingularInt32Field(value: &self.count)
+      case 5: try decoder.decodeSingularStringField(value: &self.value)
       default: break
       }
     }
@@ -3186,6 +3915,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi: SwiftPr
     if self.count != 0 {
       try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 4)
     }
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3194,6 +3926,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ColorGetApi: SwiftPr
     if lhs.perName != rhs.perName {return false}
     if lhs.code != rhs.code {return false}
     if lhs.count != rhs.count {return false}
+    if lhs.value != rhs.value {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3204,6 +3937,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature: SwiftProtob
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "key"),
     2: .same(proto: "value"),
+    3: .same(proto: "unit"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3211,6 +3945,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature: SwiftProtob
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.key)
       case 2: try decoder.decodeSingularStringField(value: &self.value)
+      case 3: try decoder.decodeSingularStringField(value: &self.unit)
       default: break
       }
     }
@@ -3223,12 +3958,16 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature: SwiftProtob
     if !self.value.isEmpty {
       try visitor.visitSingularStringField(value: self.value, fieldNumber: 2)
     }
+    if !self.unit.isEmpty {
+      try visitor.visitSingularStringField(value: self.unit, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Feature) -> Bool {
     if lhs.key != rhs.key {return false}
     if lhs.value != rhs.value {return false}
+    if lhs.unit != rhs.unit {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3309,6 +4048,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images: SwiftProtobu
     5: .same(proto: "type"),
     6: .same(proto: "path"),
     7: .same(proto: "imageDefaultActive"),
+    8: .same(proto: "id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3321,6 +4061,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images: SwiftProtobu
       case 5: try decoder.decodeSingularStringField(value: &self.type)
       case 6: try decoder.decodeSingularStringField(value: &self.path)
       case 7: try decoder.decodeSingularBoolField(value: &self.imageDefaultActive)
+      case 8: try decoder.decodeSingularStringField(value: &self.id)
       default: break
       }
     }
@@ -3348,6 +4089,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images: SwiftProtobu
     if self.imageDefaultActive != false {
       try visitor.visitSingularBoolField(value: self.imageDefaultActive, fieldNumber: 7)
     }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3359,6 +4103,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Images: SwiftProtobu
     if lhs.type != rhs.type {return false}
     if lhs.path != rhs.path {return false}
     if lhs.imageDefaultActive != rhs.imageDefaultActive {return false}
+    if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3770,6 +4515,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Color: SwiftProtobuf
     1: .same(proto: "engName"),
     2: .same(proto: "perName"),
     3: .same(proto: "code"),
+    4: .same(proto: "value"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3778,6 +4524,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Color: SwiftProtobuf
       case 1: try decoder.decodeSingularStringField(value: &self.engName)
       case 2: try decoder.decodeSingularStringField(value: &self.perName)
       case 3: try decoder.decodeSingularStringField(value: &self.code)
+      case 4: try decoder.decodeSingularStringField(value: &self.value)
       default: break
       }
     }
@@ -3793,6 +4540,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Color: SwiftProtobuf
     if !self.code.isEmpty {
       try visitor.visitSingularStringField(value: self.code, fieldNumber: 3)
     }
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3800,6 +4550,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Color: SwiftProtobuf
     if lhs.engName != rhs.engName {return false}
     if lhs.perName != rhs.perName {return false}
     if lhs.code != rhs.code {return false}
+    if lhs.value != rhs.value {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3889,6 +4640,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi: Swif
     8: .same(proto: "colorId"),
     9: .same(proto: "colorEngName"),
     10: .same(proto: "colorPerName"),
+    16: .same(proto: "colorVaue"),
     11: .same(proto: "price"),
     12: .same(proto: "discountPrice"),
     13: .same(proto: "count"),
@@ -3914,6 +4666,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi: Swif
       case 13: try decoder.decodeSingularInt32Field(value: &self.count)
       case 14: try decoder.decodeSingularStringField(value: &self.requestDate)
       case 15: try decoder.decodeSingularStringField(value: &self.updateDate)
+      case 16: try decoder.decodeSingularStringField(value: &self.colorVaue)
       default: break
       }
     }
@@ -3965,6 +4718,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi: Swif
     if !self.updateDate.isEmpty {
       try visitor.visitSingularStringField(value: self.updateDate, fieldNumber: 15)
     }
+    if !self.colorVaue.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorVaue, fieldNumber: 16)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3979,6 +4735,7 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductCartApi: Swif
     if lhs.colorID != rhs.colorID {return false}
     if lhs.colorEngName != rhs.colorEngName {return false}
     if lhs.colorPerName != rhs.colorPerName {return false}
+    if lhs.colorVaue != rhs.colorVaue {return false}
     if lhs.price != rhs.price {return false}
     if lhs.discountPrice != rhs.discountPrice {return false}
     if lhs.count != rhs.count {return false}
@@ -3996,6 +4753,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi: 
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "productCart"),
+    5: .same(proto: "totalPrice"),
+    6: .same(proto: "totlaDiscountPrice"),
+    7: .same(proto: "totalCount"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -4005,6 +4765,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi: 
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.productCart)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.totalPrice)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.totlaDiscountPrice)
+      case 7: try decoder.decodeSingularInt32Field(value: &self.totalCount)
       default: break
       }
     }
@@ -4023,6 +4786,15 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi: 
     if !self.productCart.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.productCart, fieldNumber: 4)
     }
+    if self.totalPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPrice, fieldNumber: 5)
+    }
+    if self.totlaDiscountPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totlaDiscountPrice, fieldNumber: 6)
+    }
+    if self.totalCount != 0 {
+      try visitor.visitSingularInt32Field(value: self.totalCount, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -4031,6 +4803,1674 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi: 
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.productCart != rhs.productCart {return false}
+    if lhs.totalPrice != rhs.totalPrice {return false}
+    if lhs.totlaDiscountPrice != rhs.totlaDiscountPrice {return false}
+    if lhs.totalCount != rhs.totalCount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Transport"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "title"),
+    2: .same(proto: "description"),
+    3: .same(proto: "price"),
+    4: .same(proto: "dayOfWeek"),
+    5: .same(proto: "earliestTime"),
+    6: .same(proto: "latestTime"),
+    7: .same(proto: "possibleCities"),
+    8: .same(proto: "capacity"),
+    9: .same(proto: "status"),
+    10: .same(proto: "exceptionDays"),
+    11: .same(proto: "possibleHours"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.title)
+      case 2: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 4: try decoder.decodeRepeatedInt32Field(value: &self.dayOfWeek)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.earliestTime)
+      case 6: try decoder.decodeSingularInt32Field(value: &self.latestTime)
+      case 7: try decoder.decodeRepeatedStringField(value: &self.possibleCities)
+      case 8: try decoder.decodeSingularInt32Field(value: &self.capacity)
+      case 9: try decoder.decodeSingularStringField(value: &self.status)
+      case 10: try decoder.decodeRepeatedStringField(value: &self.exceptionDays)
+      case 11: try decoder.decodeRepeatedStringField(value: &self.possibleHours)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 2)
+    }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 3)
+    }
+    if !self.dayOfWeek.isEmpty {
+      try visitor.visitPackedInt32Field(value: self.dayOfWeek, fieldNumber: 4)
+    }
+    if self.earliestTime != 0 {
+      try visitor.visitSingularInt32Field(value: self.earliestTime, fieldNumber: 5)
+    }
+    if self.latestTime != 0 {
+      try visitor.visitSingularInt32Field(value: self.latestTime, fieldNumber: 6)
+    }
+    if !self.possibleCities.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.possibleCities, fieldNumber: 7)
+    }
+    if self.capacity != 0 {
+      try visitor.visitSingularInt32Field(value: self.capacity, fieldNumber: 8)
+    }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 9)
+    }
+    if !self.exceptionDays.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.exceptionDays, fieldNumber: 10)
+    }
+    if !self.possibleHours.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.possibleHours, fieldNumber: 11)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transport, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transport) -> Bool {
+    if lhs.title != rhs.title {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.dayOfWeek != rhs.dayOfWeek {return false}
+    if lhs.earliestTime != rhs.earliestTime {return false}
+    if lhs.latestTime != rhs.latestTime {return false}
+    if lhs.possibleCities != rhs.possibleCities {return false}
+    if lhs.capacity != rhs.capacity {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.exceptionDays != rhs.exceptionDays {return false}
+    if lhs.possibleHours != rhs.possibleHours {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SendPlan: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SendPlan"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "date"),
+    2: .same(proto: "transportType"),
+    3: .same(proto: "orderIds"),
+    4: .same(proto: "full"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.date)
+      case 2: try decoder.decodeSingularStringField(value: &self.transportType)
+      case 3: try decoder.decodeRepeatedStringField(value: &self.orderIds)
+      case 4: try decoder.decodeSingularBoolField(value: &self.full)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.date.isEmpty {
+      try visitor.visitSingularStringField(value: self.date, fieldNumber: 1)
+    }
+    if !self.transportType.isEmpty {
+      try visitor.visitSingularStringField(value: self.transportType, fieldNumber: 2)
+    }
+    if !self.orderIds.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.orderIds, fieldNumber: 3)
+    }
+    if self.full != false {
+      try visitor.visitSingularBoolField(value: self.full, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SendPlan, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SendPlan) -> Bool {
+    if lhs.date != rhs.date {return false}
+    if lhs.transportType != rhs.transportType {return false}
+    if lhs.orderIds != rhs.orderIds {return false}
+    if lhs.full != rhs.full {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListTransport"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransport, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransport) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSendPlan: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListSendPlan"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+    5: .same(proto: "page"),
+    6: .same(proto: "totalPage"),
+    7: .same(proto: "totalItem"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.totalPage)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.totalItem)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 5)
+    }
+    if self.totalPage != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPage, fieldNumber: 6)
+    }
+    if self.totalItem != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalItem, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSendPlan, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSendPlan) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalPage != rhs.totalPage {return false}
+    if lhs.totalItem != rhs.totalItem {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTime: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PossibleTime"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "title"),
+    2: .same(proto: "time"),
+    3: .same(proto: "full"),
+    4: .same(proto: "id"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.title)
+      case 2: try decoder.decodeSingularStringField(value: &self.time)
+      case 3: try decoder.decodeSingularBoolField(value: &self.full)
+      case 4: try decoder.decodeSingularStringField(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
+    }
+    if !self.time.isEmpty {
+      try visitor.visitSingularStringField(value: self.time, fieldNumber: 2)
+    }
+    if self.full != false {
+      try visitor.visitSingularBoolField(value: self.full, fieldNumber: 3)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTime, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTime) -> Bool {
+    if lhs.title != rhs.title {return false}
+    if lhs.time != rhs.time {return false}
+    if lhs.full != rhs.full {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleDate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PossibleDate"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "date"),
+    2: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.date)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.date.isEmpty {
+      try visitor.visitSingularStringField(value: self.date, fieldNumber: 1)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleDate, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleDate) -> Bool {
+    if lhs.date != rhs.date {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTransports: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PossibleTransports"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "title"),
+    2: .same(proto: "description"),
+    3: .same(proto: "price"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.title)
+      case 2: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 3: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 2)
+    }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTransports, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PossibleTransports) -> Bool {
+    if lhs.title != rhs.title {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListPossibleTimes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListPossibleTimes"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    5: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListPossibleTimes, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListPossibleTimes) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Discount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Discount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "code"),
+    2: .same(proto: "expireTime"),
+    3: .same(proto: "public"),
+    4: .same(proto: "discountPercent"),
+    5: .same(proto: "discountAmount"),
+    6: .same(proto: "minBuy"),
+    7: .same(proto: "description"),
+    8: .same(proto: "insertTime"),
+    9: .same(proto: "id"),
+    10: .same(proto: "status"),
+    11: .same(proto: "allowedUsers"),
+    12: .same(proto: "availableCount"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.code)
+      case 2: try decoder.decodeSingularStringField(value: &self.expireTime)
+      case 3: try decoder.decodeSingularBoolField(value: &self.`public`)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.discountPercent)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.discountAmount)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.minBuy)
+      case 7: try decoder.decodeSingularStringField(value: &self.description_p)
+      case 8: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 9: try decoder.decodeSingularStringField(value: &self.id)
+      case 10: try decoder.decodeSingularStringField(value: &self.status)
+      case 11: try decoder.decodeRepeatedStringField(value: &self.allowedUsers)
+      case 12: try decoder.decodeSingularInt32Field(value: &self.availableCount)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.code.isEmpty {
+      try visitor.visitSingularStringField(value: self.code, fieldNumber: 1)
+    }
+    if !self.expireTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.expireTime, fieldNumber: 2)
+    }
+    if self.`public` != false {
+      try visitor.visitSingularBoolField(value: self.`public`, fieldNumber: 3)
+    }
+    if self.discountPercent != 0 {
+      try visitor.visitSingularInt32Field(value: self.discountPercent, fieldNumber: 4)
+    }
+    if self.discountAmount != 0 {
+      try visitor.visitSingularInt64Field(value: self.discountAmount, fieldNumber: 5)
+    }
+    if self.minBuy != 0 {
+      try visitor.visitSingularInt64Field(value: self.minBuy, fieldNumber: 6)
+    }
+    if !self.description_p.isEmpty {
+      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 7)
+    }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 8)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 9)
+    }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 10)
+    }
+    if !self.allowedUsers.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.allowedUsers, fieldNumber: 11)
+    }
+    if self.availableCount != 0 {
+      try visitor.visitSingularInt32Field(value: self.availableCount, fieldNumber: 12)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Discount, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Discount) -> Bool {
+    if lhs.code != rhs.code {return false}
+    if lhs.expireTime != rhs.expireTime {return false}
+    if lhs.`public` != rhs.`public` {return false}
+    if lhs.discountPercent != rhs.discountPercent {return false}
+    if lhs.discountAmount != rhs.discountAmount {return false}
+    if lhs.minBuy != rhs.minBuy {return false}
+    if lhs.description_p != rhs.description_p {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.allowedUsers != rhs.allowedUsers {return false}
+    if lhs.availableCount != rhs.availableCount {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListDiscount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListDiscount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+    5: .same(proto: "page"),
+    6: .same(proto: "totalPage"),
+    7: .same(proto: "totalItem"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.totalPage)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.totalItem)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 5)
+    }
+    if self.totalPage != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPage, fieldNumber: 6)
+    }
+    if self.totalItem != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalItem, fieldNumber: 7)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListDiscount, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListDiscount) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalPage != rhs.totalPage {return false}
+    if lhs.totalItem != rhs.totalItem {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Address: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Address"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "priority"),
+    3: .same(proto: "nickName"),
+    4: .same(proto: "mobile"),
+    5: .same(proto: "phone"),
+    6: .same(proto: "province"),
+    7: .same(proto: "city"),
+    8: .same(proto: "sector"),
+    9: .same(proto: "address"),
+    10: .same(proto: "postalCode"),
+    11: .same(proto: "recipientName"),
+    12: .same(proto: "recipientPhone"),
+    13: .same(proto: "locationLatitude"),
+    14: .same(proto: "locationLongitude"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.priority)
+      case 3: try decoder.decodeSingularStringField(value: &self.nickName)
+      case 4: try decoder.decodeSingularStringField(value: &self.mobile)
+      case 5: try decoder.decodeSingularStringField(value: &self.phone)
+      case 6: try decoder.decodeSingularStringField(value: &self.province)
+      case 7: try decoder.decodeSingularStringField(value: &self.city)
+      case 8: try decoder.decodeSingularStringField(value: &self.sector)
+      case 9: try decoder.decodeSingularStringField(value: &self.address)
+      case 10: try decoder.decodeSingularStringField(value: &self.postalCode)
+      case 11: try decoder.decodeSingularStringField(value: &self.recipientName)
+      case 12: try decoder.decodeSingularStringField(value: &self.recipientPhone)
+      case 13: try decoder.decodeSingularDoubleField(value: &self.locationLatitude)
+      case 14: try decoder.decodeSingularDoubleField(value: &self.locationLongitude)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if self.priority != 0 {
+      try visitor.visitSingularInt32Field(value: self.priority, fieldNumber: 2)
+    }
+    if !self.nickName.isEmpty {
+      try visitor.visitSingularStringField(value: self.nickName, fieldNumber: 3)
+    }
+    if !self.mobile.isEmpty {
+      try visitor.visitSingularStringField(value: self.mobile, fieldNumber: 4)
+    }
+    if !self.phone.isEmpty {
+      try visitor.visitSingularStringField(value: self.phone, fieldNumber: 5)
+    }
+    if !self.province.isEmpty {
+      try visitor.visitSingularStringField(value: self.province, fieldNumber: 6)
+    }
+    if !self.city.isEmpty {
+      try visitor.visitSingularStringField(value: self.city, fieldNumber: 7)
+    }
+    if !self.sector.isEmpty {
+      try visitor.visitSingularStringField(value: self.sector, fieldNumber: 8)
+    }
+    if !self.address.isEmpty {
+      try visitor.visitSingularStringField(value: self.address, fieldNumber: 9)
+    }
+    if !self.postalCode.isEmpty {
+      try visitor.visitSingularStringField(value: self.postalCode, fieldNumber: 10)
+    }
+    if !self.recipientName.isEmpty {
+      try visitor.visitSingularStringField(value: self.recipientName, fieldNumber: 11)
+    }
+    if !self.recipientPhone.isEmpty {
+      try visitor.visitSingularStringField(value: self.recipientPhone, fieldNumber: 12)
+    }
+    if self.locationLatitude != 0 {
+      try visitor.visitSingularDoubleField(value: self.locationLatitude, fieldNumber: 13)
+    }
+    if self.locationLongitude != 0 {
+      try visitor.visitSingularDoubleField(value: self.locationLongitude, fieldNumber: 14)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Address, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Address) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.priority != rhs.priority {return false}
+    if lhs.nickName != rhs.nickName {return false}
+    if lhs.mobile != rhs.mobile {return false}
+    if lhs.phone != rhs.phone {return false}
+    if lhs.province != rhs.province {return false}
+    if lhs.city != rhs.city {return false}
+    if lhs.sector != rhs.sector {return false}
+    if lhs.address != rhs.address {return false}
+    if lhs.postalCode != rhs.postalCode {return false}
+    if lhs.recipientName != rhs.recipientName {return false}
+    if lhs.recipientPhone != rhs.recipientPhone {return false}
+    if lhs.locationLatitude != rhs.locationLatitude {return false}
+    if lhs.locationLongitude != rhs.locationLongitude {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListAddress"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListAddress, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListAddress) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PaymentResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PaymentResult"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "orderId"),
+    5: .same(proto: "bankUrl"),
+    6: .same(proto: "transactionId"),
+    9: .same(proto: "totalPrice"),
+    10: .same(proto: "totlaDiscountPrice"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularStringField(value: &self.orderID)
+      case 5: try decoder.decodeSingularStringField(value: &self.bankURL)
+      case 6: try decoder.decodeSingularStringField(value: &self.transactionID)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.totalPrice)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.totlaDiscountPrice)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.orderID.isEmpty {
+      try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 4)
+    }
+    if !self.bankURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.bankURL, fieldNumber: 5)
+    }
+    if !self.transactionID.isEmpty {
+      try visitor.visitSingularStringField(value: self.transactionID, fieldNumber: 6)
+    }
+    if self.totalPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPrice, fieldNumber: 9)
+    }
+    if self.totlaDiscountPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totlaDiscountPrice, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PaymentResult, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PaymentResult) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.orderID != rhs.orderID {return false}
+    if lhs.bankURL != rhs.bankURL {return false}
+    if lhs.transactionID != rhs.transactionID {return false}
+    if lhs.totalPrice != rhs.totalPrice {return false}
+    if lhs.totlaDiscountPrice != rhs.totlaDiscountPrice {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_OrderProduct: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".OrderProduct"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "count"),
+    4: .same(proto: "price"),
+    5: .same(proto: "payable"),
+    6: .same(proto: "guaranteeDay"),
+    7: .same(proto: "sellerId"),
+    8: .same(proto: "sellerName"),
+    9: .same(proto: "colorId"),
+    10: .same(proto: "colorName"),
+    11: .same(proto: "colorValue"),
+    12: .same(proto: "productStatus"),
+    13: .same(proto: "productId"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeSingularInt32Field(value: &self.count)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.payable)
+      case 6: try decoder.decodeSingularInt32Field(value: &self.guaranteeDay)
+      case 7: try decoder.decodeSingularStringField(value: &self.sellerID)
+      case 8: try decoder.decodeSingularStringField(value: &self.sellerName)
+      case 9: try decoder.decodeSingularStringField(value: &self.colorID)
+      case 10: try decoder.decodeSingularStringField(value: &self.colorName)
+      case 11: try decoder.decodeSingularStringField(value: &self.colorValue)
+      case 12: try decoder.decodeSingularStringField(value: &self.productStatus)
+      case 13: try decoder.decodeSingularStringField(value: &self.productID)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 3)
+    }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 4)
+    }
+    if self.payable != 0 {
+      try visitor.visitSingularInt64Field(value: self.payable, fieldNumber: 5)
+    }
+    if self.guaranteeDay != 0 {
+      try visitor.visitSingularInt32Field(value: self.guaranteeDay, fieldNumber: 6)
+    }
+    if !self.sellerID.isEmpty {
+      try visitor.visitSingularStringField(value: self.sellerID, fieldNumber: 7)
+    }
+    if !self.sellerName.isEmpty {
+      try visitor.visitSingularStringField(value: self.sellerName, fieldNumber: 8)
+    }
+    if !self.colorID.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorID, fieldNumber: 9)
+    }
+    if !self.colorName.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorName, fieldNumber: 10)
+    }
+    if !self.colorValue.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorValue, fieldNumber: 11)
+    }
+    if !self.productStatus.isEmpty {
+      try visitor.visitSingularStringField(value: self.productStatus, fieldNumber: 12)
+    }
+    if !self.productID.isEmpty {
+      try visitor.visitSingularStringField(value: self.productID, fieldNumber: 13)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_OrderProduct, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_OrderProduct) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.payable != rhs.payable {return false}
+    if lhs.guaranteeDay != rhs.guaranteeDay {return false}
+    if lhs.sellerID != rhs.sellerID {return false}
+    if lhs.sellerName != rhs.sellerName {return false}
+    if lhs.colorID != rhs.colorID {return false}
+    if lhs.colorName != rhs.colorName {return false}
+    if lhs.colorValue != rhs.colorValue {return false}
+    if lhs.productStatus != rhs.productStatus {return false}
+    if lhs.productID != rhs.productID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Order: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Order"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    4: .same(proto: "id"),
+    5: .same(proto: "subscriberId"),
+    6: .same(proto: "insertTime"),
+    7: .same(proto: "transportId"),
+    8: .same(proto: "transportPrice"),
+    9: .same(proto: "totalPrice"),
+    10: .same(proto: "totalPayable"),
+    11: .same(proto: "orderStatus"),
+    12: .same(proto: "payStatus"),
+    13: .same(proto: "products"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 4: try decoder.decodeSingularStringField(value: &self.id)
+      case 5: try decoder.decodeSingularStringField(value: &self.subscriberID)
+      case 6: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 7: try decoder.decodeSingularStringField(value: &self.transportID)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.transportPrice)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.totalPrice)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.totalPayable)
+      case 11: try decoder.decodeSingularStringField(value: &self.orderStatus)
+      case 12: try decoder.decodeSingularStringField(value: &self.payStatus)
+      case 13: try decoder.decodeRepeatedMessageField(value: &self.products)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 4)
+    }
+    if !self.subscriberID.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberID, fieldNumber: 5)
+    }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 6)
+    }
+    if !self.transportID.isEmpty {
+      try visitor.visitSingularStringField(value: self.transportID, fieldNumber: 7)
+    }
+    if self.transportPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.transportPrice, fieldNumber: 8)
+    }
+    if self.totalPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPrice, fieldNumber: 9)
+    }
+    if self.totalPayable != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPayable, fieldNumber: 10)
+    }
+    if !self.orderStatus.isEmpty {
+      try visitor.visitSingularStringField(value: self.orderStatus, fieldNumber: 11)
+    }
+    if !self.payStatus.isEmpty {
+      try visitor.visitSingularStringField(value: self.payStatus, fieldNumber: 12)
+    }
+    if !self.products.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.products, fieldNumber: 13)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Order, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Order) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.subscriberID != rhs.subscriberID {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.transportID != rhs.transportID {return false}
+    if lhs.transportPrice != rhs.transportPrice {return false}
+    if lhs.totalPrice != rhs.totalPrice {return false}
+    if lhs.totalPayable != rhs.totalPayable {return false}
+    if lhs.orderStatus != rhs.orderStatus {return false}
+    if lhs.payStatus != rhs.payStatus {return false}
+    if lhs.products != rhs.products {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListOrders"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+    5: .same(proto: "totalPage"),
+    6: .same(proto: "page"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.totalPage)
+      case 6: try decoder.decodeSingularInt32Field(value: &self.page)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    if self.totalPage != 0 {
+      try visitor.visitSingularInt32Field(value: self.totalPage, fieldNumber: 5)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.totalPage != rhs.totalPage {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetDiscountPrice"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "oldPrice"),
+    5: .same(proto: "newPrice"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.oldPrice)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.newPrice)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if self.oldPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.oldPrice, fieldNumber: 4)
+    }
+    if self.newPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.newPrice, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.oldPrice != rhs.oldPrice {return false}
+    if lhs.newPrice != rhs.newPrice {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_City: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".City"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    3: .same(proto: "id"),
+    1: .same(proto: "state"),
+    2: .same(proto: "city"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.state)
+      case 2: try decoder.decodeSingularStringField(value: &self.city)
+      case 3: try decoder.decodeSingularStringField(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.state.isEmpty {
+      try visitor.visitSingularStringField(value: self.state, fieldNumber: 1)
+    }
+    if !self.city.isEmpty {
+      try visitor.visitSingularStringField(value: self.city, fieldNumber: 2)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_City, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_City) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.state != rhs.state {return false}
+    if lhs.city != rhs.city {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListCities"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    5: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Unit: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Unit"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    3: .same(proto: "id"),
+    1: .same(proto: "prName"),
+    2: .same(proto: "enName"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.prName)
+      case 2: try decoder.decodeSingularStringField(value: &self.enName)
+      case 3: try decoder.decodeSingularStringField(value: &self.id)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.prName.isEmpty {
+      try visitor.visitSingularStringField(value: self.prName, fieldNumber: 1)
+    }
+    if !self.enName.isEmpty {
+      try visitor.visitSingularStringField(value: self.enName, fieldNumber: 2)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Unit, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Unit) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.prName != rhs.prName {return false}
+    if lhs.enName != rhs.enName {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListUnits"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    5: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Transaction"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "orderId"),
+    3: .same(proto: "paymentId"),
+    4: .same(proto: "price"),
+    5: .same(proto: "payable"),
+    6: .same(proto: "agentId"),
+    7: .same(proto: "insertTime"),
+    8: .same(proto: "comment"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.orderID)
+      case 3: try decoder.decodeSingularStringField(value: &self.paymentID)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.price)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.payable)
+      case 6: try decoder.decodeSingularStringField(value: &self.agentID)
+      case 7: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 8: try decoder.decodeSingularStringField(value: &self.comment)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.orderID.isEmpty {
+      try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 2)
+    }
+    if !self.paymentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.paymentID, fieldNumber: 3)
+    }
+    if self.price != 0 {
+      try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 4)
+    }
+    if self.payable != 0 {
+      try visitor.visitSingularInt64Field(value: self.payable, fieldNumber: 5)
+    }
+    if !self.agentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.agentID, fieldNumber: 6)
+    }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 7)
+    }
+    if !self.comment.isEmpty {
+      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.orderID != rhs.orderID {return false}
+    if lhs.paymentID != rhs.paymentID {return false}
+    if lhs.price != rhs.price {return false}
+    if lhs.payable != rhs.payable {return false}
+    if lhs.agentID != rhs.agentID {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.comment != rhs.comment {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransactions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListTransactions"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    5: .same(proto: "data"),
+    6: .same(proto: "totalPrice"),
+    7: .same(proto: "totalPayable"),
+    8: .same(proto: "page"),
+    9: .same(proto: "totalItem"),
+    10: .same(proto: "totalPage"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.totalPrice)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.totalPayable)
+      case 8: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.totalItem)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.totalPage)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
+    }
+    if self.totalPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPrice, fieldNumber: 6)
+    }
+    if self.totalPayable != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPayable, fieldNumber: 7)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 8)
+    }
+    if self.totalItem != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalItem, fieldNumber: 9)
+    }
+    if self.totalPage != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPage, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransactions, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListTransactions) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.totalPrice != rhs.totalPrice {return false}
+    if lhs.totalPayable != rhs.totalPayable {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalItem != rhs.totalItem {return false}
+    if lhs.totalPage != rhs.totalPage {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Featur: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Featur"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "unit"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeSingularStringField(value: &self.unit)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if !self.unit.isEmpty {
+      try visitor.visitSingularStringField(value: self.unit, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Featur, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Featur) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.unit != rhs.unit {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListFeature: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListFeature"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListFeature, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListFeature) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SaleReport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SaleReport"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "productId"),
+    2: .same(proto: "productName"),
+    3: .same(proto: "sellerId"),
+    4: .same(proto: "sellerName"),
+    5: .same(proto: "colorId"),
+    6: .same(proto: "colorName"),
+    7: .same(proto: "status"),
+    8: .same(proto: "count"),
+    9: .same(proto: "totalPrice"),
+    10: .same(proto: "totalPayable"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.productID)
+      case 2: try decoder.decodeSingularStringField(value: &self.productName)
+      case 3: try decoder.decodeSingularStringField(value: &self.sellerID)
+      case 4: try decoder.decodeSingularStringField(value: &self.sellerName)
+      case 5: try decoder.decodeSingularStringField(value: &self.colorID)
+      case 6: try decoder.decodeSingularStringField(value: &self.colorName)
+      case 7: try decoder.decodeSingularStringField(value: &self.status)
+      case 8: try decoder.decodeSingularInt32Field(value: &self.count)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.totalPrice)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.totalPayable)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.productID.isEmpty {
+      try visitor.visitSingularStringField(value: self.productID, fieldNumber: 1)
+    }
+    if !self.productName.isEmpty {
+      try visitor.visitSingularStringField(value: self.productName, fieldNumber: 2)
+    }
+    if !self.sellerID.isEmpty {
+      try visitor.visitSingularStringField(value: self.sellerID, fieldNumber: 3)
+    }
+    if !self.sellerName.isEmpty {
+      try visitor.visitSingularStringField(value: self.sellerName, fieldNumber: 4)
+    }
+    if !self.colorID.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorID, fieldNumber: 5)
+    }
+    if !self.colorName.isEmpty {
+      try visitor.visitSingularStringField(value: self.colorName, fieldNumber: 6)
+    }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 7)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 8)
+    }
+    if self.totalPrice != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPrice, fieldNumber: 9)
+    }
+    if self.totalPayable != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPayable, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SaleReport, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_SaleReport) -> Bool {
+    if lhs.productID != rhs.productID {return false}
+    if lhs.productName != rhs.productName {return false}
+    if lhs.sellerID != rhs.sellerID {return false}
+    if lhs.sellerName != rhs.sellerName {return false}
+    if lhs.colorID != rhs.colorID {return false}
+    if lhs.colorName != rhs.colorName {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.totalPrice != rhs.totalPrice {return false}
+    if lhs.totalPayable != rhs.totalPayable {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSaleReport: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListSaleReport"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    5: .same(proto: "data"),
+    8: .same(proto: "page"),
+    9: .same(proto: "totalItem"),
+    10: .same(proto: "totalPage"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 8: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.totalItem)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.totalPage)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 8)
+    }
+    if self.totalItem != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalItem, fieldNumber: 9)
+    }
+    if self.totalPage != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPage, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSaleReport, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListSaleReport) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalItem != rhs.totalItem {return false}
+    if lhs.totalPage != rhs.totalPage {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
