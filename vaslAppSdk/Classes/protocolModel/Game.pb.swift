@@ -28,6 +28,10 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat {
 
   public var title: String = String()
 
+  public var point: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Point] = []
+
+  public var pointValue: Int64 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -44,11 +48,51 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatList {
 
   public var msg: String = String()
 
+  public var page: Int32 = 0
+
+  public var totalPages: Int64 = 0
+
   public var level: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatGet {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 {
+    get {return _storage._status}
+    set {_uniqueStorage()._status = newValue}
+  }
+
+  public var code: Int32 {
+    get {return _storage._code}
+    set {_uniqueStorage()._code = newValue}
+  }
+
+  public var msg: String {
+    get {return _storage._msg}
+    set {_uniqueStorage()._msg = newValue}
+  }
+
+  public var cat: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat {
+    get {return _storage._cat ?? Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat()}
+    set {_uniqueStorage()._cat = newValue}
+  }
+  /// Returns true if `cat` has been explicitly set.
+  public var hasCat: Bool {return _storage._cat != nil}
+  /// Clears the value of `cat`. Subsequent reads from it will return its default value.
+  public mutating func clearCat() {_uniqueStorage()._cat = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatAdd {
@@ -111,11 +155,6 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level {
   public var id: String {
     get {return _storage._id}
     set {_uniqueStorage()._id = newValue}
-  }
-
-  public var number: Int32 {
-    get {return _storage._number}
-    set {_uniqueStorage()._number = newValue}
   }
 
   public var title: String {
@@ -497,6 +536,8 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus {
 
   public var msg: String = String()
 
+  public var tags: [String] = []
+
   public var data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_VariableValue] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -690,6 +731,28 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard {
   public var code: Int32 = 0
 
   public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RankData] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LeaderBoardList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var page: Int32 = 0
+
+  public var totalPages: Int64 = 0
 
   public var data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RankData] = []
 
@@ -1036,6 +1099,8 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymen
 
   public var data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_VariableValue] = []
 
+  public var cafePurchaseData: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1074,6 +1139,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat: SwiftProto
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "title"),
+    3: .same(proto: "point"),
+    4: .same(proto: "pointValue"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1081,6 +1148,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat: SwiftProto
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.title)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.point)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.pointValue)
       default: break
       }
     }
@@ -1093,12 +1162,20 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat: SwiftProto
     if !self.title.isEmpty {
       try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
     }
+    if !self.point.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.point, fieldNumber: 3)
+    }
+    if self.pointValue != 0 {
+      try visitor.visitSingularInt64Field(value: self.pointValue, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.title != rhs.title {return false}
+    if lhs.point != rhs.point {return false}
+    if lhs.pointValue != rhs.pointValue {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1110,7 +1187,9 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatList: SwiftP
     1: .same(proto: "status"),
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
-    4: .same(proto: "level"),
+    4: .same(proto: "page"),
+    5: .same(proto: "totalPages"),
+    7: .same(proto: "level"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1119,7 +1198,9 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatList: SwiftP
       case 1: try decoder.decodeSingularInt32Field(value: &self.status)
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
-      case 4: try decoder.decodeRepeatedMessageField(value: &self.level)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.totalPages)
+      case 7: try decoder.decodeRepeatedMessageField(value: &self.level)
       default: break
       }
     }
@@ -1135,8 +1216,14 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatList: SwiftP
     if !self.msg.isEmpty {
       try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
     }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 4)
+    }
+    if self.totalPages != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPages, fieldNumber: 5)
+    }
     if !self.level.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.level, fieldNumber: 4)
+      try visitor.visitRepeatedMessageField(value: self.level, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1145,7 +1232,94 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatList: SwiftP
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalPages != rhs.totalPages {return false}
     if lhs.level != rhs.level {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LevelCatGet"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "cat"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _status: Int32 = 0
+    var _code: Int32 = 0
+    var _msg: String = String()
+    var _cat: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _status = source._status
+      _code = source._code
+      _msg = source._msg
+      _cat = source._cat
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt32Field(value: &_storage._status)
+        case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._msg)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._cat)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._status, fieldNumber: 1)
+      }
+      if _storage._code != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._code, fieldNumber: 2)
+      }
+      if !_storage._msg.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._msg, fieldNumber: 3)
+      }
+      if let v = _storage._cat {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatGet, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCatGet) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._msg != rhs_storage._msg {return false}
+        if _storage._cat != rhs_storage._cat {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1290,7 +1464,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
   public static let protoMessageName: String = _protobuf_package + ".Level"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
-    2: .same(proto: "number"),
     3: .same(proto: "title"),
     4: .same(proto: "levelCat"),
     5: .same(proto: "key"),
@@ -1298,7 +1471,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
 
   fileprivate class _StorageClass {
     var _id: String = String()
-    var _number: Int32 = 0
     var _title: String = String()
     var _levelCat: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LevelCat? = nil
     var _key: String = String()
@@ -1309,7 +1481,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
 
     init(copying source: _StorageClass) {
       _id = source._id
-      _number = source._number
       _title = source._title
       _levelCat = source._levelCat
       _key = source._key
@@ -1329,7 +1500,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
       while let fieldNumber = try decoder.nextFieldNumber() {
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._id)
-        case 2: try decoder.decodeSingularInt32Field(value: &_storage._number)
         case 3: try decoder.decodeSingularStringField(value: &_storage._title)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._levelCat)
         case 5: try decoder.decodeSingularStringField(value: &_storage._key)
@@ -1343,9 +1513,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       if !_storage._id.isEmpty {
         try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
-      }
-      if _storage._number != 0 {
-        try visitor.visitSingularInt32Field(value: _storage._number, fieldNumber: 2)
       }
       if !_storage._title.isEmpty {
         try visitor.visitSingularStringField(value: _storage._title, fieldNumber: 3)
@@ -1366,7 +1533,6 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Level: SwiftProtobuf
         let _storage = _args.0
         let rhs_storage = _args.1
         if _storage._id != rhs_storage._id {return false}
-        if _storage._number != rhs_storage._number {return false}
         if _storage._title != rhs_storage._title {return false}
         if _storage._levelCat != rhs_storage._levelCat {return false}
         if _storage._key != rhs_storage._key {return false}
@@ -2265,7 +2431,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus: SwiftPro
     1: .same(proto: "status"),
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
-    4: .same(proto: "data"),
+    4: .same(proto: "tags"),
+    5: .same(proto: "data"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2274,7 +2441,8 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus: SwiftPro
       case 1: try decoder.decodeSingularInt32Field(value: &self.status)
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
-      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 4: try decoder.decodeRepeatedStringField(value: &self.tags)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.data)
       default: break
       }
     }
@@ -2290,8 +2458,11 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus: SwiftPro
     if !self.msg.isEmpty {
       try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
     }
+    if !self.tags.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.tags, fieldNumber: 4)
+    }
     if !self.data.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -2300,6 +2471,7 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus: SwiftPro
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.tags != rhs.tags {return false}
     if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -2805,6 +2977,65 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard: Swif
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LeaderBoardList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".LeaderBoardList"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "page"),
+    5: .same(proto: "totalPages"),
+    6: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.page)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.totalPages)
+      case 6: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if self.page != 0 {
+      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 4)
+    }
+    if self.totalPages != 0 {
+      try visitor.visitSingularInt64Field(value: self.totalPages, fieldNumber: 5)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LeaderBoardList, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_LeaderBoardList) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.page != rhs.page {return false}
+    if lhs.totalPages != rhs.totalPages {return false}
     if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -3629,6 +3860,7 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentSta
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "data"),
+    5: .same(proto: "cafePurchaseData"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3638,6 +3870,7 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentSta
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeSingularStringField(value: &self.cafePurchaseData)
       default: break
       }
     }
@@ -3656,6 +3889,9 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentSta
     if !self.data.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
     }
+    if !self.cafePurchaseData.isEmpty {
+      try visitor.visitSingularStringField(value: self.cafePurchaseData, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -3664,6 +3900,7 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentSta
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.data != rhs.data {return false}
+    if lhs.cafePurchaseData != rhs.cafePurchaseData {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

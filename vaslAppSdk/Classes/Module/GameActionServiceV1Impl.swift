@@ -1,26 +1,26 @@
 import Foundation
 
-protocol GameActionServiceV2 {
+protocol GameActionServiceV1 {
 
-    func dynamicRaiseAction(actionKey: String, actionData: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void)
+    func raiseAction(actionKey: String, actionData: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void)
 
 
 }
 
 
-public class GameActionServiceV2Impl  : GameActionServiceV2 {
+public class GameActionServiceV1Impl  : GameActionServiceV1 {
 
 
-    public func dynamicRaiseAction(actionKey: String, actionData: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void) {
-        dynamicRaiseAction(actionKey: actionKey, actionData: actionData, sessionId: sessionId, completion: completion,force: true)
+    public func raiseAction(actionKey: String, actionData: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void) {
+        raiseAction(actionKey: actionKey, actionData: actionData, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func dynamicRaiseAction(actionKey: String, actionData: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void,force : Bool) {
+    private func raiseAction(actionKey: String, actionData: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(actionKey            , forKey: "actionKey")
                     params.updateValue(actionData            , forKey: "actionData")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/actions/raise", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/game/actions/raise", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -30,7 +30,7 @@ public class GameActionServiceV2Impl  : GameActionServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.dynamicRaiseAction(actionKey: actionKey, actionData: actionData, sessionId: sessionId, completion: completion,force: false)
+                            self.raiseAction(actionKey: actionKey, actionData: actionData, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

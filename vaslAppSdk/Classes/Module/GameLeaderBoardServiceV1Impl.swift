@@ -1,6 +1,6 @@
 import Foundation
 
-protocol GameLeaderBoardServiceV2 {
+protocol GameLeaderBoardServiceV1 {
 
     func getLeaderboard(pointId: String, sortDescending: String, tag: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
@@ -10,7 +10,7 @@ protocol GameLeaderBoardServiceV2 {
 }
 
 
-public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
+public class GameLeaderBoardServiceV1Impl  : GameLeaderBoardServiceV1 {
 
 
     public func getLeaderboard(pointId: String, sortDescending: String, tag: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
@@ -22,7 +22,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                     params.updateValue(pointId            , forKey: "pointId")
                     params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/get", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/game/leaderboard/get", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -55,7 +55,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                     params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/top10", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/game/leaderboard/top10", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
