@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet {
+public struct Com_Vasl_Vaslapp_Modules_Event_Global_Proto_Holder_EventGet {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -39,9 +39,9 @@ public struct Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.app.global.proto.holder"
+fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.event.global.proto.holder"
 
-extension Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Com_Vasl_Vaslapp_Modules_Event_Global_Proto_Holder_EventGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EventGet"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
@@ -78,7 +78,7 @@ extension Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet: SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet, rhs: Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_EventGet) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Event_Global_Proto_Holder_EventGet, rhs: Com_Vasl_Vaslapp_Modules_Event_Global_Proto_Holder_EventGet) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}

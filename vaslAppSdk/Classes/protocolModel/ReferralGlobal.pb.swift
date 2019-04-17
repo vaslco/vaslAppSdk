@@ -37,7 +37,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ReferralCode
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -55,7 +55,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink {
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -71,7 +71,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView {
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -87,7 +87,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegist
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCampaign {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -103,7 +103,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampai
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_UpdateCampaign {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -119,7 +119,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampai
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_DeleteCampaign {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -135,7 +135,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampai
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CampaignDetail {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -153,7 +153,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDeta
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaignPanel {
+public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -170,7 +170,7 @@ public struct Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaign
 
   public var totalpages: Int64 = 0
 
-  public var data: [Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CampaignDetail] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -228,8 +228,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ReferralCodeGet:
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".createLink"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CreateLink"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -265,7 +265,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -275,8 +275,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createLink: Swif
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".inviteView"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InviteView"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -307,7 +307,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -316,8 +316,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteView: Swif
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".inviteRegister"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".InviteRegister"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -348,7 +348,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -357,8 +357,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_inviteRegister: 
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".createCampaign"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CreateCampaign"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -389,7 +389,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCampaign) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -398,8 +398,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_createCampaign: 
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".updateCampaign"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_UpdateCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".UpdateCampaign"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -430,7 +430,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_UpdateCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_UpdateCampaign) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -439,8 +439,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_updateCampaign: 
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".deleteCampaign"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_DeleteCampaign: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeleteCampaign"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -471,7 +471,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_DeleteCampaign, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_DeleteCampaign) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
@@ -480,8 +480,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_deleteCampaign: 
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".campaignDetail"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CampaignDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CampaignDetail"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "campaignName"),
@@ -517,7 +517,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail: 
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CampaignDetail, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CampaignDetail) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.campaignName != rhs.campaignName {return false}
     if lhs.viewScore != rhs.viewScore {return false}
@@ -527,8 +527,8 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_campaignDetail: 
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaignPanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".listCampaignPanel"
+extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListCampaignPanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "status"),
     2: .same(proto: "code"),
@@ -579,7 +579,7 @@ extension Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaignPane
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaignPanel, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_listCampaignPanel) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel, rhs: Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel) -> Bool {
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
