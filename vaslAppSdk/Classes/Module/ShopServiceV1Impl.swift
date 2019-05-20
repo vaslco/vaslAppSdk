@@ -2,6 +2,8 @@ import Foundation
 
 protocol ShopServiceV1 {
 
+    func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
+
     func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
     func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
@@ -36,13 +38,54 @@ protocol ShopServiceV1 {
 
     func listCities(state: String, cities: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
 
-    func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
+    func getProduct(productId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void)
 
 
 }
 
 
 public class ShopServiceV1Impl  : ShopServiceV1 {
+
+
+    public func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
+        addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(nickName            , forKey: "nickName")
+                    params.updateValue(mobile            , forKey: "mobile")
+                    params.updateValue(phone            , forKey: "phone")
+                    params.updateValue(city            , forKey: "city")
+                    params.updateValue(sector            , forKey: "sector")
+                    params.updateValue(address            , forKey: "address")
+                    params.updateValue(postalCode            , forKey: "postalCode")
+                    params.updateValue(recipientName            , forKey: "recipientName")
+                    params.updateValue(recipientPhone            , forKey: "recipientPhone")
+                    params.updateValue(locationLatitude            , forKey: "locationLatitude")
+                    params.updateValue(locationLongitude            , forKey: "locationLongitude")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/address", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
 
 
     public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
@@ -611,35 +654,25 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
 
 
-    public func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
-        addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: true)
+    public func getProduct(productId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void) {
+        getProduct(productId: productId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
+    private func getProduct(productId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
-                    params.updateValue(nickName            , forKey: "nickName")
-                    params.updateValue(mobile            , forKey: "mobile")
-                    params.updateValue(phone            , forKey: "phone")
-                    params.updateValue(city            , forKey: "city")
-                    params.updateValue(sector            , forKey: "sector")
-                    params.updateValue(address            , forKey: "address")
-                    params.updateValue(postalCode            , forKey: "postalCode")
-                    params.updateValue(recipientName            , forKey: "recipientName")
-                    params.updateValue(recipientPhone            , forKey: "recipientPhone")
-                    params.updateValue(locationLatitude            , forKey: "locationLatitude")
-                    params.updateValue(locationLongitude            , forKey: "locationLongitude")
+                    params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/address", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/get/product", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: false)
+                            self.getProduct(productId: productId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

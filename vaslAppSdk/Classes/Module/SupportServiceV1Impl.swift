@@ -2,6 +2,8 @@ import Foundation
 
 protocol SupportServiceV1 {
 
+    func listMsg(subscriberId: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void)
+
     func createIssue(parentId: String, subject: String, description: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void)
 
     func listIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListIssue?,String?) -> Void)
@@ -29,6 +31,37 @@ protocol SupportServiceV1 {
 
 
 public class SupportServiceV1Impl  : SupportServiceV1 {
+
+
+    public func listMsg(subscriberId: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void) {
+        listMsg(subscriberId: subscriberId, page: page, completion: completion,force: true)
+    }
+    
+    private func listMsg(subscriberId: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(subscriberId            , forKey: "subscriberId")
+                    params.updateValue(page            , forKey: "page")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/inbox/listMsg", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMsg(subscriberId: subscriberId, page: page, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
 
 
     public func createIssue(parentId: String, subject: String, description: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void) {

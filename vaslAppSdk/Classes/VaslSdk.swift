@@ -283,4 +283,21 @@ public class VaslSdk : Services {
         }
         return VaslSdk.pushApp
     }
+    
+    private static var mgsService : MgsServiceV1Impl!
+    public func MgsServiceV1() -> MgsServiceV1Impl! {
+        if VaslSdk.mgsService == nil {
+            VaslSdk.mgsService = MgsServiceV1Impl.init()
+        }
+        return VaslSdk.mgsService
+    }
+    
+    private static var operatorService : OperatorsServiceV1Impl!
+    public func OperatorService() -> OperatorsServiceV1Impl! {
+        if VaslSdk.operatorService == nil {
+            VaslSdk.operatorService = OperatorsServiceV1Impl.init()
+        }
+        return VaslSdk.operatorService
+    }
+    
 }

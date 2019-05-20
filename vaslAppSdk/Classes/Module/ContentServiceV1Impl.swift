@@ -22,7 +22,7 @@ protocol ContentServiceV1 {
 
     func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
 
-    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryId: String, categoryKey: String, contentsRandomNumber: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
+    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
     func listContentByLocation(lat: String, lng: String, searchDiameter: String, page: String, isRandom: String, contentsRandomNumber: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
@@ -353,11 +353,11 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
 
 
-    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryId: String, categoryKey: String, contentsRandomNumber: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
-        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryId: categoryId, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, completion: completion,force: true)
+    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
+        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, completion: completion,force: true)
     }
     
-    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryId: String, categoryKey: String, contentsRandomNumber: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
+    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(sortType            , forKey: "sortType")
@@ -368,7 +368,6 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(endDate            , forKey: "endDate")
                     params.updateValue(tag            , forKey: "tag")
                     params.updateValue(keyWord            , forKey: "keyWord")
-                    params.updateValue(categoryId            , forKey: "categoryId")
                     params.updateValue(categoryKey            , forKey: "categoryKey")
                     params.updateValue(contentsRandomNumber            , forKey: "contentsRandomNumber")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/list", params, completion: { (result, error) in
@@ -381,7 +380,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryId: categoryId, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, completion: completion,force: false)
+                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

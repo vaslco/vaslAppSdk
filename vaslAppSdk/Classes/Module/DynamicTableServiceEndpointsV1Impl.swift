@@ -12,7 +12,7 @@ protocol DynamicTableServiceEndpointsV1 {
 
     func endpointDeleteMany(tableName: String, find: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func endpointFind(sessionId: String, tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func endpointCount(tableName: String, find: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -194,12 +194,13 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: true)
+    public func endpointFind(sessionId: String, tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        endpointFind(sessionId: sessionId, tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: true)
     }
     
-    private func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func endpointFind(sessionId: String, tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
                     params.updateValue(projection            , forKey: "projection")
@@ -218,7 +219,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: false)
+                            self.endpointFind(sessionId: sessionId, tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }

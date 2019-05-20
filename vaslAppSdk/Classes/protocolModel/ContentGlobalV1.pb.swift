@@ -602,6 +602,14 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList 
 
   public var totalItems: Int64 = 0
 
+  public var deletedCnt: Int64 = 0
+
+  public var publishedCnt: Int64 = 0
+
+  public var createdCnt: Int64 = 0
+
+  public var allCnt: Int64 = 0
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1994,6 +2002,10 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList: Swi
     6: .same(proto: "page"),
     7: .same(proto: "totalPages"),
     8: .same(proto: "totalItems"),
+    9: .same(proto: "deletedCnt"),
+    10: .same(proto: "publishedCnt"),
+    11: .same(proto: "createdCnt"),
+    12: .same(proto: "allCnt"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2007,6 +2019,10 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList: Swi
       case 6: try decoder.decodeSingularInt64Field(value: &self.page)
       case 7: try decoder.decodeSingularInt64Field(value: &self.totalPages)
       case 8: try decoder.decodeSingularInt64Field(value: &self.totalItems)
+      case 9: try decoder.decodeSingularInt64Field(value: &self.deletedCnt)
+      case 10: try decoder.decodeSingularInt64Field(value: &self.publishedCnt)
+      case 11: try decoder.decodeSingularInt64Field(value: &self.createdCnt)
+      case 12: try decoder.decodeSingularInt64Field(value: &self.allCnt)
       default: break
       }
     }
@@ -2037,6 +2053,18 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList: Swi
     if self.totalItems != 0 {
       try visitor.visitSingularInt64Field(value: self.totalItems, fieldNumber: 8)
     }
+    if self.deletedCnt != 0 {
+      try visitor.visitSingularInt64Field(value: self.deletedCnt, fieldNumber: 9)
+    }
+    if self.publishedCnt != 0 {
+      try visitor.visitSingularInt64Field(value: self.publishedCnt, fieldNumber: 10)
+    }
+    if self.createdCnt != 0 {
+      try visitor.visitSingularInt64Field(value: self.createdCnt, fieldNumber: 11)
+    }
+    if self.allCnt != 0 {
+      try visitor.visitSingularInt64Field(value: self.allCnt, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2049,6 +2077,10 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList: Swi
     if lhs.page != rhs.page {return false}
     if lhs.totalPages != rhs.totalPages {return false}
     if lhs.totalItems != rhs.totalItems {return false}
+    if lhs.deletedCnt != rhs.deletedCnt {return false}
+    if lhs.publishedCnt != rhs.publishedCnt {return false}
+    if lhs.createdCnt != rhs.createdCnt {return false}
+    if lhs.allCnt != rhs.allCnt {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

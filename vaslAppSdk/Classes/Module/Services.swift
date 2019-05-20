@@ -73,5 +73,9 @@ protocol Services {
     
     func SubscriberV2Service() -> SubscriberServiceV2Impl!
     
+    func MgsServiceV1() -> MgsServiceV1Impl!
+    
+    func OperatorService() -> OperatorsServiceV1Impl!
+    
     
 }
