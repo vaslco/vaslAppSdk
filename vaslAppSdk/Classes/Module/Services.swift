@@ -19,6 +19,8 @@ protocol Services {
     
     func billingInappService() -> BillingInappServiceV1Impl!
     
+    func billingGlobalService() -> billingImpl!
+    
     func chargeService() -> ChargeServiceV1Impl!
     
     func ContentService() -> ContentServiceV1Impl!
@@ -76,6 +78,8 @@ protocol Services {
     func MgsServiceV1() -> MgsServiceV1Impl!
     
     func OperatorService() -> OperatorsServiceV1Impl!
+    
+    func HambaziService() -> HambaziServiceV1Impl!
     
     
 }

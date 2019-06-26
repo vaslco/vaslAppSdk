@@ -300,4 +300,20 @@ public class VaslSdk : Services {
         return VaslSdk.operatorService
     }
     
+    private static var hambaziService : HambaziServiceV1Impl!
+    public func HambaziService() -> HambaziServiceV1Impl! {
+        if VaslSdk.hambaziService == nil {
+            VaslSdk.hambaziService = HambaziServiceV1Impl.init()
+        }
+        return VaslSdk.hambaziService
+    }
+    
+    private static var billingGlobal : billingImpl!
+    public func billingGlobalService() -> billingImpl! {
+        if VaslSdk.billingGlobal == nil {
+            VaslSdk.billingGlobal = billingImpl.init()
+        }
+        return VaslSdk.billingGlobal
+    }
+    
 }

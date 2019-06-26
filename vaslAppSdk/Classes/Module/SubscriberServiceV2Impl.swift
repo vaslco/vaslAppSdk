@@ -14,15 +14,15 @@ protocol SubscriberServiceV2 {
 
     func validatedOnceTime(username: String, activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
-    func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void)
-
-    func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
-
-    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void)
-
     func checkAllUser(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void)
 
     func inactivateSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void)
+
+    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void)
+
+    func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void)
+
+    func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
 
 
 }
@@ -220,6 +220,96 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
     }
 
 
+    public func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
+        checkAllUser(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(mobile            , forKey: "mobile")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/all/user", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.checkAllUser(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
+        inactivateSubscriber(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(mobile            , forKey: "mobile")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/inactivate", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.inactivateSubscriber(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
+        checkUserRightel(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(mobile            , forKey: "mobile")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/user/rightel", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void) {
         chargeOnDemandRequest(spid: spid, otpRequest: otpRequest, shortCode: shortCode, chargeCode: chargeCode, mobileNo: mobileNo, completion: completion,force: true)
     }
@@ -276,96 +366,6 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
-        checkUserRightel(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/user/rightel", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
-        checkAllUser(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/all/user", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkAllUser(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
-        inactivateSubscriber(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/inactivate", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.inactivateSubscriber(mobile: mobile, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

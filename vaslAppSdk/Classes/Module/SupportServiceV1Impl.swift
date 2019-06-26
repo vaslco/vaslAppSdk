@@ -2,8 +2,6 @@ import Foundation
 
 protocol SupportServiceV1 {
 
-    func listMsg(subscriberId: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void)
-
     func createIssue(parentId: String, subject: String, description: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void)
 
     func listIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListIssue?,String?) -> Void)
@@ -12,9 +10,9 @@ protocol SupportServiceV1 {
 
     func removeIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_RemoveIssue?,String?) -> Void)
 
-    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void)
+    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void)
 
-    func listMyThreads(page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void)
+    func listMyThreads(page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void)
 
     func getMyThreadDataById(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetThreadData?,String?) -> Void)
 
@@ -24,44 +22,13 @@ protocol SupportServiceV1 {
 
     func listMyThreadConversations(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConversations?,String?) -> Void)
 
-    func readThreadConversation(messageId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void)
+    func readThreadConversation(messageId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void)
 
 
 }
 
 
 public class SupportServiceV1Impl  : SupportServiceV1 {
-
-
-    public func listMsg(subscriberId: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void) {
-        listMsg(subscriberId: subscriberId, page: page, completion: completion,force: true)
-    }
-    
-    private func listMsg(subscriberId: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(subscriberId            , forKey: "subscriberId")
-                    params.updateValue(page            , forKey: "page")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/inbox/listMsg", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.listMsg(subscriberId: subscriberId, page: page, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
 
 
     public func createIssue(parentId: String, subject: String, description: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void) {
@@ -192,11 +159,11 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void) {
+    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void) {
         createThread(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void,force : Bool) {
+    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(issueId            , forKey: "issueId")
                     params.updateValue(priority            , forKey: "priority")
@@ -207,7 +174,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -226,13 +193,14 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func listMyThreads(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void) {
-        listMyThreads(page: page, sessionId: sessionId, completion: completion,force: true)
+    public func listMyThreads(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void) {
+        listMyThreads(page: page, type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listMyThreads(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void,force : Bool) {
+    private func listMyThreads(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(page            , forKey: "page")
+                    params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listMyThreads", params, completion: { (result, error) in
             do{
@@ -244,7 +212,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listMyThreads(page: page, sessionId: sessionId, completion: completion,force: false)
+                            self.listMyThreads(page: page, type: type, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -383,14 +351,13 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func readThreadConversation(messageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void) {
-        readThreadConversation(messageId: messageId, sessionId: sessionId, completion: completion,force: true)
+    public func readThreadConversation(messageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void) {
+        readThreadConversation(messageId: messageId, completion: completion,force: true)
     }
     
-    private func readThreadConversation(messageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void,force : Bool) {
+    private func readThreadConversation(messageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
                     params.updateValue(messageId            , forKey: "messageId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/readThreadConversation", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -401,7 +368,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.readThreadConversation(messageId: messageId, sessionId: sessionId, completion: completion,force: false)
+                            self.readThreadConversation(messageId: messageId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

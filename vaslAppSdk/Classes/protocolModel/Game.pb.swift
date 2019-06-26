@@ -391,6 +391,97 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionRemove {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionUserHistory {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 {
+    get {return _storage._status}
+    set {_uniqueStorage()._status = newValue}
+  }
+
+  public var code: Int32 {
+    get {return _storage._code}
+    set {_uniqueStorage()._code = newValue}
+  }
+
+  public var msg: String {
+    get {return _storage._msg}
+    set {_uniqueStorage()._msg = newValue}
+  }
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory] {
+    get {return _storage._data}
+    set {_uniqueStorage()._data = newValue}
+  }
+
+  public var tags: [String] {
+    get {return _storage._tags}
+    set {_uniqueStorage()._tags = newValue}
+  }
+
+  public var subscriberInfo: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo {
+    get {return _storage._subscriberInfo ?? Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo()}
+    set {_uniqueStorage()._subscriberInfo = newValue}
+  }
+  /// Returns true if `subscriberInfo` has been explicitly set.
+  public var hasSubscriberInfo: Bool {return _storage._subscriberInfo != nil}
+  /// Clears the value of `subscriberInfo`. Subsequent reads from it will return its default value.
+  public mutating func clearSubscriberInfo() {_uniqueStorage()._subscriberInfo = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var pointID: String = String()
+
+  public var pointType: String = String()
+
+  public var totalScore: String = String()
+
+  public var datas: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionHistory] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionHistory {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var time: Int64 = 0
+
+  public var variable: Int64 = 0
+
+  public var `operator`: String = String()
+
+  public var value: Int64 = 0
+
+  public var result: Int64 = 0
+
+  public var actionKey: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Point {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -715,6 +806,38 @@ public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RankData {
   public var profileLastName: String = String()
 
   public var isMe: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var subscriberID: String = String()
+
+  public var nickName: String = String()
+
+  public var username: String = String()
+
+  public var email: String = String()
+
+  public var mobile: String = String()
+
+  public var imageURL: String = String()
+
+  public var firstName: String = String()
+
+  public var lastName: String = String()
+
+  public var subscriberType: String = String()
+
+  public var gender: String = String()
+
+  public var birthDate: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2079,6 +2202,221 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionRemove: SwiftP
   }
 }
 
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionUserHistory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ActionUserHistory"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "id"),
+    5: .same(proto: "data"),
+    6: .same(proto: "tags"),
+    7: .same(proto: "subscriberInfo"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _status: Int32 = 0
+    var _code: Int32 = 0
+    var _msg: String = String()
+    var _id: String = String()
+    var _data: [Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory] = []
+    var _tags: [String] = []
+    var _subscriberInfo: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _status = source._status
+      _code = source._code
+      _msg = source._msg
+      _id = source._id
+      _data = source._data
+      _tags = source._tags
+      _subscriberInfo = source._subscriberInfo
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt32Field(value: &_storage._status)
+        case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._msg)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._data)
+        case 6: try decoder.decodeRepeatedStringField(value: &_storage._tags)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._subscriberInfo)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._status, fieldNumber: 1)
+      }
+      if _storage._code != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._code, fieldNumber: 2)
+      }
+      if !_storage._msg.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._msg, fieldNumber: 3)
+      }
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 4)
+      }
+      if !_storage._data.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._data, fieldNumber: 5)
+      }
+      if !_storage._tags.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._tags, fieldNumber: 6)
+      }
+      if let v = _storage._subscriberInfo {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionUserHistory, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionUserHistory) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._msg != rhs_storage._msg {return false}
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._data != rhs_storage._data {return false}
+        if _storage._tags != rhs_storage._tags {return false}
+        if _storage._subscriberInfo != rhs_storage._subscriberInfo {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PointHistory"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "point_id"),
+    2: .standard(proto: "point_type"),
+    3: .same(proto: "totalScore"),
+    4: .same(proto: "datas"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.pointID)
+      case 2: try decoder.decodeSingularStringField(value: &self.pointType)
+      case 3: try decoder.decodeSingularStringField(value: &self.totalScore)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.datas)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.pointID.isEmpty {
+      try visitor.visitSingularStringField(value: self.pointID, fieldNumber: 1)
+    }
+    if !self.pointType.isEmpty {
+      try visitor.visitSingularStringField(value: self.pointType, fieldNumber: 2)
+    }
+    if !self.totalScore.isEmpty {
+      try visitor.visitSingularStringField(value: self.totalScore, fieldNumber: 3)
+    }
+    if !self.datas.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.datas, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_PointHistory) -> Bool {
+    if lhs.pointID != rhs.pointID {return false}
+    if lhs.pointType != rhs.pointType {return false}
+    if lhs.totalScore != rhs.totalScore {return false}
+    if lhs.datas != rhs.datas {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionHistory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ActionHistory"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "time"),
+    2: .same(proto: "variable"),
+    3: .same(proto: "operator"),
+    4: .same(proto: "value"),
+    5: .same(proto: "result"),
+    6: .same(proto: "actionKey"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt64Field(value: &self.time)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.variable)
+      case 3: try decoder.decodeSingularStringField(value: &self.`operator`)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.value)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.result)
+      case 6: try decoder.decodeSingularStringField(value: &self.actionKey)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.time != 0 {
+      try visitor.visitSingularInt64Field(value: self.time, fieldNumber: 1)
+    }
+    if self.variable != 0 {
+      try visitor.visitSingularInt64Field(value: self.variable, fieldNumber: 2)
+    }
+    if !self.`operator`.isEmpty {
+      try visitor.visitSingularStringField(value: self.`operator`, fieldNumber: 3)
+    }
+    if self.value != 0 {
+      try visitor.visitSingularInt64Field(value: self.value, fieldNumber: 4)
+    }
+    if self.result != 0 {
+      try visitor.visitSingularInt64Field(value: self.result, fieldNumber: 5)
+    }
+    if !self.actionKey.isEmpty {
+      try visitor.visitSingularStringField(value: self.actionKey, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionHistory, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ActionHistory) -> Bool {
+    if lhs.time != rhs.time {return false}
+    if lhs.variable != rhs.variable {return false}
+    if lhs.`operator` != rhs.`operator` {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.result != rhs.result {return false}
+    if lhs.actionKey != rhs.actionKey {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_Point: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Point"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -2931,6 +3269,95 @@ extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RankData: SwiftProto
     if lhs.profileFirstName != rhs.profileFirstName {return false}
     if lhs.profileLastName != rhs.profileLastName {return false}
     if lhs.isMe != rhs.isMe {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SubscriberInfo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "subscriberId"),
+    2: .same(proto: "nickName"),
+    3: .same(proto: "username"),
+    4: .same(proto: "email"),
+    5: .same(proto: "mobile"),
+    6: .same(proto: "imageUrl"),
+    7: .same(proto: "firstName"),
+    8: .same(proto: "lastName"),
+    9: .same(proto: "subscriberType"),
+    10: .same(proto: "gender"),
+    11: .same(proto: "birthDate"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.subscriberID)
+      case 2: try decoder.decodeSingularStringField(value: &self.nickName)
+      case 3: try decoder.decodeSingularStringField(value: &self.username)
+      case 4: try decoder.decodeSingularStringField(value: &self.email)
+      case 5: try decoder.decodeSingularStringField(value: &self.mobile)
+      case 6: try decoder.decodeSingularStringField(value: &self.imageURL)
+      case 7: try decoder.decodeSingularStringField(value: &self.firstName)
+      case 8: try decoder.decodeSingularStringField(value: &self.lastName)
+      case 9: try decoder.decodeSingularStringField(value: &self.subscriberType)
+      case 10: try decoder.decodeSingularStringField(value: &self.gender)
+      case 11: try decoder.decodeSingularStringField(value: &self.birthDate)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.subscriberID.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberID, fieldNumber: 1)
+    }
+    if !self.nickName.isEmpty {
+      try visitor.visitSingularStringField(value: self.nickName, fieldNumber: 2)
+    }
+    if !self.username.isEmpty {
+      try visitor.visitSingularStringField(value: self.username, fieldNumber: 3)
+    }
+    if !self.email.isEmpty {
+      try visitor.visitSingularStringField(value: self.email, fieldNumber: 4)
+    }
+    if !self.mobile.isEmpty {
+      try visitor.visitSingularStringField(value: self.mobile, fieldNumber: 5)
+    }
+    if !self.imageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 6)
+    }
+    if !self.firstName.isEmpty {
+      try visitor.visitSingularStringField(value: self.firstName, fieldNumber: 7)
+    }
+    if !self.lastName.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastName, fieldNumber: 8)
+    }
+    if !self.subscriberType.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberType, fieldNumber: 9)
+    }
+    if !self.gender.isEmpty {
+      try visitor.visitSingularStringField(value: self.gender, fieldNumber: 10)
+    }
+    if !self.birthDate.isEmpty {
+      try visitor.visitSingularStringField(value: self.birthDate, fieldNumber: 11)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo, rhs: Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_SubscriberInfo) -> Bool {
+    if lhs.subscriberID != rhs.subscriberID {return false}
+    if lhs.nickName != rhs.nickName {return false}
+    if lhs.username != rhs.username {return false}
+    if lhs.email != rhs.email {return false}
+    if lhs.mobile != rhs.mobile {return false}
+    if lhs.imageURL != rhs.imageURL {return false}
+    if lhs.firstName != rhs.firstName {return false}
+    if lhs.lastName != rhs.lastName {return false}
+    if lhs.subscriberType != rhs.subscriberType {return false}
+    if lhs.gender != rhs.gender {return false}
+    if lhs.birthDate != rhs.birthDate {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

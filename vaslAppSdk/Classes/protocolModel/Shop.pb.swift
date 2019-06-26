@@ -1753,13 +1753,11 @@ public struct Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction {
 
   public var orderID: String = String()
 
-  public var paymentID: String = String()
+  public var gateWayID: String = String()
 
   public var price: Int64 = 0
 
   public var payable: Int64 = 0
-
-  public var agentID: String = String()
 
   public var insertTime: String = String()
 
@@ -6097,10 +6095,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction: SwiftPr
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "orderId"),
-    3: .same(proto: "paymentId"),
+    3: .same(proto: "gateWayId"),
     4: .same(proto: "price"),
     5: .same(proto: "payable"),
-    6: .same(proto: "agentId"),
     7: .same(proto: "insertTime"),
     8: .same(proto: "comment"),
   ]
@@ -6110,10 +6107,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction: SwiftPr
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.orderID)
-      case 3: try decoder.decodeSingularStringField(value: &self.paymentID)
+      case 3: try decoder.decodeSingularStringField(value: &self.gateWayID)
       case 4: try decoder.decodeSingularInt64Field(value: &self.price)
       case 5: try decoder.decodeSingularInt64Field(value: &self.payable)
-      case 6: try decoder.decodeSingularStringField(value: &self.agentID)
       case 7: try decoder.decodeSingularStringField(value: &self.insertTime)
       case 8: try decoder.decodeSingularStringField(value: &self.comment)
       default: break
@@ -6128,17 +6124,14 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction: SwiftPr
     if !self.orderID.isEmpty {
       try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 2)
     }
-    if !self.paymentID.isEmpty {
-      try visitor.visitSingularStringField(value: self.paymentID, fieldNumber: 3)
+    if !self.gateWayID.isEmpty {
+      try visitor.visitSingularStringField(value: self.gateWayID, fieldNumber: 3)
     }
     if self.price != 0 {
       try visitor.visitSingularInt64Field(value: self.price, fieldNumber: 4)
     }
     if self.payable != 0 {
       try visitor.visitSingularInt64Field(value: self.payable, fieldNumber: 5)
-    }
-    if !self.agentID.isEmpty {
-      try visitor.visitSingularStringField(value: self.agentID, fieldNumber: 6)
     }
     if !self.insertTime.isEmpty {
       try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 7)
@@ -6152,10 +6145,9 @@ extension Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction: SwiftPr
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction, rhs: Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_Transaction) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.orderID != rhs.orderID {return false}
-    if lhs.paymentID != rhs.paymentID {return false}
+    if lhs.gateWayID != rhs.gateWayID {return false}
     if lhs.price != rhs.price {return false}
     if lhs.payable != rhs.payable {return false}
-    if lhs.agentID != rhs.agentID {return false}
     if lhs.insertTime != rhs.insertTime {return false}
     if lhs.comment != rhs.comment {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}

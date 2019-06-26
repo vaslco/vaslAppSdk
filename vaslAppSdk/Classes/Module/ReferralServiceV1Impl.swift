@@ -4,11 +4,15 @@ protocol ReferralServiceV1 {
 
     func dynamicLinkCreate(userId: String, campaignId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink?,String?) -> Void)
 
+    func dynamicCodeCreate(userId: String, campaignId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode?,String?) -> Void)
+
     func inviteView(inviterUserId: String, invitedUserId: String, campaignId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView?,String?) -> Void)
+
+    func RegisterCode(code: String, invitedUserId: String, campaignId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode?,String?) -> Void)
 
     func inviteRegister(inviterUserId: String, invitedUserId: String, campaignId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void)
 
-    func listCampaign(search: String, searchBy: String, sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void)
+    func listCampaign(type: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void)
 
 
 }
@@ -36,6 +40,37 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.dynamicLinkCreate(userId: userId, campaignId: campaignId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func dynamicCodeCreate(userId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode?,String?) -> Void) {
+        dynamicCodeCreate(userId: userId, campaignId: campaignId, completion: completion,force: true)
+    }
+    
+    private func dynamicCodeCreate(userId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(userId            , forKey: "userId")
+                    params.updateValue(campaignId            , forKey: "campaignId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/create/code", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode(serializedData: result) as Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.dynamicCodeCreate(userId: userId, campaignId: campaignId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -80,6 +115,38 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
 
 
+    public func RegisterCode(code: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode?,String?) -> Void) {
+        RegisterCode(code: code, invitedUserId: invitedUserId, campaignId: campaignId, completion: completion,force: true)
+    }
+    
+    private func RegisterCode(code: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,String>()
+                    params.updateValue(code            , forKey: "code")
+                    params.updateValue(invitedUserId            , forKey: "invitedUserId")
+                    params.updateValue(campaignId            , forKey: "campaignId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/registerCode", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode(serializedData: result) as Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.RegisterCode(code: code, invitedUserId: invitedUserId, campaignId: campaignId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func inviteRegister(inviterUserId: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void) {
         inviteRegister(inviterUserId: inviterUserId, invitedUserId: invitedUserId, campaignId: campaignId, completion: completion,force: true)
     }
@@ -112,28 +179,25 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
 
 
-    public func listCampaign(search: String, searchBy: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void) {
-        listCampaign(search: search, searchBy: searchBy, sort: sort, order: order, page: page, completion: completion,force: true)
+    public func listCampaign(type: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void) {
+        listCampaign(type: type, page: page, completion: completion,force: true)
     }
     
-    private func listCampaign(search: String, searchBy: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void,force : Bool) {
+    private func listCampaign(type: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
-                    params.updateValue(search            , forKey: "search")
-                    params.updateValue(searchBy            , forKey: "searchBy")
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(type            , forKey: "type")
                     params.updateValue(page            , forKey: "page")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/list/campaign", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister(serializedData: result) as Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listCampaign(search: search, searchBy: searchBy, sort: sort, order: order, page: page, completion: completion,force: false)
+                            self.listCampaign(type: type, page: page, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

@@ -16,7 +16,7 @@ public class AppServicesImpl  : AppServices {
     }
     
     private func nearLocation(completion: @escaping (Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_TimeGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        let params = Dictionary<String,String>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/app/time/get", params, completion: { (result, error) in
             do{
                 if let result = result {

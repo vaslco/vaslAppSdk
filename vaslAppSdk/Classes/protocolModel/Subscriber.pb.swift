@@ -364,6 +364,28 @@ public struct Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ProfileInf
 
   public var mobiles: [String] = []
 
+  public var picture: [Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Image] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Image {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var url: String = String()
+
+  public var size: Int64 = 0
+
+  public var width: Int32 = 0
+
+  public var height: Int32 = 0
+
+  public var type: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1856,6 +1878,56 @@ public struct Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_UnSubscrib
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var bankURL: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var credit: Int64 = 0
+
+  public var debit: Int64 = 0
+
+  public var balance: Int64 = 0
+
+  public var type: String = String()
+
+  public var insertTime: String = String()
+
+  public var accountID: String = String()
+
+  public var userID: String = String()
+
+  public var lastUpdateTime: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.subscriber.global.proto.holder"
@@ -2632,6 +2704,7 @@ extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ProfileInfo: S
     12: .same(proto: "shenasnamehNo"),
     13: .same(proto: "deathStatus"),
     14: .same(proto: "mobiles"),
+    15: .same(proto: "picture"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2651,6 +2724,7 @@ extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ProfileInfo: S
       case 12: try decoder.decodeSingularStringField(value: &self.shenasnamehNo)
       case 13: try decoder.decodeSingularStringField(value: &self.deathStatus)
       case 14: try decoder.decodeRepeatedStringField(value: &self.mobiles)
+      case 15: try decoder.decodeRepeatedMessageField(value: &self.picture)
       default: break
       }
     }
@@ -2699,6 +2773,9 @@ extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ProfileInfo: S
     if !self.mobiles.isEmpty {
       try visitor.visitRepeatedStringField(value: self.mobiles, fieldNumber: 14)
     }
+    if !self.picture.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.picture, fieldNumber: 15)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2717,6 +2794,60 @@ extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ProfileInfo: S
     if lhs.shenasnamehNo != rhs.shenasnamehNo {return false}
     if lhs.deathStatus != rhs.deathStatus {return false}
     if lhs.mobiles != rhs.mobiles {return false}
+    if lhs.picture != rhs.picture {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Image: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Image"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "url"),
+    2: .same(proto: "size"),
+    3: .same(proto: "width"),
+    4: .same(proto: "height"),
+    5: .same(proto: "type"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.url)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.size)
+      case 3: try decoder.decodeSingularInt32Field(value: &self.width)
+      case 4: try decoder.decodeSingularInt32Field(value: &self.height)
+      case 5: try decoder.decodeSingularStringField(value: &self.type)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.url.isEmpty {
+      try visitor.visitSingularStringField(value: self.url, fieldNumber: 1)
+    }
+    if self.size != 0 {
+      try visitor.visitSingularInt64Field(value: self.size, fieldNumber: 2)
+    }
+    if self.width != 0 {
+      try visitor.visitSingularInt32Field(value: self.width, fieldNumber: 3)
+    }
+    if self.height != 0 {
+      try visitor.visitSingularInt32Field(value: self.height, fieldNumber: 4)
+    }
+    if !self.type.isEmpty {
+      try visitor.visitSingularStringField(value: self.type, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Image, rhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Image) -> Bool {
+    if lhs.url != rhs.url {return false}
+    if lhs.size != rhs.size {return false}
+    if lhs.width != rhs.width {return false}
+    if lhs.height != rhs.height {return false}
+    if lhs.type != rhs.type {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6315,6 +6446,142 @@ extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_UnSubscriber: 
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".IncreaseUserAccount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "bankUrl"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularStringField(value: &self.bankURL)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.bankURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.bankURL, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount, rhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.bankURL != rhs.bankURL {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".GetUserAccount"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "credit"),
+    5: .same(proto: "debit"),
+    6: .same(proto: "balance"),
+    7: .same(proto: "type"),
+    8: .same(proto: "insertTime"),
+    12: .same(proto: "accountId"),
+    13: .same(proto: "userId"),
+    14: .same(proto: "lastUpdateTime"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.credit)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.debit)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.balance)
+      case 7: try decoder.decodeSingularStringField(value: &self.type)
+      case 8: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 12: try decoder.decodeSingularStringField(value: &self.accountID)
+      case 13: try decoder.decodeSingularStringField(value: &self.userID)
+      case 14: try decoder.decodeSingularStringField(value: &self.lastUpdateTime)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if self.credit != 0 {
+      try visitor.visitSingularInt64Field(value: self.credit, fieldNumber: 4)
+    }
+    if self.debit != 0 {
+      try visitor.visitSingularInt64Field(value: self.debit, fieldNumber: 5)
+    }
+    if self.balance != 0 {
+      try visitor.visitSingularInt64Field(value: self.balance, fieldNumber: 6)
+    }
+    if !self.type.isEmpty {
+      try visitor.visitSingularStringField(value: self.type, fieldNumber: 7)
+    }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 8)
+    }
+    if !self.accountID.isEmpty {
+      try visitor.visitSingularStringField(value: self.accountID, fieldNumber: 12)
+    }
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 13)
+    }
+    if !self.lastUpdateTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastUpdateTime, fieldNumber: 14)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount, rhs: Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.credit != rhs.credit {return false}
+    if lhs.debit != rhs.debit {return false}
+    if lhs.balance != rhs.balance {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.accountID != rhs.accountID {return false}
+    if lhs.userID != rhs.userID {return false}
+    if lhs.lastUpdateTime != rhs.lastUpdateTime {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

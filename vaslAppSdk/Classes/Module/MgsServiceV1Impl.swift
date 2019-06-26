@@ -2,7 +2,7 @@ import Foundation
 
 protocol MgsServiceV1 {
 
-    func sendNormalSMS(to: String, from: String, message: String, operatorName: String, aggregatorName: String, senderName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void)
+    func sendNormalSMS(mobile: String, message: String, aggregatorName: String, senderName: String, subscriberId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void)
 
 
 }
@@ -11,18 +11,17 @@ protocol MgsServiceV1 {
 public class MgsServiceV1Impl  : MgsServiceV1 {
 
 
-    public func sendNormalSMS(to: String, from: String, message: String, operatorName: String, aggregatorName: String, senderName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void) {
-        sendNormalSMS(to: to, from: from, message: message, operatorName: operatorName, aggregatorName: aggregatorName, senderName: senderName, sessionId: sessionId, completion: completion,force: true)
+    public func sendNormalSMS(mobile: String, message: String, aggregatorName: String, senderName: String, subscriberId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void) {
+        sendNormalSMS(mobile: mobile, message: message, aggregatorName: aggregatorName, senderName: senderName, subscriberId: subscriberId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func sendNormalSMS(to: String, from: String, message: String, operatorName: String, aggregatorName: String, senderName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func sendNormalSMS(mobile: String, message: String, aggregatorName: String, senderName: String, subscriberId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,String>()
-                    params.updateValue(to            , forKey: "to")
-                    params.updateValue(from            , forKey: "from")
+                    params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(message            , forKey: "message")
-                    params.updateValue(operatorName            , forKey: "operatorName")
                     params.updateValue(aggregatorName            , forKey: "aggregatorName")
                     params.updateValue(senderName            , forKey: "senderName")
+                    params.updateValue(subscriberId            , forKey: "subscriberId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/mgs/send/normal/sms", params, completion: { (result, error) in
             do{
@@ -34,7 +33,7 @@ public class MgsServiceV1Impl  : MgsServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.sendNormalSMS(to: to, from: from, message: message, operatorName: operatorName, aggregatorName: aggregatorName, senderName: senderName, sessionId: sessionId, completion: completion,force: false)
+                            self.sendNormalSMS(mobile: mobile, message: message, aggregatorName: aggregatorName, senderName: senderName, subscriberId: subscriberId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

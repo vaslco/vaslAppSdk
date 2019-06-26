@@ -19,96 +19,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SendMsg {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var status: Int32 = 0
-
-  public var code: Int32 = 0
-
-  public var msg: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var status: Int32 = 0
-
-  public var code: Int32 = 0
-
-  public var msg: String = String()
-
-  public var page: Int32 = 0
-
-  public var totalitems: Int64 = 0
-
-  public var totalpages: Int64 = 0
-
-  public var data: [Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsgApi {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var status: Int32 = 0
-
-  public var code: Int32 = 0
-
-  public var msg: String = String()
-
-  public var page: Int32 = 0
-
-  public var totalitems: Int64 = 0
-
-  public var totalpages: Int64 = 0
-
-  public var data: [Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var id: String = String()
-
-  public var userID: String = String()
-
-  public var message: String = String()
-
-  public var attachment: String = String()
-
-  public var isRead: Bool = false
-
-  public var to: String = String()
-
-  public var insertTime: Int64 = 0
-
-  public var insertTimeText: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
 public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -199,6 +109,8 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Issue {
   public var subject: String = String()
 
   public var description_p: String = String()
+
+  public var type: String = String()
 
   public var insertTime: Int64 = 0
 
@@ -467,248 +379,6 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ThreadConvers
 
 fileprivate let _protobuf_package = "com.vasl.vaslapp.modules.support.global.proto.holder"
 
-extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SendMsg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".SendMsg"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "status"),
-    2: .same(proto: "code"),
-    3: .same(proto: "msg"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
-      case 3: try decoder.decodeSingularStringField(value: &self.msg)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.status != 0 {
-      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
-    }
-    if self.code != 0 {
-      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
-    }
-    if !self.msg.isEmpty {
-      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SendMsg, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SendMsg) -> Bool {
-    if lhs.status != rhs.status {return false}
-    if lhs.code != rhs.code {return false}
-    if lhs.msg != rhs.msg {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ListMsg"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "status"),
-    2: .same(proto: "code"),
-    3: .same(proto: "msg"),
-    4: .same(proto: "page"),
-    5: .same(proto: "totalitems"),
-    6: .same(proto: "totalpages"),
-    7: .same(proto: "data"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
-      case 3: try decoder.decodeSingularStringField(value: &self.msg)
-      case 4: try decoder.decodeSingularInt32Field(value: &self.page)
-      case 5: try decoder.decodeSingularInt64Field(value: &self.totalitems)
-      case 6: try decoder.decodeSingularInt64Field(value: &self.totalpages)
-      case 7: try decoder.decodeRepeatedMessageField(value: &self.data)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.status != 0 {
-      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
-    }
-    if self.code != 0 {
-      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
-    }
-    if !self.msg.isEmpty {
-      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
-    }
-    if self.page != 0 {
-      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 4)
-    }
-    if self.totalitems != 0 {
-      try visitor.visitSingularInt64Field(value: self.totalitems, fieldNumber: 5)
-    }
-    if self.totalpages != 0 {
-      try visitor.visitSingularInt64Field(value: self.totalpages, fieldNumber: 6)
-    }
-    if !self.data.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 7)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsg) -> Bool {
-    if lhs.status != rhs.status {return false}
-    if lhs.code != rhs.code {return false}
-    if lhs.msg != rhs.msg {return false}
-    if lhs.page != rhs.page {return false}
-    if lhs.totalitems != rhs.totalitems {return false}
-    if lhs.totalpages != rhs.totalpages {return false}
-    if lhs.data != rhs.data {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsgApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ListMsgApi"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "status"),
-    2: .same(proto: "code"),
-    3: .same(proto: "msg"),
-    4: .same(proto: "page"),
-    5: .same(proto: "totalitems"),
-    6: .same(proto: "totalpages"),
-    7: .same(proto: "data"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
-      case 3: try decoder.decodeSingularStringField(value: &self.msg)
-      case 4: try decoder.decodeSingularInt32Field(value: &self.page)
-      case 5: try decoder.decodeSingularInt64Field(value: &self.totalitems)
-      case 6: try decoder.decodeSingularInt64Field(value: &self.totalpages)
-      case 7: try decoder.decodeRepeatedMessageField(value: &self.data)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.status != 0 {
-      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
-    }
-    if self.code != 0 {
-      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
-    }
-    if !self.msg.isEmpty {
-      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
-    }
-    if self.page != 0 {
-      try visitor.visitSingularInt32Field(value: self.page, fieldNumber: 4)
-    }
-    if self.totalitems != 0 {
-      try visitor.visitSingularInt64Field(value: self.totalitems, fieldNumber: 5)
-    }
-    if self.totalpages != 0 {
-      try visitor.visitSingularInt64Field(value: self.totalpages, fieldNumber: 6)
-    }
-    if !self.data.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 7)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsgApi, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMsgApi) -> Bool {
-    if lhs.status != rhs.status {return false}
-    if lhs.code != rhs.code {return false}
-    if lhs.msg != rhs.msg {return false}
-    if lhs.page != rhs.page {return false}
-    if lhs.totalitems != rhs.totalitems {return false}
-    if lhs.totalpages != rhs.totalpages {return false}
-    if lhs.data != rhs.data {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Msg"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "userId"),
-    3: .same(proto: "message"),
-    4: .same(proto: "attachment"),
-    5: .same(proto: "isRead"),
-    6: .same(proto: "to"),
-    7: .same(proto: "insertTime"),
-    8: .same(proto: "insertTimeText"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.userID)
-      case 3: try decoder.decodeSingularStringField(value: &self.message)
-      case 4: try decoder.decodeSingularStringField(value: &self.attachment)
-      case 5: try decoder.decodeSingularBoolField(value: &self.isRead)
-      case 6: try decoder.decodeSingularStringField(value: &self.to)
-      case 7: try decoder.decodeSingularInt64Field(value: &self.insertTime)
-      case 8: try decoder.decodeSingularStringField(value: &self.insertTimeText)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
-    }
-    if !self.message.isEmpty {
-      try visitor.visitSingularStringField(value: self.message, fieldNumber: 3)
-    }
-    if !self.attachment.isEmpty {
-      try visitor.visitSingularStringField(value: self.attachment, fieldNumber: 4)
-    }
-    if self.isRead != false {
-      try visitor.visitSingularBoolField(value: self.isRead, fieldNumber: 5)
-    }
-    if !self.to.isEmpty {
-      try visitor.visitSingularStringField(value: self.to, fieldNumber: 6)
-    }
-    if self.insertTime != 0 {
-      try visitor.visitSingularInt64Field(value: self.insertTime, fieldNumber: 7)
-    }
-    if !self.insertTimeText.isEmpty {
-      try visitor.visitSingularStringField(value: self.insertTimeText, fieldNumber: 8)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Msg) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.userID != rhs.userID {return false}
-    if lhs.message != rhs.message {return false}
-    if lhs.attachment != rhs.attachment {return false}
-    if lhs.isRead != rhs.isRead {return false}
-    if lhs.to != rhs.to {return false}
-    if lhs.insertTime != rhs.insertTime {return false}
-    if lhs.insertTimeText != rhs.insertTimeText {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".CreateThreadConversation"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -920,8 +590,9 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Issue: SwiftProto
     1: .same(proto: "id"),
     2: .same(proto: "subject"),
     3: .same(proto: "description"),
-    4: .same(proto: "insertTime"),
-    5: .same(proto: "insertTimeText"),
+    4: .same(proto: "type"),
+    5: .same(proto: "insertTime"),
+    6: .same(proto: "insertTimeText"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -930,8 +601,9 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Issue: SwiftProto
       case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.subject)
       case 3: try decoder.decodeSingularStringField(value: &self.description_p)
-      case 4: try decoder.decodeSingularInt64Field(value: &self.insertTime)
-      case 5: try decoder.decodeSingularStringField(value: &self.insertTimeText)
+      case 4: try decoder.decodeSingularStringField(value: &self.type)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.insertTime)
+      case 6: try decoder.decodeSingularStringField(value: &self.insertTimeText)
       default: break
       }
     }
@@ -947,11 +619,14 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Issue: SwiftProto
     if !self.description_p.isEmpty {
       try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 3)
     }
+    if !self.type.isEmpty {
+      try visitor.visitSingularStringField(value: self.type, fieldNumber: 4)
+    }
     if self.insertTime != 0 {
-      try visitor.visitSingularInt64Field(value: self.insertTime, fieldNumber: 4)
+      try visitor.visitSingularInt64Field(value: self.insertTime, fieldNumber: 5)
     }
     if !self.insertTimeText.isEmpty {
-      try visitor.visitSingularStringField(value: self.insertTimeText, fieldNumber: 5)
+      try visitor.visitSingularStringField(value: self.insertTimeText, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -960,6 +635,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Issue: SwiftProto
     if lhs.id != rhs.id {return false}
     if lhs.subject != rhs.subject {return false}
     if lhs.description_p != rhs.description_p {return false}
+    if lhs.type != rhs.type {return false}
     if lhs.insertTime != rhs.insertTime {return false}
     if lhs.insertTimeText != rhs.insertTimeText {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
