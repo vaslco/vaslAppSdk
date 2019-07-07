@@ -18,7 +18,7 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
     }
     
     private func chargeBuy(amount: String, Operator: String, bankId: String, phoneNumber: String, topup: String, merchant: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Charge_Global_Proto_Holder_ChargeBuy?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(amount            , forKey: "amount")
                     params.updateValue(Operator            , forKey: "operator")
                     params.updateValue(bankId            , forKey: "bankId")
@@ -54,7 +54,7 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
     }
     
     private func callback(appid: String, subscriberId: String, transactionId: String, amount: String, bankCode: String, orderId: String, status: String, refIdHolder: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Charge_Global_Proto_Holder_ChargeCallBack?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(appid            , forKey: "appid")
                     params.updateValue(subscriberId            , forKey: "subscriberId")
                     params.updateValue(transactionId            , forKey: "transactionId")

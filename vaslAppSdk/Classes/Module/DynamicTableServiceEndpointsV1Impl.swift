@@ -30,10 +30,10 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointInsert(tableName: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(data            , forKey: "data")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/insert", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/insert", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -63,12 +63,12 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(upsert            , forKey: "upsert")
                     params.updateValue(find            , forKey: "find")
                     params.updateValue(data            , forKey: "data")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/updateOne", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/updateOne", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -98,12 +98,12 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(upsert            , forKey: "upsert")
                     params.updateValue(find            , forKey: "find")
                     params.updateValue(data            , forKey: "data")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/updateMany", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/updateMany", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -133,10 +133,10 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointDeleteOne(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/deleteOne", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/deleteOne", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -166,10 +166,10 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointDeleteMany(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/deleteMany", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/deleteMany", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -199,14 +199,14 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
                     params.updateValue(projection            , forKey: "projection")
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(skip            , forKey: "skip")
                     params.updateValue(limit            , forKey: "limit")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -236,10 +236,10 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointCount(tableName: String, find: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(find            , forKey: "find")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/count", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/count", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -269,14 +269,14 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
     
     private func endpointQuery(queryName: String, find: String, projection: String, sort: String, skip: String, limit: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(queryName            , forKey: "queryName")
                     params.updateValue(find            , forKey: "find")
                     params.updateValue(projection            , forKey: "projection")
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(skip            , forKey: "skip")
                     params.updateValue(limit            , forKey: "limit")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/query/"+queryName+"", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/query/"+queryName+"", params, completion: { (result, error) in
             do{
                 if let result = result {
                     

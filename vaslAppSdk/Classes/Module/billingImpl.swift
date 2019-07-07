@@ -4,9 +4,7 @@ protocol billing {
 
     func validatePurchase(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void)
 
-    func increaseBalance(amount: String, userId: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
-
-    func decreaseBalance(amount: String, packageId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void)
+    func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
 
     func checkServiceAvailability(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void)
 
@@ -30,7 +28,7 @@ public class billingImpl  : billing {
     }
     
     private func validatePurchase(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/getAccount", params, completion: { (result, error) in
             do{
@@ -55,15 +53,15 @@ public class billingImpl  : billing {
     }
 
 
-    public func increaseBalance(amount: String, userId: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void) {
-        increaseBalance(amount: amount, userId: userId, bankCode: bankCode, sessionId: sessionId, completion: completion,force: true)
+    public func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void) {
+        increaseBalance(amount: amount, bankCode: bankCode, userId: userId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func increaseBalance(amount: String, userId: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(amount            , forKey: "amount")
-                    params.updateValue(userId            , forKey: "userId")
                     params.updateValue(bankCode            , forKey: "bankCode")
+                    params.updateValue(userId            , forKey: "userId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/increaseBalance", params, completion: { (result, error) in
             do{
@@ -75,39 +73,7 @@ public class billingImpl  : billing {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.increaseBalance(amount: amount, userId: userId, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func decreaseBalance(amount: String, packageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void) {
-        decreaseBalance(amount: amount, packageId: packageId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func decreaseBalance(amount: String, packageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(amount            , forKey: "amount")
-                    params.updateValue(packageId            , forKey: "packageId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/decreaseBalance", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.decreaseBalance(amount: amount, packageId: packageId, sessionId: sessionId, completion: completion,force: false)
+                            self.increaseBalance(amount: amount, bankCode: bankCode, userId: userId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -125,7 +91,7 @@ public class billingImpl  : billing {
     }
     
     private func checkServiceAvailability(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/checkServiceAvailability", params, completion: { (result, error) in
             do{
@@ -155,7 +121,7 @@ public class billingImpl  : billing {
     }
     
     private func getAccountListAdmin(id: String, userId: String, credit: String, debit: String, balance: String, type: String, lastUpdateTime: String, insertTime: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_AccountList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(userId            , forKey: "userId")
                     params.updateValue(credit            , forKey: "credit")
@@ -196,7 +162,7 @@ public class billingImpl  : billing {
     }
     
     private func getTransactionList(id: String, ipgTransactionId: String, amount: String, operationType: String, transactionStatus: String, insertTime: String, paymentSuccessTime: String, orderId: String, packageId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_TransactionList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(ipgTransactionId            , forKey: "ipgTransactionId")
                     params.updateValue(amount            , forKey: "amount")
@@ -238,7 +204,7 @@ public class billingImpl  : billing {
     }
     
     private func getTransaction(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_GetTransaction?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/transaction/get", params, completion: { (result, error) in
@@ -269,7 +235,7 @@ public class billingImpl  : billing {
     }
     
     private func getTransactionListAdmin(id: String, accountId: String, ipgTransactionId: String, amount: String, operationType: String, transactionStatus: String, insertTime: String, paymentSuccessTime: String, orderId: String, packageId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_TransactionList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(accountId            , forKey: "accountId")
                     params.updateValue(ipgTransactionId            , forKey: "ipgTransactionId")

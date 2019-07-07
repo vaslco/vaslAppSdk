@@ -32,6 +32,12 @@ public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Callback 
 
   public var orderID: String = String()
 
+  public var linkredirectIos: String = String()
+
+  public var linkredirectAll: String = String()
+
+  public var linkredirectLink: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -523,6 +529,9 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Callback: Swi
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "orderId"),
+    5: .same(proto: "linkredirectIos"),
+    6: .same(proto: "linkredirectAll"),
+    7: .same(proto: "linkredirectLink"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -532,6 +541,9 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Callback: Swi
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeSingularStringField(value: &self.orderID)
+      case 5: try decoder.decodeSingularStringField(value: &self.linkredirectIos)
+      case 6: try decoder.decodeSingularStringField(value: &self.linkredirectAll)
+      case 7: try decoder.decodeSingularStringField(value: &self.linkredirectLink)
       default: break
       }
     }
@@ -550,6 +562,15 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Callback: Swi
     if !self.orderID.isEmpty {
       try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 4)
     }
+    if !self.linkredirectIos.isEmpty {
+      try visitor.visitSingularStringField(value: self.linkredirectIos, fieldNumber: 5)
+    }
+    if !self.linkredirectAll.isEmpty {
+      try visitor.visitSingularStringField(value: self.linkredirectAll, fieldNumber: 6)
+    }
+    if !self.linkredirectLink.isEmpty {
+      try visitor.visitSingularStringField(value: self.linkredirectLink, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -558,6 +579,9 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Callback: Swi
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.orderID != rhs.orderID {return false}
+    if lhs.linkredirectIos != rhs.linkredirectIos {return false}
+    if lhs.linkredirectAll != rhs.linkredirectAll {return false}
+    if lhs.linkredirectLink != rhs.linkredirectLink {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

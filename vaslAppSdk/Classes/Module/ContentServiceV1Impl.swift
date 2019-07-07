@@ -46,7 +46,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/get", params, completion: { (result, error) in
@@ -77,7 +77,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listCategory(page: String, keyWord: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(keyWord            , forKey: "keyWord")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list", params, completion: { (result, error) in
@@ -108,7 +108,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listCategoryRoots(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,String>()
+        let params = Dictionary<String,Any>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/root", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -137,7 +137,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listCategoryByDepth(id: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(page            , forKey: "page")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/depth", params, completion: { (result, error) in
@@ -168,7 +168,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listCategoryClustered(page: String, keyWord: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryListCllustered?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(keyWord            , forKey: "keyWord")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -200,7 +200,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listContentRowTypes(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,String>()
+        let params = Dictionary<String,Any>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/contentrow/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -229,7 +229,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(refId            , forKey: "refId")
                     params.updateValue(content            , forKey: "content")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -261,7 +261,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(commentId            , forKey: "commentId")
                     params.updateValue(content            , forKey: "content")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -293,7 +293,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(commentId            , forKey: "commentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/remove", params, completion: { (result, error) in
@@ -324,7 +324,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(refId            , forKey: "refId")
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
@@ -358,7 +358,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(sortType            , forKey: "sortType")
                     params.updateValue(status            , forKey: "status")
@@ -398,7 +398,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listContentByLocation(lat: String, lng: String, searchDiameter: String, page: String, isRandom: String, contentsRandomNumber: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(lat            , forKey: "lat")
                     params.updateValue(lng            , forKey: "lng")
                     params.updateValue(searchDiameter            , forKey: "searchDiameter")
@@ -434,7 +434,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func addDeleteContentRate(contentId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_GetContentInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(score            , forKey: "score")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -466,7 +466,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func toggleLikeContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/like", params, completion: { (result, error) in
@@ -497,7 +497,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func toggleFavContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav", params, completion: { (result, error) in
@@ -528,7 +528,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func favContentList(sortType: String, page: String, order: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sortType            , forKey: "sortType")
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(order            , forKey: "order")

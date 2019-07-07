@@ -22,7 +22,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
     }
     
     private func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/rp/list", params, completion: { (result, error) in
@@ -53,7 +53,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
     }
     
     private func gamePayment(packageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(packageId            , forKey: "packageId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/package/payment", params, completion: { (result, error) in
             do{
@@ -83,7 +83,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
     }
     
     private func confirmPackagePayment(orderId: String, transActionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(orderId            , forKey: "orderId")
                     params.updateValue(transActionId            , forKey: "transActionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/package/payment/confirm", params, completion: { (result, error) in
@@ -114,7 +114,7 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
     }
     
     private func gameCafePurchaseValidation(packageName: String, productId: String, purchaseToken: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentStatus?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(packageName            , forKey: "packageName")
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")

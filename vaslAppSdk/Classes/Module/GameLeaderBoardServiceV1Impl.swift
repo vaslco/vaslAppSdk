@@ -18,7 +18,7 @@ public class GameLeaderBoardServiceV1Impl  : GameLeaderBoardServiceV1 {
     }
     
     private func getLeaderboard(pointId: String, sortDescending: String, tag: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
                     params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")
@@ -50,7 +50,7 @@ public class GameLeaderBoardServiceV1Impl  : GameLeaderBoardServiceV1 {
     }
     
     private func getLeaderboardTop10(pointId: String, sortDescending: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
                     params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")

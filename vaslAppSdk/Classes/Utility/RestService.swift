@@ -152,7 +152,91 @@ struct RestService {
         }
     }
     
-    public static func post(url: String,_ parameters : Dictionary<String,String>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .protocolBuffer){
+    public static func post(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .protocolBuffer){
+        if !isInternetAvailable() {
+            completion(nil,"error internet connection")
+        }
+        getaccessToken(force) { (success, token) in
+            if success! {
+                if let url = URL(string: url) {
+                    let request = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
+                    if let request = request as DataRequest? {
+                        let start = CACurrentMediaTime()
+                        request.response(completionHandler: { (webResult) in
+                            let end = CACurrentMediaTime()
+                            let elapsedTime : TimeInterval = end - start
+                            let response                   = webResult.response
+                            guard (webResult.data != nil) , webResult.error == nil else {
+                                // check for fundamental networking error
+                                if let error = webResult.error {
+                                    Utils.LogData(debug: true, className: "RestWebService", message: String(describing: error))
+                                    
+                                    
+                                    completion(nil,error.description)
+                                }
+                                return
+                            }
+                            if let httpStatus = response, httpStatus.statusCode != 200 {
+                                Utils.LogData(debug: true, className: "RestWebService", message: "statusCode should be 200, but is \(httpStatus.statusCode)")
+                                completion(nil,"error server connection")
+                                return
+                            }
+                            if let data = webResult.data {
+                                Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
+                                completion(data,nil)
+                            }
+                        })
+                    }
+                } else {
+                    completion(nil,"error server connection")
+                }
+            }
+        }
+    }
+    
+    public static func postMultiPart(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .MultiPart){
+        if !isInternetAvailable() {
+            completion(nil,"error internet connection")
+        }
+        getaccessToken(force) { (success, token) in
+            if success! {
+                if let url = URL(string: url) {
+                    let request = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
+                    if let request = request as DataRequest? {
+                        let start = CACurrentMediaTime()
+                        request.response(completionHandler: { (webResult) in
+                            let end = CACurrentMediaTime()
+                            let elapsedTime : TimeInterval = end - start
+                            let response                   = webResult.response
+                            guard (webResult.data != nil) , webResult.error == nil else {
+                                // check for fundamental networking error
+                                if let error = webResult.error {
+                                    Utils.LogData(debug: true, className: "RestWebService", message: String(describing: error))
+                                    
+                                    
+                                    completion(nil,error.description)
+                                }
+                                return
+                            }
+                            if let httpStatus = response, httpStatus.statusCode != 200 {
+                                Utils.LogData(debug: true, className: "RestWebService", message: "statusCode should be 200, but is \(httpStatus.statusCode)")
+                                completion(nil,"error server connection")
+                                return
+                            }
+                            if let data = webResult.data {
+                                Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
+                                completion(data,nil)
+                            }
+                        })
+                    }
+                } else {
+                    completion(nil,"error server connection")
+                }
+            }
+        }
+    }
+    
+    public static func postJson(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .JSON){
         if !isInternetAvailable() {
             completion(nil,"error internet connection")
         }

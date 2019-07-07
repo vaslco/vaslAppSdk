@@ -16,7 +16,7 @@ public class AppVersionServiceV1Impl  : AppVersionServiceV1 {
     }
     
     private func listAppVersion(minSdk: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Appversion_Global_Proto_Holder_ListAppVersionApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(minSdk            , forKey: "minSdk")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/appversion/list/appversion", params, completion: { (result, error) in
             do{

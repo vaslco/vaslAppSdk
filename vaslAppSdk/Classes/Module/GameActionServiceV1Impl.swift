@@ -16,7 +16,7 @@ public class GameActionServiceV1Impl  : GameActionServiceV1 {
     }
     
     private func raiseAction(actionKey: String, actionData: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_RaiseAction?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(actionKey            , forKey: "actionKey")
                     params.updateValue(actionData            , forKey: "actionData")
                     params.updateValue(sessionId            , forKey: "sessionId")

@@ -16,7 +16,7 @@ public class DynamicLinkServiceV1Impl  : DynamicLinkServiceV1 {
     }
     
     private func linkAdd(title: String, link: String, type: String, expireDate: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamiclink_Proto_Holder_LinkAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(link            , forKey: "link")
                     params.updateValue(type            , forKey: "type")

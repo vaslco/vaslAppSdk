@@ -16,7 +16,7 @@ public class EventServiceImpl  : EventService {
     }
     
     private func nearLocation(key: String, title: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Global_Proto_Holder_EventGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(key            , forKey: "key")
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(sessionId            , forKey: "sessionId")

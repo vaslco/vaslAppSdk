@@ -11,11 +11,11 @@ import vaslAppSdk
 
 class ViewController: UIViewController {
 
-    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
-    let username                   = "android-XoaM8ODAYVcKnB16ob8N"
-    let password                   = "DOI0qOIa0KT6ViYmS1k6"
+    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
+    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
+    let password                   = "g8tlaUJba0UYUJjPZp5Z"
     
     
     var vmbas : VaslSdk!
@@ -25,17 +25,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         vmbas = VaslSdk.init(appId: appid,
-                            baseUrl: "https://sandbox.vaslapp.com",
+                            baseUrl: "http://hambazisho.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
         
-        vmbas.SubscriberService().loginByUsername(username: "09123187421", password: "123456") { (login, error) in
-            print("subscriberId : \(String(describing: login?.loginInfo.subscriberID))")
-            print("sessionId    : \(String(describing: login?.loginInfo.sessionID))")
-            print("error        : \(String(describing: error))")
-        }
+
+
+ 
+
     }
 
     override func didReceiveMemoryWarning() {

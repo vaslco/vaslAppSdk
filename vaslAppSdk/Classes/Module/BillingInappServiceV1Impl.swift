@@ -24,7 +24,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
     }
     
     private func validateSubscription(packageName: String, subscriptionId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_SubscriptionValidate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(packageName            , forKey: "packageName")
                     params.updateValue(subscriptionId            , forKey: "subscriptionId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
@@ -57,7 +57,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
     }
     
     private func cancelSubscription(packageName: String, subscriptionId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_SubscriptionValidate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(packageName            , forKey: "packageName")
                     params.updateValue(subscriptionId            , forKey: "subscriptionId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
@@ -90,7 +90,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
     }
     
     private func paymentAddData(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PaymentGetInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/payment/get", params, completion: { (result, error) in
@@ -121,7 +121,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
     }
     
     private func paymentAddData(meta: String, tableName: String, orderId: String, paymentBy: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PaymentAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(meta            , forKey: "meta")
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(orderId            , forKey: "orderId")
@@ -155,7 +155,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
     }
     
     private func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(packageName            , forKey: "packageName")
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")

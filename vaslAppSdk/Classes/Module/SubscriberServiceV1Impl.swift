@@ -4,11 +4,9 @@ protocol SubscriberServiceV1 {
 
     func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
-    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
+    func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
     func activate(username: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
-
-    func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
     func registerWithNationalId(mobile: String, national_id: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
@@ -16,11 +14,11 @@ protocol SubscriberServiceV1 {
 
     func activateAndLoginForNationalId(mobile: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
-    func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: String, gender: String, birthDate: String, nationalId: String, data: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func getProfileInfo(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
 
-    func saveProfileInfoJson(subscriberId: String, data: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func saveProfileInfoJson(data: Dictionary<String,String>,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func getProfileInfoJson(subscriberId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoJsonModel?,String?) -> Void)
 
@@ -62,11 +60,13 @@ protocol SubscriberServiceV1 {
 
     func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
 
-    func increaseAccount(amount: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void)
+    func increaseAccount(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void)
 
     func getUserAccount(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void)
 
     func decreaseUserAccount(amount: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void)
+
+    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
 
 
 }
@@ -80,7 +80,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(password            , forKey: "password")
                     params.updateValue(email            , forKey: "email")
@@ -109,73 +109,12 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
-        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
-        activate(username: username, activationKey: activationKey, completion: completion,force: true)
-    }
-    
-    private func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(activationKey            , forKey: "activationKey")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activate", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.activate(username: username, activationKey: activationKey, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
     public func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
         registerWithoutSubscriberType(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: true)
     }
     
     private func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(password            , forKey: "password")
                     params.updateValue(email            , forKey: "email")
@@ -204,12 +143,43 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
+    public func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
+        activate(username: username, activationKey: activationKey, completion: completion,force: true)
+    }
+    
+    private func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(activationKey            , forKey: "activationKey")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activate", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.activate(username: username, activationKey: activationKey, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func registerWithNationalId(mobile: String, national_id: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
         registerWithNationalId(mobile: mobile, national_id: national_id, completion: completion,force: true)
     }
     
     private func registerWithNationalId(mobile: String, national_id: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(national_id            , forKey: "national_id")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/registerWithNationalId", params, completion: { (result, error) in
@@ -240,7 +210,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func checkShahkarSubscriber(requestId: String, serviceNumber: String, serviceType: String, identificationType: String, identificationNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckShahkarSubscriber?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(requestId            , forKey: "requestId")
                     params.updateValue(serviceNumber            , forKey: "serviceNumber")
                     params.updateValue(serviceType            , forKey: "serviceType")
@@ -274,7 +244,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func activateAndLoginForNationalId(mobile: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(activationKey            , forKey: "activationKey")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activateAndLoginForNationalId", params, completion: { (result, error) in
@@ -300,12 +270,12 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: String, gender: String, birthDate: String, nationalId: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         saveProfileInfo(nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, picture: picture, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: String, gender: String, birthDate: String, nationalId: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(nickName            , forKey: "nickName")
                     params.updateValue(firstName            , forKey: "firstName")
                     params.updateValue(lastName            , forKey: "lastName")
@@ -317,7 +287,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(nationalId            , forKey: "nationalId")
                     params.updateValue(data            , forKey: "data")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -347,7 +317,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func getProfileInfo(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfo", params, completion: { (result, error) in
             do{
@@ -372,15 +342,14 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func saveProfileInfoJson(subscriberId: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        saveProfileInfoJson(subscriberId: subscriberId, data: data, completion: completion,force: true)
+    public func saveProfileInfoJson(data: Dictionary<String,String>,completion: @escaping (webServiceResult?,String?) -> Void) {
+        saveProfileInfoJson(data: data, completion: completion,force: true)
     }
     
-    private func saveProfileInfoJson(subscriberId: String, data: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(subscriberId            , forKey: "subscriberId")
+    private func saveProfileInfoJson(data: Dictionary<String,String>,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(data            , forKey: "data")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfojson", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfojson", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -392,7 +361,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.saveProfileInfoJson(subscriberId: subscriberId, data: data, completion: completion,force: false)
+                            self.saveProfileInfoJson(data: data, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }
@@ -410,7 +379,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func getProfileInfoJson(subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoJsonModel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(subscriberId            , forKey: "subscriberId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfojson", params, completion: { (result, error) in
             do{
@@ -440,7 +409,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func activateAndLogin(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(activationKey            , forKey: "activationKey")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activateandlogin", params, completion: { (result, error) in
@@ -471,7 +440,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func loginByUsername(username: String, password: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Login?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(password            , forKey: "password")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbyusername", params, completion: { (result, error) in
@@ -502,7 +471,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func loginByEmail(email: String, password: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Login?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
                     params.updateValue(password            , forKey: "password")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbyemail", params, completion: { (result, error) in
@@ -533,7 +502,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func loginByMobile(mobile: String, password: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Login?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(password            , forKey: "password")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbymobile", params, completion: { (result, error) in
@@ -564,7 +533,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func loginByGoogle(id: String, idToken: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Login?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(idToken            , forKey: "idToken")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbygoogle", params, completion: { (result, error) in
@@ -595,7 +564,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func logout(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Logout?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/logout", params, completion: { (result, error) in
             do{
@@ -625,7 +594,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func validateUsername(username: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateUsername?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validateusername", params, completion: { (result, error) in
             do{
@@ -655,7 +624,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func validateEmail(email: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateEmail?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validateemail", params, completion: { (result, error) in
             do{
@@ -685,7 +654,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func validateMobile(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateMobile?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validatemobile", params, completion: { (result, error) in
             do{
@@ -715,7 +684,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func resend(subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Resend?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(subscriberId            , forKey: "subscriberId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/resend", params, completion: { (result, error) in
             do{
@@ -745,7 +714,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func resendByUsername(username: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Resend?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/resendbyusername", params, completion: { (result, error) in
             do{
@@ -775,7 +744,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func forgotPasswordByEmail(email: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ForgotPassword?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/forgotpasswordbyemail", params, completion: { (result, error) in
             do{
@@ -805,7 +774,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func forgotPasswordByMobile(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ForgotPassword?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/forgotpasswordbymobile", params, completion: { (result, error) in
             do{
@@ -835,7 +804,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func changePassword(sessionId: String, oldPassword: String, newPassword: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChangePassword?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(oldPassword            , forKey: "oldPassword")
                     params.updateValue(newPassword            , forKey: "newPassword")
@@ -867,7 +836,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func changeUsername(sessionId: String, username: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChangeUsername?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(username            , forKey: "username")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/changeusername", params, completion: { (result, error) in
@@ -898,7 +867,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func mobileconnectClientCreate(mobile: String, first_name: String, last_name: String, email: String, national_id: String, password: String, clientName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ClientCreate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(first_name            , forKey: "first_name")
                     params.updateValue(last_name            , forKey: "last_name")
@@ -935,7 +904,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func mobileconnectAuthToken(authorization_code: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_AuthToken?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(authorization_code            , forKey: "authorization_code")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/mobileconnect/auth/token", params, completion: { (result, error) in
             do{
@@ -965,7 +934,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func registerOperatorSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/operators/register", params, completion: { (result, error) in
             do{
@@ -995,7 +964,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func validateOperatorSubscriber(activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(activationKey            , forKey: "activationKey")
                     params.updateValue(mobile            , forKey: "mobile")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/operators/validate", params, completion: { (result, error) in
@@ -1021,13 +990,14 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func increaseAccount(amount: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void) {
-        increaseAccount(amount: amount, sessionId: sessionId, completion: completion,force: true)
+    public func increaseAccount(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void) {
+        increaseAccount(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func increaseAccount(amount: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func increaseAccount(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(amount            , forKey: "amount")
+                    params.updateValue(bankCode            , forKey: "bankCode")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/charge/account", params, completion: { (result, error) in
             do{
@@ -1039,7 +1009,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.increaseAccount(amount: amount, sessionId: sessionId, completion: completion,force: false)
+                            self.increaseAccount(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -1057,7 +1027,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/get/user/account", params, completion: { (result, error) in
             do{
@@ -1087,7 +1057,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
     
     private func decreaseUserAccount(amount: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(amount            , forKey: "amount")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/decrease/account", params, completion: { (result, error) in
@@ -1101,6 +1071,36 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.decreaseUserAccount(amount: amount, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
+        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

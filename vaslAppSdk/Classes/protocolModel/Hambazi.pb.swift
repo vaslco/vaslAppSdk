@@ -2053,11 +2053,6 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video {
     set {_uniqueStorage()._isLiked = newValue}
   }
 
-  public var actorVideoID: String {
-    get {return _storage._actorVideoID}
-    set {_uniqueStorage()._actorVideoID = newValue}
-  }
-
   public var categories: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Category] {
     get {return _storage._categories}
     set {_uniqueStorage()._categories = newValue}
@@ -2081,6 +2076,21 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video {
   public var scenarioURL: String {
     get {return _storage._scenarioURL}
     set {_uniqueStorage()._scenarioURL = newValue}
+  }
+
+  public var hlsURL: String {
+    get {return _storage._hlsURL}
+    set {_uniqueStorage()._hlsURL = newValue}
+  }
+
+  public var videoURL: String {
+    get {return _storage._videoURL}
+    set {_uniqueStorage()._videoURL = newValue}
+  }
+
+  public var videoType: String {
+    get {return _storage._videoType}
+    set {_uniqueStorage()._videoType = newValue}
   }
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -2532,6 +2542,8 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo {
   public var actorID: String = String()
 
   public var actorUsername: String = String()
+
+  public var actorName: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -7390,12 +7402,14 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
     31: .same(proto: "onlineShopPrice"),
     35: .same(proto: "status"),
     39: .same(proto: "isLiked"),
-    40: .same(proto: "actorVideoId"),
     41: .same(proto: "categories"),
     42: .same(proto: "famousActorInfo"),
     43: .standard(proto: "thumbnail_url"),
     44: .same(proto: "coverUrl"),
     45: .same(proto: "scenarioUrl"),
+    46: .same(proto: "hlsUrl"),
+    47: .same(proto: "videoUrl"),
+    49: .same(proto: "videoType"),
   ]
 
   fileprivate class _StorageClass {
@@ -7415,12 +7429,14 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
     var _onlineShopPrice: Int64 = 0
     var _status: String = String()
     var _isLiked: Bool = false
-    var _actorVideoID: String = String()
     var _categories: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Category] = []
     var _famousActorInfo: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo] = []
     var _thumbnailURL: String = String()
     var _coverURL: String = String()
     var _scenarioURL: String = String()
+    var _hlsURL: String = String()
+    var _videoURL: String = String()
+    var _videoType: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -7443,12 +7459,14 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
       _onlineShopPrice = source._onlineShopPrice
       _status = source._status
       _isLiked = source._isLiked
-      _actorVideoID = source._actorVideoID
       _categories = source._categories
       _famousActorInfo = source._famousActorInfo
       _thumbnailURL = source._thumbnailURL
       _coverURL = source._coverURL
       _scenarioURL = source._scenarioURL
+      _hlsURL = source._hlsURL
+      _videoURL = source._videoURL
+      _videoType = source._videoType
     }
   }
 
@@ -7480,12 +7498,14 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
         case 31: try decoder.decodeSingularInt64Field(value: &_storage._onlineShopPrice)
         case 35: try decoder.decodeSingularStringField(value: &_storage._status)
         case 39: try decoder.decodeSingularBoolField(value: &_storage._isLiked)
-        case 40: try decoder.decodeSingularStringField(value: &_storage._actorVideoID)
         case 41: try decoder.decodeRepeatedMessageField(value: &_storage._categories)
         case 42: try decoder.decodeRepeatedMessageField(value: &_storage._famousActorInfo)
         case 43: try decoder.decodeSingularStringField(value: &_storage._thumbnailURL)
         case 44: try decoder.decodeSingularStringField(value: &_storage._coverURL)
         case 45: try decoder.decodeSingularStringField(value: &_storage._scenarioURL)
+        case 46: try decoder.decodeSingularStringField(value: &_storage._hlsURL)
+        case 47: try decoder.decodeSingularStringField(value: &_storage._videoURL)
+        case 49: try decoder.decodeSingularStringField(value: &_storage._videoType)
         default: break
         }
       }
@@ -7542,9 +7562,6 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
       if _storage._isLiked != false {
         try visitor.visitSingularBoolField(value: _storage._isLiked, fieldNumber: 39)
       }
-      if !_storage._actorVideoID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._actorVideoID, fieldNumber: 40)
-      }
       if !_storage._categories.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._categories, fieldNumber: 41)
       }
@@ -7559,6 +7576,15 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
       }
       if !_storage._scenarioURL.isEmpty {
         try visitor.visitSingularStringField(value: _storage._scenarioURL, fieldNumber: 45)
+      }
+      if !_storage._hlsURL.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._hlsURL, fieldNumber: 46)
+      }
+      if !_storage._videoURL.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._videoURL, fieldNumber: 47)
+      }
+      if !_storage._videoType.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._videoType, fieldNumber: 49)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -7585,12 +7611,14 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
         if _storage._onlineShopPrice != rhs_storage._onlineShopPrice {return false}
         if _storage._status != rhs_storage._status {return false}
         if _storage._isLiked != rhs_storage._isLiked {return false}
-        if _storage._actorVideoID != rhs_storage._actorVideoID {return false}
         if _storage._categories != rhs_storage._categories {return false}
         if _storage._famousActorInfo != rhs_storage._famousActorInfo {return false}
         if _storage._thumbnailURL != rhs_storage._thumbnailURL {return false}
         if _storage._coverURL != rhs_storage._coverURL {return false}
         if _storage._scenarioURL != rhs_storage._scenarioURL {return false}
+        if _storage._hlsURL != rhs_storage._hlsURL {return false}
+        if _storage._videoURL != rhs_storage._videoURL {return false}
+        if _storage._videoType != rhs_storage._videoType {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -8621,6 +8649,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo: SwiftP
     1: .same(proto: "actorVideoId"),
     2: .same(proto: "actorId"),
     3: .same(proto: "actorUsername"),
+    4: .same(proto: "actorName"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8629,6 +8658,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo: SwiftP
       case 1: try decoder.decodeSingularStringField(value: &self.actorVideoID)
       case 2: try decoder.decodeSingularStringField(value: &self.actorID)
       case 3: try decoder.decodeSingularStringField(value: &self.actorUsername)
+      case 4: try decoder.decodeSingularStringField(value: &self.actorName)
       default: break
       }
     }
@@ -8644,6 +8674,9 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo: SwiftP
     if !self.actorUsername.isEmpty {
       try visitor.visitSingularStringField(value: self.actorUsername, fieldNumber: 3)
     }
+    if !self.actorName.isEmpty {
+      try visitor.visitSingularStringField(value: self.actorName, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8651,6 +8684,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo: SwiftP
     if lhs.actorVideoID != rhs.actorVideoID {return false}
     if lhs.actorID != rhs.actorID {return false}
     if lhs.actorUsername != rhs.actorUsername {return false}
+    if lhs.actorName != rhs.actorName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

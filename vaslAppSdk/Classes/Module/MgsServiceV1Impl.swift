@@ -16,7 +16,7 @@ public class MgsServiceV1Impl  : MgsServiceV1 {
     }
     
     private func sendNormalSMS(mobile: String, message: String, aggregatorName: String, senderName: String, subscriberId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Mgs_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(message            , forKey: "message")
                     params.updateValue(aggregatorName            , forKey: "aggregatorName")

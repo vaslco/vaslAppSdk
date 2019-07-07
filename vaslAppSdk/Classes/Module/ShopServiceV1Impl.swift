@@ -4,9 +4,9 @@ protocol ShopServiceV1 {
 
     func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
-    func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
-
     func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
+
+    func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
     func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void)
 
@@ -52,7 +52,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(nickName            , forKey: "nickName")
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(phone            , forKey: "phone")
@@ -88,44 +88,12 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
 
 
-    public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
-        addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(comment            , forKey: "comment")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/comment", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
     public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
         addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
     }
     
     private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(score            , forKey: "score")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -152,12 +120,44 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
 
 
+    public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
+        addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(comment            , forKey: "comment")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/comment", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void) {
         listComment(productId: productId, sort: sort, order: order, page: page, limit: limit, sessionId: sessionId, completion: completion,force: true)
     }
     
     private func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
@@ -192,7 +192,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func addQuestion(productId: String, question: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(question            , forKey: "question")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -224,7 +224,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listQuestion(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_QuestionAnswerListApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
@@ -259,7 +259,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func addProductCart(productId: String, sellerId: String, colorId: String, count: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProductCart?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sellerId            , forKey: "sellerId")
                     params.updateValue(colorId            , forKey: "colorId")
@@ -293,7 +293,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func deleteProductCart(orderId: String, count: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(orderId            , forKey: "orderId")
                     params.updateValue(count            , forKey: "count")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -325,7 +325,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listProductCart(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/product/cart", params, completion: { (result, error) in
             do{
@@ -355,7 +355,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listSendTimes(totalPrice: String, addressId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListPossibleTimes?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(totalPrice            , forKey: "totalPrice")
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -387,7 +387,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func updateAddress(priority: String, addressId: String, nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(priority            , forKey: "priority")
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(nickName            , forKey: "nickName")
@@ -430,7 +430,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func deleteAddress(addressId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/delete/address", params, completion: { (result, error) in
@@ -461,7 +461,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listAddress(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/address", params, completion: { (result, error) in
             do{
@@ -491,7 +491,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func finalizeOrder(transportId: String, bankCode: String, discountCoupon: String, addressId: String, price: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_PaymentResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(transportId            , forKey: "transportId")
                     params.updateValue(bankCode            , forKey: "bankCode")
                     params.updateValue(discountCoupon            , forKey: "discountCoupon")
@@ -526,7 +526,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listOrder(insertTime: String, orderStatus: String, payStatus: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(insertTime            , forKey: "insertTime")
                     params.updateValue(orderStatus            , forKey: "orderStatus")
                     params.updateValue(payStatus            , forKey: "payStatus")
@@ -563,7 +563,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listUnits(type: String, list: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(list            , forKey: "list")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -595,7 +595,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func useCoupon(price: String, code: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(price            , forKey: "price")
                     params.updateValue(code            , forKey: "code")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -627,7 +627,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func listCities(state: String, cities: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(state            , forKey: "state")
                     params.updateValue(cities            , forKey: "cities")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -659,7 +659,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
     
     private func getProduct(productId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/get/product", params, completion: { (result, error) in

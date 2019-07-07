@@ -4,17 +4,17 @@ protocol AnalyticServiceV1 {
 
     func setDeviceInfo(deviceId: String, info: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
-    func addEvent(data: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+    func addEvent(data: [String], sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
     func setBrhaviorFlow(info: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
-    func setDeviceinfoByDate(deviceInfo: String, deviceId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+    func setDeviceinfoByDate(deviceInfo: [String], deviceId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
-    func setBehaviorByDate(behavior: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+    func setBehaviorByDate(behavior: [String], sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
-    func setActiveuserByDate(dates: String, devId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+    func setActiveuserByDate(dates: [String], devId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
-    func addDurationByDate(data: String, deviceId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+    func addDurationByDate(data: [String], deviceId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
 
 }
@@ -28,7 +28,7 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
     
     private func setDeviceInfo(deviceId: String, info: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(deviceId            , forKey: "deviceId")
                     params.updateValue(info            , forKey: "info")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -55,12 +55,12 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
 
 
-    public func addEvent(data: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+    public func addEvent(data: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
         addEvent(data: data, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func addEvent(data: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func addEvent(data: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(data            , forKey: "data")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/analytics/event/add", params, completion: { (result, error) in
@@ -91,7 +91,7 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
     
     private func setBrhaviorFlow(info: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(info            , forKey: "info")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/analytics/behaviorflow/set", params, completion: { (result, error) in
@@ -117,12 +117,12 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
 
 
-    public func setDeviceinfoByDate(deviceInfo: String, deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+    public func setDeviceinfoByDate(deviceInfo: [String], deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
         setDeviceinfoByDate(deviceInfo: deviceInfo, deviceId: deviceId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func setDeviceinfoByDate(deviceInfo: String, deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func setDeviceinfoByDate(deviceInfo: [String], deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(deviceInfo            , forKey: "deviceInfo")
                     params.updateValue(deviceId            , forKey: "deviceId")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -149,12 +149,12 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
 
 
-    public func setBehaviorByDate(behavior: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+    public func setBehaviorByDate(behavior: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
         setBehaviorByDate(behavior: behavior, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func setBehaviorByDate(behavior: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func setBehaviorByDate(behavior: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(behavior            , forKey: "behavior")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/analytics/previous/behavior/set", params, completion: { (result, error) in
@@ -180,12 +180,12 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
 
 
-    public func setActiveuserByDate(dates: String, devId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+    public func setActiveuserByDate(dates: [String], devId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
         setActiveuserByDate(dates: dates, devId: devId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func setActiveuserByDate(dates: String, devId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func setActiveuserByDate(dates: [String], devId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(dates            , forKey: "dates")
                     params.updateValue(devId            , forKey: "devId")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -212,12 +212,12 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
     }
 
 
-    public func addDurationByDate(data: String, deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+    public func addDurationByDate(data: [String], deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
         addDurationByDate(data: data, deviceId: deviceId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func addDurationByDate(data: String, deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func addDurationByDate(data: [String], deviceId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(data            , forKey: "data")
                     params.updateValue(deviceId            , forKey: "deviceId")
                     params.updateValue(sessionId            , forKey: "sessionId")

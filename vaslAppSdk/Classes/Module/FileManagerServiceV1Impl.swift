@@ -8,7 +8,7 @@ protocol FileManagerServiceV1 {
 
     func deleteDirectory(path: String, name: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_DirectoryDelete?,String?) -> Void)
 
-    func fileUpload(path: String, file: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void)
+    func fileUpload(path: String, file: NSData,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void)
 
     func fileRemove(path: String, name: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileDelete?,String?) -> Void)
 
@@ -24,7 +24,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
     
     private func createDirectory(path: String, name: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_DirectoryCreate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/create/directory", params, completion: { (result, error) in
@@ -55,7 +55,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
     
     private func listDirectory(path: String, nextPagekey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_DirectoryList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(nextPagekey            , forKey: "nextPagekey")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/list", params, completion: { (result, error) in
@@ -86,7 +86,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
     
     private func deleteDirectory(path: String, name: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_DirectoryDelete?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/delete/directory", params, completion: { (result, error) in
@@ -112,14 +112,14 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
 
 
-    public func fileUpload(path: String, file: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void) {
+    public func fileUpload(path: String, file: NSData,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void) {
         fileUpload(path: path, file: file, completion: completion,force: true)
     }
     
-    private func fileUpload(path: String, file: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func fileUpload(path: String, file: NSData,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/upload/file", params, completion: { (result, error) in
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/filemanager/upload/file", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -147,7 +147,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
     
     private func fileRemove(path: String, name: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileDelete?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/delete/file", params, completion: { (result, error) in

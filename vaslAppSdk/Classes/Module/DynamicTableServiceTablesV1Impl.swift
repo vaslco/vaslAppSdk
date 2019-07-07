@@ -14,9 +14,9 @@ protocol DynamicTableServiceTablesV1 {
 
     func tablesSchemaList(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList?,String?) -> Void)
 
-    func tablesSchemaAlter(id: String, fields: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func queryCreate(name: String, fields: String, joins: String, sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
 
 }
@@ -30,7 +30,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/list", params, completion: { (result, error) in
             do{
@@ -60,7 +60,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(name            , forKey: "name")
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionRequired            , forKey: "sessionRequired")
@@ -93,7 +93,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(name            , forKey: "name")
                     params.updateValue(description            , forKey: "description")
@@ -127,7 +127,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesDrop(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/drop", params, completion: { (result, error) in
@@ -158,7 +158,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesDatatypes(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDataTypes?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/datatypes", params, completion: { (result, error) in
             do{
@@ -188,7 +188,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
     
     private func tablesSchemaList(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/list", params, completion: { (result, error) in
@@ -214,16 +214,16 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func tablesSchemaAlter(id: String, fields: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         tablesSchemaAlter(id: id, fields: fields, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func tablesSchemaAlter(id: String, fields: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(fields            , forKey: "fields")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/alter", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/alter", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -248,18 +248,18 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func queryCreate(name: String, fields: String, joins: String, sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         queryCreate(name: name, fields: fields, joins: joins, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func queryCreate(name: String, fields: String, joins: String, sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(name            , forKey: "name")
                     params.updateValue(fields            , forKey: "fields")
                     params.updateValue(joins            , forKey: "joins")
                     params.updateValue(sessionRequired            , forKey: "sessionRequired")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/query/create", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/query/create", params, completion: { (result, error) in
             do{
                 if let result = result {
                     

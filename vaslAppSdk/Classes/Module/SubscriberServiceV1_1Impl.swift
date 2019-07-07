@@ -20,7 +20,7 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
     
     private func registerWithNationalId(mobile: String, national_id: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(national_id            , forKey: "national_id")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1.1/subscriber/registerWithNationalId", params, completion: { (result, error) in
@@ -51,7 +51,7 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
     
     private func echo(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,String>()
+        let params = Dictionary<String,Any>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1.1/subscriber/echo", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -80,7 +80,7 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
     
     private func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,String>()
+        let params = Dictionary<String,Any>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1.1/subscriber/echo/request", params, completion: { (result, error) in
             do{
                 if let result = result {

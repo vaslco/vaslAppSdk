@@ -10,7 +10,7 @@ protocol SupportServiceV1 {
 
     func removeIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_RemoveIssue?,String?) -> Void)
 
-    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void)
+    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void)
 
     func listMyThreads(page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void)
 
@@ -18,11 +18,13 @@ protocol SupportServiceV1 {
 
     func changeMyThreadStatus(threadId: String, status: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ChangeMyThreadStatus?,String?) -> Void)
 
-    func createThreadConversation(threadId: String, message: String, attachment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void)
+    func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void)
 
     func listMyThreadConversations(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConversations?,String?) -> Void)
 
     func readThreadConversation(messageId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void)
+
+    func directGetThread(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread?,String?) -> Void)
 
 
 }
@@ -36,7 +38,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func createIssue(parentId: String, subject: String, description: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateIssue?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(parentId            , forKey: "parentId")
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
@@ -69,7 +71,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func listIssue(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListIssue?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listIssue", params, completion: { (result, error) in
@@ -100,7 +102,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func editIssue(id: String, subject: String, description: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_EditIssue?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
@@ -133,7 +135,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func removeIssue(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_RemoveIssue?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/removeIssue", params, completion: { (result, error) in
@@ -159,18 +161,18 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void) {
+    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void) {
         createThread(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(issueId            , forKey: "issueId")
                     params.updateValue(priority            , forKey: "priority")
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/createThread", params, completion: { (result, error) in
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/createThread", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -198,7 +200,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func listMyThreads(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -230,7 +232,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func getMyThreadDataById(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetThreadData?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/getMyThreadDataById", params, completion: { (result, error) in
@@ -261,7 +263,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func changeMyThreadStatus(threadId: String, status: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ChangeMyThreadStatus?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(status            , forKey: "status")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -288,16 +290,16 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createThreadConversation(threadId: String, message: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void) {
+    public func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void) {
         createThreadConversation(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createThreadConversation(threadId: String, message: String, attachment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+    private func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(message            , forKey: "message")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/createThreadConversation", params, completion: { (result, error) in
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/createThreadConversation", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -325,7 +327,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func listMyThreadConversations(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConversations?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listMyThreadConversations", params, completion: { (result, error) in
@@ -356,7 +358,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
     
     private func readThreadConversation(messageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(messageId            , forKey: "messageId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/readThreadConversation", params, completion: { (result, error) in
             do{
@@ -369,6 +371,36 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.readThreadConversation(messageId: messageId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func directGetThread(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread?,String?) -> Void) {
+        directGetThread(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func directGetThread(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/directGetThread", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.directGetThread(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

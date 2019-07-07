@@ -26,7 +26,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func dynamicLinkCreate(userId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateLink?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(userId            , forKey: "userId")
                     params.updateValue(campaignId            , forKey: "campaignId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/create/link", params, completion: { (result, error) in
@@ -57,7 +57,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func dynamicCodeCreate(userId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_CreateCode?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(userId            , forKey: "userId")
                     params.updateValue(campaignId            , forKey: "campaignId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/create/code", params, completion: { (result, error) in
@@ -88,7 +88,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func inviteView(inviterUserId: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteView?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(inviterUserId            , forKey: "inviterUserId")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
@@ -120,7 +120,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func RegisterCode(code: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_RegisterCode?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(code            , forKey: "code")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
@@ -152,7 +152,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func inviteRegister(inviterUserId: String, invitedUserId: String, campaignId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_InviteRegister?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(inviterUserId            , forKey: "inviterUserId")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
@@ -184,7 +184,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
     }
     
     private func listCampaign(type: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,String>()
+        var params = Dictionary<String,Any>()
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(page            , forKey: "page")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/list/campaign", params, completion: { (result, error) in
