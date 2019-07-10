@@ -4,6 +4,8 @@ protocol SubscriberServiceV1 {
 
     func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
+    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
+
     func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
     func activate(username: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
@@ -14,7 +16,7 @@ protocol SubscriberServiceV1 {
 
     func activateAndLoginForNationalId(mobile: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
-    func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: Array<Dictionary<String,String>>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func getProfileInfo(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
 
@@ -66,8 +68,6 @@ protocol SubscriberServiceV1 {
 
     func decreaseUserAccount(amount: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void)
 
-    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
-
 
 }
 
@@ -97,6 +97,36 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.register(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
+        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -270,11 +300,11 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         saveProfileInfo(nickName: nickName, firstName: firstName, lastName: lastName, fatherName: fatherName, shenasnamehNo: shenasnamehNo, deathStatus: deathStatus, picture: picture, gender: gender, birthDate: birthDate, nationalId: nationalId, data: data, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func saveProfileInfo(nickName: String, firstName: String, lastName: String, fatherName: String, shenasnamehNo: String, deathStatus: String, picture: NSData, gender: String, birthDate: String, nationalId: String, data: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(nickName            , forKey: "nickName")
                     params.updateValue(firstName            , forKey: "firstName")
@@ -1071,36 +1101,6 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.decreaseUserAccount(amount: amount, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
-        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

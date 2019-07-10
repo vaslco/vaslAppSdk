@@ -17,30 +17,50 @@ class ViewController: UIViewController {
     let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
     let password                   = "g8tlaUJba0UYUJjPZp5Z"
     
-    
+
+   
     var vmbas : VaslSdk!
+
+    let datasss = Array<Dictionary<String,String>>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+      
         vmbas = VaslSdk.init(appId: appid,
                             baseUrl: "http://hambazisho.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
+        let data = UIImage(named: "gimour.jpg")
+        let jpegData = data?.jpegData(compressionQuality: 1)! as NSData?
+        
+      
+        
+        
+        vmbas.SubscriberService()?.saveProfileInfo(nickName: "", firstName: "", lastName: "", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "", birthDate: "", nationalId: "", data: datasss, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil {
+                print(data!)
+                
+                
+            }else{
+               
+                print(error!)
+            }
+        })
         
 
 
- 
-
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+ 
 
 }
 

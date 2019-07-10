@@ -51,7 +51,7 @@ struct RestService {
             params.updateValue("multipart/form-data; boundary=".appending(boundary), forKey: "accept")
             break
         case .JSON:
-            params.updateValue("application/json"                                   , forKey:  "content-type")
+            params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
             params.updateValue("application/json"                                   , forKey:  "accept")
             break
         default:
@@ -236,7 +236,7 @@ struct RestService {
         }
     }
     
-    public static func postJson(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .JSON){
+    public static func postJson(url: String,_ parameters : [String:Any] , completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .JSON){
         if !isInternetAvailable() {
             completion(nil,"error internet connection")
         }
