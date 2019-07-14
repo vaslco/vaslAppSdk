@@ -27,6 +27,7 @@ pod 'vaslAppSdk'
 ## Author
 
 [Ali Shatergholi](https://github.com/alishatergholi)
+[Siamak Rostami](https://github.com/siamakrostami)
 
 ## License
 

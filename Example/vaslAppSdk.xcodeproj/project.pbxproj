@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010791A122DB322200A0BF50 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 010791A022DB322200A0BF50 /* test.mp4 */; };
 		140AF91F7A1C4F68E355C443 /* Pods_vaslAppSdk_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D579D12993B3A8EA43C1A073 /* Pods_vaslAppSdk_Tests.framework */; };
 		581B2BECE4A426B50DD07ADA /* Pods_vaslAppSdk_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A663EBA958AED44242CF962 /* Pods_vaslAppSdk_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010791A022DB322200A0BF50 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		2A663EBA958AED44242CF962 /* Pods_vaslAppSdk_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vaslAppSdk_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A91B79BE970C13644E20A8C /* Pods-vaslAppSdk_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vaslAppSdk_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vaslAppSdk_Tests/Pods-vaslAppSdk_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5FCFB52F88FA1DFCB2A9B422 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		607FACD21AFB9204008FA782 /* Example for vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
+				010791A022DB322200A0BF50 /* test.mp4 */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -249,6 +252,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				010791A122DB322200A0BF50 /* test.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,7 +48,7 @@ struct RestService {
             break
         case .MultiPart:
             params.updateValue("multipart/form-data; boundary=".appending(boundary), forKey: "content-type")
-            params.updateValue("multipart/form-data; boundary=".appending(boundary), forKey: "accept")
+            params.updateValue("application/json"                                  , forKey: "accept")
             break
         case .JSON:
             params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
@@ -57,6 +57,7 @@ struct RestService {
         default:
             params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
             params.updateValue("application/octet-stream"                           , forKey:  "accept")
+            
             break
         }
         if type != .Ouath {
@@ -195,45 +196,75 @@ struct RestService {
     }
     
     public static func postMultiPart(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .MultiPart){
+        
         if !isInternetAvailable() {
             completion(nil,"error internet connection")
         }
         getaccessToken(force) { (success, token) in
             if success! {
-                if let url = URL(string: url) {
-                    let request = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
-                    if let request = request as DataRequest? {
-                        let start = CACurrentMediaTime()
-                        request.response(completionHandler: { (webResult) in
-                            let end = CACurrentMediaTime()
-                            let elapsedTime : TimeInterval = end - start
-                            let response                   = webResult.response
-                            guard (webResult.data != nil) , webResult.error == nil else {
-                                // check for fundamental networking error
-                                if let error = webResult.error {
-                                    Utils.LogData(debug: true, className: "RestWebService", message: String(describing: error))
+                if let url = URL(string: url){
+                    let newdic : Dictionary<String,Any>!
+                    newdic = parameters
+                    Alamofire.upload(multipartFormData: { multipartFormData in
+            
+                        for (key,value) in newdic{
+    
+                            if key.contains("picture"){
+                                
+                                let imageData : NSData = value as! NSData
+                                multipartFormData.append(imageData as Data, withName: "picture", fileName: "Image", mimeType: "image/jpeg")
+                            }else if key.contains("data"){
+                                
+                                let Datas : Array<Dictionary<String,String>> = value as! Array<Dictionary<String, String>>
+                                
+                                if Datas.count > 0 {
                                     
+                                    for dict in Datas {
+                                        var i = 0
+                                        print(dict.count)
+                                        while(i < dict.count){
+                                            
+                                            for (key,value) in dict {
+                                                multipartFormData.append((key.data(using: .utf8))!, withName: "data[\(i)].key", mimeType: "text/plain")
+                                                multipartFormData.append((value.data(using: .utf8))!, withName: "data[\(i)].value", mimeType: "text/plain")
+                                                i += 1
+                                            }
+   
+                                        }
+        
+                                    }
+
+                                }else{
                                     
-                                    completion(nil,error.description)
+                                    print("empty data field")
                                 }
-                                return
+   
+                            }else{
+                                 multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                             }
-                            if let httpStatus = response, httpStatus.statusCode != 200 {
-                                Utils.LogData(debug: true, className: "RestWebService", message: "statusCode should be 200, but is \(httpStatus.statusCode)")
-                                completion(nil,"error server connection")
-                                return
-                            }
-                            if let data = webResult.data {
-                                Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
-                                completion(data,nil)
-                            }
-                        })
-                    }
-                } else {
-                    completion(nil,"error server connection")
+                        }
+                      
+                    },
+                                     usingThreshold: UInt64.init(),
+                                     to: url,
+                                     method: .post,
+                                     headers: addHeader(type),
+                                     encodingCompletion: { encodingResult in
+                                        switch encodingResult {
+                                        case .success(let upload, _, _):
+                                            upload.responseJSON { response in
+                                                debugPrint(response)
+                                            }
+                                        case .failure(let encodingError):
+                                            print(encodingError)
+                                        }
+                    })
+                    
+
                 }
             }
         }
+
     }
     
     public static func postJson(url: String,_ parameters : [String:Any] , completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .JSON){

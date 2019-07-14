@@ -16,7 +16,7 @@ public class GameFeaturesServiceV2Impl  : GameFeaturesServiceV2 {
     }
     
     private func getFeatures(completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetFeatures?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
+        let params = Dictionary<String,Any>()
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/features/get", params, completion: { (result, error) in
             do{
                 if let result = result {

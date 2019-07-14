@@ -62,6 +62,22 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoUpdatePanel {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoUpdate {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -2151,35 +2167,107 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var subscriberID: String = String()
+  public var subscriberID: String {
+    get {return _storage._subscriberID}
+    set {_uniqueStorage()._subscriberID = newValue}
+  }
 
-  public var username: String = String()
+  public var username: String {
+    get {return _storage._username}
+    set {_uniqueStorage()._username = newValue}
+  }
 
-  public var email: String = String()
+  public var email: String {
+    get {return _storage._email}
+    set {_uniqueStorage()._email = newValue}
+  }
 
-  public var mobile: String = String()
+  public var mobile: String {
+    get {return _storage._mobile}
+    set {_uniqueStorage()._mobile = newValue}
+  }
 
-  public var imageURL: String = String()
+  public var imageURL: String {
+    get {return _storage._imageURL}
+    set {_uniqueStorage()._imageURL = newValue}
+  }
 
-  public var firstName: String = String()
+  public var firstName: String {
+    get {return _storage._firstName}
+    set {_uniqueStorage()._firstName = newValue}
+  }
 
-  public var lastName: String = String()
+  public var lastName: String {
+    get {return _storage._lastName}
+    set {_uniqueStorage()._lastName = newValue}
+  }
 
-  public var subscriberType: String = String()
+  public var subscriberType: String {
+    get {return _storage._subscriberType}
+    set {_uniqueStorage()._subscriberType = newValue}
+  }
 
-  public var gender: String = String()
+  public var gender: String {
+    get {return _storage._gender}
+    set {_uniqueStorage()._gender = newValue}
+  }
 
-  public var birthDate: String = String()
+  public var birthDate: String {
+    get {return _storage._birthDate}
+    set {_uniqueStorage()._birthDate = newValue}
+  }
 
-  public var photos: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Photo] = []
+  public var photos: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Photo] {
+    get {return _storage._photos}
+    set {_uniqueStorage()._photos = newValue}
+  }
 
-  public var followers: Int64 = 0
+  public var followers: Int64 {
+    get {return _storage._followers}
+    set {_uniqueStorage()._followers = newValue}
+  }
 
-  public var isFollower: Bool = false
+  public var isFollower: Bool {
+    get {return _storage._isFollower}
+    set {_uniqueStorage()._isFollower = newValue}
+  }
 
-  public var address: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Address] = []
+  public var address: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Address] {
+    get {return _storage._address}
+    set {_uniqueStorage()._address = newValue}
+  }
 
-  public var followings: Int64 = 0
+  public var followings: Int64 {
+    get {return _storage._followings}
+    set {_uniqueStorage()._followings = newValue}
+  }
+
+  public var account: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account {
+    get {return _storage._account ?? Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account()}
+    set {_uniqueStorage()._account = newValue}
+  }
+  /// Returns true if `account` has been explicitly set.
+  public var hasAccount: Bool {return _storage._account != nil}
+  /// Clears the value of `account`. Subsequent reads from it will return its default value.
+  public mutating func clearAccount() {_uniqueStorage()._account = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var credit: Int64 = 0
+
+  public var debit: Int64 = 0
+
+  public var balance: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2550,6 +2638,22 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoChangeStatus {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "com.vasl.vaslapp.products.hambazi.proto.holder"
@@ -2661,6 +2765,47 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate: SwiftProto
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.id != rhs.id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoUpdatePanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".VideoUpdatePanel"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoUpdatePanel, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoUpdatePanel) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7747,96 +7892,205 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo: SwiftPr
     15: .same(proto: "isFollower"),
     16: .same(proto: "address"),
     17: .same(proto: "followings"),
+    18: .same(proto: "account"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _subscriberID: String = String()
+    var _username: String = String()
+    var _email: String = String()
+    var _mobile: String = String()
+    var _imageURL: String = String()
+    var _firstName: String = String()
+    var _lastName: String = String()
+    var _subscriberType: String = String()
+    var _gender: String = String()
+    var _birthDate: String = String()
+    var _photos: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Photo] = []
+    var _followers: Int64 = 0
+    var _isFollower: Bool = false
+    var _address: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Address] = []
+    var _followings: Int64 = 0
+    var _account: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _subscriberID = source._subscriberID
+      _username = source._username
+      _email = source._email
+      _mobile = source._mobile
+      _imageURL = source._imageURL
+      _firstName = source._firstName
+      _lastName = source._lastName
+      _subscriberType = source._subscriberType
+      _gender = source._gender
+      _birthDate = source._birthDate
+      _photos = source._photos
+      _followers = source._followers
+      _isFollower = source._isFollower
+      _address = source._address
+      _followings = source._followings
+      _account = source._account
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._subscriberID)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._username)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._email)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._mobile)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._imageURL)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._firstName)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._lastName)
+        case 9: try decoder.decodeSingularStringField(value: &_storage._subscriberType)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._gender)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._birthDate)
+        case 12: try decoder.decodeRepeatedMessageField(value: &_storage._photos)
+        case 13: try decoder.decodeSingularInt64Field(value: &_storage._followers)
+        case 15: try decoder.decodeSingularBoolField(value: &_storage._isFollower)
+        case 16: try decoder.decodeRepeatedMessageField(value: &_storage._address)
+        case 17: try decoder.decodeSingularInt64Field(value: &_storage._followings)
+        case 18: try decoder.decodeSingularMessageField(value: &_storage._account)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._subscriberID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._subscriberID, fieldNumber: 1)
+      }
+      if !_storage._username.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._username, fieldNumber: 3)
+      }
+      if !_storage._email.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._email, fieldNumber: 4)
+      }
+      if !_storage._mobile.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._mobile, fieldNumber: 5)
+      }
+      if !_storage._imageURL.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._imageURL, fieldNumber: 6)
+      }
+      if !_storage._firstName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._firstName, fieldNumber: 7)
+      }
+      if !_storage._lastName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._lastName, fieldNumber: 8)
+      }
+      if !_storage._subscriberType.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._subscriberType, fieldNumber: 9)
+      }
+      if !_storage._gender.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._gender, fieldNumber: 10)
+      }
+      if !_storage._birthDate.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._birthDate, fieldNumber: 11)
+      }
+      if !_storage._photos.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._photos, fieldNumber: 12)
+      }
+      if _storage._followers != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._followers, fieldNumber: 13)
+      }
+      if _storage._isFollower != false {
+        try visitor.visitSingularBoolField(value: _storage._isFollower, fieldNumber: 15)
+      }
+      if !_storage._address.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._address, fieldNumber: 16)
+      }
+      if _storage._followings != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._followings, fieldNumber: 17)
+      }
+      if let v = _storage._account {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 18)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._subscriberID != rhs_storage._subscriberID {return false}
+        if _storage._username != rhs_storage._username {return false}
+        if _storage._email != rhs_storage._email {return false}
+        if _storage._mobile != rhs_storage._mobile {return false}
+        if _storage._imageURL != rhs_storage._imageURL {return false}
+        if _storage._firstName != rhs_storage._firstName {return false}
+        if _storage._lastName != rhs_storage._lastName {return false}
+        if _storage._subscriberType != rhs_storage._subscriberType {return false}
+        if _storage._gender != rhs_storage._gender {return false}
+        if _storage._birthDate != rhs_storage._birthDate {return false}
+        if _storage._photos != rhs_storage._photos {return false}
+        if _storage._followers != rhs_storage._followers {return false}
+        if _storage._isFollower != rhs_storage._isFollower {return false}
+        if _storage._address != rhs_storage._address {return false}
+        if _storage._followings != rhs_storage._followings {return false}
+        if _storage._account != rhs_storage._account {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Account"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    4: .same(proto: "credit"),
+    5: .same(proto: "debit"),
+    6: .same(proto: "balance"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.subscriberID)
-      case 3: try decoder.decodeSingularStringField(value: &self.username)
-      case 4: try decoder.decodeSingularStringField(value: &self.email)
-      case 5: try decoder.decodeSingularStringField(value: &self.mobile)
-      case 6: try decoder.decodeSingularStringField(value: &self.imageURL)
-      case 7: try decoder.decodeSingularStringField(value: &self.firstName)
-      case 8: try decoder.decodeSingularStringField(value: &self.lastName)
-      case 9: try decoder.decodeSingularStringField(value: &self.subscriberType)
-      case 10: try decoder.decodeSingularStringField(value: &self.gender)
-      case 11: try decoder.decodeSingularStringField(value: &self.birthDate)
-      case 12: try decoder.decodeRepeatedMessageField(value: &self.photos)
-      case 13: try decoder.decodeSingularInt64Field(value: &self.followers)
-      case 15: try decoder.decodeSingularBoolField(value: &self.isFollower)
-      case 16: try decoder.decodeRepeatedMessageField(value: &self.address)
-      case 17: try decoder.decodeSingularInt64Field(value: &self.followings)
+      case 4: try decoder.decodeSingularInt64Field(value: &self.credit)
+      case 5: try decoder.decodeSingularInt64Field(value: &self.debit)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.balance)
       default: break
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.subscriberID.isEmpty {
-      try visitor.visitSingularStringField(value: self.subscriberID, fieldNumber: 1)
+    if self.credit != 0 {
+      try visitor.visitSingularInt64Field(value: self.credit, fieldNumber: 4)
     }
-    if !self.username.isEmpty {
-      try visitor.visitSingularStringField(value: self.username, fieldNumber: 3)
+    if self.debit != 0 {
+      try visitor.visitSingularInt64Field(value: self.debit, fieldNumber: 5)
     }
-    if !self.email.isEmpty {
-      try visitor.visitSingularStringField(value: self.email, fieldNumber: 4)
-    }
-    if !self.mobile.isEmpty {
-      try visitor.visitSingularStringField(value: self.mobile, fieldNumber: 5)
-    }
-    if !self.imageURL.isEmpty {
-      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 6)
-    }
-    if !self.firstName.isEmpty {
-      try visitor.visitSingularStringField(value: self.firstName, fieldNumber: 7)
-    }
-    if !self.lastName.isEmpty {
-      try visitor.visitSingularStringField(value: self.lastName, fieldNumber: 8)
-    }
-    if !self.subscriberType.isEmpty {
-      try visitor.visitSingularStringField(value: self.subscriberType, fieldNumber: 9)
-    }
-    if !self.gender.isEmpty {
-      try visitor.visitSingularStringField(value: self.gender, fieldNumber: 10)
-    }
-    if !self.birthDate.isEmpty {
-      try visitor.visitSingularStringField(value: self.birthDate, fieldNumber: 11)
-    }
-    if !self.photos.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.photos, fieldNumber: 12)
-    }
-    if self.followers != 0 {
-      try visitor.visitSingularInt64Field(value: self.followers, fieldNumber: 13)
-    }
-    if self.isFollower != false {
-      try visitor.visitSingularBoolField(value: self.isFollower, fieldNumber: 15)
-    }
-    if !self.address.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.address, fieldNumber: 16)
-    }
-    if self.followings != 0 {
-      try visitor.visitSingularInt64Field(value: self.followings, fieldNumber: 17)
+    if self.balance != 0 {
+      try visitor.visitSingularInt64Field(value: self.balance, fieldNumber: 6)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberInfo) -> Bool {
-    if lhs.subscriberID != rhs.subscriberID {return false}
-    if lhs.username != rhs.username {return false}
-    if lhs.email != rhs.email {return false}
-    if lhs.mobile != rhs.mobile {return false}
-    if lhs.imageURL != rhs.imageURL {return false}
-    if lhs.firstName != rhs.firstName {return false}
-    if lhs.lastName != rhs.lastName {return false}
-    if lhs.subscriberType != rhs.subscriberType {return false}
-    if lhs.gender != rhs.gender {return false}
-    if lhs.birthDate != rhs.birthDate {return false}
-    if lhs.photos != rhs.photos {return false}
-    if lhs.followers != rhs.followers {return false}
-    if lhs.isFollower != rhs.isFollower {return false}
-    if lhs.address != rhs.address {return false}
-    if lhs.followings != rhs.followings {return false}
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Account) -> Bool {
+    if lhs.credit != rhs.credit {return false}
+    if lhs.debit != rhs.debit {return false}
+    if lhs.balance != rhs.balance {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -8685,6 +8939,47 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_FamousActorInfo: SwiftP
     if lhs.actorID != rhs.actorID {return false}
     if lhs.actorUsername != rhs.actorUsername {return false}
     if lhs.actorName != rhs.actorName {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoChangeStatus: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".VideoChangeStatus"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoChangeStatus, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoChangeStatus) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

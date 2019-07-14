@@ -317,7 +317,8 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(nationalId            , forKey: "nationalId")
                     params.updateValue(data            , forKey: "data")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
+                    params.updateValue(picture               , forKey: "picture")
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
                     

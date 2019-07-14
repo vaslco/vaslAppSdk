@@ -31,28 +31,73 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
       
         vmbas = VaslSdk.init(appId: appid,
-                            baseUrl: "http://hambazisho.vaslapp.com",
+                            baseUrl: "http://server.vaslapp.hambazisho.ir",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
         
-
-        let image = UIImage(named: "send")
+//        let url = Bundle.main.path(forResource: "test", ofType: "mp4")!
+//
+//        let videoUrl = URL(string: url)!
+//
+//        let videData = NSData(contentsOf: videoUrl)
+//
+//        vmbas.HambaziService()?.videoCreate(multipartFile: videData!, title: "test", description: "test ios sdk", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil {
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
+        
+        
+//
+        let image = UIImage(named: "aziz")
         var Extradata = Array<Dictionary<String,String>>()
         let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
 
         var dic = Dictionary<String,String>()
-        dic.updateValue("tehran", forKey: "city")
-        dic.updateValue("ali", forKey: "name")
-        dic.updateValue("pride", forKey: "car")
+        dic.updateValue("زاویه", forKey: "city")
         Extradata.append(dic)
 
         
+//
+//        enum key : String {
+//            case
+//            KEY_RAISE_ACTION_PROFILE_NAME    = "KEY_RAISE_ACTION_PROFILE_NAME"
+//        }
+//        let type = key(rawValue: "KEY_RAISE_ACTION_PROFILE_NAME")
+//
+//        vmbas.gameActionServiceV1()?.raiseAction(actionKey: type!.rawValue, actionData: "{}", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//                for item in data!.data{
+//                    print(item)
+//                }
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+//
+//        vmbas.gameUserServiceV2()?.userStatus(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil {
+//
+//                for item in (data?.data)! {
+//                    print(item)
+//                }
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
    
-
-
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "", firstName: "", lastName: "", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "", birthDate: "", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//
+//
+        vmbas.SubscriberService()?.saveProfileInfo(nickName: "احمد ذوقی", firstName: "احمد", lastName: "ذوقی", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "MALE", birthDate: "1374-1-14", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
             if error == nil {
                 print(data!)
 
@@ -62,16 +107,19 @@ class ViewController: UIViewController {
                 print(error!)
             }
         })
-        
+
         vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
             if error == nil {
+
+                let datas = data?.profileInfo
                 
-                let arrayData = data?.profileInfo.data
+                print(datas?.nickName)
+                print(datas?.lastName)
+                print(datas?.birthDate)
+                print(datas?.gender)
+
                 
-                for item in arrayData!{
-                    print(item.key)
-                    print(item.value)
-                }
+               
 
                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
                 if let url = URL(string: (data?.profileInfo.picture[0].url)!){
