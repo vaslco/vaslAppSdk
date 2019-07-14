@@ -21,7 +21,10 @@ class ViewController: UIViewController {
    
     var vmbas : VaslSdk!
 
-    let datasss = Array<Dictionary<String,String>>()
+
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +36,61 @@ class ViewController: UIViewController {
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
-        let data = UIImage(named: "gimour.jpg")
-        let jpegData = data?.jpegData(compressionQuality: 1)! as NSData?
         
-      
+
+        let image = UIImage(named: "send")
+        var Extradata = Array<Dictionary<String,String>>()
+        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
+
+        var dic = Dictionary<String,String>()
+        dic.updateValue("tehran", forKey: "city")
+        dic.updateValue("ali", forKey: "name")
+        dic.updateValue("pride", forKey: "car")
+        Extradata.append(dic)
+
         
-        
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "", firstName: "", lastName: "", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "", birthDate: "", nationalId: "", data: datasss, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+   
+
+
+        vmbas.SubscriberService()?.saveProfileInfo(nickName: "", firstName: "", lastName: "", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "", birthDate: "", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
             if error == nil {
                 print(data!)
-                
-                
+
+
             }else{
-               
+
+                print(error!)
+            }
+        })
+        
+        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil {
+                
+                let arrayData = data?.profileInfo.data
+                
+                for item in arrayData!{
+                    print(item.key)
+                    print(item.value)
+                }
+
+               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
+                    do{
+                        let image = try Data(contentsOf: url)
+                        DispatchQueue.main.async {
+                            imageView.image = UIImage(data: image)
+                        }
+
+                    }catch{
+                        print(error)
+                    }
+                self.view.addSubview(imageView)
+
+
+                }
+
+
+            }else{
                 print(error!)
             }
         })
