@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'vaslAppSdk'
-  s.version          = '0.2.5'
+  s.version          = '0.2.6'
   s.swift_version    = '5'
   s.summary          = 'vaslAppSdk is a Framework for connectin to Mbas-Vasl service '
 
