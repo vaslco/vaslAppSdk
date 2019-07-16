@@ -521,13 +521,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		010309D822DC7EAF00D38FAC /* Swim */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Swim;
-			sourceTree = "<group>";
-		};
 		1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,9 +536,6 @@
 		24205DC65D44B6F48515446053300FE7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				010309DA22DC7EC500D38FAC /* Mimes.swift */,
-				010309D922DC7EC500D38FAC /* Swime.swift */,
-				010309D822DC7EAF00D38FAC /* Swim */,
 				F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */,
 			);
 			name = "Development Pods";
@@ -909,6 +899,8 @@
 		F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
+				010309DA22DC7EC500D38FAC /* Mimes.swift */,
+				010309D922DC7EC500D38FAC /* Swime.swift */,
 				6C939FD7563BACB2FEFBD8BDE24F7A5D /* VaslSdk.swift */,
 				1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */,
 				46564E11E954A0D11D72C31CBA809B94 /* Module */,

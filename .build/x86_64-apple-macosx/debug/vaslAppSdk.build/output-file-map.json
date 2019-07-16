@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/siamak/Documents/Projects/vaslAppSdk/.build/x86_64-apple-macosx/debug/vaslAppSdk.build/master.swiftdeps"
+  },
+  "/Users/siamak/Documents/Projects/vaslAppSdk/Sources/vaslAppSdk/main.swift": {
+    "dependencies": "/Users/siamak/Documents/Projects/vaslAppSdk/.build/x86_64-apple-macosx/debug/vaslAppSdk.build/main.d",
+    "object": "/Users/siamak/Documents/Projects/vaslAppSdk/.build/x86_64-apple-macosx/debug/vaslAppSdk.build/main.swift.o",
+    "swiftmodule": "/Users/siamak/Documents/Projects/vaslAppSdk/.build/x86_64-apple-macosx/debug/vaslAppSdk.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/siamak/Documents/Projects/vaslAppSdk/.build/x86_64-apple-macosx/debug/vaslAppSdk.build/main.swiftdeps"
+  }
+}

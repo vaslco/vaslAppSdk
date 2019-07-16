@@ -1,0 +1,4 @@
+module QuickSpecBase {
+    umbrella header "/Users/siamak/Documents/Projects/vaslAppSdk/.build/checkouts/Quick/Sources/QuickSpecBase/include/QuickSpecBase.h"
+    export *
+}
