@@ -79,6 +79,8 @@
 		01E0B92822DDAD090041F565 /* AppVersion.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0B90822DDAD080041F565 /* AppVersion.pb.swift */; };
 		01E0B92922DDAD090041F565 /* ContentGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0B90922DDAD080041F565 /* ContentGlobalV1.pb.swift */; };
 		01E0B92A22DDAD090041F565 /* ChargeCard.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E0B90A22DDAD090041F565 /* ChargeCard.pb.swift */; };
+		01E0B92B22DDBC2C0041F565 /* Mimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309DA22DC7EC500D38FAC /* Mimes.swift */; };
+		01E0B92C22DDBC300041F565 /* Swime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309D922DC7EC500D38FAC /* Swime.swift */; };
 		0313C0C9683EF4E946FDA4FA3BB53AFD /* TextFormatEncodingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775D301D69B65DEA0B4CAD61F044CF4 /* TextFormatEncodingVisitor.swift */; };
 		059D92B7BBFBEC53E9A3B6E11C5C3B3A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0C5B98435E2326D2525208FB6E4D /* Response.swift */; };
 		05C6A9AEECEC38CA02235CF74434DC4A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF955998E0A40CF9A838B9864B6DE40A /* Message.swift */; };
@@ -1130,6 +1132,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18E9B16C08E9A2A471C2B13DCE9F337E /* Pods-vaslAppSdk_Example-dummy.m in Sources */,
+				01E0B92C22DDBC300041F565 /* Swime.swift in Sources */,
+				01E0B92B22DDBC2C0041F565 /* Mimes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

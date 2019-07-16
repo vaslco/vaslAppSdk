@@ -46,15 +46,15 @@ class ViewController: UIViewController {
 //            }
 //        })
         
-//        vmbas.billingGlobalService()?.increaseBalance(amount: "20000", bankCode: "1", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-//            if error == nil{
-//                
-//                debugPrint(data!)
-//                
-//            }else{
-//                print(error!)
-//            }
-//        })
+        vmbas.billingGlobalService()?.increaseBalance(amount: "20000", bankCode: "1", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil{
+                
+                debugPrint(data!)
+                
+            }else{
+                print(error!)
+            }
+        })
         
 //
 //        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
