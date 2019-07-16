@@ -1,5 +1,4 @@
 import Foundation
-
 protocol SubscriberServiceV1 {
 
     func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)

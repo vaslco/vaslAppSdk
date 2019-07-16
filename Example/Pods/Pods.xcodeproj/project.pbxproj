@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010309DB22DC7EC600D38FAC /* Swime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309D922DC7EC500D38FAC /* Swime.swift */; };
+		010309DC22DC7EC600D38FAC /* Mimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309DA22DC7EC500D38FAC /* Mimes.swift */; };
+		010309DE22DC810600D38FAC /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309DD22DC810600D38FAC /* MimeType.swift */; };
 		0107918022DB2FD800A0BF50 /* BillingInappGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107916022DB2FD400A0BF50 /* BillingInappGlobal.pb.swift */; };
 		0107918122DB2FD800A0BF50 /* Poll.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107916122DB2FD500A0BF50 /* Poll.pb.swift */; };
 		0107918222DB2FD800A0BF50 /* GameLeague.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0107916222DB2FD500A0BF50 /* GameLeague.pb.swift */; };
@@ -190,7 +193,6 @@
 		EF56A208F2D4481357AA738A543AAF8C /* UnknownStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB9DC3D84A31C711D200377EDBEC15B /* UnknownStorage.swift */; };
 		F4602B8F3A69E8F76D38A0FB6996075E /* field_mask.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6E0CB4D1A7AD8C8D8753A8C1C13D9B /* field_mask.pb.swift */; };
 		F5172E4C86F8409C981EE4CD1B299F1F /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706C5C80FC1E3235FDF5D2A379AF77DB /* WireFormat.swift */; };
-		F750BF12DD88A7490B071C20253E8267 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E216A7DFC9308D316DD4B1BD74100E7 /* MimeType.swift */; };
 		F8381E06B5A0DF1A5B5AC6C64BC48BCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9322ECA71F964C71EFB57FE6EF7223D7 /* Foundation.framework */; };
 		F97576ED857AA50C553D79965A795EFA /* timestamp.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4DE7056DA5B1D183F0DB4A62BDF8C3 /* timestamp.pb.swift */; };
 		F97593729DC2133818A2DAFC4B73EA22 /* SimpleExtensionMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D0557871DA5EDE754AFD517ABBFF67 /* SimpleExtensionMap.swift */; };
@@ -247,6 +249,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010309D922DC7EC500D38FAC /* Swime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swime.swift; sourceTree = "<group>"; };
+		010309DA22DC7EC500D38FAC /* Mimes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mimes.swift; sourceTree = "<group>"; };
+		010309DD22DC810600D38FAC /* MimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		0107916022DB2FD400A0BF50 /* BillingInappGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInappGlobal.pb.swift; sourceTree = "<group>"; };
 		0107916122DB2FD500A0BF50 /* Poll.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.pb.swift; sourceTree = "<group>"; };
 		0107916222DB2FD500A0BF50 /* GameLeague.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeague.pb.swift; sourceTree = "<group>"; };
@@ -334,7 +339,6 @@
 		183D243D10B2536FC65583BD45616D08 /* JSONDecodingOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONDecodingOptions.swift; path = Sources/SwiftProtobuf/JSONDecodingOptions.swift; sourceTree = "<group>"; };
 		1881AB2255C18C303D21DC35428F40EE /* Message+AnyAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Message+AnyAdditions.swift"; path = "Sources/SwiftProtobuf/Message+AnyAdditions.swift"; sourceTree = "<group>"; };
 		1CDA6D9438FFD62A15F930217B17FF32 /* Pods-vaslAppSdk_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-vaslAppSdk_Example-umbrella.h"; sourceTree = "<group>"; };
-		1E216A7DFC9308D316DD4B1BD74100E7 /* MimeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		25FBB316E2CCCA9235E8338FD4F927C2 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2784A508689C6E1600920F17CBBAF06E /* Decoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Decoder.swift; path = Sources/SwiftProtobuf/Decoder.swift; sourceTree = "<group>"; };
 		2921BAAA6904B17AD8EDB811277A16CD /* SwiftProtobuf-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftProtobuf-dummy.m"; sourceTree = "<group>"; };
@@ -517,6 +521,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010309D822DC7EAF00D38FAC /* Swim */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Swim;
+			sourceTree = "<group>";
+		};
 		1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +543,9 @@
 		24205DC65D44B6F48515446053300FE7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
+				010309DA22DC7EC500D38FAC /* Mimes.swift */,
+				010309D922DC7EC500D38FAC /* Swime.swift */,
+				010309D822DC7EAF00D38FAC /* Swim */,
 				F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */,
 			);
 			name = "Development Pods";
@@ -696,7 +710,7 @@
 		6763BDF70E384CCAE968EBD1948B3B54 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				1E216A7DFC9308D316DD4B1BD74100E7 /* MimeType.swift */,
+				010309DD22DC810600D38FAC /* MimeType.swift */,
 				EB05A30AEF0F29DB89830FFAD3B7B6BB /* PubicValue.swift */,
 				2EDD050D53E5183B6FBA686D8007E844 /* RestService.swift */,
 				25FBB316E2CCCA9235E8338FD4F927C2 /* Utils.swift */,
@@ -1143,7 +1157,6 @@
 				0107919422DB2FD800A0BF50 /* Hambazi.pb.swift in Sources */,
 				013022DF22D1EDE500BE5752 /* GameLeaderBoardServiceV1Impl.swift in Sources */,
 				BBD3B8C1A4DA374B7F76134A3922FB61 /* enumFile.swift in Sources */,
-				F750BF12DD88A7490B071C20253E8267 /* MimeType.swift in Sources */,
 				013022DE22D1EDE500BE5752 /* GamePointServiceV2Impl.swift in Sources */,
 				0107919E22DB2FD800A0BF50 /* GeoGlobalV1.pb.swift in Sources */,
 				0107919F22DB2FD800A0BF50 /* FileGlobal.pb.swift in Sources */,
@@ -1152,6 +1165,8 @@
 				013022E522D1EDE500BE5752 /* MgsServiceV1Impl.swift in Sources */,
 				0107918022DB2FD800A0BF50 /* BillingInappGlobal.pb.swift in Sources */,
 				0107919B22DB2FD800A0BF50 /* DynamicLink.pb.swift in Sources */,
+				010309DC22DC7EC600D38FAC /* Mimes.swift in Sources */,
+				010309DE22DC810600D38FAC /* MimeType.swift in Sources */,
 				013022F122D1EDE500BE5752 /* LeagueServiceV1Impl.swift in Sources */,
 				86D3E430118ED7BFCD075BEE900CE77A /* PubicValue.swift in Sources */,
 				0107919322DB2FD800A0BF50 /* OperatorsGlobalV1.pb.swift in Sources */,
@@ -1174,6 +1189,7 @@
 				013022E722D1EDE500BE5752 /* billingImpl.swift in Sources */,
 				013022F422D1EDE500BE5752 /* GameUserServiceV2Impl.swift in Sources */,
 				0107918422DB2FD800A0BF50 /* ChargeCard.pb.swift in Sources */,
+				010309DB22DC7EC600D38FAC /* Swime.swift in Sources */,
 				0107919222DB2FD800A0BF50 /* Shop.pb.swift in Sources */,
 				49E5D580253179BA8589A19FAD4C35AA /* Utils.swift in Sources */,
 				013022DD22D1EDE500BE5752 /* GameFeaturesServiceV2Impl.swift in Sources */,

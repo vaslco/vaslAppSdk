@@ -17,6 +17,7 @@ struct RestService {
     
     typealias CompletiontokenHandler = (_ force : Bool?,_ token : TokenInfoModel?) -> Void
     
+    
     private static let ouathUrl                  = baseUrl + "/oauth/token"
     
     public static var baseUrl                    = ""
@@ -196,7 +197,7 @@ struct RestService {
     }
     
     public static func postMultiPart(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .MultiPart){
-        
+    
         if !isInternetAvailable() {
             completion(nil,"error internet connection")
         }
@@ -208,40 +209,59 @@ struct RestService {
                     Alamofire.upload(multipartFormData: { multipartFormData in
             
                         for (key,value) in newdic{
-    
-                            if key.contains("picture"){
+                            
+                            switch value{
                                 
-                                let imageData : NSData = value as! NSData
-                                multipartFormData.append(imageData as Data, withName: "picture", fileName: "Image", mimeType: "image/jpeg")
-                            }else if key.contains("data"){
+                            case is Array<Dictionary<String,Any>>:
                                 
                                 let Datas : Array<Dictionary<String,String>> = value as! Array<Dictionary<String, String>>
-                                
                                 if Datas.count > 0 {
-                                    
                                     for dict in Datas {
                                         var i = 0
                                         print(dict.count)
                                         while(i < dict.count){
-                                            
-                                            for (key,value) in dict {
-                                                multipartFormData.append((key.data(using: .utf8))!, withName: "data[\(i)].key", mimeType: "text/plain")
-                                                multipartFormData.append((value.data(using: .utf8))!, withName: "data[\(i)].value", mimeType: "text/plain")
+                                            for (keys,value) in dict {
+                                                multipartFormData.append((keys.data(using: .utf8))!, withName: "\(key)[\(i)].key", mimeType: "text/plain")
+                                                multipartFormData.append((value.data(using: .utf8))!, withName: "\(key)[\(i)].value", mimeType: "text/plain")
                                                 i += 1
                                             }
-   
+                                            
                                         }
-        
+                                        
                                     }
-
+                                    
                                 }else{
                                     
                                     print("empty data field")
                                 }
-   
-                            }else{
-                                 multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                                break
+                                
+                            case is NSData:
+                                let data : NSData = value as! NSData
+                                let dataType = Swime.mimeType(data: data as Data)!
+                            
+                                switch dataType.type {
+                                case .jpg:
+                                 multipartFormData.append(data as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                    break
+                                case .png:
+                                     multipartFormData.append(data as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                    break
+                                case .mp4:
+                                     multipartFormData.append(data as Data, withName: "multipartFile", fileName: "video.mp4", mimeType: dataType.mime)
+                                    break
+                                    
+                                default:
+                                    break
+                                    
+                                }
+
+                                break
+                                
+                            default:
+                                  multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
                             }
+
                         }
                       
                     },
@@ -253,17 +273,29 @@ struct RestService {
                                         switch encodingResult {
                                         case .success(let upload, _, _):
                                             upload.responseJSON { response in
-                                                debugPrint(response)
+                                                if response.response?.statusCode != 200 {
+                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.error!.description)
+                                                }else if response.response?.statusCode == 200 {
+                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.request!)
+                                                     Utils.LogData(debug: true, className: "RestWebService", message: response.result)
+
+                                                }
+                                                
                                             }
                                         case .failure(let encodingError):
-                                            print(encodingError)
+                                           Utils.LogData(debug: true, className: "RestWebService", message: encodingError.localizedDescription)
                                         }
+                                        
+                                        
                     })
+                    
                     
 
                 }
+                
             }
         }
+        
 
     }
     

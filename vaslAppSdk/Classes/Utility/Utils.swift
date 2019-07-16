@@ -23,7 +23,7 @@ class Utils {
     }
     
     
-    static func LogData(debug : Bool,className : String,message : String) {        
+    static func LogData(debug : Bool,className : String,message : Any) {        
         if debug {
             print("debug ,class : \(className) ,message : \(message)")
         }else{

@@ -508,6 +508,7 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(actorVideoId            , forKey: "actorVideoId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+                    params.updateValue(multipartFile      , forKey: "multipartFile")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/hambazi/video/create", params, completion: { (result, error) in
             do{
                 if let result = result {

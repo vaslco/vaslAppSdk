@@ -36,6 +36,22 @@ class ViewController: UIViewController {
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
+//
+//        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
+//
+//        let pathURL = URL(fileURLWithPath: path)
+//
+//        let video = NSData(contentsOf: pathURL)
+//
+//        vmbas.HambaziService()?.videoCreate(multipartFile: video!, title: "test ios", description: "test for ios", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
+
         
 //        let url = Bundle.main.path(forResource: "test", ofType: "mp4")!
 //
@@ -54,13 +70,37 @@ class ViewController: UIViewController {
         
         
 //
-        let image = UIImage(named: "aziz")
+        let image = UIImage(named: "gimour")
         var Extradata = Array<Dictionary<String,String>>()
         let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
 
         var dic = Dictionary<String,String>()
         dic.updateValue("زاویه", forKey: "city")
         Extradata.append(dic)
+
+
+        
+        
+//
+//        let jpegData = NSData()
+//        var Extradata = Array<Dictionary<String,String>>()
+//        var dic = Dictionary<String,String>()
+//        dic.updateValue("tehran", forKey: "city")
+//        Extradata.append(dic)
+        
+        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia" , firstName: "siamak", lastName: "rostami" , fatherName: "", shenasnamehNo: "123456789", deathStatus: "", picture: jpegData! , gender: "MALE" , birthDate:"1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+
+            if error == nil{
+
+                print(data!)
+
+
+            }else{
+               print(error!)
+            }
+        })
+//
+        
 
         
 //
@@ -97,51 +137,52 @@ class ViewController: UIViewController {
    
 //
 //
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "احمد ذوقی", firstName: "احمد", lastName: "ذوقی", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "MALE", birthDate: "1374-1-14", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-            if error == nil {
-                print(data!)
-
-
-            }else{
-
-                print(error!)
-            }
-        })
-
-        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-            if error == nil {
-
-                let datas = data?.profileInfo
-                
-                print(datas?.nickName)
-                print(datas?.lastName)
-                print(datas?.birthDate)
-                print(datas?.gender)
-
-                
-               
-
-               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
-                    do{
-                        let image = try Data(contentsOf: url)
-                        DispatchQueue.main.async {
-                            imageView.image = UIImage(data: image)
-                        }
-
-                    }catch{
-                        print(error)
-                    }
-                self.view.addSubview(imageView)
-
-
-                }
-
-
-            }else{
-                print(error!)
-            }
-        })
+//        vmbas.SubscriberService()?.saveProfileInfo(nickName: "احمد ذوقی", firstName: "احمد", lastName: "ذوقی", fatherName: "", shenasnamehNo: "", deathStatus: "", picture: jpegData!, gender: "MALE", birthDate: "1374-1-14", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil {
+//                print(data!)
+//
+//
+//            }else{
+//
+//                print(error!)
+//            }
+//        })
+//
+//        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil {
+//
+//                let datas = data?.profileInfo.data
+//                for item in datas! {
+//                    print(item.key)
+//                    print(item.value)
+//                }
+//
+//
+//
+//
+//
+//
+//               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
+//                    do{
+//                        let image = try Data(contentsOf: url)
+//                        DispatchQueue.main.async {
+//                            imageView.image = UIImage(data: image)
+//                        }
+//
+//                    }catch{
+//                        print(error)
+//                    }
+//                self.view.addSubview(imageView)
+//
+//
+//                }
+//
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
         
 
 
