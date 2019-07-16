@@ -29,14 +29,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-      
+
         vmbas = VaslSdk.init(appId: appid,
                             baseUrl: "http://server.vaslapp.hambazisho.ir",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
-        
+
+//
+//        vmbas.dynamicTableEndPointService()?.endpointFind(tableName: "", find: "{}", projection: "{}", sort: "", skip: "", limit: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil {
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
         
 //        vmbas.billingGlobalService()?.getUserAccount(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{
@@ -46,16 +54,16 @@ class ViewController: UIViewController {
 //            }
 //        })
         
-        vmbas.billingGlobalService()?.increaseBalance(amount: "20000", bankCode: "1", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-            if error == nil{
-                
-                debugPrint(data!)
-                
-            }else{
-                print(error!)
-            }
-        })
-        
+//        vmbas.billingGlobalService()?.increaseBalance(amount: "20000", bankCode: "1", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//                debugPrint(data!)
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+//
 //
 //        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
 //
@@ -90,14 +98,23 @@ class ViewController: UIViewController {
         
         
 //
-//        let image = UIImage(named: "gimour")
-//        var Extradata = Array<Dictionary<String,String>>()
-//        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
-//
-//        var dic = Dictionary<String,String>()
-//        dic.updateValue("زاویه", forKey: "city")
-//        Extradata.append(dic)
+        let image = UIImage(named: "gimour")
+        var Extradata = Array<Dictionary<String,String>>()
+        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
 
+        var dic = Dictionary<String,String>()
+        dic.updateValue("زاویه", forKey: "city")
+        Extradata.append(dic)
+
+        
+        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: jpegData!, gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil{
+              let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+            }else{
+                print(error!)
+            }
+        })
 
         
         
@@ -119,7 +136,7 @@ class ViewController: UIViewController {
 //               print(error!)
 //            }
 //        })
-//
+
         
 
         

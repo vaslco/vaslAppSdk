@@ -1065,17 +1065,18 @@ struct RestService {
                                         switch encodingResult {
                                         case .success(let upload, _, _):
                                             upload.responseJSON { response in
-                                                if response.response?.statusCode != 200 {
-                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.error!.description)
-                                                }else if response.response?.statusCode == 200 {
-                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.request!)
-                                                     Utils.LogData(debug: true, className: "RestWebService", message: response.result)
-
+                                                if response.response?.statusCode == 200 {
+                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.result)
+                                                    completion(response.data,nil)
+                                                }else{
+                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.result)
+                                                    completion(response.data,"error")
                                                 }
-                                                
+                                             
                                             }
                                         case .failure(let encodingError):
                                            Utils.LogData(debug: true, className: "RestWebService", message: encodingError.localizedDescription)
+                                           completion(encodingError as? Data,nil)
                                         }
                                         
                                         
