@@ -1,5 +1,0 @@
-version: "Apple Swift version 5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
-options: "8e36de63aa96983d99363a418347f24c"
-build_time: [1563181746, 409712000]
-inputs:
-  "/Users/siamak/Documents/Projects/vaslAppSdk/Sources/vaslAppSdk/main.swift": [1563180711, 433394033]
