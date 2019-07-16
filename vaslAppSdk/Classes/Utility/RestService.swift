@@ -1029,24 +1029,33 @@ struct RestService {
                                 break
                                 
                             case is NSData:
-                                let data : NSData = value as! NSData
-                                let dataType = Swime.mimeType(data: data as Data)!
-                            
-                                switch dataType.type {
-                                case .jpg:
-                                 multipartFormData.append(data as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
-                                    break
-                                case .png:
-                                     multipartFormData.append(data as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
-                                    break
-                                case .mp4:
-                                     multipartFormData.append(data as Data, withName: "multipartFile", fileName: "video.mp4", mimeType: dataType.mime)
-                                    break
+                                let data : NSData? = value as? NSData
+                                
+                              
+                                
+                                if data?.length != 0 {
+                                    let dataType = Swime.mimeType(data: data! as Data)!
                                     
-                                default:
-                                    break
+                                    switch dataType.type {
+                                    case .jpg:
+                                        multipartFormData.append(data! as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                        break
+                                    case .png:
+                                        multipartFormData.append(data! as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                        break
+                                    case .mp4:
+                                        multipartFormData.append(data! as Data, withName: "multipartFile", fileName: "video.mp4", mimeType: dataType.mime)
+                                        break
+                                        
+                                    default:
+                                        break
+                                        
+                                    }
+                                }else{
                                     
                                 }
+                              
+                         
 
                                 break
                                 

@@ -98,23 +98,30 @@ class ViewController: UIViewController {
         
         
 //
-        let image = UIImage(named: "gimour")
-        var Extradata = Array<Dictionary<String,String>>()
-        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
-
-        var dic = Dictionary<String,String>()
-        dic.updateValue("زاویه", forKey: "city")
-        Extradata.append(dic)
-
-        
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: jpegData!, gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-            if error == nil{
-              let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-            }else{
-                print(error!)
-            }
-        })
+//        let image = UIImage(named: "gimour")
+//        var Extradata = Array<Dictionary<String,String>>()
+//        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
+//
+//        var dic = Dictionary<String,String>()
+//        dic.updateValue("زاویه", forKey: "city")
+//        Extradata.append(dic)
+//
+//
+//        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: NSData(), gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//              let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+//                self.navigationController?.pushViewController(controller, animated: true)
+//            }else{
+//                print(error!)
+//            }
+//        })
+       
+//        vmbas.supportService()?.createThreadConversation(threadId: "5d04da903680e320f81ca3b4", message: "salam", attachment: NSData(), sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//            }else{
+//                print(error!)
+//            }
+//        })
 
         
         
@@ -185,41 +192,36 @@ class ViewController: UIViewController {
 //            }
 //        })
 //
-//        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-//            if error == nil {
-//
-//                let datas = data?.profileInfo.data
-//                for item in datas! {
-//                    print(item.key)
-//                    print(item.value)
-//                }
-//
-//
-//
-//
-//
-//
-//               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
-//                    do{
-//                        let image = try Data(contentsOf: url)
-//                        DispatchQueue.main.async {
-//                            imageView.image = UIImage(data: image)
-//                        }
-//
-//                    }catch{
-//                        print(error)
-//                    }
-//                self.view.addSubview(imageView)
-//
-//
-//                }
-//
-//
-//            }else{
-//                print(error!)
-//            }
-//        })
+        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil {
+
+                let datas = data?.profileInfo.data
+                for item in datas! {
+                    print(item.key)
+                    print(item.value)
+                }
+
+               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
+                    do{
+                        let image = try Data(contentsOf: url)
+                        DispatchQueue.main.async {
+                            imageView.image = UIImage(data: image)
+                        }
+
+                    }catch{
+                        print(error)
+                    }
+                self.view.addSubview(imageView)
+
+
+                }
+
+
+            }else{
+                print(error!)
+            }
+        })
         
 
 
