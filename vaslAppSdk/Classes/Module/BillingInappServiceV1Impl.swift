@@ -2,6 +2,8 @@ import Foundation
 
 protocol BillingInappServiceV1 {
 
+    func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void)
+
     func validateSubscription(packageName: String, subscriptionId: String, purchaseToken: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_SubscriptionValidate?,String?) -> Void)
 
     func cancelSubscription(packageName: String, subscriptionId: String, purchaseToken: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_SubscriptionValidate?,String?) -> Void)
@@ -10,13 +12,44 @@ protocol BillingInappServiceV1 {
 
     func paymentAddData(meta: String, tableName: String, orderId: String, paymentBy: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PaymentAdd?,String?) -> Void)
 
-    func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void)
-
 
 }
 
 
 public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
+
+
+    public func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void) {
+        validatePurchase(packageName: packageName, productId: productId, purchaseToken: purchaseToken, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(packageName            , forKey: "packageName")
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(purchaseToken            , forKey: "purchaseToken")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/validate/purchase", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.validatePurchase(packageName: packageName, productId: productId, purchaseToken: purchaseToken, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
 
 
     public func validateSubscription(packageName: String, subscriptionId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_SubscriptionValidate?,String?) -> Void) {
@@ -138,39 +171,6 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.paymentAddData(meta: meta, tableName: tableName, orderId: orderId, paymentBy: paymentBy, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void) {
-        validatePurchase(packageName: packageName, productId: productId, purchaseToken: purchaseToken, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func validatePurchase(packageName: String, productId: String, purchaseToken: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(packageName            , forKey: "packageName")
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(purchaseToken            , forKey: "purchaseToken")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/validate/purchase", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Inapp_Global_Proto_Holder_PurchaseValidate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.validatePurchase(packageName: packageName, productId: productId, purchaseToken: purchaseToken, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

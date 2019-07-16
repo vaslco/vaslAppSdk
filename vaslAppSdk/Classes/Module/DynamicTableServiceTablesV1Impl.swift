@@ -14,9 +14,9 @@ protocol DynamicTableServiceTablesV1 {
 
     func tablesSchemaList(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList?,String?) -> Void)
 
-    func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func queryCreate(name: String, fields: Array<String>, joins: Array<String>, sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
 
 }
@@ -214,11 +214,11 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         tablesSchemaAlter(id: id, fields: fields, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func tablesSchemaAlter(id: String, fields: [Dictionary<String,String>], sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(fields            , forKey: "fields")
@@ -248,11 +248,11 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+    public func queryCreate(name: String, fields: Array<String>, joins: Array<String>, sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         queryCreate(name: name, fields: fields, joins: joins, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func queryCreate(name: String, fields: [String], joins: [String], sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func queryCreate(name: String, fields: Array<String>, joins: Array<String>, sessionRequired: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(name            , forKey: "name")
                     params.updateValue(fields            , forKey: "fields")

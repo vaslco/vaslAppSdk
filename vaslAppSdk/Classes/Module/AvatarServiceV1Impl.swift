@@ -2,11 +2,11 @@ import Foundation
 
 protocol AvatarServiceV1 {
 
-    func addAvatar(avatarKeyValueList: [String], sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void)
+    func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void)
 
     func removeAvatar(avatarId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarRemove?,String?) -> Void)
 
-    func editAvatar(avatarId: String, avatarKeyValueList: [String], sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void)
+    func editAvatar(avatarId: String, avatarKeyValueList: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void)
 
     func listAvatars(page: String, order: String, sort: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarList?,String?) -> Void)
 
@@ -19,11 +19,11 @@ protocol AvatarServiceV1 {
 public class AvatarServiceV1Impl  : AvatarServiceV1 {
 
 
-    public func addAvatar(avatarKeyValueList: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void) {
+    public func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void) {
         addAvatar(avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func addAvatar(avatarKeyValueList: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void,force : Bool) {
+    private func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(avatarKeyValueList            , forKey: "avatarKeyValueList")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -81,11 +81,11 @@ public class AvatarServiceV1Impl  : AvatarServiceV1 {
     }
 
 
-    public func editAvatar(avatarId: String, avatarKeyValueList: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void) {
+    public func editAvatar(avatarId: String, avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void) {
         editAvatar(avatarId: avatarId, avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func editAvatar(avatarId: String, avatarKeyValueList: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void,force : Bool) {
+    private func editAvatar(avatarId: String, avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(avatarId            , forKey: "avatarId")
                     params.updateValue(avatarKeyValueList            , forKey: "avatarKeyValueList")

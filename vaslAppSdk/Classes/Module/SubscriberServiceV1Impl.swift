@@ -1,4 +1,5 @@
 import Foundation
+
 protocol SubscriberServiceV1 {
 
     func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
@@ -60,12 +61,6 @@ protocol SubscriberServiceV1 {
     func registerOperatorSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void)
 
     func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
-
-    func increaseAccount(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void)
-
-    func getUserAccount(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void)
-
-    func decreaseUserAccount(amount: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void)
 
 
 }
@@ -311,12 +306,12 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(fatherName            , forKey: "fatherName")
                     params.updateValue(shenasnamehNo            , forKey: "shenasnamehNo")
                     params.updateValue(deathStatus            , forKey: "deathStatus")
+                    params.updateValue(picture            , forKey: "picture")
                     params.updateValue(gender            , forKey: "gender")
                     params.updateValue(birthDate            , forKey: "birthDate")
                     params.updateValue(nationalId            , forKey: "nationalId")
                     params.updateValue(data            , forKey: "data")
                     params.updateValue(sessionId            , forKey: "sessionId")
-                    params.updateValue(picture               , forKey: "picture")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/subscriber/saveprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -1008,99 +1003,6 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.validateOperatorSubscriber(activationKey: activationKey, mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func increaseAccount(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void) {
-        increaseAccount(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func increaseAccount(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(amount            , forKey: "amount")
-                    params.updateValue(bankCode            , forKey: "bankCode")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/charge/account", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_IncreaseUserAccount
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.increaseAccount(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void) {
-        getUserAccount(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/get/user/account", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.getUserAccount(sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func decreaseUserAccount(amount: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void) {
-        decreaseUserAccount(amount: amount, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func decreaseUserAccount(amount: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(amount            , forKey: "amount")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/decrease/account", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetUserAccount
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.decreaseUserAccount(amount: amount, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

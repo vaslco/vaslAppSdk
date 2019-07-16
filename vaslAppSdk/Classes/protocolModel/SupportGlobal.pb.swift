@@ -335,6 +335,15 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadCon
   /// Clears the value of `threadData`. Subsequent reads from it will return its default value.
   public mutating func clearThreadData() {_uniqueStorage()._threadData = nil}
 
+  public var userData: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo {
+    get {return _storage._userData ?? Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo()}
+    set {_uniqueStorage()._userData = newValue}
+  }
+  /// Returns true if `userData` has been explicitly set.
+  public var hasUserData: Bool {return _storage._userData != nil}
+  /// Clears the value of `userData`. Subsequent reads from it will return its default value.
+  public mutating func clearUserData() {_uniqueStorage()._userData = nil}
+
   public var threadConversationData: [Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ThreadConversation] {
     get {return _storage._threadConversationData}
     set {_uniqueStorage()._threadConversationData = newValue}
@@ -369,6 +378,26 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ThreadConvers
   public var isRead: Bool = false
 
   public var addedByUserType: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var userID: String = String()
+
+  public var userName: String = String()
+
+  public var firstName: String = String()
+
+  public var lastName: String = String()
+
+  public var subscriberType: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1086,7 +1115,8 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "threadData"),
-    5: .same(proto: "ThreadConversationData"),
+    5: .same(proto: "userData"),
+    6: .same(proto: "ThreadConversationData"),
   ]
 
   fileprivate class _StorageClass {
@@ -1094,6 +1124,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
     var _code: Int32 = 0
     var _msg: String = String()
     var _threadData: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Thread? = nil
+    var _userData: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo? = nil
     var _threadConversationData: [Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ThreadConversation] = []
 
     static let defaultInstance = _StorageClass()
@@ -1105,6 +1136,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
       _code = source._code
       _msg = source._msg
       _threadData = source._threadData
+      _userData = source._userData
       _threadConversationData = source._threadConversationData
     }
   }
@@ -1125,7 +1157,8 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
         case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
         case 3: try decoder.decodeSingularStringField(value: &_storage._msg)
         case 4: try decoder.decodeSingularMessageField(value: &_storage._threadData)
-        case 5: try decoder.decodeRepeatedMessageField(value: &_storage._threadConversationData)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._userData)
+        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._threadConversationData)
         default: break
         }
       }
@@ -1146,8 +1179,11 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
       if let v = _storage._threadData {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
       }
+      if let v = _storage._userData {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
       if !_storage._threadConversationData.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._threadConversationData, fieldNumber: 5)
+        try visitor.visitRepeatedMessageField(value: _storage._threadConversationData, fieldNumber: 6)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1162,6 +1198,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConvers
         if _storage._code != rhs_storage._code {return false}
         if _storage._msg != rhs_storage._msg {return false}
         if _storage._threadData != rhs_storage._threadData {return false}
+        if _storage._userData != rhs_storage._userData {return false}
         if _storage._threadConversationData != rhs_storage._threadConversationData {return false}
         return true
       }
@@ -1244,6 +1281,59 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ThreadConversatio
     if lhs.userName != rhs.userName {return false}
     if lhs.isRead != rhs.isRead {return false}
     if lhs.addedByUserType != rhs.addedByUserType {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".UserInfo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "userId"),
+    2: .same(proto: "userName"),
+    3: .same(proto: "firstName"),
+    4: .same(proto: "lastName"),
+    5: .same(proto: "subscriberType"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.userID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userName)
+      case 3: try decoder.decodeSingularStringField(value: &self.firstName)
+      case 4: try decoder.decodeSingularStringField(value: &self.lastName)
+      case 5: try decoder.decodeSingularStringField(value: &self.subscriberType)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+    }
+    if !self.userName.isEmpty {
+      try visitor.visitSingularStringField(value: self.userName, fieldNumber: 2)
+    }
+    if !self.firstName.isEmpty {
+      try visitor.visitSingularStringField(value: self.firstName, fieldNumber: 3)
+    }
+    if !self.lastName.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastName, fieldNumber: 4)
+    }
+    if !self.subscriberType.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberType, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo) -> Bool {
+    if lhs.userID != rhs.userID {return false}
+    if lhs.userName != rhs.userName {return false}
+    if lhs.firstName != rhs.firstName {return false}
+    if lhs.lastName != rhs.lastName {return false}
+    if lhs.subscriberType != rhs.subscriberType {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

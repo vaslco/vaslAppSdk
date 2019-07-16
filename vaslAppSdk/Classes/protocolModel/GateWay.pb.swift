@@ -405,45 +405,121 @@ public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankRedir
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var subscriberID: String = String()
+
+  public var profileNickName: String = String()
+
+  public var userName: String = String()
+
+  public var confirmedMobile: String = String()
+
+  public var status: String = String()
+
+  public var debit: Int64 = 0
+
+  public var credit: Int64 = 0
+
+  public var balance: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var id: String = String()
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
 
-  public var amount: String = String()
+  public var amount: String {
+    get {return _storage._amount}
+    set {_uniqueStorage()._amount = newValue}
+  }
 
-  public var bankName: String = String()
+  public var bankName: String {
+    get {return _storage._bankName}
+    set {_uniqueStorage()._bankName = newValue}
+  }
 
-  public var token: String = String()
+  public var token: String {
+    get {return _storage._token}
+    set {_uniqueStorage()._token = newValue}
+  }
 
-  public var paymentTime: String = String()
+  public var paymentTime: String {
+    get {return _storage._paymentTime}
+    set {_uniqueStorage()._paymentTime = newValue}
+  }
 
-  public var transactionStatus: String = String()
+  public var transactionStatus: String {
+    get {return _storage._transactionStatus}
+    set {_uniqueStorage()._transactionStatus = newValue}
+  }
 
-  public var rollBackTime: String = String()
+  public var rollBackTime: String {
+    get {return _storage._rollBackTime}
+    set {_uniqueStorage()._rollBackTime = newValue}
+  }
 
-  public var payOrderID: String = String()
+  public var payOrderID: String {
+    get {return _storage._payOrderID}
+    set {_uniqueStorage()._payOrderID = newValue}
+  }
 
-  public var orderID: String = String()
+  public var orderID: String {
+    get {return _storage._orderID}
+    set {_uniqueStorage()._orderID = newValue}
+  }
 
-  public var callBackTime: String = String()
+  public var callBackTime: String {
+    get {return _storage._callBackTime}
+    set {_uniqueStorage()._callBackTime = newValue}
+  }
 
-  public var refIDHolder: String = String()
+  public var refIDHolder: String {
+    get {return _storage._refIDHolder}
+    set {_uniqueStorage()._refIDHolder = newValue}
+  }
 
-  public var statusHolder: String = String()
+  public var statusHolder: String {
+    get {return _storage._statusHolder}
+    set {_uniqueStorage()._statusHolder = newValue}
+  }
+
+  public var error: String {
+    get {return _storage._error}
+    set {_uniqueStorage()._error = newValue}
+  }
 
   ///string bankCode = 14;
   ///string transactionStatus_history = 14;
   ///string rrn = 15;
   ///string statusHolder_history = 16;
   ///string error_history = 17;
-  public var error: String = String()
+  public var subscriberInfo: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo {
+    get {return _storage._subscriberInfo ?? Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo()}
+    set {_uniqueStorage()._subscriberInfo = newValue}
+  }
+  /// Returns true if `subscriberInfo` has been explicitly set.
+  public var hasSubscriberInfo: Bool {return _storage._subscriberInfo != nil}
+  /// Clears the value of `subscriberInfo`. Subsequent reads from it will return its default value.
+  public mutating func clearSubscriberInfo() {_uniqueStorage()._subscriberInfo = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_TransactionList {
@@ -1417,6 +1493,77 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankRedirect:
   }
 }
 
+extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SubscriberInfo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "subscriberId"),
+    2: .same(proto: "profileNickName"),
+    3: .same(proto: "userName"),
+    4: .same(proto: "confirmedMobile"),
+    5: .same(proto: "status"),
+    6: .same(proto: "debit"),
+    7: .same(proto: "credit"),
+    8: .same(proto: "balance"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.subscriberID)
+      case 2: try decoder.decodeSingularStringField(value: &self.profileNickName)
+      case 3: try decoder.decodeSingularStringField(value: &self.userName)
+      case 4: try decoder.decodeSingularStringField(value: &self.confirmedMobile)
+      case 5: try decoder.decodeSingularStringField(value: &self.status)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.debit)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.credit)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.balance)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.subscriberID.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberID, fieldNumber: 1)
+    }
+    if !self.profileNickName.isEmpty {
+      try visitor.visitSingularStringField(value: self.profileNickName, fieldNumber: 2)
+    }
+    if !self.userName.isEmpty {
+      try visitor.visitSingularStringField(value: self.userName, fieldNumber: 3)
+    }
+    if !self.confirmedMobile.isEmpty {
+      try visitor.visitSingularStringField(value: self.confirmedMobile, fieldNumber: 4)
+    }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 5)
+    }
+    if self.debit != 0 {
+      try visitor.visitSingularInt64Field(value: self.debit, fieldNumber: 6)
+    }
+    if self.credit != 0 {
+      try visitor.visitSingularInt64Field(value: self.credit, fieldNumber: 7)
+    }
+    if self.balance != 0 {
+      try visitor.visitSingularInt64Field(value: self.balance, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo, rhs: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo) -> Bool {
+    if lhs.subscriberID != rhs.subscriberID {return false}
+    if lhs.profileNickName != rhs.profileNickName {return false}
+    if lhs.userName != rhs.userName {return false}
+    if lhs.confirmedMobile != rhs.confirmedMobile {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.debit != rhs.debit {return false}
+    if lhs.credit != rhs.credit {return false}
+    if lhs.balance != rhs.balance {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Transaction"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -1433,86 +1580,150 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction: 
     11: .same(proto: "refIdHolder"),
     12: .same(proto: "statusHolder"),
     13: .same(proto: "error"),
+    14: .same(proto: "subscriberInfo"),
   ]
 
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _amount: String = String()
+    var _bankName: String = String()
+    var _token: String = String()
+    var _paymentTime: String = String()
+    var _transactionStatus: String = String()
+    var _rollBackTime: String = String()
+    var _payOrderID: String = String()
+    var _orderID: String = String()
+    var _callBackTime: String = String()
+    var _refIDHolder: String = String()
+    var _statusHolder: String = String()
+    var _error: String = String()
+    var _subscriberInfo: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInfo? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _amount = source._amount
+      _bankName = source._bankName
+      _token = source._token
+      _paymentTime = source._paymentTime
+      _transactionStatus = source._transactionStatus
+      _rollBackTime = source._rollBackTime
+      _payOrderID = source._payOrderID
+      _orderID = source._orderID
+      _callBackTime = source._callBackTime
+      _refIDHolder = source._refIDHolder
+      _statusHolder = source._statusHolder
+      _error = source._error
+      _subscriberInfo = source._subscriberInfo
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.amount)
-      case 3: try decoder.decodeSingularStringField(value: &self.bankName)
-      case 4: try decoder.decodeSingularStringField(value: &self.token)
-      case 5: try decoder.decodeSingularStringField(value: &self.paymentTime)
-      case 6: try decoder.decodeSingularStringField(value: &self.transactionStatus)
-      case 7: try decoder.decodeSingularStringField(value: &self.rollBackTime)
-      case 8: try decoder.decodeSingularStringField(value: &self.payOrderID)
-      case 9: try decoder.decodeSingularStringField(value: &self.orderID)
-      case 10: try decoder.decodeSingularStringField(value: &self.callBackTime)
-      case 11: try decoder.decodeSingularStringField(value: &self.refIDHolder)
-      case 12: try decoder.decodeSingularStringField(value: &self.statusHolder)
-      case 13: try decoder.decodeSingularStringField(value: &self.error)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._amount)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._bankName)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._token)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._paymentTime)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._transactionStatus)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._rollBackTime)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._payOrderID)
+        case 9: try decoder.decodeSingularStringField(value: &_storage._orderID)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._callBackTime)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._refIDHolder)
+        case 12: try decoder.decodeSingularStringField(value: &_storage._statusHolder)
+        case 13: try decoder.decodeSingularStringField(value: &_storage._error)
+        case 14: try decoder.decodeSingularMessageField(value: &_storage._subscriberInfo)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.amount.isEmpty {
-      try visitor.visitSingularStringField(value: self.amount, fieldNumber: 2)
-    }
-    if !self.bankName.isEmpty {
-      try visitor.visitSingularStringField(value: self.bankName, fieldNumber: 3)
-    }
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 4)
-    }
-    if !self.paymentTime.isEmpty {
-      try visitor.visitSingularStringField(value: self.paymentTime, fieldNumber: 5)
-    }
-    if !self.transactionStatus.isEmpty {
-      try visitor.visitSingularStringField(value: self.transactionStatus, fieldNumber: 6)
-    }
-    if !self.rollBackTime.isEmpty {
-      try visitor.visitSingularStringField(value: self.rollBackTime, fieldNumber: 7)
-    }
-    if !self.payOrderID.isEmpty {
-      try visitor.visitSingularStringField(value: self.payOrderID, fieldNumber: 8)
-    }
-    if !self.orderID.isEmpty {
-      try visitor.visitSingularStringField(value: self.orderID, fieldNumber: 9)
-    }
-    if !self.callBackTime.isEmpty {
-      try visitor.visitSingularStringField(value: self.callBackTime, fieldNumber: 10)
-    }
-    if !self.refIDHolder.isEmpty {
-      try visitor.visitSingularStringField(value: self.refIDHolder, fieldNumber: 11)
-    }
-    if !self.statusHolder.isEmpty {
-      try visitor.visitSingularStringField(value: self.statusHolder, fieldNumber: 12)
-    }
-    if !self.error.isEmpty {
-      try visitor.visitSingularStringField(value: self.error, fieldNumber: 13)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._amount.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._amount, fieldNumber: 2)
+      }
+      if !_storage._bankName.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._bankName, fieldNumber: 3)
+      }
+      if !_storage._token.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._token, fieldNumber: 4)
+      }
+      if !_storage._paymentTime.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._paymentTime, fieldNumber: 5)
+      }
+      if !_storage._transactionStatus.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._transactionStatus, fieldNumber: 6)
+      }
+      if !_storage._rollBackTime.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._rollBackTime, fieldNumber: 7)
+      }
+      if !_storage._payOrderID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._payOrderID, fieldNumber: 8)
+      }
+      if !_storage._orderID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._orderID, fieldNumber: 9)
+      }
+      if !_storage._callBackTime.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._callBackTime, fieldNumber: 10)
+      }
+      if !_storage._refIDHolder.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._refIDHolder, fieldNumber: 11)
+      }
+      if !_storage._statusHolder.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._statusHolder, fieldNumber: 12)
+      }
+      if !_storage._error.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._error, fieldNumber: 13)
+      }
+      if let v = _storage._subscriberInfo {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction, rhs: Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.amount != rhs.amount {return false}
-    if lhs.bankName != rhs.bankName {return false}
-    if lhs.token != rhs.token {return false}
-    if lhs.paymentTime != rhs.paymentTime {return false}
-    if lhs.transactionStatus != rhs.transactionStatus {return false}
-    if lhs.rollBackTime != rhs.rollBackTime {return false}
-    if lhs.payOrderID != rhs.payOrderID {return false}
-    if lhs.orderID != rhs.orderID {return false}
-    if lhs.callBackTime != rhs.callBackTime {return false}
-    if lhs.refIDHolder != rhs.refIDHolder {return false}
-    if lhs.statusHolder != rhs.statusHolder {return false}
-    if lhs.error != rhs.error {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._amount != rhs_storage._amount {return false}
+        if _storage._bankName != rhs_storage._bankName {return false}
+        if _storage._token != rhs_storage._token {return false}
+        if _storage._paymentTime != rhs_storage._paymentTime {return false}
+        if _storage._transactionStatus != rhs_storage._transactionStatus {return false}
+        if _storage._rollBackTime != rhs_storage._rollBackTime {return false}
+        if _storage._payOrderID != rhs_storage._payOrderID {return false}
+        if _storage._orderID != rhs_storage._orderID {return false}
+        if _storage._callBackTime != rhs_storage._callBackTime {return false}
+        if _storage._refIDHolder != rhs_storage._refIDHolder {return false}
+        if _storage._statusHolder != rhs_storage._statusHolder {return false}
+        if _storage._error != rhs_storage._error {return false}
+        if _storage._subscriberInfo != rhs_storage._subscriberInfo {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

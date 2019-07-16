@@ -36,6 +36,26 @@ class ViewController: UIViewController {
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
+        
+        
+//        vmbas.billingGlobalService()?.getUserAccount(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//                debugPrint(data!)
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
+//        vmbas.billingGlobalService()?.increaseBalance(amount: "20000", bankCode: "1", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//                
+//                debugPrint(data!)
+//                
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
 //
 //        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
 //
@@ -70,13 +90,13 @@ class ViewController: UIViewController {
         
         
 //
-        let image = UIImage(named: "gimour")
-        var Extradata = Array<Dictionary<String,String>>()
-        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
-
-        var dic = Dictionary<String,String>()
-        dic.updateValue("زاویه", forKey: "city")
-        Extradata.append(dic)
+//        let image = UIImage(named: "gimour")
+//        var Extradata = Array<Dictionary<String,String>>()
+//        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
+//
+//        var dic = Dictionary<String,String>()
+//        dic.updateValue("زاویه", forKey: "city")
+//        Extradata.append(dic)
 
 
         
@@ -88,17 +108,17 @@ class ViewController: UIViewController {
 //        dic.updateValue("tehran", forKey: "city")
 //        Extradata.append(dic)
         
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia" , firstName: "siamak", lastName: "rostami" , fatherName: "", shenasnamehNo: "123456789", deathStatus: "", picture: jpegData! , gender: "MALE" , birthDate:"1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-
-            if error == nil{
-
-                print(data!)
-
-
-            }else{
-               print(error!)
-            }
-        })
+//        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia" , firstName: "siamak", lastName: "rostami" , fatherName: "", shenasnamehNo: "123456789", deathStatus: "", picture: jpegData! , gender: "MALE" , birthDate:"1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//
+//            if error == nil{
+//
+//                print(data!)
+//
+//
+//            }else{
+//               print(error!)
+//            }
+//        })
 //
         
 

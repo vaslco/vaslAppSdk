@@ -171,6 +171,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     params.updateValue(priority            , forKey: "priority")
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
+                    params.updateValue(attachment            , forKey: "attachment")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/createThread", params, completion: { (result, error) in
             do{
@@ -298,6 +299,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(message            , forKey: "message")
+                    params.updateValue(attachment            , forKey: "attachment")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/createThreadConversation", params, completion: { (result, error) in
             do{

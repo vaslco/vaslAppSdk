@@ -212,44 +212,28 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                     params.updateValue(skip            , forKey: "skip")
                     params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        
-        do{
-            let jsonData = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-            
-            let object = try JSONSerialization.jsonObject(with: jsonData, options: []) as! [String:Any]
-         
-            
-            RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", object, completion: { (result, error) in
-                do{
-                    if let result = result {
-                        
-                        let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                        let serviceResponse = webServiceResult.init()
-                        serviceResponse.parseJsonResult(dictionary)
-                        
-                        if serviceResponse.status == PublicValue.status_success {
-                            completion(serviceResponse,nil)
-                        } else {
-                            if serviceResponse.code == 401 && force {
-                                self.endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, sessionId: sessionId, completion: completion,force: false)
-                            }else{
-                                completion(serviceResponse,serviceResponse.message)
-                            }
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.endpointFind(tableName: tableName, find: find, projection: projection, sort: sort, skip: skip, limit: limit, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
-                }catch{
-                    completion(nil,"")
                 }
-            }, force)
-
-        }catch{
-            print("error")
-        }
-        
-        
-        
-        
-
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
     }
 
 

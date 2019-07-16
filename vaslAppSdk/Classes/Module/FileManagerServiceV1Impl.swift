@@ -119,6 +119,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     private func fileUpload(path: String, file: NSData,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
+                    params.updateValue(file            , forKey: "file")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/filemanager/upload/file", params, completion: { (result, error) in
             do{
                 if let result = result {

@@ -4,9 +4,9 @@ protocol GameUserServiceV2 {
 
     func userStatus(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void)
 
-    func addTagsForUser(tags: [String], sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void)
+    func addTagsForUser(tags: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void)
 
-    func deleteTagsForUser(tags: [String], forEveryOne: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void)
+    func deleteTagsForUser(tags: Array<String>, forEveryOne: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void)
 
 
 }
@@ -45,11 +45,11 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
     }
 
 
-    public func addTagsForUser(tags: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void) {
+    public func addTagsForUser(tags: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void) {
         addTagsForUser(tags: tags, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func addTagsForUser(tags: [String], sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void,force : Bool) {
+    private func addTagsForUser(tags: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(tags            , forKey: "tags")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -76,11 +76,11 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
     }
 
 
-    public func deleteTagsForUser(tags: [String], forEveryOne: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void) {
+    public func deleteTagsForUser(tags: Array<String>, forEveryOne: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void) {
         deleteTagsForUser(tags: tags, forEveryOne: forEveryOne, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func deleteTagsForUser(tags: [String], forEveryOne: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void,force : Bool) {
+    private func deleteTagsForUser(tags: Array<String>, forEveryOne: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(tags            , forKey: "tags")
                     params.updateValue(forEveryOne            , forKey: "forEveryOne")

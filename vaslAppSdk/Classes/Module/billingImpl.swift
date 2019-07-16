@@ -2,9 +2,9 @@ import Foundation
 
 protocol billing {
 
-    func validatePurchase(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void)
+    func getUserAccount(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void)
 
-    func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
+    func increaseBalance(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
 
     func checkServiceAvailability(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void)
 
@@ -23,11 +23,11 @@ protocol billing {
 public class billingImpl  : billing {
 
 
-    public func validatePurchase(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void) {
-        validatePurchase(sessionId: sessionId, completion: completion,force: true)
+    public func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void) {
+        getUserAccount(sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func validatePurchase(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
+    private func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/getAccount", params, completion: { (result, error) in
@@ -40,7 +40,7 @@ public class billingImpl  : billing {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.validatePurchase(sessionId: sessionId, completion: completion,force: false)
+                            self.getUserAccount(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -53,15 +53,14 @@ public class billingImpl  : billing {
     }
 
 
-    public func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void) {
-        increaseBalance(amount: amount, bankCode: bankCode, userId: userId, sessionId: sessionId, completion: completion,force: true)
+    public func increaseBalance(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void) {
+        increaseBalance(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func increaseBalance(amount: String, bankCode: String, userId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void,force : Bool) {
+    private func increaseBalance(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(amount            , forKey: "amount")
                     params.updateValue(bankCode            , forKey: "bankCode")
-                    params.updateValue(userId            , forKey: "userId")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/increaseBalance", params, completion: { (result, error) in
             do{
@@ -73,7 +72,7 @@ public class billingImpl  : billing {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.increaseBalance(amount: amount, bankCode: bankCode, userId: userId, sessionId: sessionId, completion: completion,force: false)
+                            self.increaseBalance(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
