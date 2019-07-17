@@ -998,6 +998,7 @@ struct RestService {
                 if let url = URL(string: url){
                     let newdic : Dictionary<String,Any>!
                     newdic = parameters
+                    let start = CACurrentMediaTime()
                     Alamofire.upload(multipartFormData: { multipartFormData in
             
                         for (key,value) in newdic{
@@ -1031,20 +1032,18 @@ struct RestService {
                             case is NSData:
                                 let data : NSData? = value as? NSData
                                 
-                              
-                                
                                 if data?.length != 0 {
                                     let dataType = Swime.mimeType(data: data! as Data)!
                                     
                                     switch dataType.type {
                                     case .jpg:
-                                        multipartFormData.append(data! as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "image", mimeType: dataType.mime)
                                         break
                                     case .png:
-                                        multipartFormData.append(data! as Data, withName: "picture", fileName: "image", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "image", mimeType: dataType.mime)
                                         break
                                     case .mp4:
-                                        multipartFormData.append(data! as Data, withName: "multipartFile", fileName: "video.mp4", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "video.mp4", mimeType: dataType.mime)
                                         break
                                         
                                     default:
@@ -1052,7 +1051,8 @@ struct RestService {
                                         
                                     }
                                 }else{
-                                    
+
+                                   
                                 }
                               
                          
@@ -1071,21 +1071,35 @@ struct RestService {
                                      method: .post,
                                      headers: addHeader(type),
                                      encodingCompletion: { encodingResult in
+                                        let end = CACurrentMediaTime()
+                                        let elapsedTime : TimeInterval = end - start
                                         switch encodingResult {
                                         case .success(let upload, _, _):
                                             upload.responseJSON { response in
-                                                if response.response?.statusCode == 200 {
-                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.result)
-                                                    completion(response.data,nil)
-                                                }else{
-                                                    Utils.LogData(debug: true, className: "RestWebService", message: response.result)
-                                                    completion(response.data,"error")
+                                                guard (response.data != nil) , response.error == nil else {
+                                                    // check for fundamental networking error
+                                                    if let error = response.error {
+                                                        Utils.LogData(debug: true, className: "RestWebService", message: String(describing: error))
+                                                        
+                                                        completion(nil,error.description)
+                                                    }
+                                                    return
+                                                }
+                                             
+                                                if response.response?.statusCode != 200 {
+                                                    Utils.LogData(debug: true, className: "RestWebService", message:"status code should be 200 but is \(String(describing: response.response?.statusCode))")
+                                                    completion(nil,"error server connection")
+                                                    return
+                                                }
+                                                if let data = response.data {
+                                                    Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
+                                                    completion(data,nil)
                                                 }
                                              
                                             }
                                         case .failure(let encodingError):
-                                           Utils.LogData(debug: true, className: "RestWebService", message: encodingError.localizedDescription)
-                                           completion(encodingError as? Data,nil)
+                                           Utils.LogData(debug: true, className: "RestWebService", message: encodingError.description)
+                                           completion(nil,encodingError.description)
                                         }
                                         
                                         
