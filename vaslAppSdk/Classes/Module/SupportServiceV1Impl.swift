@@ -10,7 +10,7 @@ protocol SupportServiceV1 {
 
     func removeIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_RemoveIssue?,String?) -> Void)
 
-    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void)
+    func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func listMyThreads(page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreads?,String?) -> Void)
 
@@ -18,7 +18,7 @@ protocol SupportServiceV1 {
 
     func changeMyThreadStatus(threadId: String, status: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ChangeMyThreadStatus?,String?) -> Void)
 
-    func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void)
+    func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func listMyThreadConversations(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListThreadConversations?,String?) -> Void)
 
@@ -161,11 +161,11 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void) {
+    public func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         createThread(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread?,String?) -> Void,force : Bool) {
+    private func createThread(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(issueId            , forKey: "issueId")
                     params.updateValue(priority            , forKey: "priority")
@@ -177,7 +177,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThread
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -185,7 +187,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         if serviceResponse.code == 401 && force {
                             self.createThread(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -291,11 +293,11 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void) {
+    public func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         createThreadConversation(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation?,String?) -> Void,force : Bool) {
+    private func createThreadConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(message            , forKey: "message")
@@ -305,7 +307,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateThreadConversation
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -313,7 +317,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         if serviceResponse.code == 401 && force {
                             self.createThreadConversation(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }

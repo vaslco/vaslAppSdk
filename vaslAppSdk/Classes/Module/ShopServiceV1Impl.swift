@@ -4,9 +4,9 @@ protocol ShopServiceV1 {
 
     func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
-    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
-
     func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
+
+    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
 
     func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void)
 
@@ -88,38 +88,6 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
 
 
-    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
-        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(score            , forKey: "score")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
     public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
         addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: true)
     }
@@ -140,6 +108,38 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
+        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(score            , forKey: "score")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

@@ -8,7 +8,7 @@ protocol FileManagerServiceV1 {
 
     func deleteDirectory(path: String, name: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_DirectoryDelete?,String?) -> Void)
 
-    func fileUpload(path: String, file: NSData,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void)
+    func fileUpload(path: String, file: NSData,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func fileRemove(path: String, name: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileDelete?,String?) -> Void)
 
@@ -112,11 +112,11 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
     }
 
 
-    public func fileUpload(path: String, file: NSData,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void) {
+    public func fileUpload(path: String, file: NSData,completion: @escaping (webServiceResult?,String?) -> Void) {
         fileUpload(path: path, file: file, completion: completion,force: true)
     }
     
-    private func fileUpload(path: String, file: NSData,completion: @escaping (Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload?,String?) -> Void,force : Bool) {
+    private func fileUpload(path: String, file: NSData,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(file            , forKey: "file")
@@ -124,7 +124,9 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload(serializedData: result) as Com_Vasl_Vaslapp_Modules_File_Global_Proto_Holder_FileUpload
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -132,7 +134,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
                         if serviceResponse.code == 401 && force {
                             self.fileUpload(path: path, file: file, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }

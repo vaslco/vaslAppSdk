@@ -809,6 +809,8 @@ struct RestService {
     
     typealias CompletiontokenHandler = (_ force : Bool?,_ token : TokenInfoModel?) -> Void
     
+    typealias CompletionMultipartHandler = (_ result : NSDictionary , _ error : String?) -> Void
+    
     
     private static let ouathUrl                  = baseUrl + "/oauth/token"
     
@@ -1037,13 +1039,18 @@ struct RestService {
                                     
                                     switch dataType.type {
                                     case .jpg:
-                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "image", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "\(key)", mimeType: dataType.mime)
                                         break
+                                    
                                     case .png:
-                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "image", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "\(key)", mimeType: dataType.mime)
                                         break
                                     case .mp4:
-                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "video.mp4", mimeType: dataType.mime)
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "\(key).\(dataType.ext)", mimeType: dataType.mime)
+                                        break
+                                        
+                                    case .mov:
+                                        multipartFormData.append(data! as Data, withName: "\(key)", fileName: "\(key).\(dataType.ext)", mimeType: dataType.mime)
                                         break
                                         
                                     default:
@@ -1091,15 +1098,28 @@ struct RestService {
                                                     completion(nil,"error server connection")
                                                     return
                                                 }
-                                                if let data = response.data {
-                                                    Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
-                                                    completion(data,nil)
+                                                if response.response?.statusCode == 200 {
+                                                    if let data = response.data {
+                                                        Utils.LogData(debug: true, className: "RestWebService", message: "Url : \(url) time : \(String(format: "%.1f", elapsedTime)) - size \(calcDataSize(receivedata: data))")
+                                                     
+                                                    }
+                                                    let dict : NSDictionary = response.result.value as! NSDictionary
+                                                    do{
+                                                        let datas = try JSONSerialization.data(withJSONObject: dict, options: [])
+                                                        completion(datas,"success")
+                                                        
+                                                    }catch{
+                                                        
+                                                    }
+                                                
+                                                    return
                                                 }
+                                             
                                              
                                             }
                                         case .failure(let encodingError):
                                            Utils.LogData(debug: true, className: "RestWebService", message: encodingError.description)
-                                           completion(nil,encodingError.description)
+                                          // completion(nil,encodingError.description)
                                         }
                                         
                                         

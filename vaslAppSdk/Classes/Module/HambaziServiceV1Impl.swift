@@ -10,15 +10,13 @@ protocol HambaziServiceV1 {
 
     func listCategoryClustered(page: String, keyWord: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_CategoryListCllustered?,String?) -> Void)
 
-    func videoGet(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void)
-
     func subscriberList(sort: String, order: String, page: String, catId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberList?,String?) -> Void)
 
     func subscriberMyProfile(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberGet?,String?) -> Void)
 
     func subscriberUserProfile(subscriberId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberGet?,String?) -> Void)
 
-    func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberUpdate?,String?) -> Void)
+    func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func subscriberFollow(subscriberId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberFollow?,String?) -> Void)
 
@@ -30,13 +28,19 @@ protocol HambaziServiceV1 {
 
     func subscriberVideoList(sessionId: String, subscriberId: String, artistId: String, page: String, sort: String, order: String, hambaziStatus: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberVideoList?,String?) -> Void)
 
+    func myVideoList(sessionId: String, artistId: String, page: String, sort: String, order: String, hambaziStatus: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_MyVideoList?,String?) -> Void)
+
     func actorList(sort: String, order: String, page: String, catId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberList?,String?) -> Void)
 
     func actorVideoList(artistId: String, page: String, sort: String, order: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void)
 
-    func hambaziVideos(videoId: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void)
+    func hambaziVideos(actorId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void)
 
-    func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate?,String?) -> Void)
+    func scenarioVideos(videoId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void)
+
+    func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func videoGet(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void)
 
     func videoLikeAdd(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoLikeAdd?,String?) -> Void)
 
@@ -58,9 +62,9 @@ protocol HambaziServiceV1 {
 
     func pageList(sessionId: String, sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_CategoryListCllustered?,String?) -> Void)
 
-    func listBanner(page: String, catId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerList?,String?) -> Void)
-
     func getBanner(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet?,String?) -> Void)
+
+    func listBanner(page: String, catId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerList?,String?) -> Void)
 
 
 }
@@ -194,37 +198,6 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
-    public func videoGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void) {
-        videoGet(id: id, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func videoGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/video/get", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.videoGet(id: id, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
     public func subscriberList(sort: String, order: String, page: String, catId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberList?,String?) -> Void) {
         subscriberList(sort: sort, order: order, page: page, catId: catId, completion: completion,force: true)
     }
@@ -318,11 +291,11 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
-    public func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberUpdate?,String?) -> Void) {
+    public func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         subscriberUpdate(nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: true)
     }
     
-    private func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberUpdate?,String?) -> Void,force : Bool) {
+    private func subscriberUpdate(nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(nickName            , forKey: "nickName")
                     params.updateValue(firstName            , forKey: "firstName")
@@ -335,7 +308,9 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberUpdate(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberUpdate
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -343,7 +318,7 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                         if serviceResponse.code == 401 && force {
                             self.subscriberUpdate(nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
@@ -525,6 +500,41 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
+    public func myVideoList(sessionId: String, artistId: String, page: String, sort: String, order: String, hambaziStatus: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_MyVideoList?,String?) -> Void) {
+        myVideoList(sessionId: sessionId, artistId: artistId, page: page, sort: sort, order: order, hambaziStatus: hambaziStatus, completion: completion,force: true)
+    }
+    
+    private func myVideoList(sessionId: String, artistId: String, page: String, sort: String, order: String, hambaziStatus: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_MyVideoList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+                    params.updateValue(artistId            , forKey: "artistId")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(hambaziStatus            , forKey: "hambaziStatus")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/my/video/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_MyVideoList(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_MyVideoList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.myVideoList(sessionId: sessionId, artistId: artistId, page: page, sort: sort, order: order, hambaziStatus: hambaziStatus, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func actorList(sort: String, order: String, page: String, catId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberList?,String?) -> Void) {
         actorList(sort: sort, order: order, page: page, catId: catId, sessionId: sessionId, completion: completion,force: true)
     }
@@ -593,13 +603,15 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
-    public func hambaziVideos(videoId: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void) {
-        hambaziVideos(videoId: videoId, page: page, sessionId: sessionId, completion: completion,force: true)
+    public func hambaziVideos(actorId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void) {
+        hambaziVideos(actorId: actorId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func hambaziVideos(videoId: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void,force : Bool) {
+    private func hambaziVideos(actorId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
-                    params.updateValue(videoId            , forKey: "videoId")
+                    params.updateValue(actorId            , forKey: "actorId")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/actor/hambazivideo", params, completion: { (result, error) in
@@ -612,7 +624,7 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.hambaziVideos(videoId: videoId, page: page, sessionId: sessionId, completion: completion,force: false)
+                            self.hambaziVideos(actorId: actorId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -625,11 +637,45 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
-    public func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate?,String?) -> Void) {
+    public func scenarioVideos(videoId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void) {
+        scenarioVideos(videoId: videoId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func scenarioVideos(videoId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(videoId            , forKey: "videoId")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/scenario/hambazivideo", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_ActorVideoList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.scenarioVideos(videoId: videoId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         videoCreate(multipartFile: multipartFile, title: title, description: description, actorVideoId: actorVideoId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate?,String?) -> Void,force : Bool) {
+    private func videoCreate(multipartFile: NSData, title: String, description: String, actorVideoId: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(multipartFile            , forKey: "multipartFile")
                     params.updateValue(title            , forKey: "title")
@@ -640,13 +686,46 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoCreate
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.videoCreate(multipartFile: multipartFile, title: title, description: description, actorVideoId: actorVideoId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func videoGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void) {
+        videoGet(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func videoGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/video/get", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.videoGet(id: id, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -986,6 +1065,37 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
 
 
+    public func getBanner(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet?,String?) -> Void) {
+        getBanner(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getBanner(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/banner/get", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getBanner(id: id, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
     public func listBanner(page: String, catId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerList?,String?) -> Void) {
         listBanner(page: page, catId: catId, sessionId: sessionId, completion: completion,force: true)
     }
@@ -1006,37 +1116,6 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listBanner(page: page, catId: catId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func getBanner(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet?,String?) -> Void) {
-        getBanner(id: id, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func getBanner(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/banner/get", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_BannerGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.getBanner(id: id, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

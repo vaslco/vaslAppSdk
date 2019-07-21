@@ -37,6 +37,15 @@ class ViewController: UIViewController {
                             username: username,
                             password: password)
 
+        
+//        vmbas.HambaziService()?.videoList(page: "1", sort: "", order: "", subscriberType: "", catId: "5d0a2db52589910009612b82", hambaziStatus: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//               debugPrint("success")
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
 //
 //        vmbas.dynamicTableEndPointService()?.endpointFind(tableName: "", find: "{}", projection: "{}", sort: "", skip: "", limit: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
@@ -65,32 +74,38 @@ class ViewController: UIViewController {
 //        })
 //
 //
-//        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
-//
-//        let pathURL = URL(fileURLWithPath: path)
-//
-//        let video = NSData(contentsOf: pathURL)
-//
-//        vmbas.HambaziService()?.videoCreate(multipartFile: NSData(), title: "test ios", description: "test for ios", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-//            if error == nil{
-//
-//                debugPrint("oh oh video is empty")
-//
-//            }else{
-//                print(error!)
-//            }
-//        })
+        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
+
+        let pathURL = URL(fileURLWithPath: path)
+
+        let video = NSData(contentsOf: pathURL)
+
+        vmbas.HambaziService()?.videoCreate(multipartFile: video!, title: "test ios", description: "test for ios", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+            if error == nil{
+
+                debugPrint(data!)
+                print("success video upload")
+
+                
+
+            }else{
+                print(error!)
+            }
+        })
         
 
-        
+//
 //        let url = Bundle.main.path(forResource: "test", ofType: "mp4")!
 //
 //        let videoUrl = URL(string: url)!
 //
 //        let videData = NSData(contentsOf: videoUrl)
 //
-//        vmbas.HambaziService()?.videoCreate(multipartFile: videData!, title: "test", description: "test ios sdk", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//        vmbas.HambaziService()?.videoCreate(multipartFile: videData, title: "test", description: "test ios sdk", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
+//
+//                let cont = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+//                self.navigationController?.pushViewController(cont, animated: true)
 //
 //            }else{
 //                print(error!)
@@ -99,7 +114,7 @@ class ViewController: UIViewController {
         
         
         
-//
+////
         let image = UIImage(named: "gimour")
         var Extradata = Array<Dictionary<String,String>>()
         let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
@@ -111,8 +126,7 @@ class ViewController: UIViewController {
 //
         vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: NSData(), gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
             if error == nil{
-              let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-                self.navigationController?.pushViewController(controller, animated: true)
+              debugPrint("success update profile")
             }else{
                 print(error!)
             }
@@ -120,8 +134,9 @@ class ViewController: UIViewController {
        
 //        vmbas.supportService()?.createThreadConversation(threadId: "5d04da903680e320f81ca3b4", message: "salam", attachment: NSData(), sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
-//                let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
-//                self.navigationController?.pushViewController(controller, animated: true)
+//                print("success")
+////                let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
+////                self.navigationController?.pushViewController(controller, animated: true)
 //            }else{
 //                print(error!)
 //            }
