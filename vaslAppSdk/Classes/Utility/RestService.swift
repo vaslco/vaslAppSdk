@@ -846,7 +846,7 @@ struct RestService {
             params.updateValue("application/json"                                  , forKey: "accept")
             break
         case .JSON:
-            params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
+            params.updateValue("application/json"                  , forKey:  "content-type")
             params.updateValue("application/json"                                   , forKey:  "accept")
             break
         default:

@@ -36,6 +36,38 @@ class ViewController: UIViewController {
                             clientSecret: clientSecret,
                             username: username,
                             password: password)
+        
+        
+//        let obj = [String:Any]()
+//
+//        vmbas.dynamicTableEndPointService()?.endpointFind(tableName: "tbl_info", find: obj, projection: obj, sort: obj, skip: Int(), limit: Int(), sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+//
+//        let obj = [String:Any]()
+//        do{
+//            let data = try JSONSerialization.data(withJSONObject: obj, options: [])
+////            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//            let converted = String(data: data, encoding: .utf8)
+//            vmbas.dynamicTableEndPointService()?.endpointFind(tableName: "tbl_info", find:converted! , projection: converted!, sort: converted!, skip:"", limit: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//                if error == nil{
+//                    debugPrint(data!)
+//                }else{
+//                    print(error!)
+//                }
+//            })
+//
+//        }catch{
+//
+//        }
+        
+
+        
+        
 
         
 //        vmbas.HambaziService()?.videoList(page: "1", sort: "", order: "", subscriberType: "", catId: "5d0a2db52589910009612b82", hambaziStatus: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
@@ -74,20 +106,42 @@ class ViewController: UIViewController {
 //        })
 //
 //
-        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
-
-        let pathURL = URL(fileURLWithPath: path)
-
-        let video = NSData(contentsOf: pathURL)
-
-        vmbas.HambaziService()?.videoCreate(multipartFile: video!, title: "test ios", description: "test for ios", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//        let path = Bundle.main.path(forResource: "test", ofType: "mp4")!
+//
+//        let pathURL = URL(fileURLWithPath: path)
+//
+//        let video = NSData(contentsOf: pathURL)
+//
+//        vmbas.HambaziService()?.videoCreate(multipartFile: video!, title: "test ios", description: "test for ios", actorVideoId: "5d138b5618ed19000924af6d", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//                debugPrint(data!)
+//                print("success video upload")
+//
+//
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
+        
+//        vmbas.HambaziService()?.pageGet(key: "PAGE_SUBSCRIBER_PROFILE", catId: "", subscriberId: "5cfc9f6529f7d500098049e6", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//                for item in data!.data{
+//                    print(item.items)
+//
+//                }
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
+        vmbas.HambaziService()?.myVideoList(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", artistId: "", page: String(1), sort: "INSERT_TIME", order: "DESC", hambaziStatus: "", completion: { (data, error) in
             if error == nil{
-
-                debugPrint(data!)
-                print("success video upload")
-
-                
-
+                for item in data!.data{
+                    print(item)
+                }
             }else{
                 print(error!)
             }
@@ -115,26 +169,26 @@ class ViewController: UIViewController {
         
         
 ////
-        let image = UIImage(named: "gimour")
-        var Extradata = Array<Dictionary<String,String>>()
-        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
-
-        var dic = Dictionary<String,String>()
-        dic.updateValue("زاویه", forKey: "city")
-        Extradata.append(dic)
+//        let image = UIImage(named: "gimour")
+//        var Extradata = Array<Dictionary<String,String>>()
+//        let jpegData = image?.jpegData(compressionQuality: 1)! as NSData?
 //
-//
-        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: NSData(), gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
-            if error == nil{
-              debugPrint("success update profile")
-            }else{
-                print(error!)
-            }
-        })
+//        var dic = Dictionary<String,String>()
+//        dic.updateValue("زاویه", forKey: "city")
+//        Extradata.append(dic)
+////
+////
+//        vmbas.SubscriberService()?.saveProfileInfo(nickName: "sia", firstName: "siamak", lastName: "rostami", fatherName: "", shenasnamehNo: "111111", deathStatus: "", picture: NSData(), gender: "MALE", birthDate: "1374-1-1", nationalId: "", data: Extradata, sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//              debugPrint("success update profile")
+//            }else{
+//                print(error!)
+//            }
+//        })
        
 //        vmbas.supportService()?.createThreadConversation(threadId: "5d04da903680e320f81ca3b4", message: "salam", attachment: NSData(), sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
-//                print("success")
+//                print("success creating thread")
 ////                let controller = self.storyboard?.instantiateViewController(withIdentifier: "TestViewController") as! TestViewController
 ////                self.navigationController?.pushViewController(controller, animated: true)
 //            }else{
@@ -168,30 +222,30 @@ class ViewController: UIViewController {
         
 
         
-//
+////
 //        enum key : String {
 //            case
 //            KEY_RAISE_ACTION_PROFILE_NAME    = "KEY_RAISE_ACTION_PROFILE_NAME"
 //        }
 //        let type = key(rawValue: "KEY_RAISE_ACTION_PROFILE_NAME")
-//
+////
 //        vmbas.gameActionServiceV1()?.raiseAction(actionKey: type!.rawValue, actionData: "{}", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{
 //
 //                for item in data!.data{
-//                    print(item)
+//                    debugPrint(item)
 //                }
 //
 //            }else{
 //                print(error!)
 //            }
 //        })
-//
+////
 //        vmbas.gameUserServiceV2()?.userStatus(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
 //
 //                for item in (data?.data)! {
-//                    print(item)
+//                    debugPrint(item)
 //                }
 //
 //            }else{
@@ -243,7 +297,7 @@ class ViewController: UIViewController {
 //                print(error!)
 //            }
 //        })
-//
+
 
 
     }
