@@ -527,15 +527,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01852DF722EC58470035C47D /* Nonce */ = {
-			isa = PBXGroup;
-			children = (
-				0101465322ED63A200E483B4 /* NonceGenerator.swift */,
-				0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */,
-			);
-			path = Nonce;
-			sourceTree = "<group>";
-		};
 		1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,7 +907,8 @@
 		F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
-				01852DF722EC58470035C47D /* Nonce */,
+				0101465322ED63A200E483B4 /* NonceGenerator.swift */,
+				0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */,
 				6C939FD7563BACB2FEFBD8BDE24F7A5D /* VaslSdk.swift */,
 				1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */,
 				46564E11E954A0D11D72C31CBA809B94 /* Module */,

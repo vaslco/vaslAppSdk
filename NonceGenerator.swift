@@ -88,36 +88,7 @@ public class NonceGenerator  {
         return signature
         
     }
-    
-    
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
 }
 

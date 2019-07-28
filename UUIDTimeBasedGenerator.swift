@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import vaslAppSdk
-
-
 
 public class UUIDTimeBasedGenerator {
     
