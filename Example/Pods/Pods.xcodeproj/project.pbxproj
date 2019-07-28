@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		0101465822ED816900E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
 		0101465A22ED860B00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
-		0101465C22ED88C200E483B4 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */; };
 		0101465E22ED895B00E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
 		0101465F22ED895F00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
-		0101466022ED8B0D00E483B4 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465322ED63A200E483B4 /* NonceGenerator.swift */; };
 		010309DE22DC810600D38FAC /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309DD22DC810600D38FAC /* MimeType.swift */; };
+		016683E922EDB23E00B215F3 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016683E722EDB23E00B215F3 /* NonceGenerator.swift */; };
+		016683EA22EDB23E00B215F3 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016683E822EDB23E00B215F3 /* UUIDTimeBasedGenerator.swift */; };
 		01CB3A9C22E4687B00B4F4AC /* SubscriberServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3A7722E4687500B4F4AC /* SubscriberServiceV1Impl.swift */; };
 		01CB3A9D22E4687B00B4F4AC /* FileManagerServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3A7822E4687600B4F4AC /* FileManagerServiceV1Impl.swift */; };
 		01CB3A9E22E4687B00B4F4AC /* GameFeaturesServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3A7922E4687600B4F4AC /* GameFeaturesServiceV2Impl.swift */; };
@@ -253,11 +253,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0101465322ED63A200E483B4 /* NonceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonceGenerator.swift; sourceTree = "<group>"; };
 		0101465722ED816900E483B4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		0101465922ED860B00E483B4 /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
-		0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDTimeBasedGenerator.swift; sourceTree = "<group>"; };
 		010309DD22DC810600D38FAC /* MimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
+		016683E722EDB23E00B215F3 /* NonceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonceGenerator.swift; sourceTree = "<group>"; };
+		016683E822EDB23E00B215F3 /* UUIDTimeBasedGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDTimeBasedGenerator.swift; sourceTree = "<group>"; };
 		018BF6E7E96F89EA2D46031A5F8A19A5 /* vaslAppSdk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "vaslAppSdk-dummy.m"; sourceTree = "<group>"; };
 		01CB3A7722E4687500B4F4AC /* SubscriberServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1Impl.swift; sourceTree = "<group>"; };
 		01CB3A7822E4687600B4F4AC /* FileManagerServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerServiceV1Impl.swift; sourceTree = "<group>"; };
@@ -907,8 +907,8 @@
 		F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
-				0101465322ED63A200E483B4 /* NonceGenerator.swift */,
-				0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */,
+				016683E722EDB23E00B215F3 /* NonceGenerator.swift */,
+				016683E822EDB23E00B215F3 /* UUIDTimeBasedGenerator.swift */,
 				6C939FD7563BACB2FEFBD8BDE24F7A5D /* VaslSdk.swift */,
 				1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */,
 				46564E11E954A0D11D72C31CBA809B94 /* Module */,
@@ -1180,7 +1180,6 @@
 				010309DE22DC810600D38FAC /* MimeType.swift in Sources */,
 				01CB3AA522E4687B00B4F4AC /* EventServiceImpl.swift in Sources */,
 				01CB3AE522E4689200B4F4AC /* AvatarGlobalV1.pb.swift in Sources */,
-				0101466022ED8B0D00E483B4 /* NonceGenerator.swift in Sources */,
 				01CB3AF322E4689200B4F4AC /* DynamicTable.pb.swift in Sources */,
 				0101465A22ED860B00E483B4 /* UUID.swift in Sources */,
 				01CB3AEE22E4689200B4F4AC /* MobileConnect.pb.swift in Sources */,
@@ -1219,9 +1218,11 @@
 				01CB3AAB22E4687B00B4F4AC /* MgsServiceV1Impl.swift in Sources */,
 				01CB3AEA22E4689200B4F4AC /* ReferralGlobal.pb.swift in Sources */,
 				2F00A187D2DB0F36E5F55EA7F3258309 /* VaslSdk.swift in Sources */,
+				016683EA22EDB23E00B215F3 /* UUIDTimeBasedGenerator.swift in Sources */,
 				01CB3AFE22E4689200B4F4AC /* Hambazi.pb.swift in Sources */,
 				01CB3AF222E4689200B4F4AC /* Subscriber.pb.swift in Sources */,
 				01CB3AF122E4689200B4F4AC /* Pazh.pb.swift in Sources */,
+				016683E922EDB23E00B215F3 /* NonceGenerator.swift in Sources */,
 				01CB3ABB22E4687B00B4F4AC /* DynamicLinkServiceV1Impl.swift in Sources */,
 				01CB3AEF22E4689200B4F4AC /* ChargeCard.pb.swift in Sources */,
 				01CB3AA822E4687B00B4F4AC /* GameUserServiceV2Impl.swift in Sources */,
@@ -1230,7 +1231,6 @@
 				01CB3AA322E4687B00B4F4AC /* GameActionServiceV2Impl.swift in Sources */,
 				818E8026665C97DF750FDC4DCBCE2873 /* webServiceResult.swift in Sources */,
 				01CB3AB122E4687B00B4F4AC /* GameLeaderBoardServiceV2Impl.swift in Sources */,
-				0101465C22ED88C200E483B4 /* UUIDTimeBasedGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
