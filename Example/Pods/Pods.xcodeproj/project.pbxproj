@@ -10,7 +10,6 @@
 		0101465822ED816900E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
 		0101465A22ED860B00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
 		0101465C22ED88C200E483B4 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */; };
-		0101465D22ED88E400E483B4 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */; };
 		0101465E22ED895B00E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
 		0101465F22ED895F00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
 		0101466022ED8B0D00E483B4 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465322ED63A200E483B4 /* NonceGenerator.swift */; };
@@ -1149,7 +1148,6 @@
 				0101465F22ED895F00E483B4 /* UUID.swift in Sources */,
 				0101465E22ED895B00E483B4 /* String.swift in Sources */,
 				18E9B16C08E9A2A471C2B13DCE9F337E /* Pods-vaslAppSdk_Example-dummy.m in Sources */,
-				0101465D22ED88E400E483B4 /* UUIDTimeBasedGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
