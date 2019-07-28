@@ -11,7 +11,7 @@ import SystemConfiguration
 import Foundation
 import Alamofire
 
-struct RestService {
+class RestService {
     
     public enum FileType {
         case amr
