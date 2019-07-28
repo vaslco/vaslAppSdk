@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0101465822ED816900E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
+		0101465A22ED860B00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
+		0101465C22ED88C200E483B4 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */; };
+		0101465D22ED88E400E483B4 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */; };
+		0101465E22ED895B00E483B4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465722ED816900E483B4 /* String.swift */; };
+		0101465F22ED895F00E483B4 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465922ED860B00E483B4 /* UUID.swift */; };
+		0101466022ED8B0D00E483B4 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101465322ED63A200E483B4 /* NonceGenerator.swift */; };
 		010309DE22DC810600D38FAC /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010309DD22DC810600D38FAC /* MimeType.swift */; };
 		01CB3A9C22E4687B00B4F4AC /* SubscriberServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3A7722E4687500B4F4AC /* SubscriberServiceV1Impl.swift */; };
 		01CB3A9D22E4687B00B4F4AC /* FileManagerServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3A7822E4687600B4F4AC /* FileManagerServiceV1Impl.swift */; };
@@ -247,6 +254,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0101465322ED63A200E483B4 /* NonceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonceGenerator.swift; sourceTree = "<group>"; };
+		0101465722ED816900E483B4 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		0101465922ED860B00E483B4 /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
+		0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDTimeBasedGenerator.swift; sourceTree = "<group>"; };
 		010309DD22DC810600D38FAC /* MimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		018BF6E7E96F89EA2D46031A5F8A19A5 /* vaslAppSdk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "vaslAppSdk-dummy.m"; sourceTree = "<group>"; };
 		01CB3A7722E4687500B4F4AC /* SubscriberServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1Impl.swift; sourceTree = "<group>"; };
@@ -517,6 +528,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01852DF722EC58470035C47D /* Nonce */ = {
+			isa = PBXGroup;
+			children = (
+				0101465322ED63A200E483B4 /* NonceGenerator.swift */,
+				0101465B22ED88C100E483B4 /* UUIDTimeBasedGenerator.swift */,
+			);
+			path = Nonce;
+			sourceTree = "<group>";
+		};
 		1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +720,8 @@
 				EB05A30AEF0F29DB89830FFAD3B7B6BB /* PubicValue.swift */,
 				2EDD050D53E5183B6FBA686D8007E844 /* RestService.swift */,
 				25FBB316E2CCCA9235E8338FD4F927C2 /* Utils.swift */,
+				0101465722ED816900E483B4 /* String.swift */,
+				0101465922ED860B00E483B4 /* UUID.swift */,
 			);
 			name = Utility;
 			path = vaslAppSdk/Classes/Utility;
@@ -895,6 +917,7 @@
 		F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
+				01852DF722EC58470035C47D /* Nonce */,
 				6C939FD7563BACB2FEFBD8BDE24F7A5D /* VaslSdk.swift */,
 				1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */,
 				46564E11E954A0D11D72C31CBA809B94 /* Module */,
@@ -1060,11 +1083,11 @@
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 84A624D210E13C733F23ED66EDDF1E88 /* Products */;
@@ -1123,7 +1146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0101465F22ED895F00E483B4 /* UUID.swift in Sources */,
+				0101465E22ED895B00E483B4 /* String.swift in Sources */,
 				18E9B16C08E9A2A471C2B13DCE9F337E /* Pods-vaslAppSdk_Example-dummy.m in Sources */,
+				0101465D22ED88E400E483B4 /* UUIDTimeBasedGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1159,7 @@
 			files = (
 				01CB3AB622E4687B00B4F4AC /* ReferralServiceV1Impl.swift in Sources */,
 				01CB3AF822E4689200B4F4AC /* TimerGlobal.pb.swift in Sources */,
+				0101465822ED816900E483B4 /* String.swift in Sources */,
 				01CB3B0022E4689200B4F4AC /* GeoGlobalV1.pb.swift in Sources */,
 				01CB3AAD22E4687B00B4F4AC /* LeagueServiceV1Impl.swift in Sources */,
 				01CB3A9C22E4687B00B4F4AC /* SubscriberServiceV1Impl.swift in Sources */,
@@ -1163,7 +1190,9 @@
 				010309DE22DC810600D38FAC /* MimeType.swift in Sources */,
 				01CB3AA522E4687B00B4F4AC /* EventServiceImpl.swift in Sources */,
 				01CB3AE522E4689200B4F4AC /* AvatarGlobalV1.pb.swift in Sources */,
+				0101466022ED8B0D00E483B4 /* NonceGenerator.swift in Sources */,
 				01CB3AF322E4689200B4F4AC /* DynamicTable.pb.swift in Sources */,
+				0101465A22ED860B00E483B4 /* UUID.swift in Sources */,
 				01CB3AEE22E4689200B4F4AC /* MobileConnect.pb.swift in Sources */,
 				01CB3AFD22E4689200B4F4AC /* EventGlobal.pb.swift in Sources */,
 				86D3E430118ED7BFCD075BEE900CE77A /* PubicValue.swift in Sources */,
@@ -1211,6 +1240,7 @@
 				01CB3AA322E4687B00B4F4AC /* GameActionServiceV2Impl.swift in Sources */,
 				818E8026665C97DF750FDC4DCBCE2873 /* webServiceResult.swift in Sources */,
 				01CB3AB122E4687B00B4F4AC /* GameLeaderBoardServiceV2Impl.swift in Sources */,
+				0101465C22ED88C200E483B4 /* UUIDTimeBasedGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,6 +38,19 @@ class ViewController: UIViewController {
                             password: password)
         
         
+    
+        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
+            if error == nil {
+                debugPrint(data?.msg)
+                
+            }else{
+                print(error!)
+            }
+        })
+        
+        
+        
+        
 //        let obj = [String:Any]()
 //
 //        vmbas.dynamicTableEndPointService()?.endpointFind(tableName: "tbl_info", find: obj, projection: obj, sort: obj, skip: Int(), limit: Int(), sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
@@ -137,16 +150,16 @@ class ViewController: UIViewController {
 //                print(error!)
 //            }
 //        })
-        vmbas.HambaziService()?.myVideoList(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", artistId: "", page: String(1), sort: "INSERT_TIME", order: "DESC", hambaziStatus: "", completion: { (data, error) in
-            if error == nil{
-                for item in data!.data{
-                    print(item)
-                }
-            }else{
-                print(error!)
-            }
-        })
-        
+//        vmbas.HambaziService()?.myVideoList(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", artistId: "", page: String(1), sort: "INSERT_TIME", order: "DESC", hambaziStatus: "", completion: { (data, error) in
+//            if error == nil{
+//                for item in data!.data{
+//                    print(item)
+//                }
+//            }else{
+//                print(error!)
+//            }
+//        })
+//
 
 //
 //        let url = Bundle.main.path(forResource: "test", ofType: "mp4")!

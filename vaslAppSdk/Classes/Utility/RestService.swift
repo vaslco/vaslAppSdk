@@ -811,6 +811,8 @@ struct RestService {
     
     typealias CompletionMultipartHandler = (_ result : NSDictionary , _ error : String?) -> Void
     
+   
+    
     
     private static let ouathUrl                  = baseUrl + "/oauth/token"
     
@@ -865,7 +867,59 @@ struct RestService {
         params.updateValue(getAppIdString()                               , forKey:  "appid")
         return params
     }
-    
+    fileprivate static func addNounceHeader(_ type : contentType) -> Dictionary<String,String> {
+        var params = Dictionary<String,String>()
+        let generator = NonceGenerator()
+        var signature = String()
+        var cNonce = String()
+        var cTime = Int64()
+        var requestId = String()
+        if let sig = generator.generateSignature() as String? {
+            signature = sig
+            cNonce = generator.cNonce
+            cTime = generator.cTime
+            requestId = generator.requestId
+      
+            
+        }
+        switch type {
+        case .Ouath:
+            let credentialData = "\(clientId):\(clientSecret)".data(using: String.Encoding.utf8)!
+            let base64Credentials = credentialData.base64EncodedString(options: [])
+            
+            params.updateValue("Basic \(base64Credentials)"                         , forKey: "Authorization")
+            params.updateValue("application/json"                                   , forKey: "Accept")
+            break
+        case .MultiPart:
+            params.updateValue("multipart/form-data; boundary=".appending(boundary), forKey: "content-type")
+            params.updateValue("application/json"                                  , forKey: "accept")
+            break
+        case .JSON:
+            params.updateValue("application/json"                  , forKey:  "content-type")
+            params.updateValue("application/json"                                   , forKey:  "accept")
+            break
+        default:
+            params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
+            params.updateValue("application/octet-stream"                           , forKey:  "accept")
+            params.updateValue(signature                                            , forKey: "signature")
+            params.updateValue(clientId                                             , forKey: "clientId")
+            params.updateValue(cNonce                                                 , forKey: "cNonce")
+            params.updateValue(String(cTime)                                           , forKey: "cTime")
+            params.updateValue(requestId                                           , forKey: "requestId")
+            
+            
+            break
+        }
+        if type != .Ouath {
+            let token = TokenInfoModel.init()
+            params.updateValue("Bearer " + token.accessToken                  , forKey:  "Authorization")
+        }
+        params.updateValue("fa"                                           , forKey:  "accept-language")
+        params.updateValue("no-cache"                                     , forKey:  "cache-control")
+        params.updateValue("ios"                                          , forKey:  "os")
+        params.updateValue(getAppIdString()                               , forKey:  "appid")
+        return params
+    }
     fileprivate static func addBody(_ parameters : Dictionary<String,String>) -> String {
         var body = ""
         if (parameters.count == 0) {
@@ -954,8 +1008,21 @@ struct RestService {
         }
         getaccessToken(force) { (success, token) in
             if success! {
-                if let url = URL(string: url) {
-                    let request = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
+                if let urls = URL(string: url) {
+                    
+                    var headers = Dictionary<String,String>()
+                    
+                    
+                    if url.contains("subscriber/operators/register") {
+                        
+                        headers = addNounceHeader(type)
+                        
+                    }else{
+                        
+                        headers = addHeader(type)
+                        
+                    }
+                    let request = Alamofire.request(urls, method: .post, parameters: parameters, headers: headers)
                     if let request = request as DataRequest? {
                         let start = CACurrentMediaTime()
                         request.response(completionHandler: { (webResult) in
