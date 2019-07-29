@@ -35,6 +35,7 @@ struct RestService {
     public static var clientSecret               = ""
     public static var username                   = ""
     public static var password                   = ""
+    public static var nounce                     = ""
     
     fileprivate static let boundary = "----WebKitFormBoundary7MA4YWxkTrZu0gW"
     
@@ -82,7 +83,7 @@ struct RestService {
     }
     fileprivate static func addNounceHeader(_ type : contentType) -> Dictionary<String,String> {
         var params = Dictionary<String,String>()
-        let generator = NonceGenerator()
+        let generator = NonceGenerator(nounce)
         var signature = String()
         var cNonce = String()
         var cTime = Int64()
@@ -90,6 +91,7 @@ struct RestService {
         if let sig = generator.generateSignature() as String? {
             signature = sig
             cNonce = generator.cNonce
+            print(generator.nonce)
             cTime = generator.cTime
             requestId = generator.requestId
       
@@ -112,13 +114,20 @@ struct RestService {
             params.updateValue("application/json"                                   , forKey:  "accept")
             break
         default:
-            params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
-            params.updateValue("application/octet-stream"                           , forKey:  "accept")
-            params.updateValue(signature                                            , forKey: "signature")
-            params.updateValue(clientId                                             , forKey: "clientId")
-            params.updateValue(cNonce                                                 , forKey: "cNonce")
-            params.updateValue(String(cTime)                                           , forKey: "cTime")
-            params.updateValue(requestId                                           , forKey: "requestId")
+        
+            if signature.isEmpty{
+                params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
+                params.updateValue("application/octet-stream"                           , forKey:  "accept")
+            }else{
+                params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
+                params.updateValue("application/octet-stream"                           , forKey:  "accept")
+                params.updateValue(signature                                            , forKey: "signature")
+                params.updateValue(clientId                                             , forKey: "clientId")
+                params.updateValue(cNonce                                                 , forKey: "cNonce")
+                params.updateValue(String(cTime)                                           , forKey: "cTime")
+                params.updateValue(requestId                                           , forKey: "requestId")
+            }
+      
             
             
             break

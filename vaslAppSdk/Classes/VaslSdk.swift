@@ -23,13 +23,16 @@ public class VaslSdk : Services {
                 clientId      : String,
                 clientSecret  : String,
                 username      : String,
-                password      : String) {
+                password      : String,
+                nounce        : String?) {
         RestService.baseUrl                    = baseUrl
         RestService.appid                      = appId
         RestService.clientId                   = clientId
         RestService.clientSecret               = clientSecret
         RestService.username                   = username
         RestService.password                   = password
+        RestService.nounce                     = nounce!
+        
     }
     
     private static var analytic : AnalyticServiceV1Impl!
