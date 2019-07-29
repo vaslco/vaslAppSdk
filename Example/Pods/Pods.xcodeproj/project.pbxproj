@@ -82,7 +82,7 @@
 		01CB3AFF22E4689200B4F4AC /* AppVersion.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3ADF22E4689200B4F4AC /* AppVersion.pb.swift */; };
 		01CB3B0022E4689200B4F4AC /* GeoGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CB3AE022E4689200B4F4AC /* GeoGlobalV1.pb.swift */; };
 		01F7D31922EEFAA400756B55 /* UUIDTimeBasedGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7D31722EEFAA400756B55 /* UUIDTimeBasedGenerator.swift */; };
-		01F7D31A22EEFAA400756B55 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7D31822EEFAA400756B55 /* NonceGenerator.swift */; };
+		01F7D31E22EEFCC300756B55 /* NonceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F7D31D22EEFCC300756B55 /* NonceGenerator.swift */; };
 		0313C0C9683EF4E946FDA4FA3BB53AFD /* TextFormatEncodingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775D301D69B65DEA0B4CAD61F044CF4 /* TextFormatEncodingVisitor.swift */; };
 		059D92B7BBFBEC53E9A3B6E11C5C3B3A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C0C5B98435E2326D2525208FB6E4D /* Response.swift */; };
 		05C6A9AEECEC38CA02235CF74434DC4A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF955998E0A40CF9A838B9864B6DE40A /* Message.swift */; };
@@ -327,7 +327,7 @@
 		01CB3ADF22E4689200B4F4AC /* AppVersion.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersion.pb.swift; sourceTree = "<group>"; };
 		01CB3AE022E4689200B4F4AC /* GeoGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoGlobalV1.pb.swift; sourceTree = "<group>"; };
 		01F7D31722EEFAA400756B55 /* UUIDTimeBasedGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UUIDTimeBasedGenerator.swift; path = vaslAppSdk/Classes/UUIDTimeBasedGenerator.swift; sourceTree = "<group>"; };
-		01F7D31822EEFAA400756B55 /* NonceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NonceGenerator.swift; path = vaslAppSdk/Classes/NonceGenerator.swift; sourceTree = "<group>"; };
+		01F7D31D22EEFCC300756B55 /* NonceGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NonceGenerator.swift; path = vaslAppSdk/Classes/NonceGenerator.swift; sourceTree = "<group>"; };
 		041556E0DFE784C27BD0E9F79D004C1A /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		04DF5404BFE3A634A3B6F704E06605A5 /* ExtensibleMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensibleMessage.swift; path = Sources/SwiftProtobuf/ExtensibleMessage.swift; sourceTree = "<group>"; };
 		05B26E35602159D1185DDBF6CCC7167D /* TimeUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeUtils.swift; path = Sources/SwiftProtobuf/TimeUtils.swift; sourceTree = "<group>"; };
@@ -907,7 +907,7 @@
 		F97B2228EE37B3E41C9D54B53A86D676 /* vaslAppSdk */ = {
 			isa = PBXGroup;
 			children = (
-				01F7D31822EEFAA400756B55 /* NonceGenerator.swift */,
+				01F7D31D22EEFCC300756B55 /* NonceGenerator.swift */,
 				01F7D31722EEFAA400756B55 /* UUIDTimeBasedGenerator.swift */,
 				6C939FD7563BACB2FEFBD8BDE24F7A5D /* VaslSdk.swift */,
 				1F587C0E439CA4F4095F05694289B088 /* CoreData+Models */,
@@ -1188,7 +1188,7 @@
 				010309DE22DC810600D38FAC /* MimeType.swift in Sources */,
 				01CB3AA522E4687B00B4F4AC /* EventServiceImpl.swift in Sources */,
 				01CB3AE522E4689200B4F4AC /* AvatarGlobalV1.pb.swift in Sources */,
-				01F7D31A22EEFAA400756B55 /* NonceGenerator.swift in Sources */,
+				01F7D31E22EEFCC300756B55 /* NonceGenerator.swift in Sources */,
 				01CB3AF322E4689200B4F4AC /* DynamicTable.pb.swift in Sources */,
 				0101465A22ED860B00E483B4 /* UUID.swift in Sources */,
 				01CB3AEE22E4689200B4F4AC /* MobileConnect.pb.swift in Sources */,
