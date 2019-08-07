@@ -426,6 +426,10 @@ public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Subscribe
 
   public var balance: Int64 = 0
 
+  public var firstName: String = String()
+
+  public var lastName: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -538,6 +542,8 @@ public struct Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transacti
   public var totalitems: Int64 = 0
 
   public var totalpages: Int64 = 0
+
+  public var sumAmount: Int64 = 0
 
   public var trnsaction: [Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Transaction] = []
 
@@ -1504,6 +1510,8 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInf
     6: .same(proto: "debit"),
     7: .same(proto: "credit"),
     8: .same(proto: "balance"),
+    9: .same(proto: "firstName"),
+    10: .same(proto: "lastName"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1517,6 +1525,8 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInf
       case 6: try decoder.decodeSingularInt64Field(value: &self.debit)
       case 7: try decoder.decodeSingularInt64Field(value: &self.credit)
       case 8: try decoder.decodeSingularInt64Field(value: &self.balance)
+      case 9: try decoder.decodeSingularStringField(value: &self.firstName)
+      case 10: try decoder.decodeSingularStringField(value: &self.lastName)
       default: break
       }
     }
@@ -1547,6 +1557,12 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInf
     if self.balance != 0 {
       try visitor.visitSingularInt64Field(value: self.balance, fieldNumber: 8)
     }
+    if !self.firstName.isEmpty {
+      try visitor.visitSingularStringField(value: self.firstName, fieldNumber: 9)
+    }
+    if !self.lastName.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastName, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1559,6 +1575,8 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_SubscriberInf
     if lhs.debit != rhs.debit {return false}
     if lhs.credit != rhs.credit {return false}
     if lhs.balance != rhs.balance {return false}
+    if lhs.firstName != rhs.firstName {return false}
+    if lhs.lastName != rhs.lastName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -1738,7 +1756,8 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_TransactionLi
     4: .same(proto: "page"),
     5: .same(proto: "totalitems"),
     6: .same(proto: "totalpages"),
-    7: .same(proto: "trnsaction"),
+    7: .same(proto: "sumAmount"),
+    8: .same(proto: "trnsaction"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1750,7 +1769,8 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_TransactionLi
       case 4: try decoder.decodeSingularInt32Field(value: &self.page)
       case 5: try decoder.decodeSingularInt64Field(value: &self.totalitems)
       case 6: try decoder.decodeSingularInt64Field(value: &self.totalpages)
-      case 7: try decoder.decodeRepeatedMessageField(value: &self.trnsaction)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.sumAmount)
+      case 8: try decoder.decodeRepeatedMessageField(value: &self.trnsaction)
       default: break
       }
     }
@@ -1775,8 +1795,11 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_TransactionLi
     if self.totalpages != 0 {
       try visitor.visitSingularInt64Field(value: self.totalpages, fieldNumber: 6)
     }
+    if self.sumAmount != 0 {
+      try visitor.visitSingularInt64Field(value: self.sumAmount, fieldNumber: 7)
+    }
     if !self.trnsaction.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.trnsaction, fieldNumber: 7)
+      try visitor.visitRepeatedMessageField(value: self.trnsaction, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1788,6 +1811,7 @@ extension Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_TransactionLi
     if lhs.page != rhs.page {return false}
     if lhs.totalitems != rhs.totalitems {return false}
     if lhs.totalpages != rhs.totalpages {return false}
+    if lhs.sumAmount != rhs.sumAmount {return false}
     if lhs.trnsaction != rhs.trnsaction {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

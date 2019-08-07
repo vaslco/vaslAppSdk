@@ -23,6 +23,9 @@ public class MgsServiceV1Impl  : MgsServiceV1 {
                     params.updateValue(senderName            , forKey: "senderName")
                     params.updateValue(subscriberId            , forKey: "subscriberId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/mgs/send/normal/sms", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -42,7 +45,7 @@ public class MgsServiceV1Impl  : MgsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

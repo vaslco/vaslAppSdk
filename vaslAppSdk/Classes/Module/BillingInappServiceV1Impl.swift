@@ -29,6 +29,9 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/validate/purchase", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -48,7 +51,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -62,6 +65,9 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
                     params.updateValue(subscriptionId            , forKey: "subscriptionId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/validate/subscription", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -81,7 +87,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -95,6 +101,9 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
                     params.updateValue(subscriptionId            , forKey: "subscriptionId")
                     params.updateValue(purchaseToken            , forKey: "purchaseToken")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/cancel/subscription", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -114,7 +123,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -126,6 +135,9 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/payment/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -145,7 +157,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -160,6 +172,9 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
                     params.updateValue(orderId            , forKey: "orderId")
                     params.updateValue(paymentBy            , forKey: "paymentBy")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/bazarbilling/payment/add", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -179,7 +194,7 @@ public class BillingInappServiceV1Impl  : BillingInappServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

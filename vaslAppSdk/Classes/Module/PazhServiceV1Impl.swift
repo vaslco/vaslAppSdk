@@ -12,6 +12,14 @@ protocol PazhServiceV1 {
 
     func leagueQuestionNext(leagueId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_QuestionGet?,String?) -> Void)
 
+    func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func subscriberList(sessionId: String, sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void)
+
+    func subscriberUserProfile(sessionId: String, subscriberId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void)
+
+    func subscriberMyProfile(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void)
+
     func helloWorld(title: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_HelloWorld?,String?) -> Void)
 
     func chargeRequest(phoneNumber: String, amount: String, op: String, transactionTime: String, insertTime: String, authority: String, status: String, email: String, description: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_ChargeBuy?,String?) -> Void)
@@ -46,14 +54,6 @@ protocol PazhServiceV1 {
 
     func chargeCheckTransaction(transactionId: String, authority: String, status: String, amount: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_ChargeBuy?,String?) -> Void)
 
-    func subscriberList(sessionId: String, sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void)
-
-    func subscriberMyProfile(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void)
-
-    func subscriberUserProfile(sessionId: String, subscriberId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void)
-
-    func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion : @escaping (webServiceResult?,String?) -> Void)
-
 
 }
 
@@ -68,6 +68,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
     private func leagueList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_LeagueList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -87,7 +90,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -99,6 +102,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -118,7 +124,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -131,6 +137,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/reward/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -150,7 +159,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -162,6 +171,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -181,7 +193,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -193,6 +205,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/question/next", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -212,7 +227,149 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
+        }, force,hasNounce)
+    }
+
+
+    public func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        subscriberUpdate(sessionId: sessionId, nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: true)
+    }
+    
+    private func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+                    params.updateValue(nickName            , forKey: "nickName")
+                    params.updateValue(firstName            , forKey: "firstName")
+                    params.updateValue(lastName            , forKey: "lastName")
+                    params.updateValue(image            , forKey: "image")
+                    params.updateValue(gender            , forKey: "gender")
+                    params.updateValue(birthDate            , forKey: "birthDate")
+                    params.updateValue(email            , forKey: "email")
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/update", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.subscriberUpdate(sessionId: sessionId, nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
         }, force)
+    }
+
+
+    public func subscriberList(sessionId: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void) {
+        subscriberList(sessionId: sessionId, sort: sort, order: order, page: page, completion: completion,force: true)
+    }
+    
+    private func subscriberList(sessionId: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.subscriberList(sessionId: sessionId, sort: sort, order: order, page: page, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func subscriberUserProfile(sessionId: String, subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void) {
+        subscriberUserProfile(sessionId: sessionId, subscriberId: subscriberId, completion: completion,force: true)
+    }
+    
+    private func subscriberUserProfile(sessionId: String, subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+                    params.updateValue(subscriberId            , forKey: "subscriberId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/userprofile", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.subscriberUserProfile(sessionId: sessionId, subscriberId: subscriberId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func subscriberMyProfile(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void) {
+        subscriberMyProfile(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func subscriberMyProfile(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/myprofile", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.subscriberMyProfile(sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
     }
 
 
@@ -224,6 +381,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/helloword", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -243,7 +403,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -263,6 +423,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(email            , forKey: "email")
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/charge/request", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -282,7 +445,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -295,6 +458,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/leaderboard", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -314,7 +480,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -329,6 +495,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(questionNum            , forKey: "questionNum")
                     params.updateValue(answer            , forKey: "answer")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/answer", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -348,7 +517,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -360,6 +529,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/league/register/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -379,7 +551,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -472,6 +644,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/delete", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -491,7 +666,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -503,6 +678,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -522,7 +700,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -536,6 +714,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -555,7 +736,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -569,6 +750,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/mylist", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -588,7 +772,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -600,6 +784,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/like/add", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -619,7 +806,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -631,6 +818,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/like/remove", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -650,7 +840,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -662,6 +852,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/dislike/add", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -681,7 +874,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -693,6 +886,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(id            , forKey: "id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/post/image/dislike/remove", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -712,7 +908,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -727,6 +923,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/charge/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -746,7 +945,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -761,6 +960,9 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
                     params.updateValue(status            , forKey: "status")
                     params.updateValue(amount            , forKey: "amount")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/charge/check/transaction", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -780,140 +982,7 @@ public class PazhServiceV1Impl  : PazhServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
-    }
-
-
-    public func subscriberList(sessionId: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void) {
-        subscriberList(sessionId: sessionId, sort: sort, order: order, page: page, completion: completion,force: true)
-    }
-    
-    private func subscriberList(sessionId: String, sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.subscriberList(sessionId: sessionId, sort: sort, order: order, page: page, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func subscriberMyProfile(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void) {
-        subscriberMyProfile(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func subscriberMyProfile(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/myprofile", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.subscriberMyProfile(sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func subscriberUserProfile(sessionId: String, subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void) {
-        subscriberUserProfile(sessionId: sessionId, subscriberId: subscriberId, completion: completion,force: true)
-    }
-    
-    private func subscriberUserProfile(sessionId: String, subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-                    params.updateValue(subscriberId            , forKey: "subscriberId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/userprofile", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Pazh_Proto_Holder_SubscriberGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.subscriberUserProfile(sessionId: sessionId, subscriberId: subscriberId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        subscriberUpdate(sessionId: sessionId, nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: true)
-    }
-    
-    private func subscriberUpdate(sessionId: String, nickName: String, firstName: String, lastName: String, image: NSData, gender: String, birthDate: String, email: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-                    params.updateValue(nickName            , forKey: "nickName")
-                    params.updateValue(firstName            , forKey: "firstName")
-                    params.updateValue(lastName            , forKey: "lastName")
-                    params.updateValue(image            , forKey: "image")
-                    params.updateValue(gender            , forKey: "gender")
-                    params.updateValue(birthDate            , forKey: "birthDate")
-                    params.updateValue(email            , forKey: "email")
-        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/pazh/subscriber/update", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                    let serviceResponse = webServiceResult.init() 
-                    serviceResponse.parseJsonResult(dictionary)
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.subscriberUpdate(sessionId: sessionId, nickName: nickName, firstName: firstName, lastName: lastName, image: image, gender: gender, birthDate: birthDate, email: email, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.message)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
+        }, force,hasNounce)
     }
 
 

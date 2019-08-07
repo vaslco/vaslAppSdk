@@ -4,9 +4,9 @@ protocol ShopServiceV1 {
 
     func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
-    func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
-
     func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
+
+    func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
     func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void)
 
@@ -65,6 +65,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(locationLatitude            , forKey: "locationLatitude")
                     params.updateValue(locationLongitude            , forKey: "locationLongitude")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/address", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -84,39 +87,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
-    }
-
-
-    public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
-        addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(comment            , forKey: "comment")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/comment", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -129,6 +100,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(score            , forKey: "score")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -148,7 +122,42 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
+    }
+
+
+    public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
+        addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(comment            , forKey: "comment")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/comment", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
     }
 
 
@@ -164,6 +173,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/comment", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -183,7 +195,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -196,6 +208,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(question            , forKey: "question")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/question", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -215,7 +230,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -231,6 +246,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/question", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -250,7 +268,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -265,6 +283,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(colorId            , forKey: "colorId")
                     params.updateValue(count            , forKey: "count")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/product/cart", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -284,7 +305,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -297,6 +318,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(orderId            , forKey: "orderId")
                     params.updateValue(count            , forKey: "count")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/delete/product/cart", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -316,7 +340,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -327,6 +351,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     private func listProductCart(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListProductCartApi?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/product/cart", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -346,7 +373,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -359,6 +386,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(totalPrice            , forKey: "totalPrice")
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/sendtimes", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -378,7 +408,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -402,6 +432,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(locationLatitude            , forKey: "locationLatitude")
                     params.updateValue(locationLongitude            , forKey: "locationLongitude")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/update/address", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -421,7 +454,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -433,6 +466,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/delete/address", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -452,7 +488,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -463,6 +499,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     private func listAddress(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/address", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -482,7 +521,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -498,6 +537,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(addressId            , forKey: "addressId")
                     params.updateValue(price            , forKey: "price")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/finalize/order", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -517,7 +559,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -535,6 +577,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/orders", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -554,7 +599,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -567,6 +612,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(list            , forKey: "list")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/units", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -586,7 +634,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -599,6 +647,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(price            , forKey: "price")
                     params.updateValue(code            , forKey: "code")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/use/coupon", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -618,7 +669,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -631,6 +682,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     params.updateValue(state            , forKey: "state")
                     params.updateValue(cities            , forKey: "cities")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/list/cities", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -650,7 +704,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -662,6 +716,9 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(productId            , forKey: "productId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/get/product", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -681,7 +738,7 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

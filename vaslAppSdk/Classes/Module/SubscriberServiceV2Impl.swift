@@ -8,6 +8,10 @@ protocol SubscriberServiceV2 {
 
     func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
 
+    func registerOperatorSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void)
+
+    func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
+
     func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void)
 
     func activateLater(username: String, activationKey: String, activatedType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
@@ -19,10 +23,6 @@ protocol SubscriberServiceV2 {
     func checkAllUser(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void)
 
     func inactivateSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void)
-
-    func registerOperatorSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void)
-
-    func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
 
 
 }
@@ -38,6 +38,9 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
     private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/user/rightel", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -57,7 +60,7 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -72,6 +75,9 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
                     params.updateValue(shortCode            , forKey: "shortCode")
                     params.updateValue(chargeCode            , forKey: "chargeCode")
                     params.updateValue(mobileNo            , forKey: "mobileNo")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/request/charge/ondemand", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -91,7 +97,7 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -106,6 +112,9 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
                     params.updateValue(mobileNo            , forKey: "mobileNo")
                     params.updateValue(otpTransactionId            , forKey: "otpTransactionId")
                     params.updateValue(pin            , forKey: "pin")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/confirm/charge/ondemand", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -125,195 +134,7 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
-    }
-
-
-    public func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void) {
-        sendActivateCodeLater(username: username, mobile: mobile, email: email, activatedType: activatedType, completion: completion,force: true)
-    }
-    
-    private func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(mobile            , forKey: "mobile")
-                    params.updateValue(email            , forKey: "email")
-                    params.updateValue(activatedType            , forKey: "activatedType")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/send/active/code/later", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.sendActivateCodeLater(username: username, mobile: mobile, email: email, activatedType: activatedType, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func activateLater(username: String, activationKey: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
-        activateLater(username: username, activationKey: activationKey, activatedType: activatedType, completion: completion,force: true)
-    }
-    
-    private func activateLater(username: String, activationKey: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(activationKey            , forKey: "activationKey")
-                    params.updateValue(activatedType            , forKey: "activatedType")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/active/later", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.activateLater(username: username, activationKey: activationKey, activatedType: activatedType, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func loginOnceTime(username: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime?,String?) -> Void) {
-        loginOnceTime(username: username, mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func loginOnceTime(username: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/login/oncetime", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.loginOnceTime(username: username, mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func validatedOnceTime(username: String, activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
-        validatedOnceTime(username: username, activationKey: activationKey, mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func validatedOnceTime(username: String, activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(activationKey            , forKey: "activationKey")
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/validated/oncetime", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.validatedOnceTime(username: username, activationKey: activationKey, mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
-        checkAllUser(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/all/user", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkAllUser(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
-
-
-    public func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
-        inactivateSubscriber(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(mobile            , forKey: "mobile")
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/inactivate", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.inactivateSubscriber(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -324,6 +145,9 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
     private func registerOperatorSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/operators/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -343,7 +167,7 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -355,6 +179,9 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
         var params = Dictionary<String,Any>()
                     params.updateValue(activationKey            , forKey: "activationKey")
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/operators/validate", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -374,7 +201,213 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
+    }
+
+
+    public func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void) {
+        sendActivateCodeLater(username: username, mobile: mobile, email: email, activatedType: activatedType, completion: completion,force: true)
+    }
+    
+    private func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(mobile            , forKey: "mobile")
+                    params.updateValue(email            , forKey: "email")
+                    params.updateValue(activatedType            , forKey: "activatedType")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/send/active/code/later", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.sendActivateCodeLater(username: username, mobile: mobile, email: email, activatedType: activatedType, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func activateLater(username: String, activationKey: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
+        activateLater(username: username, activationKey: activationKey, activatedType: activatedType, completion: completion,force: true)
+    }
+    
+    private func activateLater(username: String, activationKey: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(activationKey            , forKey: "activationKey")
+                    params.updateValue(activatedType            , forKey: "activatedType")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/active/later", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.activateLater(username: username, activationKey: activationKey, activatedType: activatedType, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func loginOnceTime(username: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime?,String?) -> Void) {
+        loginOnceTime(username: username, mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func loginOnceTime(username: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/login/oncetime", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_LogineOnceTime
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.loginOnceTime(username: username, mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func validatedOnceTime(username: String, activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
+        validatedOnceTime(username: username, activationKey: activationKey, mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func validatedOnceTime(username: String, activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(activationKey            , forKey: "activationKey")
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/validated/oncetime", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.validatedOnceTime(username: username, activationKey: activationKey, mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
+        checkAllUser(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func checkAllUser(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/all/user", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.checkAllUser(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void) {
+        inactivateSubscriber(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func inactivateSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/inactivate", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.inactivateSubscriber(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
     }
 
 

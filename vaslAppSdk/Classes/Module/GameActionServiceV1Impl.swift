@@ -20,6 +20,9 @@ public class GameActionServiceV1Impl  : GameActionServiceV1 {
                     params.updateValue(actionKey            , forKey: "actionKey")
                     params.updateValue(actionData            , forKey: "actionData")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/game/actions/raise", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -39,7 +42,7 @@ public class GameActionServiceV1Impl  : GameActionServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

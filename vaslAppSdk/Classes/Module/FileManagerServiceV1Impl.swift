@@ -27,6 +27,9 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/create/directory", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -46,7 +49,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -58,6 +61,9 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(nextPagekey            , forKey: "nextPagekey")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -77,7 +83,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -89,6 +95,9 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/delete/directory", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -108,7 +117,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -153,6 +162,9 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(path            , forKey: "path")
                     params.updateValue(name            , forKey: "name")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/filemanager/delete/file", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -172,7 +184,7 @@ public class FileManagerServiceV1Impl  : FileManagerServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

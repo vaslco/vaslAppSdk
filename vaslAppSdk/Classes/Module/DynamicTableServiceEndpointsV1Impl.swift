@@ -2,9 +2,9 @@ import Foundation
 
 protocol DynamicTableServiceEndpointsV1 {
 
-    func endpointInsert(tableName: String, data: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
-
     func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func endpointCount(tableName: String, find: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func endpointUpdateMany(tableName: String, upsert: String, find: String, data: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -14,7 +14,7 @@ protocol DynamicTableServiceEndpointsV1 {
 
     func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func endpointCount(tableName: String, find: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func endpointInsert(tableName: String, data: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func endpointQuery(queryName: String, find: String, projection: String, sort: String, skip: String, limit: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -23,40 +23,6 @@ protocol DynamicTableServiceEndpointsV1 {
 
 
 public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV1 {
-
-
-    public func endpointInsert(tableName: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        endpointInsert(tableName: tableName, data: data, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func endpointInsert(tableName: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(tableName            , forKey: "tableName")
-                    params.updateValue(data            , forKey: "data")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/insert", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                    let serviceResponse = webServiceResult.init() 
-                    serviceResponse.parseJsonResult(dictionary)
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.endpointInsert(tableName: tableName, data: data, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.message)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
 
 
     public func endpointUpdateOne(tableName: String, upsert: String, find: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
@@ -83,6 +49,40 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.endpointUpdateOne(tableName: tableName, upsert: upsert, find: find, data: data, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func endpointCount(tableName: String, find: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        endpointCount(tableName: tableName, find: find, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func endpointCount(tableName: String, find: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(tableName            , forKey: "tableName")
+                    params.updateValue(find            , forKey: "find")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/count", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.endpointCount(tableName: tableName, find: find, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }
@@ -237,16 +237,16 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     }
 
 
-    public func endpointCount(tableName: String, find: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        endpointCount(tableName: tableName, find: find, sessionId: sessionId, completion: completion,force: true)
+    public func endpointInsert(tableName: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        endpointInsert(tableName: tableName, data: data, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func endpointCount(tableName: String, find: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func endpointInsert(tableName: String, data: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
-                    params.updateValue(find            , forKey: "find")
+                    params.updateValue(data            , forKey: "data")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/count", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/insert", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -258,7 +258,7 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.endpointCount(tableName: tableName, find: find, sessionId: sessionId, completion: completion,force: false)
+                            self.endpointInsert(tableName: tableName, data: data, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }

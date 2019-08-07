@@ -39,6 +39,7 @@ extension UUID {
         let first = firstData.withUnsafeBytes { $0.pointee } as Int64
         let second = secondData.withUnsafeBytes { $0.pointee } as Int64
         
+        
         return (first, second)
     }
 }

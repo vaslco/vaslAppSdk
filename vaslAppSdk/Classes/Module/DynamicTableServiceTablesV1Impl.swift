@@ -32,6 +32,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     private func tablesList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -51,7 +54,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -65,6 +68,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionRequired            , forKey: "sessionRequired")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/create", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -84,7 +90,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -99,6 +105,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionRequired            , forKey: "sessionRequired")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/edit", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -118,7 +127,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -130,6 +139,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/drop", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -149,7 +161,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -160,6 +172,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     private func tablesDatatypes(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDataTypes?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/datatypes", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -179,7 +194,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -191,6 +206,9 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -210,7 +228,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

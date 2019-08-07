@@ -49,6 +49,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -68,7 +71,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -80,6 +83,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(keyWord            , forKey: "keyWord")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -99,7 +105,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -109,6 +115,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     
     private func listCategoryRoots(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
         let params = Dictionary<String,Any>()
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/root", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -128,7 +137,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -140,6 +149,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/depth", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -159,7 +171,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -172,6 +184,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(keyWord            , forKey: "keyWord")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/clustered", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -191,7 +206,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -201,6 +216,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     
     private func listContentRowTypes(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void,force : Bool) {
         let params = Dictionary<String,Any>()
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/contentrow/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -220,7 +238,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -233,6 +251,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(refId            , forKey: "refId")
                     params.updateValue(content            , forKey: "content")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/add", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -252,7 +273,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -265,6 +286,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(commentId            , forKey: "commentId")
                     params.updateValue(content            , forKey: "content")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/update", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -284,7 +308,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -296,6 +320,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(commentId            , forKey: "commentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/remove", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -315,7 +342,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -330,6 +357,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -349,7 +379,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -370,6 +400,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(keyWord            , forKey: "keyWord")
                     params.updateValue(categoryKey            , forKey: "categoryKey")
                     params.updateValue(contentsRandomNumber            , forKey: "contentsRandomNumber")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -389,7 +422,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -406,6 +439,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(isRandom            , forKey: "isRandom")
                     params.updateValue(contentsRandomNumber            , forKey: "contentsRandomNumber")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/list/location", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -425,7 +461,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -438,6 +474,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(score            , forKey: "score")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/rating", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -457,7 +496,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -469,6 +508,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/like", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -488,7 +530,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -500,6 +542,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(contentId            , forKey: "contentId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -519,7 +564,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -533,6 +578,9 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -552,7 +600,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

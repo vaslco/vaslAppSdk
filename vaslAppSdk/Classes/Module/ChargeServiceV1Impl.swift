@@ -26,6 +26,9 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
                     params.updateValue(topup            , forKey: "topup")
                     params.updateValue(merchant            , forKey: "merchant")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/optcharge/buy", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -45,7 +48,7 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -64,6 +67,9 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
                     params.updateValue(status            , forKey: "status")
                     params.updateValue(refIdHolder            , forKey: "refIdHolder")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/optcharge/callback/gateway", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -83,7 +89,7 @@ public class ChargeServiceV1Impl  : ChargeServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

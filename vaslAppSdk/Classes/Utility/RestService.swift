@@ -81,21 +81,23 @@ struct RestService {
         params.updateValue(getAppIdString()                               , forKey:  "appid")
         return params
     }
+    
     fileprivate static func addNounceHeader(_ type : contentType) -> Dictionary<String,String> {
+        
         var params = Dictionary<String,String>()
         let generator = NonceGenerator(nounce)
         var signature = String()
         var cNonce = String()
         var cTime = Int64()
         var requestId = String()
+        let clientId = String()
         if let sig = generator.generateSignature() as String? {
             signature = sig
             cNonce = generator.cNonce
-            print(generator.nonce)
             cTime = generator.cTime
             requestId = generator.requestId
-      
-            
+            self.clientId = generator.clientId
+ 
         }
         switch type {
         case .Ouath:
@@ -116,16 +118,16 @@ struct RestService {
         default:
         
             if signature.isEmpty{
-                params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
-                params.updateValue("application/octet-stream"                           , forKey:  "accept")
+                params.updateValue("application/x-www-form-urlencoded"               , forKey:  "content-type")
+                params.updateValue("application/octet-stream"                        , forKey:  "accept")
             }else{
-                params.updateValue("application/x-www-form-urlencoded"                  , forKey:  "content-type")
-                params.updateValue("application/octet-stream"                           , forKey:  "accept")
-                params.updateValue(signature                                            , forKey: "signature")
-                params.updateValue(clientId                                             , forKey: "clientId")
-                params.updateValue(cNonce                                                 , forKey: "cNonce")
-                params.updateValue(String(cTime)                                           , forKey: "cTime")
-                params.updateValue(requestId                                           , forKey: "requestId")
+                params.updateValue("application/x-www-form-urlencoded"               , forKey:  "content-type")
+                params.updateValue("application/octet-stream"                        , forKey:  "accept")
+                params.updateValue(signature                                         , forKey: "signature")
+                params.updateValue(self.clientId                                     , forKey: "clientId")
+                params.updateValue(cNonce                                            , forKey: "cNonce")
+                params.updateValue(String(cTime)                                     , forKey: "cTime")
+                params.updateValue(requestId                                         , forKey: "requestId")
             }
       
             
@@ -224,7 +226,7 @@ struct RestService {
         }
     }
     
-    public static func post(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool,_ type : contentType = .protocolBuffer){
+    public static func post(url: String,_ parameters : Dictionary<String,Any>, completion: @escaping CompletionProtoHandler,_ force : Bool, _ hasNounce : Bool,_ type : contentType = .protocolBuffer ){
         if !isInternetAvailable() {
             completion(nil,"error internet connection")
         }
@@ -234,16 +236,15 @@ struct RestService {
                     
                     var headers = Dictionary<String,String>()
                     
-                    
-                    if url.contains("subscriber/operators/register") {
+                    if hasNounce == true {
                         
                         headers = addNounceHeader(type)
                         
                     }else{
                         
                         headers = addHeader(type)
-                        
                     }
+                    
                     let request = Alamofire.request(urls, method: .post, parameters: parameters, headers: headers)
                     if let request = request as DataRequest? {
                         let start = CACurrentMediaTime()

@@ -22,6 +22,9 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
     private func userStatus(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_UserStatus?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/users/status", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -41,7 +44,7 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -53,6 +56,9 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
         var params = Dictionary<String,Any>()
                     params.updateValue(tags            , forKey: "tags")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/users/add/tags", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -72,7 +78,7 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -85,6 +91,9 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
                     params.updateValue(tags            , forKey: "tags")
                     params.updateValue(forEveryOne            , forKey: "forEveryOne")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/users/delete/tags", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -104,7 +113,7 @@ public class GameUserServiceV2Impl  : GameUserServiceV2 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

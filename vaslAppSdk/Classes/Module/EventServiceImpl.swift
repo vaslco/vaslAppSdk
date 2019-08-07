@@ -20,6 +20,9 @@ public class EventServiceImpl  : EventService {
                     params.updateValue(key            , forKey: "key")
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/event/time/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -39,7 +42,7 @@ public class EventServiceImpl  : EventService {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

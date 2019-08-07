@@ -8,7 +8,8 @@
 import Foundation
 import CommonCrypto
 
-public class NonceGenerator  {
+public class NonceGenerator {
+    
     //Mark : Upper case english alphabet
     public var upper = String()
     
@@ -30,25 +31,22 @@ public class NonceGenerator  {
     //Mark: timestamp as miliseconds
     public var cTime = Int64()
     
-    //Mark : UUID
+    //Mark : requestId as String
     public var requestId = String()
     
+    //Mark : clientId as string (an unique device id)
     public var clientId = String()
     
+    //Mark : signature as String
     public var signature = String()
+
+    //Mark : Default nounce
+    //FPLFJ0pCx6
     
     
-    
-    
- 
-    
-    
-    
-        //FPLFJ0pCx6
-    
-    
-    
-    public init(_ nounce : String) {
+    //Mark : Init
+    public init(_ nounce : String ) {
+        //Mark : define values for variables
         upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         lower = upper.lowercased()
         digits = "0123456789"
@@ -58,43 +56,42 @@ public class NonceGenerator  {
             cNonce = str
         }
         cTime = Date().currentTimeStamp()
-        clientId = RestService.clientId
-        
-        
+        generateClientId()
+      
     }
     
+    //Mark: This function generates random string with custom length
         func generateRandomString(_ length : Int) -> String {
-            
             return String((0..<length).map{ _ in alphanum.randomElement()! })
-            
         }
     
-    
-    func generateRequestId (_ nonce : String , _ clientId : String) -> String {
-        let combinedString = nonce + clientId
-        let finalString = combinedString.md5
-        return finalString
+    //Mark: This function generates an unique device Id
+    func generateClientId(){
+        let uniqueId = NSUUID.init().uuidString
+        let newId = uniqueId.replacingOccurrences(of: "-", with: "")
+        self.clientId = newId
+        debugPrint(clientId)
     }
     
+    
+    //Mark: This function generates signature
    public func generateSignature() -> String{
         
-        let uuid = UUIDTimeBasedGenerator()
+    let uuid = UUIDTimeBasedGenerator()
+    
     if nonce.isEmpty{
         signature = ""
         requestId = ""
         cTime = 0
         cNonce = ""
-        validate(nonce, clientId, cNonce, cTime: Int(cTime), requestId, signature)
     }else{
         if let uuidGen = uuid.generateIdFromTimestamp(clientId, cNonce, cTime) as UUID? {
             requestId = uuidGen.uuidString.replacingOccurrences(of: "-", with: "")
             let combinationString = cNonce + "|" + nonce + "|" + clientId + "|" + requestId
             signature = combinationString.md5
-            validate(nonce, clientId, cNonce, cTime: Int(cTime), requestId, signature)
         }
     }
-    
-        
+  
         return signature
         
     }
@@ -102,6 +99,7 @@ public class NonceGenerator  {
     
 }
 
+//Mark: This function validate our nounce generation progress
 public func validate(_ nonce :String , _ clientId : String , _ cNonce : String , cTime : Int , _ requestId : String , _ signature: String){
     
     if clientId.count <= 8 || clientId.count >= 64 {
@@ -124,33 +122,36 @@ public func validate(_ nonce :String , _ clientId : String , _ cNonce : String ,
             }
         }
         if requestId.count != 32 {
+            debugPrint("Invalid requestId")
+        }else{
+            
             if !requestId.isEmpty{
                 debugPrint("Invalid requestId(Inavlid Length)")
                 let range1 = requestId.index(requestId.startIndex, offsetBy: 8)
+                let str1 = requestId[..<range1]
                 let range2 = requestId.index(range1, offsetBy: 4)
+                let str2 = requestId[range1...range2]
                 let range3 = requestId.index(range2, offsetBy: 4)
+                let str3 = requestId[range2...range3]
                 let range4 = requestId.index(range3, offsetBy: 4)
-                let substring1 = requestId[range1]
-                let substring2 = requestId[range2]
-                let substring3 = requestId[range3]
-                let substring4 = requestId[range4]
+                let str4 = requestId[range3...range4]
                 var req = String()
-                req.append(substring1)
+                
+                req.append(String(str1))
                 req.append("-")
-                req.append(substring2)
+                req.append(String(str2))
                 req.append("-")
-                req.append(substring3)
+                req.append(String(str3))
                 req.append("-")
-                req.append(substring4)
+                req.append(String(str4))
                 let uuid = UUID(uuidString: req)
                 if (uuid?.uuidString.isEmpty)!{
                     print("Invalid requestId(format invalid)")
                 }
-                 print("Invalid requestId(format invalid)")
+                print("Invalid requestId(format invalid)")
             }
-
-      
-        }
+            
+    }
     }
     
 

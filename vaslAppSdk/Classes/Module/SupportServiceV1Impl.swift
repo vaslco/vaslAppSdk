@@ -26,6 +26,30 @@ protocol SupportServiceV1 {
 
     func directGetThread(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread?,String?) -> Void)
 
+    func listTicketingIssue(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketingIssue?,String?) -> Void)
+
+    func createTicket(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func getMyTicketDataById(ticketId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetTicketData?,String?) -> Void)
+
+    func listMyTickets(page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMyTickets?,String?) -> Void)
+
+    func listMyTicketConversations(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketConversations?,String?) -> Void)
+
+    func createTicketConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func listMyMessageCategories(page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void)
+
+    func listMyMessageDetails(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void)
+
+    func GetSupportThreadId(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void)
+
+    func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func seenMessageOfConversation(messageId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage?,String?) -> Void)
+
+    func getChatMessages(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void)
+
 
 }
 
@@ -43,6 +67,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/createIssue", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -62,7 +89,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -74,6 +101,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listIssue", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -93,7 +123,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -107,6 +137,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     params.updateValue(subject            , forKey: "subject")
                     params.updateValue(description            , forKey: "description")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/editIssue", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -126,7 +159,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -138,6 +171,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/removeIssue", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -157,7 +193,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -207,6 +243,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listMyThreads", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -226,7 +265,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -238,6 +277,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/getMyThreadDataById", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -257,7 +299,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -270,6 +312,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(status            , forKey: "status")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/changeMyThreadStatus", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -289,7 +334,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -336,6 +381,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listMyThreadConversations", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -355,7 +403,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -366,6 +414,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     private func readThreadConversation(messageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ReadThreadConversation?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(messageId            , forKey: "messageId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/readThreadConversation", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -385,7 +436,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -396,6 +447,9 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     private func directGetThread(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_DirectGetThread?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/directGetThread", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -415,7 +469,420 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             }catch{
                 completion(nil,"")
             }
+        }, force,hasNounce)
+    }
+
+
+    public func listTicketingIssue(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketingIssue?,String?) -> Void) {
+        listTicketingIssue(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listTicketingIssue(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketingIssue?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/ticketing/listIssue", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketingIssue(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketingIssue
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listTicketingIssue(id: id, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func createTicket(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        createTicket(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func createTicket(issueId: String, priority: String, subject: String, description: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(issueId            , forKey: "issueId")
+                    params.updateValue(priority            , forKey: "priority")
+                    params.updateValue(subject            , forKey: "subject")
+                    params.updateValue(description            , forKey: "description")
+                    params.updateValue(attachment            , forKey: "attachment")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/ticketing/createTicket", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.createTicket(issueId: issueId, priority: priority, subject: subject, description: description, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
         }, force)
+    }
+
+
+    public func getMyTicketDataById(ticketId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetTicketData?,String?) -> Void) {
+        getMyTicketDataById(ticketId: ticketId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getMyTicketDataById(ticketId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetTicketData?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(ticketId            , forKey: "ticketId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/ticketing/getTicketDataById", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetTicketData(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetTicketData
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getMyTicketDataById(ticketId: ticketId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func listMyTickets(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMyTickets?,String?) -> Void) {
+        listMyTickets(page: page, type: type, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listMyTickets(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMyTickets?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(type            , forKey: "type")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/listMyTickets", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMyTickets(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMyTickets
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMyTickets(page: page, type: type, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func listMyTicketConversations(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketConversations?,String?) -> Void) {
+        listMyTicketConversations(threadId: threadId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listMyTicketConversations(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketConversations?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/ticketing/listMyTicketConersations", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketConversations(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListTicketConversations
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMyTicketConversations(threadId: threadId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func createTicketConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        createTicketConversation(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func createTicketConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(message            , forKey: "message")
+                    params.updateValue(attachment            , forKey: "attachment")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/ticketing/createTicketConversation", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.createTicketConversation(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func listMyMessageCategories(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void) {
+        listMyMessageCategories(page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listMyMessageCategories(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/messaging/listMyMessageCategories", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMyMessageCategories(page: page, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func listMyMessageDetails(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void) {
+        listMyMessageDetails(threadId: threadId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listMyMessageDetails(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/messaging/listMyMessageDetails", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMyMessageDetails(threadId: threadId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func GetSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void) {
+        GetSupportThreadId(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func GetSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/chatting/getSupportThreadId", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.GetSupportThreadId(sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        createMessage(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(message            , forKey: "message")
+                    params.updateValue(attachment            , forKey: "attachment")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+        RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/chatting/sendMessage", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.createMessage(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.message)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force)
+    }
+
+
+    public func seenMessageOfConversation(messageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage?,String?) -> Void) {
+        seenMessageOfConversation(messageId: messageId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func seenMessageOfConversation(messageId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(messageId            , forKey: "messageId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/chatting/seenMessage", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.seenMessageOfConversation(messageId: messageId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void) {
+        getChatMessages(threadId: threadId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/support/chatting/getChatMessages", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getChatMessages(threadId: threadId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
     }
 
 

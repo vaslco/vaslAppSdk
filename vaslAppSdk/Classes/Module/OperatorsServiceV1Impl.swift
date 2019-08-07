@@ -26,6 +26,9 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
     private func sendOtpRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  true
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -45,7 +48,7 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -57,6 +60,9 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(activationKey            , forKey: "activationKey")
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/validate", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -76,7 +82,7 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -87,6 +93,9 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
     private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/check/user/rightel", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -106,7 +115,7 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -121,6 +130,9 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
                     params.updateValue(shortCode            , forKey: "shortCode")
                     params.updateValue(chargeCode            , forKey: "chargeCode")
                     params.updateValue(mobileNo            , forKey: "mobileNo")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/request/charge/ondemand", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -140,7 +152,7 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -155,6 +167,9 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
                     params.updateValue(mobileNo            , forKey: "mobileNo")
                     params.updateValue(otpTransactionId            , forKey: "otpTransactionId")
                     params.updateValue(pin            , forKey: "pin")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/confirm/charge/ondemand", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -174,7 +189,7 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

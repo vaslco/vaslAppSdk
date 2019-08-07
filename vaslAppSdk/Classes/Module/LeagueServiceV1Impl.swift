@@ -31,6 +31,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -50,7 +53,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -62,6 +65,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -81,7 +87,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -93,6 +99,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/reward/list", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -112,7 +121,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -124,6 +133,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -143,7 +155,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -155,6 +167,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(leagueId            , forKey: "leagueId")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/question/next", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -174,7 +189,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -188,6 +203,9 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
                     params.updateValue(questionId            , forKey: "questionId")
                     params.updateValue(answer            , forKey: "answer")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/answer", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -207,7 +225,7 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

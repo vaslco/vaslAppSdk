@@ -17,6 +17,9 @@ public class AppServicesImpl  : AppServices {
     
     private func nearLocation(completion: @escaping (Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_TimeGet?,String?) -> Void,force : Bool) {
         let params = Dictionary<String,Any>()
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/app/time/get", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -36,7 +39,7 @@ public class AppServicesImpl  : AppServices {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

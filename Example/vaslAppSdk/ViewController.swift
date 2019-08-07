@@ -11,15 +11,26 @@ import vaslAppSdk
 
 class ViewController: UIViewController {
 
-    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
-    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
-    let password                   = "g8tlaUJba0UYUJjPZp5Z"
+//    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+//    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+//    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
+//    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
+//    let password                   = "g8tlaUJba0UYUJjPZp5Z"
     
-
+    
+//    //sandbox
+    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
+    let username                   = "ios-42INKrpAH3stIaYbGTGJ"
+    let password                   = "fH0DAMfU5QXtoz7zTteJ"
+//http://sandbox.vaslapp.com
+    //http://server.vaslapp.hambazisho.ir
    
     var vmbas : VaslSdk!
+    
+    
+    var generator = NonceGenerator("FPLFJ0pCx6")
 
 
     
@@ -29,27 +40,51 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        if let generatedData = generator.generateSignature() as String?{
+//
+//            debugPrint(generatedData)
+//        }
 
+        
+        
         vmbas = VaslSdk.init(appId: appid,
-                            baseUrl: "http://server.vaslapp.hambazisho.ir",
+                             baseUrl: "http://sandbox.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
-                            password: password, nounce: "")
+                            password: password, nounce: "FPLFJ0pCx6")
+        
+        
+//        vmbas.HambaziService()?.pageGet(key: "PAGE_DETAILS", catId: "5d1352a82f59d8000941fd27", subscriberId: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//                for item in data!.data{
+//                    for data in item.items{
+//                        debugPrint(data.hasChild_p)
+//                    }
+//                }
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
         
         
         
-
-        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
+//
+        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
             if error == nil{
-                
+
                 debugPrint(data?.msg)
                 debugPrint("it's working fucking awesome bitch ")
-                
+
             }else{
                 print(error!)
             }
         })
+        
+        
+        
         
         
         
@@ -88,6 +123,9 @@ class ViewController: UIViewController {
         
 //        vmbas.HambaziService()?.videoList(page: "1", sort: "", order: "", subscriberType: "", catId: "5d0a2db52589910009612b82", hambaziStatus: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{
+//                for item in data!.data{
+//                    debugPrint(item)
+//                }
 //               debugPrint("success")
 //            }else{
 //                print(error!)
@@ -141,7 +179,7 @@ class ViewController: UIViewController {
 //            }
 //        })
         
-        
+//        
 //        vmbas.HambaziService()?.pageGet(key: "PAGE_SUBSCRIBER_PROFILE", catId: "", subscriberId: "5cfc9f6529f7d500098049e6", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{
 //                for item in data!.data{
@@ -149,6 +187,14 @@ class ViewController: UIViewController {
 //
 //                }
 //
+//            }else{
+//                print(error!)
+//            }
+//        })
+        
+//        vmbas.HambaziService()?.subscriberUserProfile(subscriberId: "5d0a1f2d9ee7e700099c5f70", completion: { (data, error) in
+//            if error == nil{
+//                debugPrint(data?.data)
 //            }else{
 //                print(error!)
 //            }
@@ -282,31 +328,42 @@ class ViewController: UIViewController {
 //                print(error!)
 //            }
 //        })
+        
+//        vmbas.gameUserServiceV2()?.userStatus(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
+//            if error == nil{
+//
+//                debugPrint(data)
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
 //
 //        vmbas.SubscriberService()?.getProfileInfo(sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil {
 //
-//                let datas = data?.profileInfo.data
-//                for item in datas! {
-//                    print(item.key)
-//                    print(item.value)
-//                }
-//
-//               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-//                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
-//                    do{
-//                        let image = try Data(contentsOf: url)
-//                        DispatchQueue.main.async {
-//                            imageView.image = UIImage(data: image)
-//                        }
-//
-//                    }catch{
-//                        print(error)
-//                    }
-//                self.view.addSubview(imageView)
-//
-//
-//                }
+//                debugPrint(data)
+////                let datas = data?.profileInfo.data
+////                for item in datas! {
+////                    print(item.key)
+////                    print(item.value)
+////                }
+////
+////               let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+////                if let url = URL(string: (data?.profileInfo.picture[0].url)!){
+////                    do{
+////                        let image = try Data(contentsOf: url)
+////                        DispatchQueue.main.async {
+////                            imageView.image = UIImage(data: image)
+////                        }
+////
+////                    }catch{
+////                        print(error)
+////                    }
+////                self.view.addSubview(imageView)
+////
+////
+////                }
 //
 //
 //            }else{

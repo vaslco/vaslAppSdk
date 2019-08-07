@@ -29,6 +29,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(userId            , forKey: "userId")
                     params.updateValue(campaignId            , forKey: "campaignId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/create/link", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -48,7 +51,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -60,6 +63,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(userId            , forKey: "userId")
                     params.updateValue(campaignId            , forKey: "campaignId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/create/code", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -79,7 +85,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -92,6 +98,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
                     params.updateValue(inviterUserId            , forKey: "inviterUserId")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/invite/view", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -111,7 +120,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -124,6 +133,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
                     params.updateValue(code            , forKey: "code")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/registerCode", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -143,7 +155,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -156,6 +168,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
                     params.updateValue(inviterUserId            , forKey: "inviterUserId")
                     params.updateValue(invitedUserId            , forKey: "invitedUserId")
                     params.updateValue(campaignId            , forKey: "campaignId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/invite/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -175,7 +190,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -187,6 +202,9 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/list/campaign", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -206,7 +224,7 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

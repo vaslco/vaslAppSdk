@@ -80,6 +80,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(email            , forKey: "email")
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(registrationType            , forKey: "registrationType")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -99,7 +102,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -110,6 +113,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -129,7 +135,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -144,6 +150,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(email            , forKey: "email")
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(registrationType            , forKey: "registrationType")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/registerWithoutSubscriberType", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -163,7 +172,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -175,6 +184,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(activationKey            , forKey: "activationKey")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activate", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -194,7 +206,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -206,6 +218,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(national_id            , forKey: "national_id")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/registerWithNationalId", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -225,7 +240,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -240,6 +255,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(serviceType            , forKey: "serviceType")
                     params.updateValue(identificationType            , forKey: "identificationType")
                     params.updateValue(identificationNo            , forKey: "identificationNo")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/checkShahkar", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -259,7 +277,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -271,6 +289,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(activationKey            , forKey: "activationKey")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activateAndLoginForNationalId", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -290,7 +311,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -344,6 +365,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func getProfileInfo(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfo", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -363,7 +387,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -406,6 +430,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func getProfileInfoJson(subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoJsonModel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(subscriberId            , forKey: "subscriberId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/getprofileinfojson", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -425,7 +452,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -437,6 +464,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(activationKey            , forKey: "activationKey")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activateandlogin", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -456,7 +486,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -468,6 +498,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
                     params.updateValue(password            , forKey: "password")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbyusername", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -487,7 +520,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -499,6 +532,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
                     params.updateValue(password            , forKey: "password")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbyemail", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -518,7 +554,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -530,6 +566,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
                     params.updateValue(password            , forKey: "password")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbymobile", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -549,7 +588,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -561,6 +600,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(idToken            , forKey: "idToken")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/loginbygoogle", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -580,7 +622,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -591,6 +633,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func logout(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Logout?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/logout", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -610,7 +655,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -621,6 +666,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func validateUsername(username: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateUsername?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validateusername", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -640,7 +688,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -651,6 +699,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func validateEmail(email: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateEmail?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validateemail", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -670,7 +721,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -681,6 +732,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func validateMobile(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateMobile?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/validatemobile", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -700,7 +754,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -711,6 +765,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func resend(subscriberId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Resend?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(subscriberId            , forKey: "subscriberId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/resend", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -730,7 +787,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -741,6 +798,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func resendByUsername(username: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Resend?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(username            , forKey: "username")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/resendbyusername", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -760,7 +820,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -771,6 +831,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func forgotPasswordByEmail(email: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ForgotPassword?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(email            , forKey: "email")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/forgotpasswordbyemail", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -790,7 +853,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -801,6 +864,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func forgotPasswordByMobile(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ForgotPassword?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/forgotpasswordbymobile", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -820,7 +886,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -833,6 +899,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(oldPassword            , forKey: "oldPassword")
                     params.updateValue(newPassword            , forKey: "newPassword")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/changepassword", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -852,7 +921,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -864,6 +933,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(username            , forKey: "username")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/changeusername", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -883,7 +955,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -901,6 +973,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     params.updateValue(password            , forKey: "password")
                     params.updateValue(clientName            , forKey: "clientName")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/mobileconnect/client/create", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -920,7 +995,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -931,6 +1006,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func mobileconnectAuthToken(authorization_code: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_AuthToken?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(authorization_code            , forKey: "authorization_code")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/mobileconnect/auth/token", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -950,7 +1028,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -961,6 +1039,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     private func registerOperatorSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  true
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/operators/register", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -980,7 +1061,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
@@ -992,6 +1073,9 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
         var params = Dictionary<String,Any>()
                     params.updateValue(activationKey            , forKey: "activationKey")
                     params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/operators/validate", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -1011,7 +1095,7 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 

@@ -22,6 +22,9 @@ public class DynamicLinkServiceV1Impl  : DynamicLinkServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(expireDate            , forKey: "expireDate")
                     params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
         RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamiclink/add", params, completion: { (result, error) in
             do{
                 if let result = result {
@@ -41,7 +44,7 @@ public class DynamicLinkServiceV1Impl  : DynamicLinkServiceV1 {
             }catch{
                 completion(nil,"")
             }
-        }, force)
+        }, force,hasNounce)
     }
 
 
