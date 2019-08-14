@@ -2688,6 +2688,8 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Banner {
 
   public var catID: String = String()
 
+  public var hlsURL: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -9073,6 +9075,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Banner: SwiftProtobuf.M
     6: .same(proto: "imageUrl"),
     7: .same(proto: "type"),
     8: .same(proto: "catId"),
+    9: .same(proto: "hlsUrl"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9086,6 +9089,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Banner: SwiftProtobuf.M
       case 6: try decoder.decodeSingularStringField(value: &self.imageURL)
       case 7: try decoder.decodeSingularStringField(value: &self.type)
       case 8: try decoder.decodeSingularStringField(value: &self.catID)
+      case 9: try decoder.decodeSingularStringField(value: &self.hlsURL)
       default: break
       }
     }
@@ -9116,6 +9120,9 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Banner: SwiftProtobuf.M
     if !self.catID.isEmpty {
       try visitor.visitSingularStringField(value: self.catID, fieldNumber: 8)
     }
+    if !self.hlsURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.hlsURL, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9128,6 +9135,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Banner: SwiftProtobuf.M
     if lhs.imageURL != rhs.imageURL {return false}
     if lhs.type != rhs.type {return false}
     if lhs.catID != rhs.catID {return false}
+    if lhs.hlsURL != rhs.hlsURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

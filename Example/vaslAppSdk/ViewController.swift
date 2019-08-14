@@ -72,6 +72,11 @@ class ViewController: UIViewController {
         
         
 //
+        
+        
+        
+        
+        
         vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
             if error == nil{
 

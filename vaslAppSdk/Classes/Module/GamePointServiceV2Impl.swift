@@ -2,19 +2,53 @@ import Foundation
 
 protocol GamePointServiceV2 {
 
+    func listPointsPackages(tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void)
+
     func gamePayment(packageId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
     func confirmPackagePayment(orderId: String, transActionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
     func gameCafePurchaseValidation(packageName: String, productId: String, purchaseToken: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_CheckOrderPaymentStatus?,String?) -> Void)
 
-    func listPointsPackages(tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void)
-
 
 }
 
 
 public class GamePointServiceV2Impl  : GamePointServiceV2 {
+
+
+    public func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void) {
+        listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(tag            , forKey: "tag")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/rp/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func gamePayment(packageId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
@@ -107,40 +141,6 @@ public class GamePointServiceV2Impl  : GamePointServiceV2 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.gameCafePurchaseValidation(packageName: packageName, productId: productId, purchaseToken: purchaseToken, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void) {
-        listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func listPointsPackages(tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(tag            , forKey: "tag")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/points/rp/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_ListPackageGamePoint
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.listPointsPackages(tag: tag, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
