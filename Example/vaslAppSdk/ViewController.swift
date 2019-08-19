@@ -11,20 +11,20 @@ import vaslAppSdk
 
 class ViewController: UIViewController {
 
-//    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-//    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-//    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
-//    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
-//    let password                   = "g8tlaUJba0UYUJjPZp5Z"
+    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
+    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
+    let password                   = "g8tlaUJba0UYUJjPZp5Z"
     
     
-//    //sandbox
-    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
-    let username                   = "ios-42INKrpAH3stIaYbGTGJ"
-    let password                   = "fH0DAMfU5QXtoz7zTteJ"
-//http://sandbox.vaslapp.com
+////    //sandbox
+//    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+//    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+//    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
+//    let username                   = "ios-42INKrpAH3stIaYbGTGJ"
+//    let password                   = "fH0DAMfU5QXtoz7zTteJ"
+////http://sandbox.vaslapp.com
     //http://server.vaslapp.hambazisho.ir
    
     var vmbas : VaslSdk!
@@ -49,12 +49,14 @@ class ViewController: UIViewController {
         
         
         vmbas = VaslSdk.init(appId: appid,
-                             baseUrl: "http://sandbox.vaslapp.com",
+                             baseUrl: "http://server.vaslapp.hambazisho.ir",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password, nounce: "FPLFJ0pCx6")
         
+
+ 
         
 //        vmbas.HambaziService()?.pageGet(key: "PAGE_DETAILS", catId: "5d1352a82f59d8000941fd27", subscriberId: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{
@@ -76,17 +78,17 @@ class ViewController: UIViewController {
         
         
         
-        
-        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
-            if error == nil{
-
-                debugPrint(data?.msg)
-                debugPrint("it's working fucking awesome bitch ")
-
-            }else{
-                print(error!)
-            }
-        })
+//
+//        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
+//            if error == nil{
+//
+//                debugPrint(data?.msg)
+//                debugPrint("it's working fucking awesome bitch ")
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
         
         
         

@@ -40,9 +40,9 @@ protocol SupportServiceV1 {
 
     func listMyMessageCategories(page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void)
 
-    func listMyMessageDetails(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void)
+    func listMyMessageDetails(threadId: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void)
 
-    func GetSupportThreadId(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void)
+    func getSupportThreadId(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void)
 
     func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -716,13 +716,14 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func listMyMessageDetails(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void) {
-        listMyMessageDetails(threadId: threadId, sessionId: sessionId, completion: completion,force: true)
+    public func listMyMessageDetails(threadId: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void) {
+        listMyMessageDetails(threadId: threadId, page: page, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listMyMessageDetails(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void,force : Bool) {
+    private func listMyMessageDetails(threadId: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
+                    params.updateValue(page            , forKey: "page")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
@@ -737,7 +738,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listMyMessageDetails(threadId: threadId, sessionId: sessionId, completion: completion,force: false)
+                            self.listMyMessageDetails(threadId: threadId, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -750,11 +751,11 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func GetSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void) {
-        GetSupportThreadId(sessionId: sessionId, completion: completion,force: true)
+    public func getSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void) {
+        getSupportThreadId(sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func GetSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void,force : Bool) {
+    private func getSupportThreadId(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
 
@@ -770,7 +771,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.GetSupportThreadId(sessionId: sessionId, completion: completion,force: false)
+                            self.getSupportThreadId(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
