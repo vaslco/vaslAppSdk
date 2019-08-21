@@ -6,8 +6,6 @@ protocol billing {
 
     func increaseBalance(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
 
-    func checkServiceAvailability(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void)
-
     func getAccountListAdmin(id: String, userId: String, credit: String, debit: String, balance: String, type: String, lastUpdateTime: String, insertTime: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_AccountList?,String?) -> Void)
 
     func getTransactionList(id: String, ipgTransactionId: String, amount: String, operationType: String, transactionStatus: String, startInsertTime: String, endInsertTime: String, startPaymentSuccessTime: String, endPaymentSuccessTime: String, orderId: String, packageId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_TransactionList?,String?) -> Void)
@@ -79,39 +77,6 @@ public class billingImpl  : billing {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.increaseBalance(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func checkServiceAvailability(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void) {
-        checkServiceAvailability(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func checkServiceAvailability(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/checkServiceAvailability", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_BaseMessage
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkServiceAvailability(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

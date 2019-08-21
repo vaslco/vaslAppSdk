@@ -44,11 +44,11 @@ protocol SupportServiceV1 {
 
     func getSupportThreadId(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetSupportThreadId?,String?) -> Void)
 
-    func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func createMessage(threadId: String, message: String, attachment: NSData, status: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func seenMessageOfConversation(messageId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_SeenMessage?,String?) -> Void)
 
-    func getChatMessages(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void)
+    func getChatMessages(threadId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesApi?,String?) -> Void)
 
 
 }
@@ -784,15 +784,16 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        createMessage(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: true)
+    public func createMessage(threadId: String, message: String, attachment: NSData, status: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        createMessage(threadId: threadId, message: message, attachment: attachment, status: status, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createMessage(threadId: String, message: String, attachment: NSData, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func createMessage(threadId: String, message: String, attachment: NSData, status: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(message            , forKey: "message")
                     params.updateValue(attachment            , forKey: "attachment")
+                    params.updateValue(status            , forKey: "status")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postMultiPart(url: PublicValue.getUrlBase() + "/api/v1/support/chatting/sendMessage", params, completion: { (result, error) in
             do{
@@ -806,7 +807,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.createMessage(threadId: threadId, message: message, attachment: attachment, sessionId: sessionId, completion: completion,force: false)
+                            self.createMessage(threadId: threadId, message: message, attachment: attachment, status: status, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }
@@ -853,11 +854,11 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void) {
+    public func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesApi?,String?) -> Void) {
         getChatMessages(threadId: threadId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages?,String?) -> Void,force : Bool) {
+    private func getChatMessages(threadId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesApi?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(threadId            , forKey: "threadId")
                     params.updateValue(sessionId            , forKey: "sessionId")
@@ -868,7 +869,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesApi(serializedData: result) as Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesApi
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)

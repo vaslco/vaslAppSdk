@@ -394,6 +394,10 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventIt
 
   public var title: String = String()
 
+  public var eventStatus: String = String()
+
+  public var subscriberStatus: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1225,6 +1229,8 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "eventId"),
     2: .same(proto: "title"),
+    3: .same(proto: "eventStatus"),
+    4: .same(proto: "subscriberStatus"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1232,6 +1238,8 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.eventID)
       case 2: try decoder.decodeSingularStringField(value: &self.title)
+      case 3: try decoder.decodeSingularStringField(value: &self.eventStatus)
+      case 4: try decoder.decodeSingularStringField(value: &self.subscriberStatus)
       default: break
       }
     }
@@ -1244,12 +1252,20 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
     if !self.title.isEmpty {
       try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
     }
+    if !self.eventStatus.isEmpty {
+      try visitor.visitSingularStringField(value: self.eventStatus, fieldNumber: 3)
+    }
+    if !self.subscriberStatus.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberStatus, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem, rhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem) -> Bool {
     if lhs.eventID != rhs.eventID {return false}
     if lhs.title != rhs.title {return false}
+    if lhs.eventStatus != rhs.eventStatus {return false}
+    if lhs.subscriberStatus != rhs.subscriberStatus {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

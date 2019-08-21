@@ -78,17 +78,17 @@ class ViewController: UIViewController {
         
         
         
-//
-//        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
-//            if error == nil{
-//
-//                debugPrint(data?.msg)
-//                debugPrint("it's working fucking awesome bitch ")
-//
-//            }else{
-//                print(error!)
-//            }
-//        })
+
+        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
+            if error == nil{
+
+                debugPrint(data?.msg)
+                debugPrint("it's working fucking awesome bitch ")
+
+            }else{
+                print(error!)
+            }
+        })
         
         
         
