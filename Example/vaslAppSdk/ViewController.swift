@@ -11,12 +11,13 @@ import vaslAppSdk
 
 class ViewController: UIViewController {
 
-    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
-    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
-    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
-    let password                   = "g8tlaUJba0UYUJjPZp5Z"
+//    let appid                      = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+//    let clientId                   = "05e1d1a5-0996-4ddf-aae9-b75684d3e5ac"
+//    let clientSecret               = "sLno6YNtO7Np5H1c2f9G"
+//    let username                   = "ios-HhwEoPYR7HW1yJ6DkKo9"
+//    let password                   = "g8tlaUJba0UYUJjPZp5Z"
     
+    //41accbbe-6813-41c6-8e00-105647ca6fc3
     
 ////    //sandbox
 //    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
@@ -26,6 +27,12 @@ class ViewController: UIViewController {
 //    let password                   = "fH0DAMfU5QXtoz7zTteJ"
 ////http://sandbox.vaslapp.com
     //http://server.vaslapp.hambazisho.ir
+    
+    let appid                      = "41accbbe-6813-41c6-8e00-105647ca6fc3"
+    let clientId                   = "41accbbe-6813-41c6-8e00-105647ca6fc3"
+    let clientSecret               = "HCqsXXgVnYM1nIjKumQl"
+    let username                   = "ios-cjAsYOdh7VCq5Wv68JKc"
+    let password                   = "TebUjYgfN1susmBKEMms"
    
     var vmbas : VaslSdk!
     
@@ -49,7 +56,7 @@ class ViewController: UIViewController {
         
         
         vmbas = VaslSdk.init(appId: appid,
-                             baseUrl: "http://server.vaslapp.hambazisho.ir",
+                             baseUrl: "http://hamnavasho.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
@@ -79,7 +86,7 @@ class ViewController: UIViewController {
         
         
 
-        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "00000", completion: { (data, error) in
+        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
             if error == nil{
 
                 debugPrint(data?.msg)

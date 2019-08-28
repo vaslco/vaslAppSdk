@@ -4,9 +4,9 @@ protocol SubscriberServiceV1_1 {
 
     func registerWithNationalId(mobile: String, national_id: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
-    func echoRequest(completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
-
     func echo(completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
+
+    func echoRequest(completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
 
 }
@@ -49,38 +49,6 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
 
 
-    public func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
-        echoRequest( completion: completion,force: true)
-    }
-    
-    private func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1.1/subscriber/echo/request", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.echoRequest( completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
     public func echo(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
         echo( completion: completion,force: true)
     }
@@ -101,6 +69,38 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.echo( completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
+        echoRequest( completion: completion,force: true)
+    }
+    
+    private func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
+        let params = Dictionary<String,Any>()
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1.1/subscriber/echo/request", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.echoRequest( completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

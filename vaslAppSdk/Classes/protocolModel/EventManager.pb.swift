@@ -192,22 +192,22 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEven
     set {_uniqueStorage()._likeCount = newValue}
   }
 
-  public var startLocationLat: Int64 {
+  public var startLocationLat: Double {
     get {return _storage._startLocationLat}
     set {_uniqueStorage()._startLocationLat = newValue}
   }
 
-  public var endLocationLat: Int64 {
+  public var endLocationLat: Double {
     get {return _storage._endLocationLat}
     set {_uniqueStorage()._endLocationLat = newValue}
   }
 
-  public var startLocationLng: Int64 {
+  public var startLocationLng: Double {
     get {return _storage._startLocationLng}
     set {_uniqueStorage()._startLocationLng = newValue}
   }
 
-  public var endLocationLng: Int64 {
+  public var endLocationLng: Double {
     get {return _storage._endLocationLng}
     set {_uniqueStorage()._endLocationLng = newValue}
   }
@@ -329,22 +329,22 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEven
     set {_uniqueStorage()._likeCount = newValue}
   }
 
-  public var startLocationLat: Int64 {
+  public var startLocationLat: Double {
     get {return _storage._startLocationLat}
     set {_uniqueStorage()._startLocationLat = newValue}
   }
 
-  public var endLocationLat: Int64 {
+  public var endLocationLat: Double {
     get {return _storage._endLocationLat}
     set {_uniqueStorage()._endLocationLat = newValue}
   }
 
-  public var startLocationLng: Int64 {
+  public var startLocationLng: Double {
     get {return _storage._startLocationLng}
     set {_uniqueStorage()._startLocationLng = newValue}
   }
 
-  public var endLocationLng: Int64 {
+  public var endLocationLng: Double {
     get {return _storage._endLocationLng}
     set {_uniqueStorage()._endLocationLng = newValue}
   }
@@ -397,6 +397,14 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventIt
   public var eventStatus: String = String()
 
   public var subscriberStatus: String = String()
+
+  public var insertTime: String = String()
+
+  public var step: Int64 = 0
+
+  public var durationTime: Int64 = 0
+
+  public var distanceMove: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -755,10 +763,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
     var _insertTime: String = String()
     var _status: String = String()
     var _likeCount: Int64 = 0
-    var _startLocationLat: Int64 = 0
-    var _endLocationLat: Int64 = 0
-    var _startLocationLng: Int64 = 0
-    var _endLocationLng: Int64 = 0
+    var _startLocationLat: Double = 0
+    var _endLocationLat: Double = 0
+    var _startLocationLng: Double = 0
+    var _endLocationLng: Double = 0
     var _images: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Images? = nil
 
     static let defaultInstance = _StorageClass()
@@ -810,10 +818,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
         case 10: try decoder.decodeSingularStringField(value: &_storage._insertTime)
         case 11: try decoder.decodeSingularStringField(value: &_storage._status)
         case 12: try decoder.decodeSingularInt64Field(value: &_storage._likeCount)
-        case 13: try decoder.decodeSingularInt64Field(value: &_storage._startLocationLat)
-        case 14: try decoder.decodeSingularInt64Field(value: &_storage._endLocationLat)
-        case 15: try decoder.decodeSingularInt64Field(value: &_storage._startLocationLng)
-        case 16: try decoder.decodeSingularInt64Field(value: &_storage._endLocationLng)
+        case 13: try decoder.decodeSingularDoubleField(value: &_storage._startLocationLat)
+        case 14: try decoder.decodeSingularDoubleField(value: &_storage._endLocationLat)
+        case 15: try decoder.decodeSingularDoubleField(value: &_storage._startLocationLng)
+        case 16: try decoder.decodeSingularDoubleField(value: &_storage._endLocationLng)
         case 17: try decoder.decodeSingularMessageField(value: &_storage._images)
         default: break
         }
@@ -860,16 +868,16 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
         try visitor.visitSingularInt64Field(value: _storage._likeCount, fieldNumber: 12)
       }
       if _storage._startLocationLat != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._startLocationLat, fieldNumber: 13)
+        try visitor.visitSingularDoubleField(value: _storage._startLocationLat, fieldNumber: 13)
       }
       if _storage._endLocationLat != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._endLocationLat, fieldNumber: 14)
+        try visitor.visitSingularDoubleField(value: _storage._endLocationLat, fieldNumber: 14)
       }
       if _storage._startLocationLng != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._startLocationLng, fieldNumber: 15)
+        try visitor.visitSingularDoubleField(value: _storage._startLocationLng, fieldNumber: 15)
       }
       if _storage._endLocationLng != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._endLocationLng, fieldNumber: 16)
+        try visitor.visitSingularDoubleField(value: _storage._endLocationLng, fieldNumber: 16)
       }
       if let v = _storage._images {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
@@ -1042,10 +1050,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
     var _insertTime: String = String()
     var _eventStatus: String = String()
     var _likeCount: Int64 = 0
-    var _startLocationLat: Int64 = 0
-    var _endLocationLat: Int64 = 0
-    var _startLocationLng: Int64 = 0
-    var _endLocationLng: Int64 = 0
+    var _startLocationLat: Double = 0
+    var _endLocationLat: Double = 0
+    var _startLocationLng: Double = 0
+    var _endLocationLng: Double = 0
     var _id: String = String()
     var _abstractMsg: String = String()
     var _title: String = String()
@@ -1105,10 +1113,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
         case 10: try decoder.decodeSingularStringField(value: &_storage._insertTime)
         case 11: try decoder.decodeSingularStringField(value: &_storage._eventStatus)
         case 12: try decoder.decodeSingularInt64Field(value: &_storage._likeCount)
-        case 13: try decoder.decodeSingularInt64Field(value: &_storage._startLocationLat)
-        case 14: try decoder.decodeSingularInt64Field(value: &_storage._endLocationLat)
-        case 15: try decoder.decodeSingularInt64Field(value: &_storage._startLocationLng)
-        case 16: try decoder.decodeSingularInt64Field(value: &_storage._endLocationLng)
+        case 13: try decoder.decodeSingularDoubleField(value: &_storage._startLocationLat)
+        case 14: try decoder.decodeSingularDoubleField(value: &_storage._endLocationLat)
+        case 15: try decoder.decodeSingularDoubleField(value: &_storage._startLocationLng)
+        case 16: try decoder.decodeSingularDoubleField(value: &_storage._endLocationLng)
         case 17: try decoder.decodeSingularStringField(value: &_storage._id)
         case 18: try decoder.decodeSingularStringField(value: &_storage._abstractMsg)
         case 19: try decoder.decodeSingularStringField(value: &_storage._title)
@@ -1159,16 +1167,16 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_GetEventMan
         try visitor.visitSingularInt64Field(value: _storage._likeCount, fieldNumber: 12)
       }
       if _storage._startLocationLat != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._startLocationLat, fieldNumber: 13)
+        try visitor.visitSingularDoubleField(value: _storage._startLocationLat, fieldNumber: 13)
       }
       if _storage._endLocationLat != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._endLocationLat, fieldNumber: 14)
+        try visitor.visitSingularDoubleField(value: _storage._endLocationLat, fieldNumber: 14)
       }
       if _storage._startLocationLng != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._startLocationLng, fieldNumber: 15)
+        try visitor.visitSingularDoubleField(value: _storage._startLocationLng, fieldNumber: 15)
       }
       if _storage._endLocationLng != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._endLocationLng, fieldNumber: 16)
+        try visitor.visitSingularDoubleField(value: _storage._endLocationLng, fieldNumber: 16)
       }
       if !_storage._id.isEmpty {
         try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 17)
@@ -1231,6 +1239,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
     2: .same(proto: "title"),
     3: .same(proto: "eventStatus"),
     4: .same(proto: "subscriberStatus"),
+    5: .same(proto: "insertTime"),
+    6: .same(proto: "step"),
+    7: .same(proto: "durationTime"),
+    8: .same(proto: "distanceMove"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1240,6 +1252,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
       case 2: try decoder.decodeSingularStringField(value: &self.title)
       case 3: try decoder.decodeSingularStringField(value: &self.eventStatus)
       case 4: try decoder.decodeSingularStringField(value: &self.subscriberStatus)
+      case 5: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.step)
+      case 7: try decoder.decodeSingularInt64Field(value: &self.durationTime)
+      case 8: try decoder.decodeSingularInt64Field(value: &self.distanceMove)
       default: break
       }
     }
@@ -1258,6 +1274,18 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
     if !self.subscriberStatus.isEmpty {
       try visitor.visitSingularStringField(value: self.subscriberStatus, fieldNumber: 4)
     }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 5)
+    }
+    if self.step != 0 {
+      try visitor.visitSingularInt64Field(value: self.step, fieldNumber: 6)
+    }
+    if self.durationTime != 0 {
+      try visitor.visitSingularInt64Field(value: self.durationTime, fieldNumber: 7)
+    }
+    if self.distanceMove != 0 {
+      try visitor.visitSingularInt64Field(value: self.distanceMove, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1266,6 +1294,10 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
     if lhs.title != rhs.title {return false}
     if lhs.eventStatus != rhs.eventStatus {return false}
     if lhs.subscriberStatus != rhs.subscriberStatus {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.step != rhs.step {return false}
+    if lhs.durationTime != rhs.durationTime {return false}
+    if lhs.distanceMove != rhs.distanceMove {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

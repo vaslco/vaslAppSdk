@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.4.3</string>
+	<string>0.4.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>35</string>
+	<string>36</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -28,6 +28,8 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>hamnavasho.vaslapp.com</key>
+			<string></string>
 			<key>sandbox.vaslapp.com</key>
 			<string></string>
 			<key>server.vaslapp.hambazisho.ir</key>
