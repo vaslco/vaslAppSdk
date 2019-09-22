@@ -327,4 +327,20 @@ public class VaslSdk : Services {
         return VaslSdk.emailControll
     }
     
+    private static var EventManagerService : EventManagerServiceImpl!
+    public func EventManagerService() -> EventManagerServiceImpl! {
+             if VaslSdk.EventManagerService == nil{
+               VaslSdk.EventManagerService = EventManagerServiceImpl.init()
+           }
+           return VaslSdk.EventManagerService
+    }
+    
+    private static var EventServices : EventServiceImpl!
+    public func EventService() -> EventServiceImpl! {
+                if VaslSdk.EventServices == nil{
+                   VaslSdk.EventServices = EventServiceImpl.init()
+               }
+               return VaslSdk.EventServices
+        }
+    
 }

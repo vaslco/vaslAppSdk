@@ -83,5 +83,9 @@ protocol Services {
     
     func EmailControllerService() -> EmailControllerImpl!
     
+    func EventManagerService() -> EventManagerServiceImpl!
+    
+    func EventService() -> EventServiceImpl!
+    
     
 }
