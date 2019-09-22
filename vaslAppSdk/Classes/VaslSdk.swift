@@ -319,4 +319,12 @@ public class VaslSdk : Services {
         return VaslSdk.billingGlobal
     }
     
+    private static var emailControll : EmailControllerImpl!
+    public func EmailControllerService() -> EmailControllerImpl! {
+        if VaslSdk.emailControll == nil{
+            VaslSdk.emailControll = EmailControllerImpl.init()
+        }
+        return VaslSdk.emailControll
+    }
+    
 }

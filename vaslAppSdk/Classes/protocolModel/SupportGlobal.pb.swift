@@ -408,6 +408,8 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo {
 
   public var subscriberType: String = String()
 
+  public var profileImageURL: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1177,6 +1179,120 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessag
     get {return _storage._threadConversationData}
     set {_uniqueStorage()._threadConversationData = newValue}
   }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListChats {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Chat] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Chat {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var priority: Int32 {
+    get {return _storage._priority}
+    set {_uniqueStorage()._priority = newValue}
+  }
+
+  public var subject: String {
+    get {return _storage._subject}
+    set {_uniqueStorage()._subject = newValue}
+  }
+
+  public var description_p: String {
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
+  }
+
+  public var attachment: String {
+    get {return _storage._attachment}
+    set {_uniqueStorage()._attachment = newValue}
+  }
+
+  public var insertTime: Int64 {
+    get {return _storage._insertTime}
+    set {_uniqueStorage()._insertTime = newValue}
+  }
+
+  public var insertTimeText: String {
+    get {return _storage._insertTimeText}
+    set {_uniqueStorage()._insertTimeText = newValue}
+  }
+
+  public var ticketStatus: String {
+    get {return _storage._ticketStatus}
+    set {_uniqueStorage()._ticketStatus = newValue}
+  }
+
+  public var ticketStatusText: String {
+    get {return _storage._ticketStatusText}
+    set {_uniqueStorage()._ticketStatusText = newValue}
+  }
+
+  public var userID: String {
+    get {return _storage._userID}
+    set {_uniqueStorage()._userID = newValue}
+  }
+
+  public var addedByUserType: String {
+    get {return _storage._addedByUserType}
+    set {_uniqueStorage()._addedByUserType = newValue}
+  }
+
+  public var unreadCount: Int32 {
+    get {return _storage._unreadCount}
+    set {_uniqueStorage()._unreadCount = newValue}
+  }
+
+  public var updateTime: Int64 {
+    get {return _storage._updateTime}
+    set {_uniqueStorage()._updateTime = newValue}
+  }
+
+  public var updateTimeText: String {
+    get {return _storage._updateTimeText}
+    set {_uniqueStorage()._updateTimeText = newValue}
+  }
+
+  public var lastMessage: String {
+    get {return _storage._lastMessage}
+    set {_uniqueStorage()._lastMessage = newValue}
+  }
+
+  public var userData: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo {
+    get {return _storage._userData ?? Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo()}
+    set {_uniqueStorage()._userData = newValue}
+  }
+  /// Returns true if `userData` has been explicitly set.
+  public var hasUserData: Bool {return _storage._userData != nil}
+  /// Clears the value of `userData`. Subsequent reads from it will return its default value.
+  public mutating func clearUserData() {_uniqueStorage()._userData = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2065,6 +2181,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo: SwiftPr
     3: .same(proto: "firstName"),
     4: .same(proto: "lastName"),
     5: .same(proto: "subscriberType"),
+    6: .same(proto: "profileImageUrl"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2075,6 +2192,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo: SwiftPr
       case 3: try decoder.decodeSingularStringField(value: &self.firstName)
       case 4: try decoder.decodeSingularStringField(value: &self.lastName)
       case 5: try decoder.decodeSingularStringField(value: &self.subscriberType)
+      case 6: try decoder.decodeSingularStringField(value: &self.profileImageURL)
       default: break
       }
     }
@@ -2096,6 +2214,9 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo: SwiftPr
     if !self.subscriberType.isEmpty {
       try visitor.visitSingularStringField(value: self.subscriberType, fieldNumber: 5)
     }
+    if !self.profileImageURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.profileImageURL, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2105,6 +2226,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo: SwiftPr
     if lhs.firstName != rhs.firstName {return false}
     if lhs.lastName != rhs.lastName {return false}
     if lhs.subscriberType != rhs.subscriberType {return false}
+    if lhs.profileImageURL != rhs.profileImageURL {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3782,7 +3904,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessages: 
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "threadData"),
-    5: .same(proto: "ThreadConversationData"),
+    5: .same(proto: "threadConversationData"),
   ]
 
   fileprivate class _StorageClass {
@@ -3875,7 +3997,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesAp
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "threadData"),
-    5: .same(proto: "ThreadConversationData"),
+    5: .same(proto: "threadConversationData"),
   ]
 
   fileprivate class _StorageClass {
@@ -3952,6 +4074,234 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_GetChatMessagesAp
         if _storage._msg != rhs_storage._msg {return false}
         if _storage._threadData != rhs_storage._threadData {return false}
         if _storage._threadConversationData != rhs_storage._threadConversationData {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListChats: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListChats"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListChats, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListChats) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Chat: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Chat"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "priority"),
+    3: .same(proto: "subject"),
+    4: .same(proto: "description"),
+    5: .same(proto: "attachment"),
+    6: .same(proto: "insertTime"),
+    7: .same(proto: "insertTimeText"),
+    8: .same(proto: "ticketStatus"),
+    9: .same(proto: "ticketStatusText"),
+    10: .same(proto: "userId"),
+    11: .same(proto: "addedByUserType"),
+    12: .same(proto: "unreadCount"),
+    13: .same(proto: "updateTime"),
+    14: .same(proto: "updateTimeText"),
+    15: .same(proto: "lastMessage"),
+    16: .same(proto: "userData"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _priority: Int32 = 0
+    var _subject: String = String()
+    var _description_p: String = String()
+    var _attachment: String = String()
+    var _insertTime: Int64 = 0
+    var _insertTimeText: String = String()
+    var _ticketStatus: String = String()
+    var _ticketStatusText: String = String()
+    var _userID: String = String()
+    var _addedByUserType: String = String()
+    var _unreadCount: Int32 = 0
+    var _updateTime: Int64 = 0
+    var _updateTimeText: String = String()
+    var _lastMessage: String = String()
+    var _userData: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_UserInfo? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _priority = source._priority
+      _subject = source._subject
+      _description_p = source._description_p
+      _attachment = source._attachment
+      _insertTime = source._insertTime
+      _insertTimeText = source._insertTimeText
+      _ticketStatus = source._ticketStatus
+      _ticketStatusText = source._ticketStatusText
+      _userID = source._userID
+      _addedByUserType = source._addedByUserType
+      _unreadCount = source._unreadCount
+      _updateTime = source._updateTime
+      _updateTimeText = source._updateTimeText
+      _lastMessage = source._lastMessage
+      _userData = source._userData
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularInt32Field(value: &_storage._priority)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._subject)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 5: try decoder.decodeSingularStringField(value: &_storage._attachment)
+        case 6: try decoder.decodeSingularInt64Field(value: &_storage._insertTime)
+        case 7: try decoder.decodeSingularStringField(value: &_storage._insertTimeText)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._ticketStatus)
+        case 9: try decoder.decodeSingularStringField(value: &_storage._ticketStatusText)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._userID)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._addedByUserType)
+        case 12: try decoder.decodeSingularInt32Field(value: &_storage._unreadCount)
+        case 13: try decoder.decodeSingularInt64Field(value: &_storage._updateTime)
+        case 14: try decoder.decodeSingularStringField(value: &_storage._updateTimeText)
+        case 15: try decoder.decodeSingularStringField(value: &_storage._lastMessage)
+        case 16: try decoder.decodeSingularMessageField(value: &_storage._userData)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if _storage._priority != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._priority, fieldNumber: 2)
+      }
+      if !_storage._subject.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._subject, fieldNumber: 3)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 4)
+      }
+      if !_storage._attachment.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._attachment, fieldNumber: 5)
+      }
+      if _storage._insertTime != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._insertTime, fieldNumber: 6)
+      }
+      if !_storage._insertTimeText.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._insertTimeText, fieldNumber: 7)
+      }
+      if !_storage._ticketStatus.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._ticketStatus, fieldNumber: 8)
+      }
+      if !_storage._ticketStatusText.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._ticketStatusText, fieldNumber: 9)
+      }
+      if !_storage._userID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._userID, fieldNumber: 10)
+      }
+      if !_storage._addedByUserType.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._addedByUserType, fieldNumber: 11)
+      }
+      if _storage._unreadCount != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._unreadCount, fieldNumber: 12)
+      }
+      if _storage._updateTime != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._updateTime, fieldNumber: 13)
+      }
+      if !_storage._updateTimeText.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._updateTimeText, fieldNumber: 14)
+      }
+      if !_storage._lastMessage.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._lastMessage, fieldNumber: 15)
+      }
+      if let v = _storage._userData {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Chat, rhs: Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_Chat) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._priority != rhs_storage._priority {return false}
+        if _storage._subject != rhs_storage._subject {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._attachment != rhs_storage._attachment {return false}
+        if _storage._insertTime != rhs_storage._insertTime {return false}
+        if _storage._insertTimeText != rhs_storage._insertTimeText {return false}
+        if _storage._ticketStatus != rhs_storage._ticketStatus {return false}
+        if _storage._ticketStatusText != rhs_storage._ticketStatusText {return false}
+        if _storage._userID != rhs_storage._userID {return false}
+        if _storage._addedByUserType != rhs_storage._addedByUserType {return false}
+        if _storage._unreadCount != rhs_storage._unreadCount {return false}
+        if _storage._updateTime != rhs_storage._updateTime {return false}
+        if _storage._updateTimeText != rhs_storage._updateTimeText {return false}
+        if _storage._lastMessage != rhs_storage._lastMessage {return false}
+        if _storage._userData != rhs_storage._userData {return false}
         return true
       }
       if !storagesAreEqual {return false}

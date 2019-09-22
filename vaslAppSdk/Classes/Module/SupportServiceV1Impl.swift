@@ -38,7 +38,7 @@ protocol SupportServiceV1 {
 
     func createTicketConversation(threadId: String, message: String, attachment: NSData, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func listMyMessageCategories(page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void)
+    func listMyMessageCategories(page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void)
 
     func listMyMessageDetails(threadId: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListDetailsOfMessage?,String?) -> Void)
 
@@ -682,13 +682,14 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
     }
 
 
-    public func listMyMessageCategories(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void) {
-        listMyMessageCategories(page: page, sessionId: sessionId, completion: completion,force: true)
+    public func listMyMessageCategories(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void) {
+        listMyMessageCategories(page: page, type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listMyMessageCategories(page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void,force : Bool) {
+    private func listMyMessageCategories(page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_ListMessageCategories?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(page            , forKey: "page")
+                    params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
@@ -703,7 +704,7 @@ public class SupportServiceV1Impl  : SupportServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listMyMessageCategories(page: page, sessionId: sessionId, completion: completion,force: false)
+                            self.listMyMessageCategories(page: page, type: type, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

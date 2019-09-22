@@ -2163,6 +2163,11 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video {
     set {_uniqueStorage()._expireDateText = newValue}
   }
 
+  public var description_p: String {
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -2749,6 +2754,38 @@ public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_KeyValue {
   public var key: String = String()
 
   public var value: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentItem {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var comment: String = String()
+
+  public var time: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentItem] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -7734,6 +7771,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
     27: .same(proto: "createdAtText"),
     28: .same(proto: "startDateText"),
     29: .same(proto: "expireDateText"),
+    30: .same(proto: "description"),
   ]
 
   fileprivate class _StorageClass {
@@ -7766,6 +7804,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
     var _createdAtText: String = String()
     var _startDateText: String = String()
     var _expireDateText: String = String()
+    var _description_p: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -7801,6 +7840,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
       _createdAtText = source._createdAtText
       _startDateText = source._startDateText
       _expireDateText = source._expireDateText
+      _description_p = source._description_p
     }
   }
 
@@ -7845,6 +7885,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
         case 27: try decoder.decodeSingularStringField(value: &_storage._createdAtText)
         case 28: try decoder.decodeSingularStringField(value: &_storage._startDateText)
         case 29: try decoder.decodeSingularStringField(value: &_storage._expireDateText)
+        case 30: try decoder.decodeSingularStringField(value: &_storage._description_p)
         default: break
         }
       }
@@ -7940,6 +7981,9 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
       if !_storage._expireDateText.isEmpty {
         try visitor.visitSingularStringField(value: _storage._expireDateText, fieldNumber: 29)
       }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 30)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -7978,6 +8022,7 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_Video: SwiftProtobuf.Me
         if _storage._createdAtText != rhs_storage._createdAtText {return false}
         if _storage._startDateText != rhs_storage._startDateText {return false}
         if _storage._expireDateText != rhs_storage._expireDateText {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -9288,6 +9333,88 @@ extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_KeyValue: SwiftProtobuf
   public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_KeyValue, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_KeyValue) -> Bool {
     if lhs.key != rhs.key {return false}
     if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentItem: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdminCommentItem"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "comment"),
+    2: .same(proto: "time"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.comment)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.time)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.comment.isEmpty {
+      try visitor.visitSingularStringField(value: self.comment, fieldNumber: 1)
+    }
+    if self.time != 0 {
+      try visitor.visitSingularInt64Field(value: self.time, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentItem, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentItem) -> Bool {
+    if lhs.comment != rhs.comment {return false}
+    if lhs.time != rhs.time {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AdminCommentList"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentList, rhs: Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_AdminCommentList) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

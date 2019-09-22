@@ -2,9 +2,9 @@ import Foundation
 
 protocol billing {
 
-    func increaseBalance(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
-
     func getUserAccount(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void)
+
+    func increaseBalance(amount: String, bankCode: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void)
 
     func getAccountListAdmin(id: String, userId: String, credit: String, debit: String, balance: String, type: String, lastUpdateTime: String, insertTime: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_AccountList?,String?) -> Void)
 
@@ -19,6 +19,39 @@ protocol billing {
 
 
 public class billingImpl  : billing {
+
+
+    public func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void) {
+        getUserAccount(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/getAccount", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getUserAccount(sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func increaseBalance(amount: String, bankCode: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Pay?,String?) -> Void) {
@@ -44,39 +77,6 @@ public class billingImpl  : billing {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.increaseBalance(amount: amount, bankCode: bankCode, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void) {
-        getUserAccount(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func getUserAccount(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/billing/getAccount", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account(serializedData: result) as Com_Vasl_Vaslapp_Modules_Billing_Global_Proto_Holder_Account
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.getUserAccount(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

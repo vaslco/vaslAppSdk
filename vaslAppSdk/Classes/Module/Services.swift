@@ -81,5 +81,7 @@ protocol Services {
     
     func HambaziService() -> HambaziServiceV1Impl!
     
+    func EmailControllerService() -> EmailControllerImpl!
+    
     
 }
