@@ -4,9 +4,9 @@ protocol GatewayServiceV1 {
 
     func bankList(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void)
 
-    func payment(amount: String, bankCode: String, orderId: String, callBackUserURL: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Pay?,String?) -> Void)
-
     func rollBack(transactionId: String, refIdHolder: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack?,String?) -> Void)
+
+    func payment(amount: String, bankCode: String, orderId: String, callBackUserURL: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Pay?,String?) -> Void)
 
     func confirmtransaction(orderId: String, transactionId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_ConfirmTransaction?,String?) -> Void)
 
@@ -52,6 +52,41 @@ public class GatewayServiceV1Impl  : GatewayServiceV1 {
     }
 
 
+    public func rollBack(transactionId: String, refIdHolder: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack?,String?) -> Void) {
+        rollBack(transactionId: transactionId, refIdHolder: refIdHolder, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func rollBack(transactionId: String, refIdHolder: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(transactionId            , forKey: "transactionId")
+                    params.updateValue(refIdHolder            , forKey: "refIdHolder")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/gateway/roll/back", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack(serializedData: result) as Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.rollBack(transactionId: transactionId, refIdHolder: refIdHolder, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func payment(amount: String, bankCode: String, orderId: String, callBackUserURL: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Pay?,String?) -> Void) {
         payment(amount: amount, bankCode: bankCode, orderId: orderId, callBackUserURL: callBackUserURL, sessionId: sessionId, completion: completion,force: true)
     }
@@ -77,41 +112,6 @@ public class GatewayServiceV1Impl  : GatewayServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.payment(amount: amount, bankCode: bankCode, orderId: orderId, callBackUserURL: callBackUserURL, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func rollBack(transactionId: String, refIdHolder: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack?,String?) -> Void) {
-        rollBack(transactionId: transactionId, refIdHolder: refIdHolder, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func rollBack(transactionId: String, refIdHolder: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(transactionId            , forKey: "transactionId")
-                    params.updateValue(refIdHolder            , forKey: "refIdHolder")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/gateway/roll/back", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack(serializedData: result) as Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_RollBack
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.rollBack(transactionId: transactionId, refIdHolder: refIdHolder, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

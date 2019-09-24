@@ -83,12 +83,11 @@ class ViewController: UIViewController {
 //
         
         
-        vmbas.EventManagerService()
+
         
         vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
             if error == nil{
 
-                debugPrint(data?.msg)
                 debugPrint("it's working fucking awesome bitch ")
 
             }else{

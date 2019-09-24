@@ -36,14 +36,14 @@ public class VaslSdk : Services {
     }
     
     private static var analytic : AnalyticServiceV1Impl!
-    public func analyticService() -> AnalyticServiceV1Impl! {
+    public func AnalyticService() -> AnalyticServiceV1Impl! {
         if VaslSdk.analytic == nil {
             VaslSdk.analytic = AnalyticServiceV1Impl.init()
         }
         return VaslSdk.analytic
     }
     private static var appService : AppServicesImpl!
-    public func appService() -> AppServicesImpl! {
+    public func AppService() -> AppServicesImpl! {
         if VaslSdk.appService == nil {
             VaslSdk.appService = AppServicesImpl.init()
         }
@@ -51,7 +51,7 @@ public class VaslSdk : Services {
     }
     
     private static var appVersionService : AppVersionServiceV1Impl!
-    public func appVersionService() -> AppVersionServiceV1Impl! {
+    public func AppVersionService() -> AppVersionServiceV1Impl! {
         if VaslSdk.appVersionService == nil {
             VaslSdk.appVersionService = AppVersionServiceV1Impl.init()
         }
@@ -59,7 +59,7 @@ public class VaslSdk : Services {
     }
     
     private static var avatarService : AvatarServiceV1Impl!
-    public func avatarService() -> AvatarServiceV1Impl! {
+    public func AvatarService() -> AvatarServiceV1Impl! {
         if VaslSdk.avatarService == nil {
             VaslSdk.avatarService = AvatarServiceV1Impl.init()
         }
@@ -67,14 +67,14 @@ public class VaslSdk : Services {
     }
     
     private static var billing : BillingInappServiceV1Impl!
-    public func billingInappService() -> BillingInappServiceV1Impl! {
+    public func BillingInappService() -> BillingInappServiceV1Impl! {
         if VaslSdk.billing == nil {
             VaslSdk.billing = BillingInappServiceV1Impl.init()
         }
         return VaslSdk.billing
     }
     private static var charge : ChargeServiceV1Impl!
-    public func chargeService() -> ChargeServiceV1Impl! {
+    public func ChargeService() -> ChargeServiceV1Impl! {
         if VaslSdk.charge == nil {
             VaslSdk.charge = ChargeServiceV1Impl.init()
         }
@@ -82,7 +82,7 @@ public class VaslSdk : Services {
     }
     
     private static var dynamicLink : DynamicLinkServiceV1Impl!
-    public func dynamicLinkService() -> DynamicLinkServiceV1Impl! {
+    public func DynamicLinkService() -> DynamicLinkServiceV1Impl! {
         if VaslSdk.dynamicLink == nil {
             VaslSdk.dynamicLink = DynamicLinkServiceV1Impl.init()
         }
@@ -90,7 +90,7 @@ public class VaslSdk : Services {
     }
     
     private static var dynamicTable : DynamicTableServiceTablesV1Impl!
-    public func dynamicTableService() -> DynamicTableServiceTablesV1Impl! {
+    public func DynamicTableService() -> DynamicTableServiceTablesV1Impl! {
         if VaslSdk.dynamicTable == nil {
             VaslSdk.dynamicTable = DynamicTableServiceTablesV1Impl.init()
         }
@@ -98,23 +98,16 @@ public class VaslSdk : Services {
     }
     
     private static var dynamicTableEndPoint : DynamicTableServiceEndpointsV1Impl!
-    public func dynamicTableEndPointService() -> DynamicTableServiceEndpointsV1Impl! {
+    public func DynamicTableEndPointService() -> DynamicTableServiceEndpointsV1Impl! {
         if VaslSdk.dynamicTableEndPoint == nil {
             VaslSdk.dynamicTableEndPoint = DynamicTableServiceEndpointsV1Impl.init()
         }
         return VaslSdk.dynamicTableEndPoint
     }
     
-    private static var eventService : EventServiceImpl!
-    public func eventService() -> EventServiceImpl! {
-        if VaslSdk.eventService == nil {
-            VaslSdk.eventService = EventServiceImpl.init()
-        }
-        return VaslSdk.eventService
-    }
     
     private static var fileManager : FileManagerServiceV1Impl!
-    public func fileManagerService() -> FileManagerServiceV1Impl! {
+    public func FileManagerService() -> FileManagerServiceV1Impl! {
         if VaslSdk.fileManager == nil {
             VaslSdk.fileManager = FileManagerServiceV1Impl.init()
         }
@@ -123,14 +116,14 @@ public class VaslSdk : Services {
   
 
     private static var gameAction_V2 : GameActionServiceV2Impl!
-    public func gameActionServiceV2() -> GameActionServiceV2Impl! {
+    public func GameActionServiceV2() -> GameActionServiceV2Impl! {
         if VaslSdk.gameAction_V2 == nil {
             VaslSdk.gameAction_V2 = GameActionServiceV2Impl.init()
         }
         return VaslSdk.gameAction_V2
     }
     private static var gameAction_V1 : GameActionServiceV1Impl!
-    public func gameActionServiceV1() -> GameActionServiceV1Impl! {
+    public func GameActionServiceV1() -> GameActionServiceV1Impl! {
         if VaslSdk.gameAction_V1 == nil {
             VaslSdk.gameAction_V1 = GameActionServiceV1Impl.init()
         }
@@ -138,28 +131,28 @@ public class VaslSdk : Services {
     }
     
     private static var gameFeature_V2 : GameFeaturesServiceV2Impl!
-    public func gameFeatureServiceV2() -> GameFeaturesServiceV2Impl! {
+    public func GameFeatureServiceV2() -> GameFeaturesServiceV2Impl! {
         if VaslSdk.gameFeature_V2 == nil {
             VaslSdk.gameFeature_V2 = GameFeaturesServiceV2Impl.init()
         }
         return VaslSdk.gameFeature_V2
     }
     private static var gameFeature_V1 : GameFeaturesServiceV1Impl!
-    public func gameFeatureServiceV1() -> GameFeaturesServiceV1Impl! {
+    public func GameFeatureServiceV1() -> GameFeaturesServiceV1Impl! {
         if VaslSdk.gameFeature_V1 == nil {
             VaslSdk.gameFeature_V1 = GameFeaturesServiceV1Impl.init()
         }
         return VaslSdk.gameFeature_V1
     }
     private static var leader_V2 : GameLeaderBoardServiceV2Impl!
-    public func gameLeaderBoardServiceV2() -> GameLeaderBoardServiceV2Impl! {
+    public func GameLeaderBoardServiceV2() -> GameLeaderBoardServiceV2Impl! {
         if VaslSdk.leader_V2 == nil {
             VaslSdk.leader_V2 = GameLeaderBoardServiceV2Impl.init()
         }
         return VaslSdk.leader_V2
     }
     private static var leader_V1 : GameLeaderBoardServiceV1Impl!
-    public func gameLeaderBoardServiceV1() -> GameLeaderBoardServiceV1Impl! {
+    public func GameLeaderBoardServiceV1() -> GameLeaderBoardServiceV1Impl! {
         if VaslSdk.leader_V1 == nil {
             VaslSdk.leader_V1 = GameLeaderBoardServiceV1Impl.init()
         }
@@ -167,7 +160,7 @@ public class VaslSdk : Services {
     }
     
     private static var pointType : GamePointTypeServiceV1Impl!
-    public func gamePointTypeService() -> GamePointTypeServiceV1Impl! {
+    public func GamePointTypeService() -> GamePointTypeServiceV1Impl! {
         if VaslSdk.pointType == nil {
             VaslSdk.pointType = GamePointTypeServiceV1Impl.init()
         }
@@ -175,7 +168,7 @@ public class VaslSdk : Services {
     }
     
     private static var pazh : PazhServiceV1Impl!
-    public func pazhService() -> PazhServiceV1Impl! {
+    public func PazhService() -> PazhServiceV1Impl! {
         if VaslSdk.pazh == nil {
             VaslSdk.pazh = PazhServiceV1Impl.init()
         }
@@ -183,7 +176,7 @@ public class VaslSdk : Services {
     }
     
     private static var gamePointService : GamePointServiceV2Impl!
-    public func gamePointService() -> GamePointServiceV2Impl! {
+    public func GamePointService() -> GamePointServiceV2Impl! {
         if VaslSdk.gamePointService == nil {
             VaslSdk.gamePointService = GamePointServiceV2Impl.init()
         }
@@ -191,14 +184,14 @@ public class VaslSdk : Services {
     }
     
     private static var gameUser_V2 : GameUserServiceV2Impl!
-    public func gameUserServiceV2() -> GameUserServiceV2Impl! {
+    public func GameUserServiceV2() -> GameUserServiceV2Impl! {
         if VaslSdk.gameUser_V2 == nil {
             VaslSdk.gameUser_V2 = GameUserServiceV2Impl.init()
         }
         return VaslSdk.gameUser_V2
     }
     private static var gameUser_V1 : GameUsersServiceV1Impl!
-    public func gameUserServiceV1() -> GameUsersServiceV1Impl! {
+    public func GameUserServiceV1() -> GameUsersServiceV1Impl! {
         if VaslSdk.gameUser_V1 == nil {
             VaslSdk.gameUser_V1 = GameUsersServiceV1Impl.init()
         }
@@ -214,7 +207,7 @@ public class VaslSdk : Services {
     }
     
     private static var geo : GeoServiceV1Impl!
-    public func geoService() -> GeoServiceV1Impl! {
+    public func GeoService() -> GeoServiceV1Impl! {
         if VaslSdk.geo == nil {
             VaslSdk.geo = GeoServiceV1Impl.init()
         }
@@ -222,7 +215,7 @@ public class VaslSdk : Services {
     }
     
     private static var league : LeagueServiceV1Impl!
-    public func leagueService() -> LeagueServiceV1Impl! {
+    public func LeagueService() -> LeagueServiceV1Impl! {
         if VaslSdk.league == nil {
             VaslSdk.league = LeagueServiceV1Impl.init()
         }
@@ -230,7 +223,7 @@ public class VaslSdk : Services {
     }
     
     private static var referral : ReferralServiceV1Impl!
-    public func referralService() -> ReferralServiceV1Impl! {
+    public func ReferralService() -> ReferralServiceV1Impl! {
         if VaslSdk.referral == nil {
             VaslSdk.referral = ReferralServiceV1Impl.init()
         }
@@ -238,7 +231,7 @@ public class VaslSdk : Services {
     }
     
     private static var shop : ShopServiceV1Impl!
-    public func shopService() -> ShopServiceV1Impl! {
+    public func ShopService() -> ShopServiceV1Impl! {
         if VaslSdk.shop == nil {
             VaslSdk.shop = ShopServiceV1Impl.init()
         }
@@ -246,7 +239,7 @@ public class VaslSdk : Services {
     }
     
     private static var support : SupportServiceV1Impl!
-    public func supportService() -> SupportServiceV1Impl! {
+    public func SupportService() -> SupportServiceV1Impl! {
         if VaslSdk.support == nil {
             VaslSdk.support = SupportServiceV1Impl.init()
         }
@@ -312,7 +305,7 @@ public class VaslSdk : Services {
     }
     
     private static var billingGlobal : billingImpl!
-    public func billingGlobalService() -> billingImpl! {
+    public func BillingGlobalService() -> billingImpl! {
         if VaslSdk.billingGlobal == nil {
             VaslSdk.billingGlobal = billingImpl.init()
         }

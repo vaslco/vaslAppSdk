@@ -402,7 +402,7 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventIt
 
   public var step: Int64 = 0
 
-  public var durationTime: Int64 = 0
+  public var durationTime: String = String()
 
   public var distanceMove: Double = 0
 
@@ -1625,7 +1625,7 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
       case 4: try decoder.decodeSingularStringField(value: &self.subscriberStatus)
       case 5: try decoder.decodeSingularStringField(value: &self.insertTime)
       case 6: try decoder.decodeSingularInt64Field(value: &self.step)
-      case 7: try decoder.decodeSingularInt64Field(value: &self.durationTime)
+      case 7: try decoder.decodeSingularStringField(value: &self.durationTime)
       case 8: try decoder.decodeSingularDoubleField(value: &self.distanceMove)
       default: break
       }
@@ -1651,8 +1651,8 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_EventItem: 
     if self.step != 0 {
       try visitor.visitSingularInt64Field(value: self.step, fieldNumber: 6)
     }
-    if self.durationTime != 0 {
-      try visitor.visitSingularInt64Field(value: self.durationTime, fieldNumber: 7)
+    if !self.durationTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.durationTime, fieldNumber: 7)
     }
     if self.distanceMove != 0 {
       try visitor.visitSingularDoubleField(value: self.distanceMove, fieldNumber: 8)
