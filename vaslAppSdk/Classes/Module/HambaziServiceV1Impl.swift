@@ -10,6 +10,8 @@ protocol HambaziServiceV1 {
 
     func listCategoryClustered(page: String, keyWord: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_CategoryListCllustered?,String?) -> Void)
 
+    func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void)
+
     func videoGet(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoGet?,String?) -> Void)
 
     func subscriberList(sort: String, order: String, page: String, catId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_SubscriberList?,String?) -> Void)
@@ -57,8 +59,6 @@ protocol HambaziServiceV1 {
     func videoSearchList(keyword: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoSearchList?,String?) -> Void)
 
     func videoList(page: String, sort: String, order: String, subscriberType: String, catId: String, hambaziStatus: String, actorId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_VideoList?,String?) -> Void)
-
-    func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void)
 
     func pageList(sessionId: String, sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_CategoryListCllustered?,String?) -> Void)
 
@@ -116,7 +116,7 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
     }
     
     private func listCategoryRoots(completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false
@@ -200,6 +200,45 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listCategoryClustered(page: page, keyWord: keyWord, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void) {
+        pageGet(key: key, catId: catId, subscriberId: subscriberId, videoSort: videoSort, videoOrder: videoOrder, artistId: artistId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(key            , forKey: "key")
+                    params.updateValue(catId            , forKey: "catId")
+                    params.updateValue(subscriberId            , forKey: "subscriberId")
+                    params.updateValue(videoSort            , forKey: "videoSort")
+                    params.updateValue(videoOrder            , forKey: "videoOrder")
+                    params.updateValue(artistId            , forKey: "artistId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/page/get", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.pageGet(key: key, catId: catId, subscriberId: subscriberId, videoSort: videoSort, videoOrder: videoOrder, artistId: artistId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -1068,45 +1107,6 @@ public class HambaziServiceV1Impl  : HambaziServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.videoList(page: page, sort: sort, order: order, subscriberType: subscriberType, catId: catId, hambaziStatus: hambaziStatus, actorId: actorId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void) {
-        pageGet(key: key, catId: catId, subscriberId: subscriberId, videoSort: videoSort, videoOrder: videoOrder, artistId: artistId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func pageGet(key: String, catId: String, subscriberId: String, videoSort: String, videoOrder: String, artistId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(key            , forKey: "key")
-                    params.updateValue(catId            , forKey: "catId")
-                    params.updateValue(subscriberId            , forKey: "subscriberId")
-                    params.updateValue(videoSort            , forKey: "videoSort")
-                    params.updateValue(videoOrder            , forKey: "videoOrder")
-                    params.updateValue(artistId            , forKey: "artistId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/hambazi/page/get", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet(serializedData: result) as Com_Vasl_Vaslapp_Products_Hambazi_Proto_Holder_PageGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.pageGet(key: key, catId: catId, subscriberId: subscriberId, videoSort: videoSort, videoOrder: videoOrder, artistId: artistId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

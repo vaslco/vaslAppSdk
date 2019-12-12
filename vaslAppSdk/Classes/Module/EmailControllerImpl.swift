@@ -2,7 +2,7 @@ import Foundation
 
 protocol EmailController {
 
-    func send(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func sendEmail(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
 
 }
@@ -11,11 +11,11 @@ protocol EmailController {
 public class EmailControllerImpl  : EmailController {
 
 
-    public func send(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        send(fromEmail: fromEmail, recipients: recipients, attachment: attachment, templateName: templateName, cc: cc, sessionId: sessionId, completion: completion,force: true)
+    public func sendEmail(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        sendEmail(fromEmail: fromEmail, recipients: recipients, attachment: attachment, templateName: templateName, cc: cc, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func send(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func sendEmail(fromEmail: String, recipients: Array<String>, attachment: NSData, templateName: String, cc: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(fromEmail            , forKey: "fromEmail")
                     params.updateValue(recipients            , forKey: "recipients")
@@ -35,7 +35,7 @@ public class EmailControllerImpl  : EmailController {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.send(fromEmail: fromEmail, recipients: recipients, attachment: attachment, templateName: templateName, cc: cc, sessionId: sessionId, completion: completion,force: false)
+                            self.sendEmail(fromEmail: fromEmail, recipients: recipients, attachment: attachment, templateName: templateName, cc: cc, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }
