@@ -153,7 +153,6 @@
 		FC581EF023A52FB600077ED6 /* GameFeaturesServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581EC623A52FB400077ED6 /* GameFeaturesServiceV1Impl.swift */; };
 		FC581EF123A52FB600077ED6 /* PushControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581EC723A52FB400077ED6 /* PushControllerImpl.swift */; };
 		FC581EF223A52FB600077ED6 /* SubscriberServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581EC823A52FB400077ED6 /* SubscriberServiceV1Impl.swift */; };
-		FC581EF323A52FB600077ED6 /* AnalyticServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581EC923A52FB400077ED6 /* AnalyticServiceV2Impl.swift */; };
 		FC581EF423A52FB600077ED6 /* SubscriberServiceV1_1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581ECA23A52FB400077ED6 /* SubscriberServiceV1_1Impl.swift */; };
 		FC581EF523A52FB600077ED6 /* AnalyticServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581ECB23A52FB400077ED6 /* AnalyticServiceV1Impl.swift */; };
 		FC581EF623A52FB600077ED6 /* ChargeServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581ECC23A52FB400077ED6 /* ChargeServiceV1Impl.swift */; };
@@ -200,7 +199,6 @@
 		FC581F4223A52FC700077ED6 /* EventManager.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F1F23A52FC600077ED6 /* EventManager.pb.swift */; };
 		FC581F4323A52FC700077ED6 /* Poll.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2023A52FC600077ED6 /* Poll.pb.swift */; };
 		FC581F4423A52FC700077ED6 /* ReferralGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2123A52FC600077ED6 /* ReferralGlobal.pb.swift */; };
-		FC581F4523A52FC700077ED6 /* AnalyticGlobalV2.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2223A52FC700077ED6 /* AnalyticGlobalV2.pb.swift */; };
 		FC581F4623A52FC700077ED6 /* AppGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2323A52FC700077ED6 /* AppGlobal.pb.swift */; };
 		FC581F4723A52FC700077ED6 /* DynamicTable.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2423A52FC700077ED6 /* DynamicTable.pb.swift */; };
 		FC581F4823A52FC700077ED6 /* ChargeCard.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC581F2523A52FC700077ED6 /* ChargeCard.pb.swift */; };
@@ -434,7 +432,6 @@
 		FC581EC623A52FB400077ED6 /* GameFeaturesServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFeaturesServiceV1Impl.swift; sourceTree = "<group>"; };
 		FC581EC723A52FB400077ED6 /* PushControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushControllerImpl.swift; sourceTree = "<group>"; };
 		FC581EC823A52FB400077ED6 /* SubscriberServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1Impl.swift; sourceTree = "<group>"; };
-		FC581EC923A52FB400077ED6 /* AnalyticServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticServiceV2Impl.swift; sourceTree = "<group>"; };
 		FC581ECA23A52FB400077ED6 /* SubscriberServiceV1_1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1_1Impl.swift; sourceTree = "<group>"; };
 		FC581ECB23A52FB400077ED6 /* AnalyticServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticServiceV1Impl.swift; sourceTree = "<group>"; };
 		FC581ECC23A52FB400077ED6 /* ChargeServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeServiceV1Impl.swift; sourceTree = "<group>"; };
@@ -481,7 +478,6 @@
 		FC581F1F23A52FC600077ED6 /* EventManager.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.pb.swift; sourceTree = "<group>"; };
 		FC581F2023A52FC600077ED6 /* Poll.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.pb.swift; sourceTree = "<group>"; };
 		FC581F2123A52FC600077ED6 /* ReferralGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralGlobal.pb.swift; sourceTree = "<group>"; };
-		FC581F2223A52FC700077ED6 /* AnalyticGlobalV2.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticGlobalV2.pb.swift; sourceTree = "<group>"; };
 		FC581F2323A52FC700077ED6 /* AppGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.pb.swift; sourceTree = "<group>"; };
 		FC581F2423A52FC700077ED6 /* DynamicTable.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTable.pb.swift; sourceTree = "<group>"; };
 		FC581F2523A52FC700077ED6 /* ChargeCard.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeCard.pb.swift; sourceTree = "<group>"; };
@@ -545,7 +541,6 @@
 			isa = PBXGroup;
 			children = (
 				FC581F1423A52FC500077ED6 /* AnalyticGlobal.pb.swift */,
-				FC581F2223A52FC700077ED6 /* AnalyticGlobalV2.pb.swift */,
 				FC581F2323A52FC700077ED6 /* AppGlobal.pb.swift */,
 				FC581F1D23A52FC600077ED6 /* AppVersion.pb.swift */,
 				FC581F2823A52FC700077ED6 /* AvatarGlobalV1.pb.swift */,
@@ -896,7 +891,6 @@
 			isa = PBXGroup;
 			children = (
 				FC581ECB23A52FB400077ED6 /* AnalyticServiceV1Impl.swift */,
-				FC581EC923A52FB400077ED6 /* AnalyticServiceV2Impl.swift */,
 				FC581ECD23A52FB500077ED6 /* AppServicesImpl.swift */,
 				FC581EC323A52FB300077ED6 /* AppVersionServiceV1Impl.swift */,
 				FC581EDA23A52FB600077ED6 /* AvatarServiceV1Impl.swift */,
@@ -1335,7 +1329,6 @@
 				FC581F4823A52FC700077ED6 /* ChargeCard.pb.swift in Sources */,
 				FC581EF623A52FB600077ED6 /* ChargeServiceV1Impl.swift in Sources */,
 				FC581F0023A52FB600077ED6 /* ShopServiceV1Impl.swift in Sources */,
-				FC581EF323A52FB600077ED6 /* AnalyticServiceV2Impl.swift in Sources */,
 				FC581EE423A52FB600077ED6 /* MgsServiceV1Impl.swift in Sources */,
 				FC581F4A23A52FC700077ED6 /* PushFCMGlobal.pb.swift in Sources */,
 				FC581F0123A52FB600077ED6 /* SupportServiceV1Impl.swift in Sources */,
@@ -1353,7 +1346,6 @@
 				FC581F3C23A52FC700077ED6 /* TimerGlobal.pb.swift in Sources */,
 				FC581EFB23A52FB600077ED6 /* GameUsersServiceV1Impl.swift in Sources */,
 				FC581F3F23A52FC700077ED6 /* ContentGlobalV1.pb.swift in Sources */,
-				FC581F4523A52FC700077ED6 /* AnalyticGlobalV2.pb.swift in Sources */,
 				80C13EE38F6FE638D88E598C78E7FEE3 /* vaslAppSdk-dummy.m in Sources */,
 				5EA6A25E6BF79A6E3A164F9EFB52E1FE /* VaslSdk.swift in Sources */,
 				FC581EEC23A52FB600077ED6 /* PushFCMServiceV1Impl.swift in Sources */,
