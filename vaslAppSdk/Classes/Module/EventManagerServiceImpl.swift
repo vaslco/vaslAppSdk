@@ -24,11 +24,13 @@ protocol EventManagerService {
 
     func listSubscriberEventAchievement(eventId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_AchievemenListApi?,String?) -> Void)
 
-    func updateEventSubscriber(id: String, achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
+    func updateEventSubscriber(achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
 
-    func startEventSubscriber(id: String, eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
+    func updateEventSubscriberStep(eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
 
-    func endEventSubscriber(id: String, eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
+    func startEventSubscriber(eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
+
+    func endEventSubscriber(eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void)
 
     func getSumAllEvent(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_SumAllEvents?,String?) -> Void)
 
@@ -425,13 +427,12 @@ public class EventManagerServiceImpl  : EventManagerService {
     }
 
 
-    public func updateEventSubscriber(id: String, achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
-        updateEventSubscriber(id: id, achievementId: achievementId, eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: true)
+    public func updateEventSubscriber(achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
+        updateEventSubscriber(achievementId: achievementId, eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func updateEventSubscriber(id: String, achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func updateEventSubscriber(achievementId: String, eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
                     params.updateValue(achievementId            , forKey: "achievementId")
                     params.updateValue(eventId            , forKey: "eventId")
                     params.updateValue(step            , forKey: "step")
@@ -455,7 +456,7 @@ public class EventManagerServiceImpl  : EventManagerService {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.updateEventSubscriber(id: id, achievementId: achievementId, eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: false)
+                            self.updateEventSubscriber(achievementId: achievementId, eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -468,13 +469,53 @@ public class EventManagerServiceImpl  : EventManagerService {
     }
 
 
-    public func startEventSubscriber(id: String, eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
-        startEventSubscriber(id: id, eventId: eventId, startTime: startTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, sessionId: sessionId, completion: completion,force: true)
+    public func updateEventSubscriberStep(eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
+        updateEventSubscriberStep(eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func startEventSubscriber(id: String, eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func updateEventSubscriberStep(eventId: String, step: String, startTime: String, endTime: String, startLocationLat: String, startLocationLng: String, endLocationLat: String, endLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(eventId            , forKey: "eventId")
+                    params.updateValue(step            , forKey: "step")
+                    params.updateValue(startTime            , forKey: "startTime")
+                    params.updateValue(endTime            , forKey: "endTime")
+                    params.updateValue(startLocationLat            , forKey: "startLocationLat")
+                    params.updateValue(startLocationLng            , forKey: "startLocationLng")
+                    params.updateValue(endLocationLat            , forKey: "endLocationLat")
+                    params.updateValue(endLocationLng            , forKey: "endLocationLng")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/eventmanager/eventSubscriberStep/update", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.updateEventSubscriberStep(eventId: eventId, step: step, startTime: startTime, endTime: endTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, endLocationLat: endLocationLat, endLocationLng: endLocationLng, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func startEventSubscriber(eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
+        startEventSubscriber(eventId: eventId, startTime: startTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func startEventSubscriber(eventId: String, startTime: String, startLocationLat: String, startLocationLng: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
                     params.updateValue(eventId            , forKey: "eventId")
                     params.updateValue(startTime            , forKey: "startTime")
                     params.updateValue(startLocationLat            , forKey: "startLocationLat")
@@ -493,7 +534,7 @@ public class EventManagerServiceImpl  : EventManagerService {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.startEventSubscriber(id: id, eventId: eventId, startTime: startTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, sessionId: sessionId, completion: completion,force: false)
+                            self.startEventSubscriber(eventId: eventId, startTime: startTime, startLocationLat: startLocationLat, startLocationLng: startLocationLng, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -506,13 +547,12 @@ public class EventManagerServiceImpl  : EventManagerService {
     }
 
 
-    public func endEventSubscriber(id: String, eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
-        endEventSubscriber(id: id, eventId: eventId, step: step, calories: calories, endTime: endTime, durationTime: durationTime, endLocationLat: endLocationLat, endLocationLng: endLocationLng, distanceMove: distanceMove, sessionId: sessionId, completion: completion,force: true)
+    public func endEventSubscriber(eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void) {
+        endEventSubscriber(eventId: eventId, step: step, calories: calories, endTime: endTime, durationTime: durationTime, endLocationLat: endLocationLat, endLocationLng: endLocationLng, distanceMove: distanceMove, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func endEventSubscriber(id: String, eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func endEventSubscriber(eventId: String, step: String, calories: String, endTime: String, durationTime: String, endLocationLat: String, endLocationLng: String, distanceMove: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
                     params.updateValue(eventId            , forKey: "eventId")
                     params.updateValue(step            , forKey: "step")
                     params.updateValue(calories            , forKey: "calories")
@@ -535,7 +575,7 @@ public class EventManagerServiceImpl  : EventManagerService {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.endEventSubscriber(id: id, eventId: eventId, step: step, calories: calories, endTime: endTime, durationTime: durationTime, endLocationLat: endLocationLat, endLocationLng: endLocationLng, distanceMove: distanceMove, sessionId: sessionId, completion: completion,force: false)
+                            self.endEventSubscriber(eventId: eventId, step: step, calories: calories, endTime: endTime, durationTime: durationTime, endLocationLat: endLocationLat, endLocationLng: endLocationLng, distanceMove: distanceMove, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

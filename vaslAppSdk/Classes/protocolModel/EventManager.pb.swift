@@ -946,6 +946,8 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Achieve
 
   public var target: Int64 = 0
 
+  public var point: Int64 = 0
+
   public var title: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -1148,7 +1150,7 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner 
 
   public var winnerID: String = String()
 
-  public var winnerStatus: String = String()
+  public var winnerStep: Int64 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3128,7 +3130,8 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Achievement
     3: .same(proto: "action"),
     4: .same(proto: "images"),
     5: .same(proto: "target"),
-    6: .same(proto: "title"),
+    6: .same(proto: "point"),
+    7: .same(proto: "title"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -3139,7 +3142,8 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Achievement
       case 3: try decoder.decodeRepeatedMessageField(value: &self.action)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.images)
       case 5: try decoder.decodeSingularInt64Field(value: &self.target)
-      case 6: try decoder.decodeSingularStringField(value: &self.title)
+      case 6: try decoder.decodeSingularInt64Field(value: &self.point)
+      case 7: try decoder.decodeSingularStringField(value: &self.title)
       default: break
       }
     }
@@ -3161,8 +3165,11 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Achievement
     if self.target != 0 {
       try visitor.visitSingularInt64Field(value: self.target, fieldNumber: 5)
     }
+    if self.point != 0 {
+      try visitor.visitSingularInt64Field(value: self.point, fieldNumber: 6)
+    }
     if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 6)
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 7)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -3173,6 +3180,7 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Achievement
     if lhs.action != rhs.action {return false}
     if lhs.images != rhs.images {return false}
     if lhs.target != rhs.target {return false}
+    if lhs.point != rhs.point {return false}
     if lhs.title != rhs.title {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -3659,14 +3667,14 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner: Swi
   public static let protoMessageName: String = _protobuf_package + ".Winner"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "winnerId"),
-    2: .same(proto: "winnerStatus"),
+    2: .same(proto: "winnerStep"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.winnerID)
-      case 2: try decoder.decodeSingularStringField(value: &self.winnerStatus)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.winnerStep)
       default: break
       }
     }
@@ -3676,15 +3684,15 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner: Swi
     if !self.winnerID.isEmpty {
       try visitor.visitSingularStringField(value: self.winnerID, fieldNumber: 1)
     }
-    if !self.winnerStatus.isEmpty {
-      try visitor.visitSingularStringField(value: self.winnerStatus, fieldNumber: 2)
+    if self.winnerStep != 0 {
+      try visitor.visitSingularInt64Field(value: self.winnerStep, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner, rhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner) -> Bool {
     if lhs.winnerID != rhs.winnerID {return false}
-    if lhs.winnerStatus != rhs.winnerStatus {return false}
+    if lhs.winnerStep != rhs.winnerStep {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

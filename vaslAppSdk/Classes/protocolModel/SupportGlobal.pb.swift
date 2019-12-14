@@ -618,6 +618,8 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateTicket 
 
   public var msg: String = String()
 
+  public var ticketID: String = String()
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -663,6 +665,8 @@ public struct Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_TicketConvers
   public var isRead: Bool = false
 
   public var addedByUserType: String = String()
+
+  public var status: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2667,6 +2671,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateTicket: Swi
     1: .same(proto: "status"),
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
+    4: .same(proto: "ticketId"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2675,6 +2680,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateTicket: Swi
       case 1: try decoder.decodeSingularInt32Field(value: &self.status)
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularStringField(value: &self.ticketID)
       default: break
       }
     }
@@ -2690,6 +2696,9 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateTicket: Swi
     if !self.msg.isEmpty {
       try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
     }
+    if !self.ticketID.isEmpty {
+      try visitor.visitSingularStringField(value: self.ticketID, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2697,6 +2706,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_CreateTicket: Swi
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.ticketID != rhs.ticketID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -2761,6 +2771,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_TicketConversatio
     7: .same(proto: "userName"),
     8: .same(proto: "isRead"),
     9: .same(proto: "addedByUserType"),
+    10: .same(proto: "status"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2775,6 +2786,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_TicketConversatio
       case 7: try decoder.decodeSingularStringField(value: &self.userName)
       case 8: try decoder.decodeSingularBoolField(value: &self.isRead)
       case 9: try decoder.decodeSingularStringField(value: &self.addedByUserType)
+      case 10: try decoder.decodeSingularStringField(value: &self.status)
       default: break
       }
     }
@@ -2808,6 +2820,9 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_TicketConversatio
     if !self.addedByUserType.isEmpty {
       try visitor.visitSingularStringField(value: self.addedByUserType, fieldNumber: 9)
     }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 10)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2821,6 +2836,7 @@ extension Com_Vasl_Vaslapp_Modules_Support_Global_Proto_Holder_TicketConversatio
     if lhs.userName != rhs.userName {return false}
     if lhs.isRead != rhs.isRead {return false}
     if lhs.addedByUserType != rhs.addedByUserType {return false}
+    if lhs.status != rhs.status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
