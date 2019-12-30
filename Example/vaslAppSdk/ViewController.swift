@@ -28,11 +28,11 @@ class ViewController: UIViewController {
 ////http://sandbox.vaslapp.com
     //http://server.vaslapp.hambazisho.ir
     
-    let appid                      = "41accbbe-6813-41c6-8e00-105647ca6fc3"
-    let clientId                   = "41accbbe-6813-41c6-8e00-105647ca6fc3"
-    let clientSecret               = "HCqsXXgVnYM1nIjKumQl"
-    let username                   = "ios-cjAsYOdh7VCq5Wv68JKc"
-    let password                   = "TebUjYgfN1susmBKEMms"
+    let appid                      = "b1355735-e177-4a9c-b1b6-50affe5f5151"
+    let clientId                   = "b1355735-e177-4a9c-b1b6-50affe5f5151"
+    let clientSecret               = "vMdRyEsSrDtdGGOzajVa"
+    let username                   = "ios-iDXKEvKMXQM0et0sINuE"
+    let password                   = "s1THAzWGgVN5JGYcJdzq"
    
     var vmbas : VaslSdk!
     
@@ -56,11 +56,20 @@ class ViewController: UIViewController {
         
         
         vmbas = VaslSdk.init(appId: appid,
-                             baseUrl: "http://hamnavasho.vaslapp.com",
+                             baseUrl: "http://vaslapp.gaminoapp.ir",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password, nounce: "FPLFJ0pCx6")
+        
+        
+        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09126850451", completion: { (data, error) in
+            if error == nil{
+                debugPrint(data)
+            }else{
+                debugPrint(error!)
+            }
+        })
         
 
  
@@ -85,15 +94,15 @@ class ViewController: UIViewController {
         
 
         
-        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
-            if error == nil{
-
-                debugPrint("it's working fucking awesome bitch ")
-
-            }else{
-                print(error!)
-            }
-        })
+//        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09362266252", completion: { (data, error) in
+//            if error == nil{
+//
+//                debugPrint("it's working fucking awesome bitch ")
+//
+//            }else{
+//                print(error!)
+//            }
+//        })
         
         
         

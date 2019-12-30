@@ -37,6 +37,8 @@
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+			<key>vaslapp.gaminoapp.ir</key>
+			<string></string>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
