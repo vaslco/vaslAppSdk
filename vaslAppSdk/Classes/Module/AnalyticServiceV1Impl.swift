@@ -2,9 +2,9 @@ import Foundation
 
 protocol AnalyticServiceV1 {
 
-    func setDeviceInfo(deviceId: String, info: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
-
     func addEvent(data: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
+
+    func setDeviceInfo(deviceId: String, info: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
     func setBrhaviorFlow(info: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void)
 
@@ -21,6 +21,40 @@ protocol AnalyticServiceV1 {
 
 
 public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
+
+
+    public func addEvent(data: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
+        addEvent(data: data, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addEvent(data: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(data            , forKey: "data")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/analytics/event/add", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo(serializedData: result) as Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addEvent(data: data, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func setDeviceInfo(deviceId: String, info: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
@@ -46,40 +80,6 @@ public class AnalyticServiceV1Impl  : AnalyticServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.setDeviceInfo(deviceId: deviceId, info: info, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func addEvent(data: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void) {
-        addEvent(data: data, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addEvent(data: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(data            , forKey: "data")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/analytics/event/add", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo(serializedData: result) as Com_Vasl_Vaslapp_Modules_Analytic_Global_Proto_Holder_SetDeviceInfo
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addEvent(data: data, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
