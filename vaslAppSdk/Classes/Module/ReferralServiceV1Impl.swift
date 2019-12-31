@@ -14,6 +14,8 @@ protocol ReferralServiceV1 {
 
     func listCampaign(type: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void)
 
+    func listReferralInvites(page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void)
+
 
 }
 
@@ -216,6 +218,39 @@ public class ReferralServiceV1Impl  : ReferralServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listCampaign(type: type, page: page, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func listReferralInvites(page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void) {
+        listReferralInvites(page: page, completion: completion,force: true)
+    }
+    
+    private func listReferralInvites(page: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/referral/list/invites", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Referral_Global_Proto_Holder_ListCampaignPanel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listReferralInvites(page: page, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

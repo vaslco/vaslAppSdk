@@ -1136,7 +1136,7 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_WinnerL
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_SubscriberInfo] = []
+  public var data: [Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1148,13 +1148,30 @@ public struct Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner 
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var winnerID: String = String()
+  public var winnerID: String {
+    get {return _storage._winnerID}
+    set {_uniqueStorage()._winnerID = newValue}
+  }
 
-  public var winnerStep: Int64 = 0
+  public var winnerStep: Int64 {
+    get {return _storage._winnerStep}
+    set {_uniqueStorage()._winnerStep = newValue}
+  }
+
+  public var data: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_SubscriberInfo {
+    get {return _storage._data ?? Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_SubscriberInfo()}
+    set {_uniqueStorage()._data = newValue}
+  }
+  /// Returns true if `data` has been explicitly set.
+  public var hasData: Bool {return _storage._data != nil}
+  /// Clears the value of `data`. Subsequent reads from it will return its default value.
+  public mutating func clearData() {_uniqueStorage()._data = nil}
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -3668,31 +3685,73 @@ extension Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner: Swi
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "winnerId"),
     2: .same(proto: "winnerStep"),
+    3: .same(proto: "data"),
   ]
 
+  fileprivate class _StorageClass {
+    var _winnerID: String = String()
+    var _winnerStep: Int64 = 0
+    var _data: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_SubscriberInfo? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _winnerID = source._winnerID
+      _winnerStep = source._winnerStep
+      _data = source._data
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.winnerID)
-      case 2: try decoder.decodeSingularInt64Field(value: &self.winnerStep)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._winnerID)
+        case 2: try decoder.decodeSingularInt64Field(value: &_storage._winnerStep)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._data)
+        default: break
+        }
       }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.winnerID.isEmpty {
-      try visitor.visitSingularStringField(value: self.winnerID, fieldNumber: 1)
-    }
-    if self.winnerStep != 0 {
-      try visitor.visitSingularInt64Field(value: self.winnerStep, fieldNumber: 2)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._winnerID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._winnerID, fieldNumber: 1)
+      }
+      if _storage._winnerStep != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._winnerStep, fieldNumber: 2)
+      }
+      if let v = _storage._data {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner, rhs: Com_Vasl_Vaslapp_Modules_Event_Manager_Global_Proto_Holder_Winner) -> Bool {
-    if lhs.winnerID != rhs.winnerID {return false}
-    if lhs.winnerStep != rhs.winnerStep {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._winnerID != rhs_storage._winnerID {return false}
+        if _storage._winnerStep != rhs_storage._winnerStep {return false}
+        if _storage._data != rhs_storage._data {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

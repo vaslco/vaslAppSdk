@@ -54,7 +54,7 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
     
     private func echo(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
+        let params = Dictionary<String,Any>()
 
 
         let hasNounce =  true
@@ -86,7 +86,7 @@ public class SubscriberServiceV1_1Impl  : SubscriberServiceV1_1 {
     }
     
     private func echoRequest(completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
+        let params = Dictionary<String,Any>()
 
 
         let hasNounce =  false

@@ -63,13 +63,17 @@ class ViewController: UIViewController {
                             password: password, nounce: "FPLFJ0pCx6")
         
         
-        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09126850451", completion: { (data, error) in
-            if error == nil{
-                debugPrint(data)
-            }else{
-                debugPrint(error!)
-            }
-        })
+//        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09126850451", completion: { (data, error) in
+//            if error == nil{
+//                debugPrint(data)
+//            }else{
+//                debugPrint(error!)
+//            }
+//        })
+        
+        
+
+        
         
 
  

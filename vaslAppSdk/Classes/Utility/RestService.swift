@@ -432,8 +432,9 @@ struct RestService {
         getaccessToken(force) { (success, token) in
             if success! {
                 if let url = URL(string: url) {
-                    let request = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
-                    if let request = request as DataRequest? {
+                    _ = Alamofire.request(url, method: .post, parameters: parameters, headers: addHeader(type))
+                    let req = Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: addHeader(type))
+                    if let request = req as DataRequest? {
                         let start = CACurrentMediaTime()
                         request.response(completionHandler: { (webResult) in
                             let end = CACurrentMediaTime()

@@ -2,9 +2,9 @@ import Foundation
 
 protocol GatewayServiceV1 {
 
-    func bankList(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void)
-
     func payment(amount: String, bankCode: String, orderId: String, callBackUserURL: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Pay?,String?) -> Void)
+
+    func bankList(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void)
 
     func confirmtransaction(orderId: String, transactionId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_ConfirmTransaction?,String?) -> Void)
 
@@ -17,39 +17,6 @@ protocol GatewayServiceV1 {
 
 
 public class GatewayServiceV1Impl  : GatewayServiceV1 {
-
-
-    public func bankList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void) {
-        bankList(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func bankList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/gateway/banks/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.bankList(sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func payment(amount: String, bankCode: String, orderId: String, callBackUserURL: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_Pay?,String?) -> Void) {
@@ -77,6 +44,39 @@ public class GatewayServiceV1Impl  : GatewayServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.payment(amount: amount, bankCode: bankCode, orderId: orderId, callBackUserURL: callBackUserURL, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func bankList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void) {
+        bankList(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func bankList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/gateway/banks/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Bankgateway_Global_Proto_Holder_BankList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.bankList(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
