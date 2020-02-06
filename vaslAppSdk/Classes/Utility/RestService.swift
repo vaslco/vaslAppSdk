@@ -1334,6 +1334,7 @@ public struct Swime {
     
     public init(bytes: [UInt8]) {
         self.init(data: Data(bytes: bytes))
+        
     }
     
     ///  Read bytes from file data

@@ -2,9 +2,9 @@ import Foundation
 
 protocol GameLeaderBoardServiceV2 {
 
-    func getLeaderboard(pointId: String, sortDescending: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
+    func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
-    func getLeaderboardTop10(pointId: String, sortDescending: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
+    func getLeaderboardTop10(pointId: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
     func getUserInLeaderboard(pointId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
@@ -15,14 +15,13 @@ protocol GameLeaderBoardServiceV2 {
 public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
 
 
-    public func getLeaderboard(pointId: String, sortDescending: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
-        getLeaderboard(pointId: pointId, sortDescending: sortDescending, tag: tag, sessionId: sessionId, completion: completion,force: true)
+    public func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
+        getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getLeaderboard(pointId: String, sortDescending: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
+    private func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
-                    params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
@@ -38,7 +37,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.getLeaderboard(pointId: pointId, sortDescending: sortDescending, tag: tag, sessionId: sessionId, completion: completion,force: false)
+                            self.getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -51,14 +50,13 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
     }
 
 
-    public func getLeaderboardTop10(pointId: String, sortDescending: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
-        getLeaderboardTop10(pointId: pointId, sortDescending: sortDescending, tag: tag, sessionId: sessionId, completion: completion,force: true)
+    public func getLeaderboardTop10(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
+        getLeaderboardTop10(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getLeaderboardTop10(pointId: String, sortDescending: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
+    private func getLeaderboardTop10(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
-                    params.updateValue(sortDescending            , forKey: "sortDescending")
                     params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
@@ -74,7 +72,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.getLeaderboardTop10(pointId: pointId, sortDescending: sortDescending, tag: tag, sessionId: sessionId, completion: completion,force: false)
+                            self.getLeaderboardTop10(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

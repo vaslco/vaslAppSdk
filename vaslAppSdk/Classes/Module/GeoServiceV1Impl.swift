@@ -8,6 +8,8 @@ protocol GeoServiceV1 {
 
     func removeLocation(locationId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_RemoveLocation?,String?) -> Void)
 
+    func getPolygonInfo(latitude: String, longitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_FindPolygonInfo?,String?) -> Void)
+
 
 }
 
@@ -115,6 +117,41 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.removeLocation(locationId: locationId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func getPolygonInfo(latitude: String, longitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_FindPolygonInfo?,String?) -> Void) {
+        getPolygonInfo(latitude: latitude, longitude: longitude, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getPolygonInfo(latitude: String, longitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_FindPolygonInfo?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(latitude            , forKey: "latitude")
+                    params.updateValue(longitude            , forKey: "longitude")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/geo/getPolygonInfo", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_FindPolygonInfo(serializedData: result) as Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_FindPolygonInfo
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getPolygonInfo(latitude: latitude, longitude: longitude, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

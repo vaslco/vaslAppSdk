@@ -14,7 +14,7 @@ protocol DynamicTableServiceTablesV1 {
 
     func tablesSchemaList(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList?,String?) -> Void)
 
-    func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+    func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func queryCreate(name: String, fields: Array<String>, joins: Array<String>, sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -232,14 +232,16 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        tablesSchemaAlter(id: id, fields: fields, sessionId: sessionId, completion: completion,force: true)
+    public func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func tablesSchemaAlter(id: String, fields: Array<Dictionary<String,String>>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
+    private func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
+                    params.updateValue(state            , forKey: "state")
                     params.updateValue(fields            , forKey: "fields")
+                    params.updateValue(index            , forKey: "index")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/alter", params, completion: { (result, error) in
             do{
@@ -253,7 +255,7 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.tablesSchemaAlter(id: id, fields: fields, sessionId: sessionId, completion: completion,force: false)
+                            self.tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.message)
                         }

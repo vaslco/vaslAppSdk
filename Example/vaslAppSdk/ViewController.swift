@@ -76,7 +76,7 @@ class ViewController: UIViewController {
         
         
 
- 
+  
         
 //        vmbas.HambaziService()?.pageGet(key: "PAGE_DETAILS", catId: "5d1352a82f59d8000941fd27", subscriberId: "", sessionId: "8b106cf6023205715031e19a3aae8ab4c7bfe7ae", completion: { (data, error) in
 //            if error == nil{

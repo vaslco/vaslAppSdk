@@ -118,6 +118,8 @@ public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TableInf
 
   public var fields: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Fields] = []
 
+  public var index: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index] = []
+
   public var sessionRequired: Bool = false
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -223,6 +225,72 @@ public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCre
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCreate_Agg {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryEdit_Agg {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryDelete_Agg {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_RunAggregate {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var doc: [String] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_DataType {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -275,6 +343,199 @@ public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Fields {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var index: Bool {
+    get {return _storage._index}
+    set {_uniqueStorage()._index = newValue}
+  }
+
+  public var key: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key] {
+    get {return _storage._key}
+    set {_uniqueStorage()._key = newValue}
+  }
+
+  public var background: Bool {
+    get {return _storage._background}
+    set {_uniqueStorage()._background = newValue}
+  }
+
+  public var unique: Bool {
+    get {return _storage._unique}
+    set {_uniqueStorage()._unique = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var sparse: Bool {
+    get {return _storage._sparse}
+    set {_uniqueStorage()._sparse = newValue}
+  }
+
+  public var expireAfterSeconds: Int64 {
+    get {return _storage._expireAfterSeconds}
+    set {_uniqueStorage()._expireAfterSeconds = newValue}
+  }
+
+  public var version: Int32 {
+    get {return _storage._version}
+    set {_uniqueStorage()._version = newValue}
+  }
+
+  public var defaultLanguage: String {
+    get {return _storage._defaultLanguage}
+    set {_uniqueStorage()._defaultLanguage = newValue}
+  }
+
+  public var languageOverride: String {
+    get {return _storage._languageOverride}
+    set {_uniqueStorage()._languageOverride = newValue}
+  }
+
+  public var textVersion: Int32 {
+    get {return _storage._textVersion}
+    set {_uniqueStorage()._textVersion = newValue}
+  }
+
+  public var sphereVersion: Int32 {
+    get {return _storage._sphereVersion}
+    set {_uniqueStorage()._sphereVersion = newValue}
+  }
+
+  public var bits: Int32 {
+    get {return _storage._bits}
+    set {_uniqueStorage()._bits = newValue}
+  }
+
+  public var min: Double {
+    get {return _storage._min}
+    set {_uniqueStorage()._min = newValue}
+  }
+
+  public var max: Double {
+    get {return _storage._max}
+    set {_uniqueStorage()._max = newValue}
+  }
+
+  public var weights: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights] {
+    get {return _storage._weights}
+    set {_uniqueStorage()._weights = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var key: String = String()
+
+  public var value: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var key: String = String()
+
+  public var value: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var list: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryModel] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_FindQuery {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryModel {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var typeKeys: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Stage] = []
+
+  public var des: String = String()
+
+  public var sessReq: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Stage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var name: String = String()
+
+  public var stage: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -287,6 +548,8 @@ public struct Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSc
   public var msg: String = String()
 
   public var data: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Fields] = []
+
+  public var index: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -526,7 +789,8 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TableInfo: S
     5: .same(proto: "count"),
     6: .same(proto: "description"),
     7: .same(proto: "fields"),
-    8: .same(proto: "sessionRequired"),
+    8: .same(proto: "index"),
+    9: .same(proto: "sessionRequired"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -539,7 +803,8 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TableInfo: S
       case 5: try decoder.decodeSingularInt64Field(value: &self.count)
       case 6: try decoder.decodeSingularStringField(value: &self.description_p)
       case 7: try decoder.decodeRepeatedMessageField(value: &self.fields)
-      case 8: try decoder.decodeSingularBoolField(value: &self.sessionRequired)
+      case 8: try decoder.decodeRepeatedMessageField(value: &self.index)
+      case 9: try decoder.decodeSingularBoolField(value: &self.sessionRequired)
       default: break
       }
     }
@@ -567,8 +832,11 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TableInfo: S
     if !self.fields.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.fields, fieldNumber: 7)
     }
+    if !self.index.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.index, fieldNumber: 8)
+    }
     if self.sessionRequired != false {
-      try visitor.visitSingularBoolField(value: self.sessionRequired, fieldNumber: 8)
+      try visitor.visitSingularBoolField(value: self.sessionRequired, fieldNumber: 9)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -581,6 +849,7 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TableInfo: S
     if lhs.count != rhs.count {return false}
     if lhs.description_p != rhs.description_p {return false}
     if lhs.fields != rhs.fields {return false}
+    if lhs.index != rhs.index {return false}
     if lhs.sessionRequired != rhs.sessionRequired {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -839,6 +1108,176 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCreate:
   }
 }
 
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCreate_Agg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".QueryCreate_Agg"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCreate_Agg, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryCreate_Agg) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryEdit_Agg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".QueryEdit_Agg"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryEdit_Agg, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryEdit_Agg) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryDelete_Agg: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".QueryDelete_Agg"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryDelete_Agg, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryDelete_Agg) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_RunAggregate: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RunAggregate"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "doc"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedStringField(value: &self.doc)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.doc.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.doc, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_RunAggregate, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_RunAggregate) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.doc != rhs.doc {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_DataType: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DataType"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -974,6 +1413,441 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Fields: Swif
   }
 }
 
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Index"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "index"),
+    3: .same(proto: "key"),
+    4: .same(proto: "background"),
+    5: .same(proto: "unique"),
+    6: .same(proto: "name"),
+    7: .same(proto: "sparse"),
+    8: .same(proto: "expireAfterSeconds"),
+    9: .same(proto: "version"),
+    10: .standard(proto: "default_language"),
+    11: .standard(proto: "language_override"),
+    12: .same(proto: "textVersion"),
+    13: .same(proto: "sphereVersion"),
+    14: .same(proto: "bits"),
+    15: .same(proto: "min"),
+    16: .same(proto: "max"),
+    17: .same(proto: "weights"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _index: Bool = false
+    var _key: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key] = []
+    var _background: Bool = false
+    var _unique: Bool = false
+    var _name: String = String()
+    var _sparse: Bool = false
+    var _expireAfterSeconds: Int64 = 0
+    var _version: Int32 = 0
+    var _defaultLanguage: String = String()
+    var _languageOverride: String = String()
+    var _textVersion: Int32 = 0
+    var _sphereVersion: Int32 = 0
+    var _bits: Int32 = 0
+    var _min: Double = 0
+    var _max: Double = 0
+    var _weights: [Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights] = []
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _index = source._index
+      _key = source._key
+      _background = source._background
+      _unique = source._unique
+      _name = source._name
+      _sparse = source._sparse
+      _expireAfterSeconds = source._expireAfterSeconds
+      _version = source._version
+      _defaultLanguage = source._defaultLanguage
+      _languageOverride = source._languageOverride
+      _textVersion = source._textVersion
+      _sphereVersion = source._sphereVersion
+      _bits = source._bits
+      _min = source._min
+      _max = source._max
+      _weights = source._weights
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularBoolField(value: &_storage._index)
+        case 3: try decoder.decodeRepeatedMessageField(value: &_storage._key)
+        case 4: try decoder.decodeSingularBoolField(value: &_storage._background)
+        case 5: try decoder.decodeSingularBoolField(value: &_storage._unique)
+        case 6: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 7: try decoder.decodeSingularBoolField(value: &_storage._sparse)
+        case 8: try decoder.decodeSingularInt64Field(value: &_storage._expireAfterSeconds)
+        case 9: try decoder.decodeSingularInt32Field(value: &_storage._version)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._defaultLanguage)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._languageOverride)
+        case 12: try decoder.decodeSingularInt32Field(value: &_storage._textVersion)
+        case 13: try decoder.decodeSingularInt32Field(value: &_storage._sphereVersion)
+        case 14: try decoder.decodeSingularInt32Field(value: &_storage._bits)
+        case 15: try decoder.decodeSingularDoubleField(value: &_storage._min)
+        case 16: try decoder.decodeSingularDoubleField(value: &_storage._max)
+        case 17: try decoder.decodeRepeatedMessageField(value: &_storage._weights)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if _storage._index != false {
+        try visitor.visitSingularBoolField(value: _storage._index, fieldNumber: 2)
+      }
+      if !_storage._key.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._key, fieldNumber: 3)
+      }
+      if _storage._background != false {
+        try visitor.visitSingularBoolField(value: _storage._background, fieldNumber: 4)
+      }
+      if _storage._unique != false {
+        try visitor.visitSingularBoolField(value: _storage._unique, fieldNumber: 5)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 6)
+      }
+      if _storage._sparse != false {
+        try visitor.visitSingularBoolField(value: _storage._sparse, fieldNumber: 7)
+      }
+      if _storage._expireAfterSeconds != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._expireAfterSeconds, fieldNumber: 8)
+      }
+      if _storage._version != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._version, fieldNumber: 9)
+      }
+      if !_storage._defaultLanguage.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._defaultLanguage, fieldNumber: 10)
+      }
+      if !_storage._languageOverride.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._languageOverride, fieldNumber: 11)
+      }
+      if _storage._textVersion != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._textVersion, fieldNumber: 12)
+      }
+      if _storage._sphereVersion != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._sphereVersion, fieldNumber: 13)
+      }
+      if _storage._bits != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._bits, fieldNumber: 14)
+      }
+      if _storage._min != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._min, fieldNumber: 15)
+      }
+      if _storage._max != 0 {
+        try visitor.visitSingularDoubleField(value: _storage._max, fieldNumber: 16)
+      }
+      if !_storage._weights.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._weights, fieldNumber: 17)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Index) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._index != rhs_storage._index {return false}
+        if _storage._key != rhs_storage._key {return false}
+        if _storage._background != rhs_storage._background {return false}
+        if _storage._unique != rhs_storage._unique {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._sparse != rhs_storage._sparse {return false}
+        if _storage._expireAfterSeconds != rhs_storage._expireAfterSeconds {return false}
+        if _storage._version != rhs_storage._version {return false}
+        if _storage._defaultLanguage != rhs_storage._defaultLanguage {return false}
+        if _storage._languageOverride != rhs_storage._languageOverride {return false}
+        if _storage._textVersion != rhs_storage._textVersion {return false}
+        if _storage._sphereVersion != rhs_storage._sphereVersion {return false}
+        if _storage._bits != rhs_storage._bits {return false}
+        if _storage._min != rhs_storage._min {return false}
+        if _storage._max != rhs_storage._max {return false}
+        if _storage._weights != rhs_storage._weights {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Key"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "value"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.key)
+      case 2: try decoder.decodeSingularStringField(value: &self.value)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 1)
+    }
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Key) -> Bool {
+    if lhs.key != rhs.key {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Weights"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "key"),
+    2: .same(proto: "value"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.key)
+      case 2: try decoder.decodeSingularStringField(value: &self.value)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.key.isEmpty {
+      try visitor.visitSingularStringField(value: self.key, fieldNumber: 1)
+    }
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Weights) -> Bool {
+    if lhs.key != rhs.key {return false}
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".QueryList"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "list"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.list)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.list.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.list, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryList, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryList) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.list != rhs.list {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_FindQuery: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FindQuery"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_FindQuery, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_FindQuery) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryModel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".QueryModel"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .standard(proto: "type_keys"),
+    4: .same(proto: "des"),
+    5: .standard(proto: "sess_req"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      case 3: try decoder.decodeRepeatedMessageField(value: &self.typeKeys)
+      case 4: try decoder.decodeSingularStringField(value: &self.des)
+      case 5: try decoder.decodeSingularBoolField(value: &self.sessReq)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if !self.typeKeys.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.typeKeys, fieldNumber: 3)
+    }
+    if !self.des.isEmpty {
+      try visitor.visitSingularStringField(value: self.des, fieldNumber: 4)
+    }
+    if self.sessReq != false {
+      try visitor.visitSingularBoolField(value: self.sessReq, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryModel, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_QueryModel) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.typeKeys != rhs.typeKeys {return false}
+    if lhs.des != rhs.des {return false}
+    if lhs.sessReq != rhs.sessReq {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Stage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Stage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "name"),
+    2: .same(proto: "stage"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.name)
+      case 2: try decoder.decodeSingularStringField(value: &self.stage)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
+    }
+    if !self.stage.isEmpty {
+      try visitor.visitSingularStringField(value: self.stage, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Stage, rhs: Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_Stage) -> Bool {
+    if lhs.name != rhs.name {return false}
+    if lhs.stage != rhs.stage {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".TablesSchemaList"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -981,6 +1855,7 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchema
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
     4: .same(proto: "data"),
+    5: .same(proto: "index"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -990,6 +1865,7 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchema
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeRepeatedMessageField(value: &self.data)
+      case 5: try decoder.decodeRepeatedMessageField(value: &self.index)
       default: break
       }
     }
@@ -1008,6 +1884,9 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchema
     if !self.data.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 4)
     }
+    if !self.index.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.index, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -1016,6 +1895,7 @@ extension Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchema
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.data != rhs.data {return false}
+    if lhs.index != rhs.index {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
