@@ -1,6 +1,6 @@
 {
   "name": "vaslAppSdk",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "swift_versions": "5",
   "summary": "vaslAppSdk is a Framework for connectin to Mbas-Vasl service",
   "description": "this framework belongs to Vasl Company and you can use it for connecting to your service on vaslapp.com",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/vaslco/vaslAppSdk.git",
-    "tag": "0.5.6"
+    "tag": "0.5.7"
   },
   "platforms": {
     "ios": "10.0"
@@ -25,7 +25,7 @@
 
     ],
     "Alamofire": [
-
+      "4.9.1"
     ]
   },
   "swift_version": "5"
