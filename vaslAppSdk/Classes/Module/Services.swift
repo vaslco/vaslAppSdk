@@ -85,5 +85,9 @@ protocol Services {
     
     func EventService() -> EventServiceImpl!
     
+    func UserDeviceVontroller() -> UserDeviceControllerImpl!
+    
+    func KalingaServices() -> KalingaServiceV1Impl!
+    
     
 }

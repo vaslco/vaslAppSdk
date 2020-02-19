@@ -2,9 +2,9 @@ import Foundation
 
 protocol AvatarServiceV1 {
 
-    func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void)
-
     func removeAvatar(avatarId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarRemove?,String?) -> Void)
+
+    func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void)
 
     func editAvatar(avatarId: String, avatarKeyValueList: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarUpdate?,String?) -> Void)
 
@@ -17,40 +17,6 @@ protocol AvatarServiceV1 {
 
 
 public class AvatarServiceV1Impl  : AvatarServiceV1 {
-
-
-    public func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void) {
-        addAvatar(avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(avatarKeyValueList            , forKey: "avatarKeyValueList")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/avatar/add", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addAvatar(avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func removeAvatar(avatarId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarRemove?,String?) -> Void) {
@@ -75,6 +41,40 @@ public class AvatarServiceV1Impl  : AvatarServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.removeAvatar(avatarId: avatarId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void) {
+        addAvatar(avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addAvatar(avatarKeyValueList: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(avatarKeyValueList            , forKey: "avatarKeyValueList")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/avatar/add", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Avatar_Global_Proto_Holder_AvatarAdd
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addAvatar(avatarKeyValueList: avatarKeyValueList, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

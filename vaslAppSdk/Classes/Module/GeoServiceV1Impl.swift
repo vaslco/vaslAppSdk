@@ -4,7 +4,7 @@ protocol GeoServiceV1 {
 
     func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void)
 
-    func setLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void)
+    func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void)
 
     func removeLocation(locationId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_RemoveLocation?,String?) -> Void)
 
@@ -54,11 +54,11 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
     }
 
 
-    public func setLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void) {
-        setLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, sessionId: sessionId, completion: completion,force: true)
+    public func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void) {
+        addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func setLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void,force : Bool) {
+    private func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(refTitle            , forKey: "refTitle")
@@ -68,6 +68,7 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                     params.updateValue(tableName            , forKey: "tableName")
                     params.updateValue(fieldName            , forKey: "fieldName")
                     params.updateValue(value            , forKey: "value")
+                    params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
@@ -82,7 +83,7 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.setLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, sessionId: sessionId, completion: completion,force: false)
+                            self.addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, type: type, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

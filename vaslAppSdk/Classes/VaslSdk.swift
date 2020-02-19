@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 public class VaslSdk : Services {
+
+    
  
  
     
@@ -335,5 +337,20 @@ public class VaslSdk : Services {
                }
                return VaslSdk.EventServices
         }
+    private static var UserDeviceController : UserDeviceControllerImpl!
+    public func UserDeviceVontroller() -> UserDeviceControllerImpl! {
+        if VaslSdk.UserDeviceController == nil{
+            VaslSdk.UserDeviceController = UserDeviceControllerImpl.init()
+        }
+        return VaslSdk.UserDeviceController
+    }
+    
+    private static var KalingaServices : KalingaServiceV1Impl!
+    public func KalingaServices() -> KalingaServiceV1Impl! {
+        if VaslSdk.KalingaServices == nil{
+            VaslSdk.KalingaServices = KalingaServiceV1Impl.init()
+        }
+        return VaslSdk.KalingaServices
+    }
     
 }

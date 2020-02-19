@@ -241,22 +241,6 @@ public struct Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Coordinates {
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var title: String = String()
-
-  public var count: Int64 = 0
-
-  public var gid: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
 public struct Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_InfoPolygon {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -322,6 +306,22 @@ public struct Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListInfo {
 
   ///    int64 count = 5;
   public var data: [Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var title: String = String()
+
+  public var count: Int64 = 0
+
+  public var gid: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -905,47 +905,6 @@ extension Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Coordinates: SwiftPro
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".Info"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "title"),
-    2: .same(proto: "count"),
-    3: .same(proto: "GID"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.title)
-      case 2: try decoder.decodeSingularInt64Field(value: &self.count)
-      case 3: try decoder.decodeSingularStringField(value: &self.gid)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
-    }
-    if self.count != 0 {
-      try visitor.visitSingularInt64Field(value: self.count, fieldNumber: 2)
-    }
-    if !self.gid.isEmpty {
-      try visitor.visitSingularStringField(value: self.gid, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info, rhs: Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info) -> Bool {
-    if lhs.title != rhs.title {return false}
-    if lhs.count != rhs.count {return false}
-    if lhs.gid != rhs.gid {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_InfoPolygon: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".InfoPolygon"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -1114,6 +1073,47 @@ extension Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListInfo: SwiftProtob
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.data != rhs.data {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Info"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "title"),
+    2: .same(proto: "count"),
+    3: .same(proto: "GID"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.title)
+      case 2: try decoder.decodeSingularInt64Field(value: &self.count)
+      case 3: try decoder.decodeSingularStringField(value: &self.gid)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.title.isEmpty {
+      try visitor.visitSingularStringField(value: self.title, fieldNumber: 1)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularInt64Field(value: self.count, fieldNumber: 2)
+    }
+    if !self.gid.isEmpty {
+      try visitor.visitSingularStringField(value: self.gid, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info, rhs: Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_Info) -> Bool {
+    if lhs.title != rhs.title {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.gid != rhs.gid {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -1,16 +1,8 @@
 import Foundation
 
-protocol ContentServiceV1 {
+protocol KalingaServiceV1 {
 
     func getContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
-
-    func contentCommentAdd(refId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void)
-
-    func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void)
-
-    func contentCommentRemove(commentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void)
-
-    func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
 
     func addContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, publishDate: String, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, confirm: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -27,6 +19,14 @@ protocol ContentServiceV1 {
     func listCategoryClustered(page: String, keyWord: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryListCllustered?,String?) -> Void)
 
     func listContentRowTypes(completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void)
+
+    func ContentCommentAdd(refId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void)
+
+    func ContentCommentUpdate(commentId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void)
+
+    func ContentCommentRemove(commentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void)
+
+    func ContentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
 
     func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
@@ -46,7 +46,7 @@ protocol ContentServiceV1 {
 }
 
 
-public class ContentServiceV1Impl  : ContentServiceV1 {
+public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
     public func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void) {
@@ -60,7 +60,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/get", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/get", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -71,147 +71,6 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void) {
-        contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(refId            , forKey: "refId")
-                    params.updateValue(content            , forKey: "content")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/add", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void) {
-        contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(commentId            , forKey: "commentId")
-                    params.updateValue(content            , forKey: "content")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/update", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void) {
-        contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(commentId            , forKey: "commentId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/remove", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void) {
-        contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(refId            , forKey: "refId")
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -245,7 +104,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/content/add", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/add", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -292,7 +151,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/content/edit", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/edit", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -328,7 +187,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/property/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/property/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -362,7 +221,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -394,7 +253,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/root", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/root", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -428,7 +287,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/depth", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/depth", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -463,7 +322,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/category/list/clustered", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/clustered", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -495,7 +354,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/contentrow/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/Contentrow/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -506,6 +365,147 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listContentRowTypes( completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func ContentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void) {
+        ContentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func ContentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(refId            , forKey: "refId")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/add", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.ContentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func ContentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void) {
+        ContentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func ContentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(commentId            , forKey: "commentId")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/update", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.ContentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func ContentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void) {
+        ContentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func ContentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(commentId            , forKey: "commentId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/remove", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.ContentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func ContentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void) {
+        ContentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func ContentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(refId            , forKey: "refId")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.ContentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -543,7 +543,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -581,7 +581,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/listByCity", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/listByCity", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -620,7 +620,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/list/location", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/list/location", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -655,7 +655,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/rating", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/rating", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -689,7 +689,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/like", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/like", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -723,7 +723,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/fav", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -759,7 +759,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/fav/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
