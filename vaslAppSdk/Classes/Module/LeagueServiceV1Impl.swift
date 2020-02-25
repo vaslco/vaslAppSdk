@@ -2,6 +2,8 @@ import Foundation
 
 protocol LeagueServiceV1 {
 
+    func leagueList(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void)
+
     func leagueGet(leagueId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueGet?,String?) -> Void)
 
     func leagueRewardList(leagueId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_RewardList?,String?) -> Void)
@@ -12,13 +14,47 @@ protocol LeagueServiceV1 {
 
     func leagueAnswer(leagueId: String, questionId: String, answer: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_CorrectAnswer?,String?) -> Void)
 
-    func leagueList(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void)
-
 
 }
 
 
 public class LeagueServiceV1Impl  : LeagueServiceV1 {
+
+
+    public func leagueList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void) {
+        leagueList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func leagueList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.leagueList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func leagueGet(leagueId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueGet?,String?) -> Void) {
@@ -181,42 +217,6 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.leagueAnswer(leagueId: leagueId, questionId: questionId, answer: answer, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func leagueList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void) {
-        leagueList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func leagueList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.leagueList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

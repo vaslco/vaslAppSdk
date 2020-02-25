@@ -504,7 +504,7 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo {
     set {_uniqueStorage()._relationKey = newValue}
   }
 
-  public var property: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue] {
+  public var property: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue] {
     get {return _storage._property}
     set {_uniqueStorage()._property = newValue}
   }
@@ -730,11 +730,41 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  public var status: Int32 = 0
+  public var status: Int32 {
+    get {return _storage._status}
+    set {_uniqueStorage()._status = newValue}
+  }
 
-  public var code: Int32 = 0
+  public var code: Int32 {
+    get {return _storage._code}
+    set {_uniqueStorage()._code = newValue}
+  }
 
-  public var msg: String = String()
+  public var msg: String {
+    get {return _storage._msg}
+    set {_uniqueStorage()._msg = newValue}
+  }
+
+  public var data: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property {
+    get {return _storage._data ?? Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property()}
+    set {_uniqueStorage()._data = newValue}
+  }
+  /// Returns true if `data` has been explicitly set.
+  public var hasData: Bool {return _storage._data != nil}
+  /// Clears the value of `data`. Subsequent reads from it will return its default value.
+  public mutating func clearData() {_uniqueStorage()._data = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
   public var id: String = String()
 
@@ -746,14 +776,15 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet {
 
   public var typeProperty: String = String()
 
-  public var valueList: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty] = []
+  public var valueList: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
 
-public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty {
+///we can add photo and other thing in property
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -764,20 +795,7 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty
 
   public var type: String = String()
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-///we can add photo and other thing in property
-public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var id: String = String()
-
-  public var value: String = String()
+  public var icon: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -795,7 +813,7 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList 
 
   public var msg: String = String()
 
-  public var listProperty: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet] = []
+  public var listProperty: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -812,6 +830,26 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_InfoPolygon {
   public var state: String = String()
 
   public var city: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var type: String = String()
+
+  public var count: Int32 = 0
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1775,7 +1813,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     var _shortLink: String = String()
     var _language: String = String()
     var _relationKey: String = String()
-    var _property: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue] = []
+    var _property: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue] = []
     var _infoGeo: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_InfoPolygon? = nil
 
     static let defaultInstance = _StorageClass()
@@ -2500,6 +2538,88 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet: Swif
     1: .same(proto: "status"),
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
+    4: .same(proto: "data"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _status: Int32 = 0
+    var _code: Int32 = 0
+    var _msg: String = String()
+    var _data: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _status = source._status
+      _code = source._code
+      _msg = source._msg
+      _data = source._data
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularInt32Field(value: &_storage._status)
+        case 2: try decoder.decodeSingularInt32Field(value: &_storage._code)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._msg)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._data)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if _storage._status != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._status, fieldNumber: 1)
+      }
+      if _storage._code != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._code, fieldNumber: 2)
+      }
+      if !_storage._msg.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._msg, fieldNumber: 3)
+      }
+      if let v = _storage._data {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._status != rhs_storage._status {return false}
+        if _storage._code != rhs_storage._code {return false}
+        if _storage._msg != rhs_storage._msg {return false}
+        if _storage._data != rhs_storage._data {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Property"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     4: .same(proto: "id"),
     5: .same(proto: "name"),
     6: .standard(proto: "id_Parent"),
@@ -2511,9 +2631,6 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet: Swif
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
-      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
-      case 3: try decoder.decodeSingularStringField(value: &self.msg)
       case 4: try decoder.decodeSingularStringField(value: &self.id)
       case 5: try decoder.decodeSingularStringField(value: &self.name)
       case 6: try decoder.decodeSingularStringField(value: &self.idParent)
@@ -2526,15 +2643,6 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet: Swif
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.status != 0 {
-      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
-    }
-    if self.code != 0 {
-      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
-    }
-    if !self.msg.isEmpty {
-      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
-    }
     if !self.id.isEmpty {
       try visitor.visitSingularStringField(value: self.id, fieldNumber: 4)
     }
@@ -2556,10 +2664,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet: Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet) -> Bool {
-    if lhs.status != rhs.status {return false}
-    if lhs.code != rhs.code {return false}
-    if lhs.msg != rhs.msg {return false}
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Property) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.name != rhs.name {return false}
     if lhs.idParent != rhs.idParent {return false}
@@ -2571,12 +2676,13 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyGet: Swif
   }
 }
 
-extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".ValueProperty"
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PropertyValue"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "value"),
     3: .same(proto: "type"),
+    4: .same(proto: "icon"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2585,6 +2691,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty: Sw
       case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.value)
       case 3: try decoder.decodeSingularStringField(value: &self.type)
+      case 4: try decoder.decodeSingularStringField(value: &self.icon)
       default: break
       }
     }
@@ -2600,48 +2707,17 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty: Sw
     if !self.type.isEmpty {
       try visitor.visitSingularStringField(value: self.type, fieldNumber: 3)
     }
+    if !self.icon.isEmpty {
+      try visitor.visitSingularStringField(value: self.icon, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ValueProperty) -> Bool {
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.value != rhs.value {return false}
     if lhs.type != rhs.type {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".PropertyModelValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "id"),
-    2: .same(proto: "value"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 2: try decoder.decodeSingularStringField(value: &self.value)
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.id.isEmpty {
-      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
-    }
-    if !self.value.isEmpty {
-      try visitor.visitSingularStringField(value: self.value, fieldNumber: 2)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyModelValue) -> Bool {
-    if lhs.id != rhs.id {return false}
-    if lhs.value != rhs.value {return false}
+    if lhs.icon != rhs.icon {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -2730,6 +2806,59 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_InfoPolygon: Swif
     if lhs.country != rhs.country {return false}
     if lhs.state != rhs.state {return false}
     if lhs.city != rhs.city {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CountContent"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "type"),
+    5: .same(proto: "count"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularStringField(value: &self.type)
+      case 5: try decoder.decodeSingularInt32Field(value: &self.count)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.type.isEmpty {
+      try visitor.visitSingularStringField(value: self.type, fieldNumber: 4)
+    }
+    if self.count != 0 {
+      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.type != rhs.type {return false}
+    if lhs.count != rhs.count {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

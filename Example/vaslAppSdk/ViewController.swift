@@ -20,19 +20,19 @@ class ViewController: UIViewController {
     //41accbbe-6813-41c6-8e00-105647ca6fc3
     
 ////    //sandbox
-//    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-//    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
-//    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
-//    let username                   = "ios-42INKrpAH3stIaYbGTGJ"
-//    let password                   = "fH0DAMfU5QXtoz7zTteJ"
+    let appid                      = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+    let clientId                   = "c3bdf6c5-508f-48ae-9af4-243a24072e31"
+    let clientSecret               = "LnDbEo3yDDcswKMC3h4H"
+    let username                   = "ios-42INKrpAH3stIaYbGTGJ"
+    let password                   = "fH0DAMfU5QXtoz7zTteJ"
 ////http://sandbox.vaslapp.com
     //http://server.vaslapp.hambazisho.ir
     
-    let appid                      = "b1355735-e177-4a9c-b1b6-50affe5f5151"
-    let clientId                   = "b1355735-e177-4a9c-b1b6-50affe5f5151"
-    let clientSecret               = "vMdRyEsSrDtdGGOzajVa"
-    let username                   = "ios-iDXKEvKMXQM0et0sINuE"
-    let password                   = "s1THAzWGgVN5JGYcJdzq"
+//    let appid                      = "b1355735-e177-4a9c-b1b6-50affe5f5151"
+//    let clientId                   = "b1355735-e177-4a9c-b1b6-50affe5f5151"
+//    let clientSecret               = "vMdRyEsSrDtdGGOzajVa"
+//    let username                   = "ios-iDXKEvKMXQM0et0sINuE"
+//    let password                   = "s1THAzWGgVN5JGYcJdzq"
    
     var vmbas : VaslSdk!
     
@@ -56,12 +56,23 @@ class ViewController: UIViewController {
         
         
         vmbas = VaslSdk.init(appId: appid,
-                             baseUrl: "http://vaslapp.gaminoapp.ir",
+                             baseUrl: "http://sandbox.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password, nounce: "FPLFJ0pCx6")
         
+        vmbas.KalingaServices()?.listProperty(type: "", sessionId: "5bd245ea4f95dd5b651e6a7fdf4525947347ee6a", completion: { (data, error) in
+            if error == nil {
+                for item in data!.listProperty {
+                    debugPrint(item)
+                }
+            }else{
+                debugPrint(error!)
+            }
+        })
+        
+
         
 //        vmbas.SubscriberService()?.registerOperatorSubscriber(mobile: "09126850451", completion: { (data, error) in
 //            if error == nil{
@@ -107,9 +118,6 @@ class ViewController: UIViewController {
 //                print(error!)
 //            }
 //        })
-        
-        
-        
         
         
         

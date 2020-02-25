@@ -8,7 +8,7 @@ protocol KalingaServiceV1 {
 
     func editContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, publishDate: String, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, confirm: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
-    func listProperty(type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void)
+    func listProperty(type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList?,String?) -> Void)
 
     func listCategory(page: String, keyWord: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void)
 
@@ -28,9 +28,9 @@ protocol KalingaServiceV1 {
 
     func ContentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
 
-    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
+    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
-    func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove?,String?) -> Void)
+    func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
     func listContentByLocation(lat: String, lng: String, searchDiameter: String, page: String, isRandom: String, contentsRandomNumber: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
@@ -60,7 +60,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/get", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/get", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -104,7 +104,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/add", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/add", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -151,7 +151,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/edit", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/edit", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -176,22 +176,22 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
 
 
-    public func listProperty(type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void) {
+    public func listProperty(type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList?,String?) -> Void) {
         listProperty(type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listProperty(type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void,force : Bool) {
+    private func listProperty(type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/property/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/property/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyList
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -221,7 +221,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/category/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -253,7 +253,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/root", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/category/list/root", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -287,7 +287,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/depth", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/category/list/depth", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -322,7 +322,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/category/list/clustered", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/category/list/clustered", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -354,7 +354,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/Contentrow/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/Contentrow/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -389,7 +389,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/add", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/comment/add", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -424,7 +424,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/update", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/comment/update", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -458,7 +458,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/remove", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/comment/remove", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -495,7 +495,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/comment/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/comment/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -518,11 +518,11 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
 
 
-    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
-        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: true)
+    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
+        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: true)
     }
     
-    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
+    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(sortType            , forKey: "sortType")
@@ -538,12 +538,13 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(country            , forKey: "country")
                     params.updateValue(state            , forKey: "state")
                     params.updateValue(city            , forKey: "city")
+                    params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -553,7 +554,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: false)
+                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -566,11 +567,11 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
 
 
-    public func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove?,String?) -> Void) {
+    public func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
         listContentByCity(country: country, state: state, city: city, page: page, type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove?,String?) -> Void,force : Bool) {
+    private func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(country            , forKey: "country")
                     params.updateValue(state            , forKey: "state")
@@ -581,11 +582,11 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/listByCity", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/listByCity", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -620,7 +621,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/list/location", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/list/location", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -655,7 +656,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/rating", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/rating", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -689,7 +690,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/like", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/like", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -723,7 +724,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/fav", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/fav", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -759,7 +760,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/fav/list", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/fav/list", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
