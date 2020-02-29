@@ -4,14 +4,6 @@ protocol ContentServiceV1 {
 
     func getContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
 
-    func contentCommentAdd(refId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void)
-
-    func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void)
-
-    func contentCommentRemove(commentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void)
-
-    func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
-
     func addContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, publishDate: String, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, confirm: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func editContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, publishDate: String, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, confirm: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
@@ -42,6 +34,14 @@ protocol ContentServiceV1 {
 
     func favContentList(sortType: String, page: String, order: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
+    func contentCommentAdd(refId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void)
+
+    func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void)
+
+    func contentCommentRemove(commentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void)
+
+    func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
+
 
 }
 
@@ -71,147 +71,6 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void) {
-        contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(refId            , forKey: "refId")
-                    params.updateValue(content            , forKey: "content")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/add", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void) {
-        contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(commentId            , forKey: "commentId")
-                    params.updateValue(content            , forKey: "content")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/update", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void) {
-        contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(commentId            , forKey: "commentId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/remove", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void) {
-        contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(refId            , forKey: "refId")
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -771,6 +630,147 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.favContentList(sortType: sortType, page: page, order: order, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void) {
+        contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(refId            , forKey: "refId")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/add", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void) {
+        contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(commentId            , forKey: "commentId")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/update", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.contentCommentUpdate(commentId: commentId, content: content, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void) {
+        contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func contentCommentRemove(commentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(commentId            , forKey: "commentId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/remove", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.contentCommentRemove(commentId: commentId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void) {
+        contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(refId            , forKey: "refId")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/comment/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

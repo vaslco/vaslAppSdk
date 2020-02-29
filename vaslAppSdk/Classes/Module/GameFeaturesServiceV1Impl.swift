@@ -16,7 +16,7 @@ public class GameFeaturesServiceV1Impl  : GameFeaturesServiceV1 {
     }
     
     private func getFeatures(completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetFeatures?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false

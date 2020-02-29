@@ -6,8 +6,6 @@ protocol ShopServiceV1 {
 
     func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
 
-    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
-
     func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void)
 
     func addQuestion(productId: String, question: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
@@ -37,6 +35,8 @@ protocol ShopServiceV1 {
     func useCoupon(price: String, code: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice?,String?) -> Void)
 
     func listCities(state: String, cities: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
+
+    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
 
     func getProduct(productId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void)
 
@@ -114,41 +114,6 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
-        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(score            , forKey: "score")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -696,6 +661,41 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listCities(state: state, cities: cities, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
+        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(score            , forKey: "score")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
