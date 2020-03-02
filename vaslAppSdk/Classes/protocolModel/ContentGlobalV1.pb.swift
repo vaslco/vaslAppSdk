@@ -410,6 +410,11 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo {
   /// Clears the value of `summery`. Subsequent reads from it will return its default value.
   public mutating func clearSummery() {_uniqueStorage()._summery = nil}
 
+  public var contentArray: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Content] {
+    get {return _storage._contentArray}
+    set {_uniqueStorage()._contentArray = newValue}
+  }
+
   public var status: String {
     get {return _storage._status}
     set {_uniqueStorage()._status = newValue}
@@ -850,6 +855,52 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent 
   public var type: String = String()
 
   public var count: Int32 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var value: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGet {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var values: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1766,26 +1817,27 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     4: .same(proto: "headline"),
     5: .same(proto: "banner"),
     6: .same(proto: "summery"),
-    7: .same(proto: "status"),
-    8: .same(proto: "visitCount"),
-    9: .same(proto: "contentId"),
-    10: .same(proto: "insertTime"),
-    11: .same(proto: "insertTimeText"),
-    12: .same(proto: "likes"),
-    13: .same(proto: "totalRating"),
-    14: .same(proto: "userRating"),
-    15: .same(proto: "commentCount"),
-    16: .same(proto: "data"),
-    17: .same(proto: "isLiked"),
-    18: .same(proto: "isFavourite"),
-    19: .same(proto: "publishDate"),
-    20: .same(proto: "lat"),
-    21: .same(proto: "lng"),
-    22: .same(proto: "shortLink"),
-    23: .same(proto: "language"),
-    24: .same(proto: "relationKey"),
-    25: .same(proto: "property"),
-    26: .same(proto: "infoGeo"),
+    7: .same(proto: "contentArray"),
+    8: .same(proto: "status"),
+    9: .same(proto: "visitCount"),
+    10: .same(proto: "contentId"),
+    11: .same(proto: "insertTime"),
+    12: .same(proto: "insertTimeText"),
+    13: .same(proto: "likes"),
+    14: .same(proto: "totalRating"),
+    15: .same(proto: "userRating"),
+    16: .same(proto: "commentCount"),
+    17: .same(proto: "data"),
+    18: .same(proto: "isLiked"),
+    19: .same(proto: "isFavourite"),
+    20: .same(proto: "publishDate"),
+    21: .same(proto: "lat"),
+    22: .same(proto: "lng"),
+    23: .same(proto: "shortLink"),
+    24: .same(proto: "language"),
+    25: .same(proto: "relationKey"),
+    26: .same(proto: "property"),
+    27: .same(proto: "infoGeo"),
   ]
 
   fileprivate class _StorageClass {
@@ -1795,6 +1847,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     var _headline: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Content? = nil
     var _banner: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Content? = nil
     var _summery: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Content? = nil
+    var _contentArray: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Content] = []
     var _status: String = String()
     var _visitCount: Int64 = 0
     var _contentID: String = String()
@@ -1827,6 +1880,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
       _headline = source._headline
       _banner = source._banner
       _summery = source._summery
+      _contentArray = source._contentArray
       _status = source._status
       _visitCount = source._visitCount
       _contentID = source._contentID
@@ -1868,26 +1922,27 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
         case 4: try decoder.decodeSingularMessageField(value: &_storage._headline)
         case 5: try decoder.decodeSingularMessageField(value: &_storage._banner)
         case 6: try decoder.decodeSingularMessageField(value: &_storage._summery)
-        case 7: try decoder.decodeSingularStringField(value: &_storage._status)
-        case 8: try decoder.decodeSingularInt64Field(value: &_storage._visitCount)
-        case 9: try decoder.decodeSingularStringField(value: &_storage._contentID)
-        case 10: try decoder.decodeSingularInt64Field(value: &_storage._insertTime)
-        case 11: try decoder.decodeSingularStringField(value: &_storage._insertTimeText)
-        case 12: try decoder.decodeSingularInt64Field(value: &_storage._likes)
-        case 13: try decoder.decodeSingularDoubleField(value: &_storage._totalRating)
-        case 14: try decoder.decodeSingularDoubleField(value: &_storage._userRating)
-        case 15: try decoder.decodeSingularInt64Field(value: &_storage._commentCount)
-        case 16: try decoder.decodeSingularMessageField(value: &_storage._data)
-        case 17: try decoder.decodeSingularBoolField(value: &_storage._isLiked)
-        case 18: try decoder.decodeSingularBoolField(value: &_storage._isFavourite)
-        case 19: try decoder.decodeSingularStringField(value: &_storage._publishDate)
-        case 20: try decoder.decodeSingularDoubleField(value: &_storage._lat)
-        case 21: try decoder.decodeSingularDoubleField(value: &_storage._lng)
-        case 22: try decoder.decodeSingularStringField(value: &_storage._shortLink)
-        case 23: try decoder.decodeSingularStringField(value: &_storage._language)
-        case 24: try decoder.decodeSingularStringField(value: &_storage._relationKey)
-        case 25: try decoder.decodeRepeatedMessageField(value: &_storage._property)
-        case 26: try decoder.decodeSingularMessageField(value: &_storage._infoGeo)
+        case 7: try decoder.decodeRepeatedMessageField(value: &_storage._contentArray)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._status)
+        case 9: try decoder.decodeSingularInt64Field(value: &_storage._visitCount)
+        case 10: try decoder.decodeSingularStringField(value: &_storage._contentID)
+        case 11: try decoder.decodeSingularInt64Field(value: &_storage._insertTime)
+        case 12: try decoder.decodeSingularStringField(value: &_storage._insertTimeText)
+        case 13: try decoder.decodeSingularInt64Field(value: &_storage._likes)
+        case 14: try decoder.decodeSingularDoubleField(value: &_storage._totalRating)
+        case 15: try decoder.decodeSingularDoubleField(value: &_storage._userRating)
+        case 16: try decoder.decodeSingularInt64Field(value: &_storage._commentCount)
+        case 17: try decoder.decodeSingularMessageField(value: &_storage._data)
+        case 18: try decoder.decodeSingularBoolField(value: &_storage._isLiked)
+        case 19: try decoder.decodeSingularBoolField(value: &_storage._isFavourite)
+        case 20: try decoder.decodeSingularStringField(value: &_storage._publishDate)
+        case 21: try decoder.decodeSingularDoubleField(value: &_storage._lat)
+        case 22: try decoder.decodeSingularDoubleField(value: &_storage._lng)
+        case 23: try decoder.decodeSingularStringField(value: &_storage._shortLink)
+        case 24: try decoder.decodeSingularStringField(value: &_storage._language)
+        case 25: try decoder.decodeSingularStringField(value: &_storage._relationKey)
+        case 26: try decoder.decodeRepeatedMessageField(value: &_storage._property)
+        case 27: try decoder.decodeSingularMessageField(value: &_storage._infoGeo)
         default: break
         }
       }
@@ -1914,65 +1969,68 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
       if let v = _storage._summery {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
       }
+      if !_storage._contentArray.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._contentArray, fieldNumber: 7)
+      }
       if !_storage._status.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._status, fieldNumber: 7)
+        try visitor.visitSingularStringField(value: _storage._status, fieldNumber: 8)
       }
       if _storage._visitCount != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._visitCount, fieldNumber: 8)
+        try visitor.visitSingularInt64Field(value: _storage._visitCount, fieldNumber: 9)
       }
       if !_storage._contentID.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._contentID, fieldNumber: 9)
+        try visitor.visitSingularStringField(value: _storage._contentID, fieldNumber: 10)
       }
       if _storage._insertTime != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._insertTime, fieldNumber: 10)
+        try visitor.visitSingularInt64Field(value: _storage._insertTime, fieldNumber: 11)
       }
       if !_storage._insertTimeText.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._insertTimeText, fieldNumber: 11)
+        try visitor.visitSingularStringField(value: _storage._insertTimeText, fieldNumber: 12)
       }
       if _storage._likes != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._likes, fieldNumber: 12)
+        try visitor.visitSingularInt64Field(value: _storage._likes, fieldNumber: 13)
       }
       if _storage._totalRating != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._totalRating, fieldNumber: 13)
+        try visitor.visitSingularDoubleField(value: _storage._totalRating, fieldNumber: 14)
       }
       if _storage._userRating != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._userRating, fieldNumber: 14)
+        try visitor.visitSingularDoubleField(value: _storage._userRating, fieldNumber: 15)
       }
       if _storage._commentCount != 0 {
-        try visitor.visitSingularInt64Field(value: _storage._commentCount, fieldNumber: 15)
+        try visitor.visitSingularInt64Field(value: _storage._commentCount, fieldNumber: 16)
       }
       if let v = _storage._data {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
       }
       if _storage._isLiked != false {
-        try visitor.visitSingularBoolField(value: _storage._isLiked, fieldNumber: 17)
+        try visitor.visitSingularBoolField(value: _storage._isLiked, fieldNumber: 18)
       }
       if _storage._isFavourite != false {
-        try visitor.visitSingularBoolField(value: _storage._isFavourite, fieldNumber: 18)
+        try visitor.visitSingularBoolField(value: _storage._isFavourite, fieldNumber: 19)
       }
       if !_storage._publishDate.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._publishDate, fieldNumber: 19)
+        try visitor.visitSingularStringField(value: _storage._publishDate, fieldNumber: 20)
       }
       if _storage._lat != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._lat, fieldNumber: 20)
+        try visitor.visitSingularDoubleField(value: _storage._lat, fieldNumber: 21)
       }
       if _storage._lng != 0 {
-        try visitor.visitSingularDoubleField(value: _storage._lng, fieldNumber: 21)
+        try visitor.visitSingularDoubleField(value: _storage._lng, fieldNumber: 22)
       }
       if !_storage._shortLink.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._shortLink, fieldNumber: 22)
+        try visitor.visitSingularStringField(value: _storage._shortLink, fieldNumber: 23)
       }
       if !_storage._language.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._language, fieldNumber: 23)
+        try visitor.visitSingularStringField(value: _storage._language, fieldNumber: 24)
       }
       if !_storage._relationKey.isEmpty {
-        try visitor.visitSingularStringField(value: _storage._relationKey, fieldNumber: 24)
+        try visitor.visitSingularStringField(value: _storage._relationKey, fieldNumber: 25)
       }
       if !_storage._property.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._property, fieldNumber: 25)
+        try visitor.visitRepeatedMessageField(value: _storage._property, fieldNumber: 26)
       }
       if let v = _storage._infoGeo {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -1989,6 +2047,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
         if _storage._headline != rhs_storage._headline {return false}
         if _storage._banner != rhs_storage._banner {return false}
         if _storage._summery != rhs_storage._summery {return false}
+        if _storage._contentArray != rhs_storage._contentArray {return false}
         if _storage._status != rhs_storage._status {return false}
         if _storage._visitCount != rhs_storage._visitCount {return false}
         if _storage._contentID != rhs_storage._contentID {return false}
@@ -2859,6 +2918,123 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CountContent: Swi
     if lhs.msg != rhs.msg {return false}
     if lhs.type != rhs.type {return false}
     if lhs.count != rhs.count {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FavLocation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocation, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocation) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FavLocValue"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "value"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.value)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.value.isEmpty {
+      try visitor.visitSingularStringField(value: self.value, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue) -> Bool {
+    if lhs.value != rhs.value {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FavLocationGet"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    4: .same(proto: "values"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeRepeatedMessageField(value: &self.values)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.values.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.values, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGet, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGet) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.values != rhs.values {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
