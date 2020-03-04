@@ -2,121 +2,21 @@ import Foundation
 
 protocol OperatorsServiceV1 {
 
-    func sendOtpRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void)
-
-    func verifyOtpRightel(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void)
-
-    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void)
-
     func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void)
 
     func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
+
+    func sendOtpRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void)
+
+    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void)
+
+    func verifyOtpRightel(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void)
 
 
 }
 
 
 public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
-
-
-    public func sendOtpRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void) {
-        sendOtpRightel(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func sendOtpRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(mobile            , forKey: "mobile")
-
-
-        let hasNounce =  true
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/register", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.sendOtpRightel(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func verifyOtpRightel(activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void) {
-        verifyOtpRightel(activationKey: activationKey, mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func verifyOtpRightel(activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(activationKey            , forKey: "activationKey")
-                    params.updateValue(mobile            , forKey: "mobile")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/validate", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.verifyOtpRightel(activationKey: activationKey, mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
-        checkUserRightel(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(mobile            , forKey: "mobile")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/check/user/rightel", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void) {
@@ -181,6 +81,106 @@ public class OperatorsServiceV1Impl  : OperatorsServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func sendOtpRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void) {
+        sendOtpRightel(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func sendOtpRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  true
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/register", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_SendOtpRightel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.sendOtpRightel(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
+        checkUserRightel(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/check/user/rightel", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_CheckRightel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func verifyOtpRightel(activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void) {
+        verifyOtpRightel(activationKey: activationKey, mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func verifyOtpRightel(activationKey: String, mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(activationKey            , forKey: "activationKey")
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/operators/operator/validate", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Operators_Global_Proto_Holder_VerifyOtpRightel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.verifyOtpRightel(activationKey: activationKey, mobile: mobile, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
