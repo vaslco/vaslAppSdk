@@ -8,9 +8,9 @@ protocol LeagueServiceV1 {
 
     func leagueRegister(leagueId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void)
 
-    func leagueAnswer(leagueId: String, questionId: String, answer: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_CorrectAnswer?,String?) -> Void)
-
     func leagueQuestionNext(leagueId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet?,String?) -> Void)
+
+    func leagueAnswer(leagueId: String, questionId: String, answer: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_CorrectAnswer?,String?) -> Void)
 
     func leagueList(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_LeagueList?,String?) -> Void)
 
@@ -123,6 +123,40 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
     }
 
 
+    public func leagueQuestionNext(leagueId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet?,String?) -> Void) {
+        leagueQuestionNext(leagueId: leagueId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func leagueQuestionNext(leagueId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(leagueId            , forKey: "leagueId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/question/next", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.leagueQuestionNext(leagueId: leagueId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func leagueAnswer(leagueId: String, questionId: String, answer: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_CorrectAnswer?,String?) -> Void) {
         leagueAnswer(leagueId: leagueId, questionId: questionId, answer: answer, sessionId: sessionId, completion: completion,force: true)
     }
@@ -147,40 +181,6 @@ public class LeagueServiceV1Impl  : LeagueServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.leagueAnswer(leagueId: leagueId, questionId: questionId, answer: answer, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func leagueQuestionNext(leagueId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet?,String?) -> Void) {
-        leagueQuestionNext(leagueId: leagueId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func leagueQuestionNext(leagueId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(leagueId            , forKey: "leagueId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/leagues/league/question/next", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet(serializedData: result) as Com_Vasl_Vaslapp_Modules_Game_League_Global_Proto_Holder_QuestionGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.leagueQuestionNext(leagueId: leagueId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

@@ -2,63 +2,27 @@ import Foundation
 
 protocol DynamicTableServiceTablesV1 {
 
-    func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
-
     func tablesList(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesList?,String?) -> Void)
+
+    func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void)
+
+    func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void)
+
+    func tablesDrop(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void)
 
     func tablesDatatypes(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDataTypes?,String?) -> Void)
 
     func tablesSchemaList(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesSchemaList?,String?) -> Void)
 
-    func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void)
+    func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func queryCreate(name: String, fields: Array<String>, joins: Array<String>, sessionRequired: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
-
-    func tablesDrop(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void)
-
-    func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void)
 
 
 }
 
 
 public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
-
-
-    public func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
-        tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
-                    params.updateValue(state            , forKey: "state")
-                    params.updateValue(fields            , forKey: "fields")
-                    params.updateValue(index            , forKey: "index")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/alter", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
-                    let serviceResponse = webServiceResult.init() 
-                    serviceResponse.parseJsonResult(dictionary)
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.message)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force)
-    }
 
 
     public func tablesList(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesList?,String?) -> Void) {
@@ -82,6 +46,113 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.tablesList(sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void) {
+        tablesCreate(name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(name            , forKey: "name")
+                    params.updateValue(description            , forKey: "description")
+                    params.updateValue(sessionRequired            , forKey: "sessionRequired")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/create", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.tablesCreate(name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void) {
+        tablesEdit(id: id, name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(name            , forKey: "name")
+                    params.updateValue(description            , forKey: "description")
+                    params.updateValue(sessionRequired            , forKey: "sessionRequired")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/edit", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.tablesEdit(id: id, name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func tablesDrop(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void) {
+        tablesDrop(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func tablesDrop(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/drop", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.tablesDrop(id: id, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -161,39 +232,39 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
     }
 
 
-    public func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void) {
-        tablesCreate(name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
+    public func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
+        tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func tablesCreate(name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate?,String?) -> Void,force : Bool) {
+    private func tablesSchemaAlter(id: String, state: String, fields: Array<Dictionary<String,String>>, index: Array<String>, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
-                    params.updateValue(name            , forKey: "name")
-                    params.updateValue(description            , forKey: "description")
-                    params.updateValue(sessionRequired            , forKey: "sessionRequired")
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(state            , forKey: "state")
+                    params.updateValue(fields            , forKey: "fields")
+                    params.updateValue(index            , forKey: "index")
                     params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/create", params, completion: { (result, error) in
+        RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/schema/alter", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesCreate
+                    let dictionary = try JSONSerialization.jsonObject(with: result, options: .mutableContainers) as! NSDictionary
+                    let serviceResponse = webServiceResult.init() 
+                    serviceResponse.parseJsonResult(dictionary)
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.tablesCreate(name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: false)
+                            self.tablesSchemaAlter(id: id, state: state, fields: fields, index: index, sessionId: sessionId, completion: completion,force: false)
                         }else{
-                            completion(serviceResponse,serviceResponse.msg)
+                            completion(serviceResponse,serviceResponse.message)
                         }
                     }
                 }
             }catch{
                 completion(nil,"")
             }
-        }, force,hasNounce)
+        }, force)
     }
 
 
@@ -230,77 +301,6 @@ public class DynamicTableServiceTablesV1Impl  : DynamicTableServiceTablesV1 {
                 completion(nil,"")
             }
         }, force)
-    }
-
-
-    public func tablesDrop(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void) {
-        tablesDrop(id: id, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func tablesDrop(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/drop", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesDrop
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.tablesDrop(id: id, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void) {
-        tablesEdit(id: id, name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func tablesEdit(id: String, name: String, description: String, sessionRequired: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(id            , forKey: "id")
-                    params.updateValue(name            , forKey: "name")
-                    params.updateValue(description            , forKey: "description")
-                    params.updateValue(sessionRequired            , forKey: "sessionRequired")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/tables/edit", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit(serializedData: result) as Com_Vasl_Vaslapp_Modules_Dynamictable_Global_Proto_Holder_TablesEdit
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.tablesEdit(id: id, name: name, description: description, sessionRequired: sessionRequired, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
     }
 
 
