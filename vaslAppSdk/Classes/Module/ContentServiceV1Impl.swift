@@ -16,7 +16,7 @@ protocol ContentServiceV1 {
 
     func listContentRowTypes(completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void)
 
-    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
+    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
     func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRemove?,String?) -> Void)
 
@@ -280,11 +280,11 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
 
 
-    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
-        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: true)
+    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
+        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: true)
     }
     
-    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
+    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(sortType            , forKey: "sortType")
@@ -300,7 +300,6 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     params.updateValue(country            , forKey: "country")
                     params.updateValue(state            , forKey: "state")
                     params.updateValue(city            , forKey: "city")
-                    params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
 
@@ -316,7 +315,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: false)
+                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

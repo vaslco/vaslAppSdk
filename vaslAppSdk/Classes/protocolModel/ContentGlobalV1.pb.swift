@@ -523,12 +523,94 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo {
   /// Clears the value of `infoGeo`. Subsequent reads from it will return its default value.
   public mutating func clearInfoGeo() {_uniqueStorage()._infoGeo = nil}
 
+  public var statusSub: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo.StatusSub {
+    get {return _storage._statusSub}
+    set {_uniqueStorage()._statusSub = newValue}
+  }
+
+  public var confirmBy: String {
+    get {return _storage._confirmBy}
+    set {_uniqueStorage()._confirmBy = newValue}
+  }
+
+  public var userID: String {
+    get {return _storage._userID}
+    set {_uniqueStorage()._userID = newValue}
+  }
+
+  public var subscriberID: String {
+    get {return _storage._subscriberID}
+    set {_uniqueStorage()._subscriberID = newValue}
+  }
+
+  public var infoSubscriber: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo {
+    get {return _storage._infoSubscriber ?? Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo()}
+    set {_uniqueStorage()._infoSubscriber = newValue}
+  }
+  /// Returns true if `infoSubscriber` has been explicitly set.
+  public var hasInfoSubscriber: Bool {return _storage._infoSubscriber != nil}
+  /// Clears the value of `infoSubscriber`. Subsequent reads from it will return its default value.
+  public mutating func clearInfoSubscriber() {_uniqueStorage()._infoSubscriber = nil}
+
+  public var confirm: Bool {
+    get {return _storage._confirm}
+    set {_uniqueStorage()._confirm = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public enum StatusSub: SwiftProtobuf.Enum {
+    public typealias RawValue = Int
+    case undefine // = 0
+    case refuse // = 1
+    case accept // = 2
+    case waiting // = 3
+    case UNRECOGNIZED(Int)
+
+    public init() {
+      self = .undefine
+    }
+
+    public init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .undefine
+      case 1: self = .refuse
+      case 2: self = .accept
+      case 3: self = .waiting
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    public var rawValue: Int {
+      switch self {
+      case .undefine: return 0
+      case .refuse: return 1
+      case .accept: return 2
+      case .waiting: return 3
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
 
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
 }
+
+#if swift(>=4.2)
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo.StatusSub: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  public static var allCases: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo.StatusSub] = [
+    .undefine,
+    .refuse,
+    .accept,
+    .waiting,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_LocationPoint {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -692,6 +774,8 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyAdd {
   public var code: Int32 = 0
 
   public var msg: String = String()
+
+  public var id: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -901,6 +985,64 @@ public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGe
   public var msg: String = String()
 
   public var values: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocValue] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var username: String = String()
+
+  public var confirmedEmail: String = String()
+
+  public var claimedEmail: String = String()
+
+  public var confirmedMobile: String = String()
+
+  public var claimedMobile: String = String()
+
+  public var registrationType: String = String()
+
+  public var insertTime: String = String()
+
+  public var status: String = String()
+
+  public var extra: String = String()
+
+  public var subscriberType: String = String()
+
+  public var lastLogin: String = String()
+
+  public var id: String = String()
+
+  public var roles: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Role] = []
+
+  public var statusText: String = String()
+
+  public var validated: Bool = false
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Role {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var roleID: String = String()
+
+  public var roleName: String = String()
+
+  public var appID: String = String()
+
+  public var appName: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1838,6 +1980,12 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     25: .same(proto: "relationKey"),
     26: .same(proto: "property"),
     27: .same(proto: "infoGeo"),
+    28: .same(proto: "statusSub"),
+    29: .same(proto: "confirmBy"),
+    30: .same(proto: "userId"),
+    31: .same(proto: "subscriberId"),
+    32: .same(proto: "infoSubscriber"),
+    33: .same(proto: "confirm"),
   ]
 
   fileprivate class _StorageClass {
@@ -1868,6 +2016,12 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     var _relationKey: String = String()
     var _property: [Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyValue] = []
     var _infoGeo: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_InfoPolygon? = nil
+    var _statusSub: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo.StatusSub = .undefine
+    var _confirmBy: String = String()
+    var _userID: String = String()
+    var _subscriberID: String = String()
+    var _infoSubscriber: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo? = nil
+    var _confirm: Bool = false
 
     static let defaultInstance = _StorageClass()
 
@@ -1901,6 +2055,12 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
       _relationKey = source._relationKey
       _property = source._property
       _infoGeo = source._infoGeo
+      _statusSub = source._statusSub
+      _confirmBy = source._confirmBy
+      _userID = source._userID
+      _subscriberID = source._subscriberID
+      _infoSubscriber = source._infoSubscriber
+      _confirm = source._confirm
     }
   }
 
@@ -1943,6 +2103,12 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
         case 25: try decoder.decodeSingularStringField(value: &_storage._relationKey)
         case 26: try decoder.decodeRepeatedMessageField(value: &_storage._property)
         case 27: try decoder.decodeSingularMessageField(value: &_storage._infoGeo)
+        case 28: try decoder.decodeSingularEnumField(value: &_storage._statusSub)
+        case 29: try decoder.decodeSingularStringField(value: &_storage._confirmBy)
+        case 30: try decoder.decodeSingularStringField(value: &_storage._userID)
+        case 31: try decoder.decodeSingularStringField(value: &_storage._subscriberID)
+        case 32: try decoder.decodeSingularMessageField(value: &_storage._infoSubscriber)
+        case 33: try decoder.decodeSingularBoolField(value: &_storage._confirm)
         default: break
         }
       }
@@ -2032,6 +2198,24 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
       if let v = _storage._infoGeo {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
       }
+      if _storage._statusSub != .undefine {
+        try visitor.visitSingularEnumField(value: _storage._statusSub, fieldNumber: 28)
+      }
+      if !_storage._confirmBy.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._confirmBy, fieldNumber: 29)
+      }
+      if !_storage._userID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._userID, fieldNumber: 30)
+      }
+      if !_storage._subscriberID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._subscriberID, fieldNumber: 31)
+      }
+      if let v = _storage._infoSubscriber {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 32)
+      }
+      if _storage._confirm != false {
+        try visitor.visitSingularBoolField(value: _storage._confirm, fieldNumber: 33)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -2068,6 +2252,12 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
         if _storage._relationKey != rhs_storage._relationKey {return false}
         if _storage._property != rhs_storage._property {return false}
         if _storage._infoGeo != rhs_storage._infoGeo {return false}
+        if _storage._statusSub != rhs_storage._statusSub {return false}
+        if _storage._confirmBy != rhs_storage._confirmBy {return false}
+        if _storage._userID != rhs_storage._userID {return false}
+        if _storage._subscriberID != rhs_storage._subscriberID {return false}
+        if _storage._infoSubscriber != rhs_storage._infoSubscriber {return false}
+        if _storage._confirm != rhs_storage._confirm {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -2075,6 +2265,15 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo: Swif
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentInfo.StatusSub: SwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "undefine"),
+    1: .same(proto: "refuse"),
+    2: .same(proto: "accept"),
+    3: .same(proto: "waiting"),
+  ]
 }
 
 extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_LocationPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -2474,6 +2673,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyAdd: Swif
     1: .same(proto: "status"),
     2: .same(proto: "code"),
     3: .same(proto: "msg"),
+    4: .same(proto: "id"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2482,6 +2682,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyAdd: Swif
       case 1: try decoder.decodeSingularInt32Field(value: &self.status)
       case 2: try decoder.decodeSingularInt32Field(value: &self.code)
       case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 4: try decoder.decodeSingularStringField(value: &self.id)
       default: break
       }
     }
@@ -2497,6 +2698,9 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyAdd: Swif
     if !self.msg.isEmpty {
       try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
     }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2504,6 +2708,7 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_PropertyAdd: Swif
     if lhs.status != rhs.status {return false}
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
+    if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -3035,6 +3240,166 @@ extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_FavLocationGet: S
     if lhs.code != rhs.code {return false}
     if lhs.msg != rhs.msg {return false}
     if lhs.values != rhs.values {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SubscriberInfo"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "username"),
+    2: .same(proto: "confirmedEmail"),
+    3: .same(proto: "claimedEmail"),
+    4: .same(proto: "confirmedMobile"),
+    5: .same(proto: "claimedMobile"),
+    6: .same(proto: "registrationType"),
+    7: .same(proto: "insertTime"),
+    8: .same(proto: "status"),
+    9: .same(proto: "extra"),
+    10: .same(proto: "subscriberType"),
+    11: .same(proto: "lastLogin"),
+    12: .same(proto: "id"),
+    13: .same(proto: "roles"),
+    14: .same(proto: "statusText"),
+    15: .same(proto: "validated"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.username)
+      case 2: try decoder.decodeSingularStringField(value: &self.confirmedEmail)
+      case 3: try decoder.decodeSingularStringField(value: &self.claimedEmail)
+      case 4: try decoder.decodeSingularStringField(value: &self.confirmedMobile)
+      case 5: try decoder.decodeSingularStringField(value: &self.claimedMobile)
+      case 6: try decoder.decodeSingularStringField(value: &self.registrationType)
+      case 7: try decoder.decodeSingularStringField(value: &self.insertTime)
+      case 8: try decoder.decodeSingularStringField(value: &self.status)
+      case 9: try decoder.decodeSingularStringField(value: &self.extra)
+      case 10: try decoder.decodeSingularStringField(value: &self.subscriberType)
+      case 11: try decoder.decodeSingularStringField(value: &self.lastLogin)
+      case 12: try decoder.decodeSingularStringField(value: &self.id)
+      case 13: try decoder.decodeRepeatedMessageField(value: &self.roles)
+      case 14: try decoder.decodeSingularStringField(value: &self.statusText)
+      case 15: try decoder.decodeSingularBoolField(value: &self.validated)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.username.isEmpty {
+      try visitor.visitSingularStringField(value: self.username, fieldNumber: 1)
+    }
+    if !self.confirmedEmail.isEmpty {
+      try visitor.visitSingularStringField(value: self.confirmedEmail, fieldNumber: 2)
+    }
+    if !self.claimedEmail.isEmpty {
+      try visitor.visitSingularStringField(value: self.claimedEmail, fieldNumber: 3)
+    }
+    if !self.confirmedMobile.isEmpty {
+      try visitor.visitSingularStringField(value: self.confirmedMobile, fieldNumber: 4)
+    }
+    if !self.claimedMobile.isEmpty {
+      try visitor.visitSingularStringField(value: self.claimedMobile, fieldNumber: 5)
+    }
+    if !self.registrationType.isEmpty {
+      try visitor.visitSingularStringField(value: self.registrationType, fieldNumber: 6)
+    }
+    if !self.insertTime.isEmpty {
+      try visitor.visitSingularStringField(value: self.insertTime, fieldNumber: 7)
+    }
+    if !self.status.isEmpty {
+      try visitor.visitSingularStringField(value: self.status, fieldNumber: 8)
+    }
+    if !self.extra.isEmpty {
+      try visitor.visitSingularStringField(value: self.extra, fieldNumber: 9)
+    }
+    if !self.subscriberType.isEmpty {
+      try visitor.visitSingularStringField(value: self.subscriberType, fieldNumber: 10)
+    }
+    if !self.lastLogin.isEmpty {
+      try visitor.visitSingularStringField(value: self.lastLogin, fieldNumber: 11)
+    }
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 12)
+    }
+    if !self.roles.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.roles, fieldNumber: 13)
+    }
+    if !self.statusText.isEmpty {
+      try visitor.visitSingularStringField(value: self.statusText, fieldNumber: 14)
+    }
+    if self.validated != false {
+      try visitor.visitSingularBoolField(value: self.validated, fieldNumber: 15)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_SubscriberInfo) -> Bool {
+    if lhs.username != rhs.username {return false}
+    if lhs.confirmedEmail != rhs.confirmedEmail {return false}
+    if lhs.claimedEmail != rhs.claimedEmail {return false}
+    if lhs.confirmedMobile != rhs.confirmedMobile {return false}
+    if lhs.claimedMobile != rhs.claimedMobile {return false}
+    if lhs.registrationType != rhs.registrationType {return false}
+    if lhs.insertTime != rhs.insertTime {return false}
+    if lhs.status != rhs.status {return false}
+    if lhs.extra != rhs.extra {return false}
+    if lhs.subscriberType != rhs.subscriberType {return false}
+    if lhs.lastLogin != rhs.lastLogin {return false}
+    if lhs.id != rhs.id {return false}
+    if lhs.roles != rhs.roles {return false}
+    if lhs.statusText != rhs.statusText {return false}
+    if lhs.validated != rhs.validated {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Role: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Role"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "roleId"),
+    2: .same(proto: "roleName"),
+    3: .same(proto: "appId"),
+    4: .same(proto: "appName"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.roleID)
+      case 2: try decoder.decodeSingularStringField(value: &self.roleName)
+      case 3: try decoder.decodeSingularStringField(value: &self.appID)
+      case 4: try decoder.decodeSingularStringField(value: &self.appName)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.roleID.isEmpty {
+      try visitor.visitSingularStringField(value: self.roleID, fieldNumber: 1)
+    }
+    if !self.roleName.isEmpty {
+      try visitor.visitSingularStringField(value: self.roleName, fieldNumber: 2)
+    }
+    if !self.appID.isEmpty {
+      try visitor.visitSingularStringField(value: self.appID, fieldNumber: 3)
+    }
+    if !self.appName.isEmpty {
+      try visitor.visitSingularStringField(value: self.appName, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Role, rhs: Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_Role) -> Bool {
+    if lhs.roleID != rhs.roleID {return false}
+    if lhs.roleName != rhs.roleName {return false}
+    if lhs.appID != rhs.appID {return false}
+    if lhs.appName != rhs.appName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

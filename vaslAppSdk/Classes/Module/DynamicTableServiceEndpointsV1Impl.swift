@@ -206,11 +206,11 @@ public class DynamicTableServiceEndpointsV1Impl  : DynamicTableServiceEndpointsV
     private func endpointFind(tableName: String, find: String, projection: String, sort: String, skip: String, limit: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(tableName            , forKey: "tableName")
-                    params.updateValue(Dictionary<String,Any>()            , forKey: "find")
-                   // params.updateValue(projection            , forKey: "projection")
-                   // params.updateValue(sort            , forKey: "sort")
-                  //  params.updateValue(skip            , forKey: "skip")
-                   // params.updateValue(limit            , forKey: "limit")
+                    params.updateValue(find            , forKey: "find")
+                    params.updateValue(projection            , forKey: "projection")
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(skip            , forKey: "skip")
+                    params.updateValue(limit            , forKey: "limit")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/dynamictable/endpoints/"+tableName+"/find", params, completion: { (result, error) in
             do{

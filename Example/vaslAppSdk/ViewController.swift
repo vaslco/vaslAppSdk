@@ -64,16 +64,16 @@ class ViewController: UIViewController {
                             username: username,
                             password: password, nounce: "FPLFJ0pCx6")
         
-   //    let newcontent = ["salam"]
+       let newcontent = ["salam"]
         
 //
-//        vmbas.KalingaServices()?.editContent(contentId: "5e5f9b8e5be32a00092b8bed", headline: "test", banner: "", summery: "test", content: newcontent, status: "PUBLISHED", tags: [], catIds: [], lat: "35.69859313964844", lng: "51.33749008178711", propertyValue: [], language: "", type: "", sessionId: session, completion: { (data, error) in
-//            if error == nil {
-//                debugPrint(data!)
-//            }else{
-//                debugPrint(error!)
-//            }
-//        })
+        vmbas.KalingaServices()?.editContent(contentId: "5e5f9b8e5be32a00092b8bed", headline: "test", banner: "", summery: "test", content: newcontent, status: "PUBLISHED", tags: [], catIds: [], lat: "35.69859313964844", lng: "51.33749008178711", propertyValue: [], language: "", type: "", sessionId: session, completion: { (data, error) in
+            if error == nil {
+                debugPrint(data!)
+            }else{
+                debugPrint(error!)
+            }
+        })
         
 //        vmbas.DynamicTableEndPointService()?.endpointFind(tableName: "allleagues", find: "{}", projection: "{}", sort: "{}", skip: "", limit: "", sessionId: session, completion: { (data, error) in
 //            if error == nil{

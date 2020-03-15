@@ -2,9 +2,7 @@ import Foundation
 
 protocol GeoServiceV1 {
 
-    func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void)
-
-    func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void)
+    func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, subscriberId: String, confirm: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void)
 
     func removeLocation(locationId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_RemoveLocation?,String?) -> Void)
 
@@ -16,6 +14,8 @@ protocol GeoServiceV1 {
 
     func getAllCitys(country: String, state: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_GetInfoWorld?,String?) -> Void)
 
+    func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void)
+
 
 }
 
@@ -23,48 +23,11 @@ protocol GeoServiceV1 {
 public class GeoServiceV1Impl  : GeoServiceV1 {
 
 
-    public func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void) {
-        nearLocation(latitude: latitude, longitude: longitude, page: page, findNearMaxDistanceInMeters: findNearMaxDistanceInMeters, sessionId: sessionId, completion: completion,force: true)
+    public func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, subscriberId: String, confirm: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void) {
+        addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, infoPoint: infoPoint, subscriberId: subscriberId, confirm: confirm, type: type, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(latitude            , forKey: "latitude")
-                    params.updateValue(longitude            , forKey: "longitude")
-                    params.updateValue(page            , forKey: "page")
-                    params.updateValue(findNearMaxDistanceInMeters            , forKey: "findNearMaxDistanceInMeters")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/geo/nearLocation", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation(serializedData: result) as Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.nearLocation(latitude: latitude, longitude: longitude, page: page, findNearMaxDistanceInMeters: findNearMaxDistanceInMeters, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void) {
-        addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, infoPoint: infoPoint, type: type, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void,force : Bool) {
+    private func addLocation(title: String, refTitle: String, latitude: String, longitude: String, ip: String, tableName: String, fieldName: String, value: String, infoPoint: String, subscriberId: String, confirm: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_SetLocation?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(title            , forKey: "title")
                     params.updateValue(refTitle            , forKey: "refTitle")
@@ -75,6 +38,8 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                     params.updateValue(fieldName            , forKey: "fieldName")
                     params.updateValue(value            , forKey: "value")
                     params.updateValue(infoPoint            , forKey: "infoPoint")
+                    params.updateValue(subscriberId            , forKey: "subscriberId")
+                    params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
@@ -90,7 +55,7 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, infoPoint: infoPoint, type: type, sessionId: sessionId, completion: completion,force: false)
+                            self.addLocation(title: title, refTitle: refTitle, latitude: latitude, longitude: longitude, ip: ip, tableName: tableName, fieldName: fieldName, value: value, infoPoint: infoPoint, subscriberId: subscriberId, confirm: confirm, type: type, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -262,6 +227,43 @@ public class GeoServiceV1Impl  : GeoServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getAllCitys(country: country, state: state, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void) {
+        nearLocation(latitude: latitude, longitude: longitude, page: page, findNearMaxDistanceInMeters: findNearMaxDistanceInMeters, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func nearLocation(latitude: String, longitude: String, page: String, findNearMaxDistanceInMeters: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(latitude            , forKey: "latitude")
+                    params.updateValue(longitude            , forKey: "longitude")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(findNearMaxDistanceInMeters            , forKey: "findNearMaxDistanceInMeters")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/geo/nearLocation", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation(serializedData: result) as Com_Vasl_Vaslapp_Modules_Geo_Global_Proto_Holder_ListLocation
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.nearLocation(latitude: latitude, longitude: longitude, page: page, findNearMaxDistanceInMeters: findNearMaxDistanceInMeters, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

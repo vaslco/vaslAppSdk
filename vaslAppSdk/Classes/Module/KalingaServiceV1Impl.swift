@@ -4,7 +4,11 @@ protocol KalingaServiceV1 {
 
     func getContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
 
+    func addJsonContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void)
+
     func addContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
+
+    func editJsonContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentEdit?,String?) -> Void)
 
     func editContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
 
@@ -28,7 +32,7 @@ protocol KalingaServiceV1 {
 
     func ContentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
 
-    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
+    func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
     func listContentByCity(country: String, state: String, city: String, page: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
@@ -83,6 +87,51 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
 
 
+    public func addJsonContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void) {
+        addJsonContent(headline: headline, banner: banner, summery: summery, content: content, status: status, tags: tags, catIds: catIds, lat: lat, lng: lng, propertyValue: propertyValue, language: language, type: type, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addJsonContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(headline            , forKey: "headline")
+                    params.updateValue(banner            , forKey: "banner")
+                    params.updateValue(summery            , forKey: "summery")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(status            , forKey: "status")
+                    params.updateValue(tags            , forKey: "tags")
+                    params.updateValue(catIds            , forKey: "catIds")
+                    params.updateValue(lat            , forKey: "lat")
+                    params.updateValue(lng            , forKey: "lng")
+                    params.updateValue(propertyValue            , forKey: "propertyValue")
+                    params.updateValue(language            , forKey: "language")
+                    params.updateValue(type            , forKey: "type")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/addJson", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addJsonContent(headline: headline, banner: banner, summery: summery, content: content, status: status, tags: tags, catIds: catIds, lat: lat, lng: lng, propertyValue: propertyValue, language: language, type: type, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func addContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (webServiceResult?,String?) -> Void) {
         addContent(headline: headline, banner: banner, summery: summery, content: content, status: status, tags: tags, catIds: catIds, lat: lat, lng: lng, propertyValue: propertyValue, language: language, type: type, sessionId: sessionId, completion: completion,force: true)
     }
@@ -99,7 +148,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(lat            , forKey: "lat")
                     params.updateValue(lng            , forKey: "lng")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
-                    params.updateValue(language            , forKey: "language")
+                   // params.updateValue(language            , forKey: "language")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/add", params, completion: { (result, error) in
@@ -124,6 +173,52 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                 completion(nil,"")
             }
         }, force)
+    }
+
+
+    public func editJsonContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentEdit?,String?) -> Void) {
+        editJsonContent(contentId: contentId, headline: headline, banner: banner, summery: summery, content: content, status: status, tags: tags, catIds: catIds, lat: lat, lng: lng, propertyValue: propertyValue, language: language, type: type, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func editJsonContent(contentId: String, headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentEdit?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(contentId            , forKey: "contentId")
+                    params.updateValue(headline            , forKey: "headline")
+                    params.updateValue(banner            , forKey: "banner")
+                    params.updateValue(summery            , forKey: "summery")
+                    params.updateValue(content            , forKey: "content")
+                    params.updateValue(status            , forKey: "status")
+                    params.updateValue(tags            , forKey: "tags")
+                    params.updateValue(catIds            , forKey: "catIds")
+                    params.updateValue(lat            , forKey: "lat")
+                    params.updateValue(lng            , forKey: "lng")
+                    params.updateValue(propertyValue            , forKey: "propertyValue")
+                    params.updateValue(language            , forKey: "language")
+                    params.updateValue(type            , forKey: "type")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/editJson", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentEdit(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentEdit
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.editJsonContent(contentId: contentId, headline: headline, banner: banner, summery: summery, content: content, status: status, tags: tags, catIds: catIds, lat: lat, lng: lng, propertyValue: propertyValue, language: language, type: type, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
     }
 
 
@@ -514,11 +609,11 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
 
 
-    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
-        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: true)
+    public func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
+        listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: true)
     }
     
-    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, confirm: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
+    private func listContent(sessionId: String, sortType: String, status: String, page: String, order: String, beginDate: String, endDate: String, tag: String, keyWord: String, categoryKey: String, contentsRandomNumber: String, country: String, state: String, city: String, type: String, propertyValue: Array<String>,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sessionId            , forKey: "sessionId")
                     params.updateValue(sortType            , forKey: "sortType")
@@ -534,7 +629,6 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(country            , forKey: "country")
                     params.updateValue(state            , forKey: "state")
                     params.updateValue(city            , forKey: "city")
-                    params.updateValue(confirm            , forKey: "confirm")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
 
@@ -550,7 +644,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, confirm: confirm, type: type, propertyValue: propertyValue, completion: completion,force: false)
+                            self.listContent(sessionId: sessionId, sortType: sortType, status: status, page: page, order: order, beginDate: beginDate, endDate: endDate, tag: tag, keyWord: keyWord, categoryKey: categoryKey, contentsRandomNumber: contentsRandomNumber, country: country, state: state, city: city, type: type, propertyValue: propertyValue, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
