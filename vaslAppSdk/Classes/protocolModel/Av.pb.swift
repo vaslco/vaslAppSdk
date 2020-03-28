@@ -130,6 +130,37 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetail {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image {
+    get {return _storage._images ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image()}
+    set {_uniqueStorage()._images = newValue}
+  }
+  /// Returns true if `images` has been explicitly set.
+  public var hasImages: Bool {return _storage._images != nil}
+  /// Clears the value of `images`. Subsequent reads from it will return its default value.
+  public mutating func clearImages() {_uniqueStorage()._images = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFederationPanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -167,7 +198,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFederationApi {
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetailApi] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -309,6 +340,47 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetail {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var description_p: String {
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
+  }
+
+  public var federationID: String {
+    get {return _storage._federationID}
+    set {_uniqueStorage()._federationID = newValue}
+  }
+
+  public var images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image {
+    get {return _storage._images ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image()}
+    set {_uniqueStorage()._images = newValue}
+  }
+  /// Returns true if `images` has been explicitly set.
+  public var hasImages: Bool {return _storage._images != nil}
+  /// Clears the value of `images`. Subsequent reads from it will return its default value.
+  public mutating func clearImages() {_uniqueStorage()._images = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -346,7 +418,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi {
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetailApi] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -478,6 +550,37 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetail {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image {
+    get {return _storage._images ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image()}
+    set {_uniqueStorage()._images = newValue}
+  }
+  /// Returns true if `images` has been explicitly set.
+  public var hasImages: Bool {return _storage._images != nil}
+  /// Clears the value of `images`. Subsequent reads from it will return its default value.
+  public mutating func clearImages() {_uniqueStorage()._images = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportEquipmentPanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -515,7 +618,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportEquipmentApi {
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetailApi] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -624,6 +727,20 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetail {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealPanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -661,7 +778,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi {
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetailApi] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -770,6 +887,20 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetail {
   public init() {}
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListPhrasePanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -807,7 +938,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListPhraseApi {
 
   public var msg: String = String()
 
-  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetail] = []
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetailApi] = []
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1120,6 +1251,60 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetail {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var details: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content {
+    get {return _storage._details ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content()}
+    set {_uniqueStorage()._details = newValue}
+  }
+  /// Returns true if `details` has been explicitly set.
+  public var hasDetails: Bool {return _storage._details != nil}
+  /// Clears the value of `details`. Subsequent reads from it will return its default value.
+  public mutating func clearDetails() {_uniqueStorage()._details = nil}
+
+  public var recepies: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content {
+    get {return _storage._recepies ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content()}
+    set {_uniqueStorage()._recepies = newValue}
+  }
+  /// Returns true if `recepies` has been explicitly set.
+  public var hasRecepies: Bool {return _storage._recepies != nil}
+  /// Clears the value of `recepies`. Subsequent reads from it will return its default value.
+  public mutating func clearRecepies() {_uniqueStorage()._recepies = nil}
+
+  public var image: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content {
+    get {return _storage._image ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content()}
+    set {_uniqueStorage()._image = newValue}
+  }
+  /// Returns true if `image` has been explicitly set.
+  public var hasImage: Bool {return _storage._image != nil}
+  /// Clears the value of `image`. Subsequent reads from it will return its default value.
+  public mutating func clearImage() {_uniqueStorage()._image = nil}
+
+  public var food: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Food] {
+    get {return _storage._food}
+    set {_uniqueStorage()._food = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackagePanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1180,6 +1365,24 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetFoodPackagePanel {
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackageApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetailApi] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
 }
 
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content {
@@ -1371,6 +1574,115 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetail {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String {
+    get {return _storage._id}
+    set {_uniqueStorage()._id = newValue}
+  }
+
+  public var name: String {
+    get {return _storage._name}
+    set {_uniqueStorage()._name = newValue}
+  }
+
+  public var sportID: String {
+    get {return _storage._sportID}
+    set {_uniqueStorage()._sportID = newValue}
+  }
+
+  public var description_p: String {
+    get {return _storage._description_p}
+    set {_uniqueStorage()._description_p = newValue}
+  }
+
+  public var images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image {
+    get {return _storage._images ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image()}
+    set {_uniqueStorage()._images = newValue}
+  }
+  /// Returns true if `images` has been explicitly set.
+  public var hasImages: Bool {return _storage._images != nil}
+  /// Clears the value of `images`. Subsequent reads from it will return its default value.
+  public mutating func clearImages() {_uniqueStorage()._images = nil}
+
+  public var videos: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Video {
+    get {return _storage._videos ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Video()}
+    set {_uniqueStorage()._videos = newValue}
+  }
+  /// Returns true if `videos` has been explicitly set.
+  public var hasVideos: Bool {return _storage._videos != nil}
+  /// Clears the value of `videos`. Subsequent reads from it will return its default value.
+  public mutating func clearVideos() {_uniqueStorage()._videos = nil}
+
+  public var audios: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Audio {
+    get {return _storage._audios ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Audio()}
+    set {_uniqueStorage()._audios = newValue}
+  }
+  /// Returns true if `audios` has been explicitly set.
+  public var hasAudios: Bool {return _storage._audios != nil}
+  /// Clears the value of `audios`. Subsequent reads from it will return its default value.
+  public mutating func clearAudios() {_uniqueStorage()._audios = nil}
+
+  public var difficultyLevel: String {
+    get {return _storage._difficultyLevel}
+    set {_uniqueStorage()._difficultyLevel = newValue}
+  }
+
+  public var sportEquipments: String {
+    get {return _storage._sportEquipments}
+    set {_uniqueStorage()._sportEquipments = newValue}
+  }
+
+  public var distance: Int64 {
+    get {return _storage._distance}
+    set {_uniqueStorage()._distance = newValue}
+  }
+
+  public var time: String {
+    get {return _storage._time}
+    set {_uniqueStorage()._time = newValue}
+  }
+
+  public var speed: Int64 {
+    get {return _storage._speed}
+    set {_uniqueStorage()._speed = newValue}
+  }
+
+  public var speedUnit: String {
+    get {return _storage._speedUnit}
+    set {_uniqueStorage()._speedUnit = newValue}
+  }
+
+  public var setNumber: Int32 {
+    get {return _storage._setNumber}
+    set {_uniqueStorage()._setNumber = newValue}
+  }
+
+  public var moveNumberPerSet: Int32 {
+    get {return _storage._moveNumberPerSet}
+    set {_uniqueStorage()._moveNumberPerSet = newValue}
+  }
+
+  public var timePerSet: String {
+    get {return _storage._timePerSet}
+    set {_uniqueStorage()._timePerSet = newValue}
+  }
+
+  public var energy: Int64 {
+    get {return _storage._energy}
+    set {_uniqueStorage()._energy = newValue}
+  }
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExercisePanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1431,6 +1743,24 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetExercisePanel {
   public init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var data: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
 }
 
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Link {
@@ -1501,6 +1831,54 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Video {
   public var links: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Link] = []
 
   public var linksHls: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Link] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_AddQuestionPackage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_UpdateQuestionPackage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_DeleteQuestionPackage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var status: Int32 = 0
+
+  public var code: Int32 = 0
+
+  public var msg: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1777,6 +2155,83 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetail: SwiftProto
         if _storage._images != rhs_storage._images {return false}
         if _storage._insertTime != rhs_storage._insertTime {return false}
         if _storage._updateTime != rhs_storage._updateTime {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FederationDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "images"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _name: String = String()
+    var _images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _name = source._name
+      _images = source._images
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._images)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if let v = _storage._images {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FederationDetailApi) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._images != rhs_storage._images {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -2221,6 +2676,99 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetail: SwiftProtobuf.M
   }
 }
 
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SportDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "description"),
+    4: .same(proto: "federationId"),
+    5: .same(proto: "images"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _name: String = String()
+    var _description_p: String = String()
+    var _federationID: String = String()
+    var _images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _name = source._name
+      _description_p = source._description_p
+      _federationID = source._federationID
+      _images = source._images
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._federationID)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._images)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 3)
+      }
+      if !_storage._federationID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._federationID, fieldNumber: 4)
+      }
+      if let v = _storage._images {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportDetailApi) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._federationID != rhs_storage._federationID {return false}
+        if _storage._images != rhs_storage._images {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListSportPanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -2640,6 +3188,83 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetail: SwiftP
   }
 }
 
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".SportEquipmentDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    5: .same(proto: "images"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _name: String = String()
+    var _images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _name = source._name
+      _images = source._images
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._images)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if let v = _storage._images {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SportEquipmentDetailApi) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._images != rhs_storage._images {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportEquipmentPanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListSportEquipmentPanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -3013,6 +3638,41 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetail: SwiftProtobuf.Me
   }
 }
 
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".MealDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_MealDetailApi) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealPanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListMealPanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -3381,6 +4041,41 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetail: SwiftProtobuf.
     if lhs.name != rhs.name {return false}
     if lhs.insertTime != rhs.insertTime {return false}
     if lhs.updateTime != rhs.updateTime {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".PhraseDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.name)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_PhraseDetailApi) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -4203,6 +4898,107 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetail: SwiftProt
   }
 }
 
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".FoodPackageDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "details"),
+    4: .same(proto: "recepies"),
+    5: .same(proto: "image"),
+    6: .same(proto: "food"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _name: String = String()
+    var _details: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content? = nil
+    var _recepies: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content? = nil
+    var _image: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Content? = nil
+    var _food: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Food] = []
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _name = source._name
+      _details = source._details
+      _recepies = source._recepies
+      _image = source._image
+      _food = source._food
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularMessageField(value: &_storage._details)
+        case 4: try decoder.decodeSingularMessageField(value: &_storage._recepies)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._image)
+        case 6: try decoder.decodeRepeatedMessageField(value: &_storage._food)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if let v = _storage._details {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._recepies {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._image {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if !_storage._food.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._food, fieldNumber: 6)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_FoodPackageDetailApi) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._details != rhs_storage._details {return false}
+        if _storage._recepies != rhs_storage._recepies {return false}
+        if _storage._image != rhs_storage._image {return false}
+        if _storage._food != rhs_storage._food {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackagePanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListFoodPackagePanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -4354,6 +5150,53 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetFoodPackagePanel: SwiftPr
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackageApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListFoodPackageApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    8: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 8: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackageApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackageApi) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -4746,6 +5589,195 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetail: SwiftProtobu
   }
 }
 
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ExerciseDetailApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "sportId"),
+    4: .same(proto: "description"),
+    5: .same(proto: "images"),
+    6: .same(proto: "videos"),
+    7: .same(proto: "audios"),
+    8: .same(proto: "difficultyLevel"),
+    9: .same(proto: "sportEquipments"),
+    10: .same(proto: "distance"),
+    11: .same(proto: "time"),
+    12: .same(proto: "speed"),
+    13: .same(proto: "speedUnit"),
+    14: .same(proto: "setNumber"),
+    15: .same(proto: "moveNumberPerSet"),
+    16: .same(proto: "timePerSet"),
+    17: .same(proto: "energy"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _id: String = String()
+    var _name: String = String()
+    var _sportID: String = String()
+    var _description_p: String = String()
+    var _images: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image? = nil
+    var _videos: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Video? = nil
+    var _audios: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Audio? = nil
+    var _difficultyLevel: String = String()
+    var _sportEquipments: String = String()
+    var _distance: Int64 = 0
+    var _time: String = String()
+    var _speed: Int64 = 0
+    var _speedUnit: String = String()
+    var _setNumber: Int32 = 0
+    var _moveNumberPerSet: Int32 = 0
+    var _timePerSet: String = String()
+    var _energy: Int64 = 0
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _id = source._id
+      _name = source._name
+      _sportID = source._sportID
+      _description_p = source._description_p
+      _images = source._images
+      _videos = source._videos
+      _audios = source._audios
+      _difficultyLevel = source._difficultyLevel
+      _sportEquipments = source._sportEquipments
+      _distance = source._distance
+      _time = source._time
+      _speed = source._speed
+      _speedUnit = source._speedUnit
+      _setNumber = source._setNumber
+      _moveNumberPerSet = source._moveNumberPerSet
+      _timePerSet = source._timePerSet
+      _energy = source._energy
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularStringField(value: &_storage._id)
+        case 2: try decoder.decodeSingularStringField(value: &_storage._name)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._sportID)
+        case 4: try decoder.decodeSingularStringField(value: &_storage._description_p)
+        case 5: try decoder.decodeSingularMessageField(value: &_storage._images)
+        case 6: try decoder.decodeSingularMessageField(value: &_storage._videos)
+        case 7: try decoder.decodeSingularMessageField(value: &_storage._audios)
+        case 8: try decoder.decodeSingularStringField(value: &_storage._difficultyLevel)
+        case 9: try decoder.decodeSingularStringField(value: &_storage._sportEquipments)
+        case 10: try decoder.decodeSingularInt64Field(value: &_storage._distance)
+        case 11: try decoder.decodeSingularStringField(value: &_storage._time)
+        case 12: try decoder.decodeSingularInt64Field(value: &_storage._speed)
+        case 13: try decoder.decodeSingularStringField(value: &_storage._speedUnit)
+        case 14: try decoder.decodeSingularInt32Field(value: &_storage._setNumber)
+        case 15: try decoder.decodeSingularInt32Field(value: &_storage._moveNumberPerSet)
+        case 16: try decoder.decodeSingularStringField(value: &_storage._timePerSet)
+        case 17: try decoder.decodeSingularInt64Field(value: &_storage._energy)
+        default: break
+        }
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._id.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._id, fieldNumber: 1)
+      }
+      if !_storage._name.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._name, fieldNumber: 2)
+      }
+      if !_storage._sportID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._sportID, fieldNumber: 3)
+      }
+      if !_storage._description_p.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._description_p, fieldNumber: 4)
+      }
+      if let v = _storage._images {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._videos {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._audios {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if !_storage._difficultyLevel.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._difficultyLevel, fieldNumber: 8)
+      }
+      if !_storage._sportEquipments.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._sportEquipments, fieldNumber: 9)
+      }
+      if _storage._distance != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._distance, fieldNumber: 10)
+      }
+      if !_storage._time.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._time, fieldNumber: 11)
+      }
+      if _storage._speed != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._speed, fieldNumber: 12)
+      }
+      if !_storage._speedUnit.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._speedUnit, fieldNumber: 13)
+      }
+      if _storage._setNumber != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._setNumber, fieldNumber: 14)
+      }
+      if _storage._moveNumberPerSet != 0 {
+        try visitor.visitSingularInt32Field(value: _storage._moveNumberPerSet, fieldNumber: 15)
+      }
+      if !_storage._timePerSet.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._timePerSet, fieldNumber: 16)
+      }
+      if _storage._energy != 0 {
+        try visitor.visitSingularInt64Field(value: _storage._energy, fieldNumber: 17)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._name != rhs_storage._name {return false}
+        if _storage._sportID != rhs_storage._sportID {return false}
+        if _storage._description_p != rhs_storage._description_p {return false}
+        if _storage._images != rhs_storage._images {return false}
+        if _storage._videos != rhs_storage._videos {return false}
+        if _storage._audios != rhs_storage._audios {return false}
+        if _storage._difficultyLevel != rhs_storage._difficultyLevel {return false}
+        if _storage._sportEquipments != rhs_storage._sportEquipments {return false}
+        if _storage._distance != rhs_storage._distance {return false}
+        if _storage._time != rhs_storage._time {return false}
+        if _storage._speed != rhs_storage._speed {return false}
+        if _storage._speedUnit != rhs_storage._speedUnit {return false}
+        if _storage._setNumber != rhs_storage._setNumber {return false}
+        if _storage._moveNumberPerSet != rhs_storage._moveNumberPerSet {return false}
+        if _storage._timePerSet != rhs_storage._timePerSet {return false}
+        if _storage._energy != rhs_storage._energy {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExercisePanel: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListExercisePanel"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -4897,6 +5929,53 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetExercisePanel: SwiftProto
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".ListExerciseApi"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+    8: .same(proto: "data"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      case 8: try decoder.decodeRepeatedMessageField(value: &self.data)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    if !self.data.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.data, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.data != rhs.data {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -5098,6 +6177,129 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Video: SwiftProtobuf.Message
     if lhs.linkHls != rhs.linkHls {return false}
     if lhs.links != rhs.links {return false}
     if lhs.linksHls != rhs.linksHls {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_AddQuestionPackage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".AddQuestionPackage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_AddQuestionPackage, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_AddQuestionPackage) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_UpdateQuestionPackage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".UpdateQuestionPackage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_UpdateQuestionPackage, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_UpdateQuestionPackage) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_DeleteQuestionPackage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeleteQuestionPackage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+    2: .same(proto: "code"),
+    3: .same(proto: "msg"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.status)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.code)
+      case 3: try decoder.decodeSingularStringField(value: &self.msg)
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.status != 0 {
+      try visitor.visitSingularInt32Field(value: self.status, fieldNumber: 1)
+    }
+    if self.code != 0 {
+      try visitor.visitSingularInt32Field(value: self.code, fieldNumber: 2)
+    }
+    if !self.msg.isEmpty {
+      try visitor.visitSingularStringField(value: self.msg, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_DeleteQuestionPackage, rhs: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_DeleteQuestionPackage) -> Bool {
+    if lhs.status != rhs.status {return false}
+    if lhs.code != rhs.code {return false}
+    if lhs.msg != rhs.msg {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
