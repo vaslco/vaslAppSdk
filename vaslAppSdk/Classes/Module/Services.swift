@@ -89,5 +89,7 @@ protocol Services {
     
     func KalingaServices() -> KalingaServiceV1Impl!
     
+    func ArmanVarzeshServices() -> AvServiceImpl!
+    
     
 }

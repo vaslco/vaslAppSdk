@@ -11,6 +11,8 @@ import UIKit
 public class VaslSdk : Services {
 
     
+
+    
  
  
     
@@ -351,6 +353,13 @@ public class VaslSdk : Services {
             VaslSdk.KalingaServices = KalingaServiceV1Impl.init()
         }
         return VaslSdk.KalingaServices
+    }
+    private static var ArmanVarzeshServices : AvServiceImpl!
+    public func ArmanVarzeshServices() -> AvServiceImpl! {
+        if VaslSdk.ArmanVarzeshServices == nil{
+            VaslSdk.ArmanVarzeshServices = AvServiceImpl.init()
+        }
+        return VaslSdk.ArmanVarzeshServices
     }
     
 }
