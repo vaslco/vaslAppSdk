@@ -7,86 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0101EC0D242F8F7200CB9B9C /* LeagueServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE2242F8F6A00CB9B9C /* LeagueServiceV1Impl.swift */; };
-		0101EC0E242F8F7200CB9B9C /* AvServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE3242F8F6B00CB9B9C /* AvServiceImpl.swift */; };
-		0101EC0F242F8F7200CB9B9C /* PazhServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE4242F8F6B00CB9B9C /* PazhServiceV1Impl.swift */; };
-		0101EC10242F8F7200CB9B9C /* billingImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE5242F8F6B00CB9B9C /* billingImpl.swift */; };
-		0101EC11242F8F7200CB9B9C /* OperatorsServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE6242F8F6B00CB9B9C /* OperatorsServiceV1Impl.swift */; };
-		0101EC12242F8F7200CB9B9C /* BillingInappServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE7242F8F6B00CB9B9C /* BillingInappServiceV1Impl.swift */; };
-		0101EC13242F8F7200CB9B9C /* EventServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE8242F8F6B00CB9B9C /* EventServiceImpl.swift */; };
-		0101EC14242F8F7200CB9B9C /* AppVersionServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBE9242F8F6C00CB9B9C /* AppVersionServiceV1Impl.swift */; };
-		0101EC15242F8F7200CB9B9C /* EmailControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBEA242F8F6C00CB9B9C /* EmailControllerImpl.swift */; };
-		0101EC16242F8F7200CB9B9C /* DynamicTableServiceEndpointsV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBEB242F8F6C00CB9B9C /* DynamicTableServiceEndpointsV1Impl.swift */; };
-		0101EC17242F8F7200CB9B9C /* GameUserServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBEC242F8F6C00CB9B9C /* GameUserServiceV2Impl.swift */; };
-		0101EC18242F8F7200CB9B9C /* GameActionServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBED242F8F6C00CB9B9C /* GameActionServiceV1Impl.swift */; };
-		0101EC19242F8F7200CB9B9C /* GameFeaturesServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBEE242F8F6C00CB9B9C /* GameFeaturesServiceV2Impl.swift */; };
-		0101EC1A242F8F7200CB9B9C /* EventManagerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBEF242F8F6C00CB9B9C /* EventManagerServiceImpl.swift */; };
-		0101EC1B242F8F7200CB9B9C /* GeoServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF0242F8F6D00CB9B9C /* GeoServiceV1Impl.swift */; };
-		0101EC1C242F8F7200CB9B9C /* KalingaServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF1242F8F6D00CB9B9C /* KalingaServiceV1Impl.swift */; };
-		0101EC1D242F8F7200CB9B9C /* MgsServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF2242F8F6D00CB9B9C /* MgsServiceV1Impl.swift */; };
-		0101EC1E242F8F7200CB9B9C /* GamePointServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF3242F8F6D00CB9B9C /* GamePointServiceV2Impl.swift */; };
-		0101EC1F242F8F7200CB9B9C /* AppServicesImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF4242F8F6D00CB9B9C /* AppServicesImpl.swift */; };
-		0101EC20242F8F7200CB9B9C /* FileManagerServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF5242F8F6E00CB9B9C /* FileManagerServiceV1Impl.swift */; };
-		0101EC21242F8F7200CB9B9C /* PushControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF6242F8F6E00CB9B9C /* PushControllerImpl.swift */; };
-		0101EC22242F8F7200CB9B9C /* PushFCMServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF7242F8F6E00CB9B9C /* PushFCMServiceV1Impl.swift */; };
-		0101EC23242F8F7200CB9B9C /* SupportServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF8242F8F6E00CB9B9C /* SupportServiceV1Impl.swift */; };
-		0101EC24242F8F7200CB9B9C /* DynamicLinkServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBF9242F8F6E00CB9B9C /* DynamicLinkServiceV1Impl.swift */; };
-		0101EC25242F8F7200CB9B9C /* GameActionServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFA242F8F6F00CB9B9C /* GameActionServiceV2Impl.swift */; };
-		0101EC26242F8F7200CB9B9C /* UserDeviceControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFB242F8F6F00CB9B9C /* UserDeviceControllerImpl.swift */; };
-		0101EC27242F8F7200CB9B9C /* DynamicTableServiceTablesV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFC242F8F6F00CB9B9C /* DynamicTableServiceTablesV1Impl.swift */; };
-		0101EC28242F8F7200CB9B9C /* HambaziServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFD242F8F6F00CB9B9C /* HambaziServiceV1Impl.swift */; };
-		0101EC29242F8F7200CB9B9C /* AvatarServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFE242F8F6F00CB9B9C /* AvatarServiceV1Impl.swift */; };
-		0101EC2A242F8F7200CB9B9C /* GameLeaderBoardServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EBFF242F8F6F00CB9B9C /* GameLeaderBoardServiceV1Impl.swift */; };
-		0101EC2B242F8F7200CB9B9C /* AnalyticServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC00242F8F7000CB9B9C /* AnalyticServiceV1Impl.swift */; };
-		0101EC2C242F8F7200CB9B9C /* GameFeaturesServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC01242F8F7000CB9B9C /* GameFeaturesServiceV1Impl.swift */; };
-		0101EC2D242F8F7200CB9B9C /* GatewayServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC02242F8F7000CB9B9C /* GatewayServiceV1Impl.swift */; };
-		0101EC2E242F8F7200CB9B9C /* ReferralServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC03242F8F7000CB9B9C /* ReferralServiceV1Impl.swift */; };
-		0101EC2F242F8F7200CB9B9C /* GameLeaderBoardServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC04242F8F7000CB9B9C /* GameLeaderBoardServiceV2Impl.swift */; };
-		0101EC30242F8F7200CB9B9C /* ShopServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC05242F8F7100CB9B9C /* ShopServiceV1Impl.swift */; };
-		0101EC31242F8F7200CB9B9C /* SubscriberServiceV1_1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC06242F8F7100CB9B9C /* SubscriberServiceV1_1Impl.swift */; };
-		0101EC32242F8F7200CB9B9C /* ChargeServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC07242F8F7100CB9B9C /* ChargeServiceV1Impl.swift */; };
-		0101EC33242F8F7200CB9B9C /* ContentServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC08242F8F7100CB9B9C /* ContentServiceV1Impl.swift */; };
-		0101EC34242F8F7200CB9B9C /* GamePointTypeServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC09242F8F7100CB9B9C /* GamePointTypeServiceV1Impl.swift */; };
-		0101EC35242F8F7200CB9B9C /* SubscriberServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC0A242F8F7100CB9B9C /* SubscriberServiceV1Impl.swift */; };
-		0101EC36242F8F7200CB9B9C /* GameUsersServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC0B242F8F7200CB9B9C /* GameUsersServiceV1Impl.swift */; };
-		0101EC37242F8F7200CB9B9C /* SubscriberServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC0C242F8F7200CB9B9C /* SubscriberServiceV2Impl.swift */; };
-		0101EC5D242F8F9400CB9B9C /* CommentGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC38242F8F9100CB9B9C /* CommentGlobal.pb.swift */; };
-		0101EC5E242F8F9400CB9B9C /* OperatorsGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC39242F8F9100CB9B9C /* OperatorsGlobalV1.pb.swift */; };
-		0101EC5F242F8F9400CB9B9C /* GameLeague.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3A242F8F9100CB9B9C /* GameLeague.pb.swift */; };
-		0101EC60242F8F9400CB9B9C /* client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3B242F8F9100CB9B9C /* client.pb.swift */; };
-		0101EC61242F8F9400CB9B9C /* BillingInappGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3C242F8F9200CB9B9C /* BillingInappGlobal.pb.swift */; };
-		0101EC62242F8F9400CB9B9C /* AvatarGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3D242F8F9200CB9B9C /* AvatarGlobalV1.pb.swift */; };
-		0101EC63242F8F9400CB9B9C /* FileGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3E242F8F9200CB9B9C /* FileGlobal.pb.swift */; };
-		0101EC64242F8F9400CB9B9C /* AnalyticGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC3F242F8F9200CB9B9C /* AnalyticGlobal.pb.swift */; };
-		0101EC65242F8F9400CB9B9C /* Poll.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC40242F8F9200CB9B9C /* Poll.pb.swift */; };
-		0101EC66242F8F9400CB9B9C /* Subscriber.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC41242F8F9200CB9B9C /* Subscriber.pb.swift */; };
-		0101EC67242F8F9400CB9B9C /* SupportGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC42242F8F9200CB9B9C /* SupportGlobal.pb.swift */; };
-		0101EC68242F8F9400CB9B9C /* DynamicLink.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC43242F8F9200CB9B9C /* DynamicLink.pb.swift */; };
-		0101EC69242F8F9400CB9B9C /* Hambazi.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC44242F8F9200CB9B9C /* Hambazi.pb.swift */; };
-		0101EC6A242F8F9400CB9B9C /* EventGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC45242F8F9200CB9B9C /* EventGlobal.pb.swift */; };
-		0101EC6B242F8F9400CB9B9C /* Av.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC46242F8F9200CB9B9C /* Av.pb.swift */; };
-		0101EC6C242F8F9400CB9B9C /* EngagementChanelGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC47242F8F9300CB9B9C /* EngagementChanelGlobal.pb.swift */; };
-		0101EC6D242F8F9400CB9B9C /* AppVersion.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC48242F8F9300CB9B9C /* AppVersion.pb.swift */; };
-		0101EC6E242F8F9400CB9B9C /* Game.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC49242F8F9300CB9B9C /* Game.pb.swift */; };
-		0101EC6F242F8F9400CB9B9C /* Packets.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4A242F8F9300CB9B9C /* Packets.pb.swift */; };
-		0101EC70242F8F9400CB9B9C /* PushFCMGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4B242F8F9300CB9B9C /* PushFCMGlobal.pb.swift */; };
-		0101EC71242F8F9400CB9B9C /* Global.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4C242F8F9300CB9B9C /* Global.pb.swift */; };
-		0101EC72242F8F9400CB9B9C /* Billing.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4D242F8F9300CB9B9C /* Billing.pb.swift */; };
-		0101EC73242F8F9400CB9B9C /* ContentGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4E242F8F9300CB9B9C /* ContentGlobalV1.pb.swift */; };
-		0101EC74242F8F9400CB9B9C /* ChargeCard.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC4F242F8F9300CB9B9C /* ChargeCard.pb.swift */; };
-		0101EC75242F8F9400CB9B9C /* TimerGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC50242F8F9300CB9B9C /* TimerGlobal.pb.swift */; };
-		0101EC76242F8F9400CB9B9C /* ReferralGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC51242F8F9400CB9B9C /* ReferralGlobal.pb.swift */; };
-		0101EC77242F8F9400CB9B9C /* Pazh.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC52242F8F9400CB9B9C /* Pazh.pb.swift */; };
-		0101EC78242F8F9400CB9B9C /* GeoGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC53242F8F9400CB9B9C /* GeoGlobalV1.pb.swift */; };
-		0101EC79242F8F9400CB9B9C /* Mgs.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC54242F8F9400CB9B9C /* Mgs.pb.swift */; };
-		0101EC7A242F8F9400CB9B9C /* Shop.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC55242F8F9400CB9B9C /* Shop.pb.swift */; };
-		0101EC7B242F8F9400CB9B9C /* AppGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC56242F8F9400CB9B9C /* AppGlobal.pb.swift */; };
-		0101EC7C242F8F9400CB9B9C /* GateWay.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC57242F8F9400CB9B9C /* GateWay.pb.swift */; };
-		0101EC7D242F8F9400CB9B9C /* MobileConnect.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC58242F8F9400CB9B9C /* MobileConnect.pb.swift */; };
-		0101EC7E242F8F9400CB9B9C /* DynamicTable.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC59242F8F9400CB9B9C /* DynamicTable.pb.swift */; };
-		0101EC7F242F8F9400CB9B9C /* EventManager.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC5A242F8F9400CB9B9C /* EventManager.pb.swift */; };
-		0101EC80242F8F9400CB9B9C /* Health.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC5B242F8F9400CB9B9C /* Health.pb.swift */; };
-		0101EC81242F8F9400CB9B9C /* Counseling.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0101EC5C242F8F9400CB9B9C /* Counseling.pb.swift */; };
+		01792EFB2432565C0051AF5E /* GameLeaderBoardServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED0243256550051AF5E /* GameLeaderBoardServiceV1Impl.swift */; };
+		01792EFC2432565C0051AF5E /* SubscriberServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED1243256560051AF5E /* SubscriberServiceV2Impl.swift */; };
+		01792EFD2432565C0051AF5E /* GameActionServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED2243256560051AF5E /* GameActionServiceV1Impl.swift */; };
+		01792EFE2432565C0051AF5E /* FileManagerServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED3243256560051AF5E /* FileManagerServiceV1Impl.swift */; };
+		01792EFF2432565C0051AF5E /* GameLeaderBoardServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED4243256560051AF5E /* GameLeaderBoardServiceV2Impl.swift */; };
+		01792F002432565C0051AF5E /* EventManagerServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED5243256560051AF5E /* EventManagerServiceImpl.swift */; };
+		01792F012432565C0051AF5E /* EmailControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED6243256560051AF5E /* EmailControllerImpl.swift */; };
+		01792F022432565C0051AF5E /* BillingInappServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED7243256570051AF5E /* BillingInappServiceV1Impl.swift */; };
+		01792F032432565C0051AF5E /* DynamicTableServiceEndpointsV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED8243256570051AF5E /* DynamicTableServiceEndpointsV1Impl.swift */; };
+		01792F042432565C0051AF5E /* UserDeviceControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792ED9243256570051AF5E /* UserDeviceControllerImpl.swift */; };
+		01792F052432565C0051AF5E /* AnalyticServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDA243256570051AF5E /* AnalyticServiceV1Impl.swift */; };
+		01792F062432565C0051AF5E /* PazhServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDB243256570051AF5E /* PazhServiceV1Impl.swift */; };
+		01792F072432565C0051AF5E /* SupportServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDC243256570051AF5E /* SupportServiceV1Impl.swift */; };
+		01792F082432565C0051AF5E /* GamePointServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDD243256580051AF5E /* GamePointServiceV2Impl.swift */; };
+		01792F092432565C0051AF5E /* DynamicLinkServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDE243256580051AF5E /* DynamicLinkServiceV1Impl.swift */; };
+		01792F0A2432565C0051AF5E /* ContentServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EDF243256580051AF5E /* ContentServiceV1Impl.swift */; };
+		01792F0B2432565C0051AF5E /* AppVersionServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE0243256580051AF5E /* AppVersionServiceV1Impl.swift */; };
+		01792F0C2432565C0051AF5E /* PushFCMServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE1243256590051AF5E /* PushFCMServiceV1Impl.swift */; };
+		01792F0D2432565C0051AF5E /* PushControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE2243256590051AF5E /* PushControllerImpl.swift */; };
+		01792F0E2432565C0051AF5E /* MgsServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE3243256590051AF5E /* MgsServiceV1Impl.swift */; };
+		01792F0F2432565C0051AF5E /* AvatarServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE4243256590051AF5E /* AvatarServiceV1Impl.swift */; };
+		01792F102432565C0051AF5E /* billingImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE5243256590051AF5E /* billingImpl.swift */; };
+		01792F112432565C0051AF5E /* AppServicesImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE62432565A0051AF5E /* AppServicesImpl.swift */; };
+		01792F122432565C0051AF5E /* LeagueServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE72432565A0051AF5E /* LeagueServiceV1Impl.swift */; };
+		01792F132432565C0051AF5E /* ShopServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE82432565A0051AF5E /* ShopServiceV1Impl.swift */; };
+		01792F142432565C0051AF5E /* HambaziServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EE92432565A0051AF5E /* HambaziServiceV1Impl.swift */; };
+		01792F152432565C0051AF5E /* GameFeaturesServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EEA2432565A0051AF5E /* GameFeaturesServiceV1Impl.swift */; };
+		01792F162432565C0051AF5E /* GameFeaturesServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EEB2432565A0051AF5E /* GameFeaturesServiceV2Impl.swift */; };
+		01792F172432565C0051AF5E /* SubscriberServiceV1_1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EEC2432565A0051AF5E /* SubscriberServiceV1_1Impl.swift */; };
+		01792F182432565C0051AF5E /* GameUsersServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EED2432565A0051AF5E /* GameUsersServiceV1Impl.swift */; };
+		01792F192432565C0051AF5E /* EventServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EEE2432565B0051AF5E /* EventServiceImpl.swift */; };
+		01792F1A2432565C0051AF5E /* ChargeServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EEF2432565B0051AF5E /* ChargeServiceV1Impl.swift */; };
+		01792F1B2432565C0051AF5E /* GameUserServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF02432565B0051AF5E /* GameUserServiceV2Impl.swift */; };
+		01792F1C2432565C0051AF5E /* SubscriberServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF12432565B0051AF5E /* SubscriberServiceV1Impl.swift */; };
+		01792F1D2432565D0051AF5E /* GamePointTypeServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF22432565B0051AF5E /* GamePointTypeServiceV1Impl.swift */; };
+		01792F1E2432565D0051AF5E /* GatewayServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF32432565B0051AF5E /* GatewayServiceV1Impl.swift */; };
+		01792F1F2432565D0051AF5E /* ReferralServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF42432565C0051AF5E /* ReferralServiceV1Impl.swift */; };
+		01792F202432565D0051AF5E /* KalingaServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF52432565C0051AF5E /* KalingaServiceV1Impl.swift */; };
+		01792F212432565D0051AF5E /* OperatorsServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF62432565C0051AF5E /* OperatorsServiceV1Impl.swift */; };
+		01792F222432565D0051AF5E /* AvServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF72432565C0051AF5E /* AvServiceImpl.swift */; };
+		01792F232432565D0051AF5E /* DynamicTableServiceTablesV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF82432565C0051AF5E /* DynamicTableServiceTablesV1Impl.swift */; };
+		01792F242432565D0051AF5E /* GeoServiceV1Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EF92432565C0051AF5E /* GeoServiceV1Impl.swift */; };
+		01792F252432565D0051AF5E /* GameActionServiceV2Impl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792EFA2432565C0051AF5E /* GameActionServiceV2Impl.swift */; };
+		01792F4B243256830051AF5E /* Global.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F262432567D0051AF5E /* Global.pb.swift */; };
+		01792F4C243256830051AF5E /* FileGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F272432567D0051AF5E /* FileGlobal.pb.swift */; };
+		01792F4D243256830051AF5E /* Poll.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F282432567D0051AF5E /* Poll.pb.swift */; };
+		01792F4E243256830051AF5E /* DynamicLink.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F292432567E0051AF5E /* DynamicLink.pb.swift */; };
+		01792F4F243256830051AF5E /* Av.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2A2432567E0051AF5E /* Av.pb.swift */; };
+		01792F50243256830051AF5E /* AnalyticGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2B2432567E0051AF5E /* AnalyticGlobal.pb.swift */; };
+		01792F51243256830051AF5E /* Shop.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2C2432567E0051AF5E /* Shop.pb.swift */; };
+		01792F52243256830051AF5E /* SupportGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2D2432567E0051AF5E /* SupportGlobal.pb.swift */; };
+		01792F53243256830051AF5E /* TimerGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2E2432567E0051AF5E /* TimerGlobal.pb.swift */; };
+		01792F54243256830051AF5E /* ChargeCard.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F2F2432567E0051AF5E /* ChargeCard.pb.swift */; };
+		01792F55243256830051AF5E /* MobileConnect.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F302432567E0051AF5E /* MobileConnect.pb.swift */; };
+		01792F56243256830051AF5E /* GameLeague.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F312432567E0051AF5E /* GameLeague.pb.swift */; };
+		01792F57243256830051AF5E /* EngagementChanelGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F322432567E0051AF5E /* EngagementChanelGlobal.pb.swift */; };
+		01792F58243256830051AF5E /* ReferralGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F332432567E0051AF5E /* ReferralGlobal.pb.swift */; };
+		01792F59243256830051AF5E /* AvatarGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F342432567E0051AF5E /* AvatarGlobalV1.pb.swift */; };
+		01792F5A243256830051AF5E /* client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F352432567E0051AF5E /* client.pb.swift */; };
+		01792F5B243256830051AF5E /* PushFCMGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F362432567F0051AF5E /* PushFCMGlobal.pb.swift */; };
+		01792F5C243256830051AF5E /* Game.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F372432567F0051AF5E /* Game.pb.swift */; };
+		01792F5D243256830051AF5E /* Counseling.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F382432567F0051AF5E /* Counseling.pb.swift */; };
+		01792F5E243256830051AF5E /* GateWay.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F392432567F0051AF5E /* GateWay.pb.swift */; };
+		01792F5F243256830051AF5E /* Health.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3A2432567F0051AF5E /* Health.pb.swift */; };
+		01792F60243256830051AF5E /* DynamicTable.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3B2432567F0051AF5E /* DynamicTable.pb.swift */; };
+		01792F61243256830051AF5E /* Packets.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3C2432567F0051AF5E /* Packets.pb.swift */; };
+		01792F62243256830051AF5E /* OperatorsGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3D2432567F0051AF5E /* OperatorsGlobalV1.pb.swift */; };
+		01792F63243256830051AF5E /* ContentGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3E2432567F0051AF5E /* ContentGlobalV1.pb.swift */; };
+		01792F64243256830051AF5E /* CommentGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F3F2432567F0051AF5E /* CommentGlobal.pb.swift */; };
+		01792F65243256830051AF5E /* Mgs.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F402432567F0051AF5E /* Mgs.pb.swift */; };
+		01792F66243256830051AF5E /* Subscriber.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F41243256800051AF5E /* Subscriber.pb.swift */; };
+		01792F67243256830051AF5E /* AppGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F42243256800051AF5E /* AppGlobal.pb.swift */; };
+		01792F68243256830051AF5E /* Billing.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F43243256800051AF5E /* Billing.pb.swift */; };
+		01792F69243256830051AF5E /* EventGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F44243256810051AF5E /* EventGlobal.pb.swift */; };
+		01792F6A243256830051AF5E /* Hambazi.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F45243256820051AF5E /* Hambazi.pb.swift */; };
+		01792F6B243256830051AF5E /* BillingInappGlobal.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F46243256820051AF5E /* BillingInappGlobal.pb.swift */; };
+		01792F6C243256830051AF5E /* EventManager.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F47243256820051AF5E /* EventManager.pb.swift */; };
+		01792F6D243256830051AF5E /* GeoGlobalV1.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F48243256830051AF5E /* GeoGlobalV1.pb.swift */; };
+		01792F6E243256830051AF5E /* Pazh.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F49243256830051AF5E /* Pazh.pb.swift */; };
+		01792F6F243256830051AF5E /* AppVersion.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01792F4A243256830051AF5E /* AppVersion.pb.swift */; };
 		0306324FB55AB79F74A36E63BF1B0B81 /* BinaryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282A4F19ABB2DB57B9D74476AAF1DAEF /* BinaryEncoder.swift */; };
 		0370DD7976BF534338E354D6FB0BBF0E /* AnyMessageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B56334DBF89819ED06958A557518C86 /* AnyMessageStorage.swift */; };
 		05428251AAD926AF0CAA2E133AF73EC1 /* JSONMapEncodingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D28CBB6A0C2B0474C765331031FF8 /* JSONMapEncodingVisitor.swift */; };
@@ -266,87 +266,87 @@
 
 /* Begin PBXFileReference section */
 		004C721B7A3DD008BF7047384FC2F966 /* Pods_vaslAppSdk_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vaslAppSdk_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0101EBE2242F8F6A00CB9B9C /* LeagueServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBE3242F8F6B00CB9B9C /* AvServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvServiceImpl.swift; sourceTree = "<group>"; };
-		0101EBE4242F8F6B00CB9B9C /* PazhServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PazhServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBE5242F8F6B00CB9B9C /* billingImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = billingImpl.swift; sourceTree = "<group>"; };
-		0101EBE6242F8F6B00CB9B9C /* OperatorsServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBE7242F8F6B00CB9B9C /* BillingInappServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInappServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBE8242F8F6B00CB9B9C /* EventServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceImpl.swift; sourceTree = "<group>"; };
-		0101EBE9242F8F6C00CB9B9C /* AppVersionServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBEA242F8F6C00CB9B9C /* EmailControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailControllerImpl.swift; sourceTree = "<group>"; };
-		0101EBEB242F8F6C00CB9B9C /* DynamicTableServiceEndpointsV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTableServiceEndpointsV1Impl.swift; sourceTree = "<group>"; };
-		0101EBEC242F8F6C00CB9B9C /* GameUserServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUserServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EBED242F8F6C00CB9B9C /* GameActionServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActionServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBEE242F8F6C00CB9B9C /* GameFeaturesServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFeaturesServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EBEF242F8F6C00CB9B9C /* EventManagerServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManagerServiceImpl.swift; sourceTree = "<group>"; };
-		0101EBF0242F8F6D00CB9B9C /* GeoServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF1242F8F6D00CB9B9C /* KalingaServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalingaServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF2242F8F6D00CB9B9C /* MgsServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MgsServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF3242F8F6D00CB9B9C /* GamePointServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePointServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EBF4242F8F6D00CB9B9C /* AppServicesImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesImpl.swift; sourceTree = "<group>"; };
-		0101EBF5242F8F6E00CB9B9C /* FileManagerServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF6242F8F6E00CB9B9C /* PushControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushControllerImpl.swift; sourceTree = "<group>"; };
-		0101EBF7242F8F6E00CB9B9C /* PushFCMServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushFCMServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF8242F8F6E00CB9B9C /* SupportServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBF9242F8F6E00CB9B9C /* DynamicLinkServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicLinkServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBFA242F8F6F00CB9B9C /* GameActionServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActionServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EBFB242F8F6F00CB9B9C /* UserDeviceControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDeviceControllerImpl.swift; sourceTree = "<group>"; };
-		0101EBFC242F8F6F00CB9B9C /* DynamicTableServiceTablesV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTableServiceTablesV1Impl.swift; sourceTree = "<group>"; };
-		0101EBFD242F8F6F00CB9B9C /* HambaziServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HambaziServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBFE242F8F6F00CB9B9C /* AvatarServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EBFF242F8F6F00CB9B9C /* GameLeaderBoardServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeaderBoardServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC00242F8F7000CB9B9C /* AnalyticServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC01242F8F7000CB9B9C /* GameFeaturesServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFeaturesServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC02242F8F7000CB9B9C /* GatewayServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC03242F8F7000CB9B9C /* ReferralServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC04242F8F7000CB9B9C /* GameLeaderBoardServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeaderBoardServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EC05242F8F7100CB9B9C /* ShopServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC06242F8F7100CB9B9C /* SubscriberServiceV1_1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1_1Impl.swift; sourceTree = "<group>"; };
-		0101EC07242F8F7100CB9B9C /* ChargeServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC08242F8F7100CB9B9C /* ContentServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC09242F8F7100CB9B9C /* GamePointTypeServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePointTypeServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC0A242F8F7100CB9B9C /* SubscriberServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC0B242F8F7200CB9B9C /* GameUsersServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUsersServiceV1Impl.swift; sourceTree = "<group>"; };
-		0101EC0C242F8F7200CB9B9C /* SubscriberServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV2Impl.swift; sourceTree = "<group>"; };
-		0101EC38242F8F9100CB9B9C /* CommentGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC39242F8F9100CB9B9C /* OperatorsGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsGlobalV1.pb.swift; sourceTree = "<group>"; };
-		0101EC3A242F8F9100CB9B9C /* GameLeague.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeague.pb.swift; sourceTree = "<group>"; };
-		0101EC3B242F8F9100CB9B9C /* client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = client.pb.swift; sourceTree = "<group>"; };
-		0101EC3C242F8F9200CB9B9C /* BillingInappGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInappGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC3D242F8F9200CB9B9C /* AvatarGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarGlobalV1.pb.swift; sourceTree = "<group>"; };
-		0101EC3E242F8F9200CB9B9C /* FileGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC3F242F8F9200CB9B9C /* AnalyticGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC40242F8F9200CB9B9C /* Poll.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.pb.swift; sourceTree = "<group>"; };
-		0101EC41242F8F9200CB9B9C /* Subscriber.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.pb.swift; sourceTree = "<group>"; };
-		0101EC42242F8F9200CB9B9C /* SupportGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC43242F8F9200CB9B9C /* DynamicLink.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicLink.pb.swift; sourceTree = "<group>"; };
-		0101EC44242F8F9200CB9B9C /* Hambazi.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hambazi.pb.swift; sourceTree = "<group>"; };
-		0101EC45242F8F9200CB9B9C /* EventGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC46242F8F9200CB9B9C /* Av.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Av.pb.swift; sourceTree = "<group>"; };
-		0101EC47242F8F9300CB9B9C /* EngagementChanelGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementChanelGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC48242F8F9300CB9B9C /* AppVersion.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersion.pb.swift; sourceTree = "<group>"; };
-		0101EC49242F8F9300CB9B9C /* Game.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.pb.swift; sourceTree = "<group>"; };
-		0101EC4A242F8F9300CB9B9C /* Packets.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packets.pb.swift; sourceTree = "<group>"; };
-		0101EC4B242F8F9300CB9B9C /* PushFCMGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushFCMGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC4C242F8F9300CB9B9C /* Global.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.pb.swift; sourceTree = "<group>"; };
-		0101EC4D242F8F9300CB9B9C /* Billing.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Billing.pb.swift; sourceTree = "<group>"; };
-		0101EC4E242F8F9300CB9B9C /* ContentGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentGlobalV1.pb.swift; sourceTree = "<group>"; };
-		0101EC4F242F8F9300CB9B9C /* ChargeCard.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeCard.pb.swift; sourceTree = "<group>"; };
-		0101EC50242F8F9300CB9B9C /* TimerGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC51242F8F9400CB9B9C /* ReferralGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC52242F8F9400CB9B9C /* Pazh.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pazh.pb.swift; sourceTree = "<group>"; };
-		0101EC53242F8F9400CB9B9C /* GeoGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoGlobalV1.pb.swift; sourceTree = "<group>"; };
-		0101EC54242F8F9400CB9B9C /* Mgs.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mgs.pb.swift; sourceTree = "<group>"; };
-		0101EC55242F8F9400CB9B9C /* Shop.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.pb.swift; sourceTree = "<group>"; };
-		0101EC56242F8F9400CB9B9C /* AppGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.pb.swift; sourceTree = "<group>"; };
-		0101EC57242F8F9400CB9B9C /* GateWay.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateWay.pb.swift; sourceTree = "<group>"; };
-		0101EC58242F8F9400CB9B9C /* MobileConnect.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileConnect.pb.swift; sourceTree = "<group>"; };
-		0101EC59242F8F9400CB9B9C /* DynamicTable.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTable.pb.swift; sourceTree = "<group>"; };
-		0101EC5A242F8F9400CB9B9C /* EventManager.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.pb.swift; sourceTree = "<group>"; };
-		0101EC5B242F8F9400CB9B9C /* Health.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Health.pb.swift; sourceTree = "<group>"; };
-		0101EC5C242F8F9400CB9B9C /* Counseling.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counseling.pb.swift; sourceTree = "<group>"; };
 		013D7325F720211219F768355C533044 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		01792ED0243256550051AF5E /* GameLeaderBoardServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeaderBoardServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792ED1243256560051AF5E /* SubscriberServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792ED2243256560051AF5E /* GameActionServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActionServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792ED3243256560051AF5E /* FileManagerServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792ED4243256560051AF5E /* GameLeaderBoardServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeaderBoardServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792ED5243256560051AF5E /* EventManagerServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManagerServiceImpl.swift; sourceTree = "<group>"; };
+		01792ED6243256560051AF5E /* EmailControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailControllerImpl.swift; sourceTree = "<group>"; };
+		01792ED7243256570051AF5E /* BillingInappServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInappServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792ED8243256570051AF5E /* DynamicTableServiceEndpointsV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTableServiceEndpointsV1Impl.swift; sourceTree = "<group>"; };
+		01792ED9243256570051AF5E /* UserDeviceControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDeviceControllerImpl.swift; sourceTree = "<group>"; };
+		01792EDA243256570051AF5E /* AnalyticServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EDB243256570051AF5E /* PazhServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PazhServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EDC243256570051AF5E /* SupportServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EDD243256580051AF5E /* GamePointServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePointServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792EDE243256580051AF5E /* DynamicLinkServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicLinkServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EDF243256580051AF5E /* ContentServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE0243256580051AF5E /* AppVersionServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE1243256590051AF5E /* PushFCMServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushFCMServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE2243256590051AF5E /* PushControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushControllerImpl.swift; sourceTree = "<group>"; };
+		01792EE3243256590051AF5E /* MgsServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MgsServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE4243256590051AF5E /* AvatarServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE5243256590051AF5E /* billingImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = billingImpl.swift; sourceTree = "<group>"; };
+		01792EE62432565A0051AF5E /* AppServicesImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServicesImpl.swift; sourceTree = "<group>"; };
+		01792EE72432565A0051AF5E /* LeagueServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE82432565A0051AF5E /* ShopServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EE92432565A0051AF5E /* HambaziServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HambaziServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EEA2432565A0051AF5E /* GameFeaturesServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFeaturesServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EEB2432565A0051AF5E /* GameFeaturesServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameFeaturesServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792EEC2432565A0051AF5E /* SubscriberServiceV1_1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1_1Impl.swift; sourceTree = "<group>"; };
+		01792EED2432565A0051AF5E /* GameUsersServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUsersServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EEE2432565B0051AF5E /* EventServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventServiceImpl.swift; sourceTree = "<group>"; };
+		01792EEF2432565B0051AF5E /* ChargeServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF02432565B0051AF5E /* GameUserServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUserServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792EF12432565B0051AF5E /* SubscriberServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF22432565B0051AF5E /* GamePointTypeServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePointTypeServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF32432565B0051AF5E /* GatewayServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF42432565C0051AF5E /* ReferralServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF52432565C0051AF5E /* KalingaServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KalingaServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF62432565C0051AF5E /* OperatorsServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EF72432565C0051AF5E /* AvServiceImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvServiceImpl.swift; sourceTree = "<group>"; };
+		01792EF82432565C0051AF5E /* DynamicTableServiceTablesV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTableServiceTablesV1Impl.swift; sourceTree = "<group>"; };
+		01792EF92432565C0051AF5E /* GeoServiceV1Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoServiceV1Impl.swift; sourceTree = "<group>"; };
+		01792EFA2432565C0051AF5E /* GameActionServiceV2Impl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameActionServiceV2Impl.swift; sourceTree = "<group>"; };
+		01792F262432567D0051AF5E /* Global.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.pb.swift; sourceTree = "<group>"; };
+		01792F272432567D0051AF5E /* FileGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F282432567D0051AF5E /* Poll.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poll.pb.swift; sourceTree = "<group>"; };
+		01792F292432567E0051AF5E /* DynamicLink.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicLink.pb.swift; sourceTree = "<group>"; };
+		01792F2A2432567E0051AF5E /* Av.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Av.pb.swift; sourceTree = "<group>"; };
+		01792F2B2432567E0051AF5E /* AnalyticGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F2C2432567E0051AF5E /* Shop.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.pb.swift; sourceTree = "<group>"; };
+		01792F2D2432567E0051AF5E /* SupportGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F2E2432567E0051AF5E /* TimerGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F2F2432567E0051AF5E /* ChargeCard.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeCard.pb.swift; sourceTree = "<group>"; };
+		01792F302432567E0051AF5E /* MobileConnect.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileConnect.pb.swift; sourceTree = "<group>"; };
+		01792F312432567E0051AF5E /* GameLeague.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLeague.pb.swift; sourceTree = "<group>"; };
+		01792F322432567E0051AF5E /* EngagementChanelGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EngagementChanelGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F332432567E0051AF5E /* ReferralGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F342432567E0051AF5E /* AvatarGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarGlobalV1.pb.swift; sourceTree = "<group>"; };
+		01792F352432567E0051AF5E /* client.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = client.pb.swift; sourceTree = "<group>"; };
+		01792F362432567F0051AF5E /* PushFCMGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushFCMGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F372432567F0051AF5E /* Game.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.pb.swift; sourceTree = "<group>"; };
+		01792F382432567F0051AF5E /* Counseling.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counseling.pb.swift; sourceTree = "<group>"; };
+		01792F392432567F0051AF5E /* GateWay.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GateWay.pb.swift; sourceTree = "<group>"; };
+		01792F3A2432567F0051AF5E /* Health.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Health.pb.swift; sourceTree = "<group>"; };
+		01792F3B2432567F0051AF5E /* DynamicTable.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicTable.pb.swift; sourceTree = "<group>"; };
+		01792F3C2432567F0051AF5E /* Packets.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packets.pb.swift; sourceTree = "<group>"; };
+		01792F3D2432567F0051AF5E /* OperatorsGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorsGlobalV1.pb.swift; sourceTree = "<group>"; };
+		01792F3E2432567F0051AF5E /* ContentGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentGlobalV1.pb.swift; sourceTree = "<group>"; };
+		01792F3F2432567F0051AF5E /* CommentGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F402432567F0051AF5E /* Mgs.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mgs.pb.swift; sourceTree = "<group>"; };
+		01792F41243256800051AF5E /* Subscriber.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.pb.swift; sourceTree = "<group>"; };
+		01792F42243256800051AF5E /* AppGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F43243256800051AF5E /* Billing.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Billing.pb.swift; sourceTree = "<group>"; };
+		01792F44243256810051AF5E /* EventGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F45243256820051AF5E /* Hambazi.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hambazi.pb.swift; sourceTree = "<group>"; };
+		01792F46243256820051AF5E /* BillingInappGlobal.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInappGlobal.pb.swift; sourceTree = "<group>"; };
+		01792F47243256820051AF5E /* EventManager.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.pb.swift; sourceTree = "<group>"; };
+		01792F48243256830051AF5E /* GeoGlobalV1.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoGlobalV1.pb.swift; sourceTree = "<group>"; };
+		01792F49243256830051AF5E /* Pazh.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pazh.pb.swift; sourceTree = "<group>"; };
+		01792F4A243256830051AF5E /* AppVersion.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersion.pb.swift; sourceTree = "<group>"; };
 		029EA38B1BC7D4A5905A7BFF2F4A45C1 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		04F6545CC4802A5172CB9476EE27E188 /* Message+JSONAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Message+JSONAdditions.swift"; path = "Sources/SwiftProtobuf/Message+JSONAdditions.swift"; sourceTree = "<group>"; };
 		077F9C6D6AF3072D18BC5B20AC84A7D0 /* ContentModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
@@ -556,43 +556,43 @@
 		1354C4CE342A62C84D326B4D2D13A8EA /* protocolModel */ = {
 			isa = PBXGroup;
 			children = (
-				0101EC3F242F8F9200CB9B9C /* AnalyticGlobal.pb.swift */,
-				0101EC56242F8F9400CB9B9C /* AppGlobal.pb.swift */,
-				0101EC48242F8F9300CB9B9C /* AppVersion.pb.swift */,
-				0101EC46242F8F9200CB9B9C /* Av.pb.swift */,
-				0101EC3D242F8F9200CB9B9C /* AvatarGlobalV1.pb.swift */,
-				0101EC4D242F8F9300CB9B9C /* Billing.pb.swift */,
-				0101EC3C242F8F9200CB9B9C /* BillingInappGlobal.pb.swift */,
-				0101EC4F242F8F9300CB9B9C /* ChargeCard.pb.swift */,
-				0101EC3B242F8F9100CB9B9C /* client.pb.swift */,
-				0101EC38242F8F9100CB9B9C /* CommentGlobal.pb.swift */,
-				0101EC4E242F8F9300CB9B9C /* ContentGlobalV1.pb.swift */,
-				0101EC5C242F8F9400CB9B9C /* Counseling.pb.swift */,
-				0101EC43242F8F9200CB9B9C /* DynamicLink.pb.swift */,
-				0101EC59242F8F9400CB9B9C /* DynamicTable.pb.swift */,
-				0101EC47242F8F9300CB9B9C /* EngagementChanelGlobal.pb.swift */,
-				0101EC45242F8F9200CB9B9C /* EventGlobal.pb.swift */,
-				0101EC5A242F8F9400CB9B9C /* EventManager.pb.swift */,
-				0101EC3E242F8F9200CB9B9C /* FileGlobal.pb.swift */,
-				0101EC49242F8F9300CB9B9C /* Game.pb.swift */,
-				0101EC3A242F8F9100CB9B9C /* GameLeague.pb.swift */,
-				0101EC57242F8F9400CB9B9C /* GateWay.pb.swift */,
-				0101EC53242F8F9400CB9B9C /* GeoGlobalV1.pb.swift */,
-				0101EC4C242F8F9300CB9B9C /* Global.pb.swift */,
-				0101EC44242F8F9200CB9B9C /* Hambazi.pb.swift */,
-				0101EC5B242F8F9400CB9B9C /* Health.pb.swift */,
-				0101EC54242F8F9400CB9B9C /* Mgs.pb.swift */,
-				0101EC58242F8F9400CB9B9C /* MobileConnect.pb.swift */,
-				0101EC39242F8F9100CB9B9C /* OperatorsGlobalV1.pb.swift */,
-				0101EC4A242F8F9300CB9B9C /* Packets.pb.swift */,
-				0101EC52242F8F9400CB9B9C /* Pazh.pb.swift */,
-				0101EC40242F8F9200CB9B9C /* Poll.pb.swift */,
-				0101EC4B242F8F9300CB9B9C /* PushFCMGlobal.pb.swift */,
-				0101EC51242F8F9400CB9B9C /* ReferralGlobal.pb.swift */,
-				0101EC55242F8F9400CB9B9C /* Shop.pb.swift */,
-				0101EC41242F8F9200CB9B9C /* Subscriber.pb.swift */,
-				0101EC42242F8F9200CB9B9C /* SupportGlobal.pb.swift */,
-				0101EC50242F8F9300CB9B9C /* TimerGlobal.pb.swift */,
+				01792F2B2432567E0051AF5E /* AnalyticGlobal.pb.swift */,
+				01792F42243256800051AF5E /* AppGlobal.pb.swift */,
+				01792F4A243256830051AF5E /* AppVersion.pb.swift */,
+				01792F2A2432567E0051AF5E /* Av.pb.swift */,
+				01792F342432567E0051AF5E /* AvatarGlobalV1.pb.swift */,
+				01792F43243256800051AF5E /* Billing.pb.swift */,
+				01792F46243256820051AF5E /* BillingInappGlobal.pb.swift */,
+				01792F2F2432567E0051AF5E /* ChargeCard.pb.swift */,
+				01792F352432567E0051AF5E /* client.pb.swift */,
+				01792F3F2432567F0051AF5E /* CommentGlobal.pb.swift */,
+				01792F3E2432567F0051AF5E /* ContentGlobalV1.pb.swift */,
+				01792F382432567F0051AF5E /* Counseling.pb.swift */,
+				01792F292432567E0051AF5E /* DynamicLink.pb.swift */,
+				01792F3B2432567F0051AF5E /* DynamicTable.pb.swift */,
+				01792F322432567E0051AF5E /* EngagementChanelGlobal.pb.swift */,
+				01792F44243256810051AF5E /* EventGlobal.pb.swift */,
+				01792F47243256820051AF5E /* EventManager.pb.swift */,
+				01792F272432567D0051AF5E /* FileGlobal.pb.swift */,
+				01792F372432567F0051AF5E /* Game.pb.swift */,
+				01792F312432567E0051AF5E /* GameLeague.pb.swift */,
+				01792F392432567F0051AF5E /* GateWay.pb.swift */,
+				01792F48243256830051AF5E /* GeoGlobalV1.pb.swift */,
+				01792F262432567D0051AF5E /* Global.pb.swift */,
+				01792F45243256820051AF5E /* Hambazi.pb.swift */,
+				01792F3A2432567F0051AF5E /* Health.pb.swift */,
+				01792F402432567F0051AF5E /* Mgs.pb.swift */,
+				01792F302432567E0051AF5E /* MobileConnect.pb.swift */,
+				01792F3D2432567F0051AF5E /* OperatorsGlobalV1.pb.swift */,
+				01792F3C2432567F0051AF5E /* Packets.pb.swift */,
+				01792F49243256830051AF5E /* Pazh.pb.swift */,
+				01792F282432567D0051AF5E /* Poll.pb.swift */,
+				01792F362432567F0051AF5E /* PushFCMGlobal.pb.swift */,
+				01792F332432567E0051AF5E /* ReferralGlobal.pb.swift */,
+				01792F2C2432567E0051AF5E /* Shop.pb.swift */,
+				01792F41243256800051AF5E /* Subscriber.pb.swift */,
+				01792F2D2432567E0051AF5E /* SupportGlobal.pb.swift */,
+				01792F2E2432567E0051AF5E /* TimerGlobal.pb.swift */,
 			);
 			name = protocolModel;
 			path = vaslAppSdk/Classes/protocolModel;
@@ -807,49 +807,49 @@
 		8671AF331F6C10D22B57D8041D395BCA /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				0101EC00242F8F7000CB9B9C /* AnalyticServiceV1Impl.swift */,
-				0101EBF4242F8F6D00CB9B9C /* AppServicesImpl.swift */,
-				0101EBE9242F8F6C00CB9B9C /* AppVersionServiceV1Impl.swift */,
-				0101EBFE242F8F6F00CB9B9C /* AvatarServiceV1Impl.swift */,
-				0101EBE3242F8F6B00CB9B9C /* AvServiceImpl.swift */,
-				0101EBE5242F8F6B00CB9B9C /* billingImpl.swift */,
-				0101EBE7242F8F6B00CB9B9C /* BillingInappServiceV1Impl.swift */,
-				0101EC07242F8F7100CB9B9C /* ChargeServiceV1Impl.swift */,
-				0101EC08242F8F7100CB9B9C /* ContentServiceV1Impl.swift */,
-				0101EBF9242F8F6E00CB9B9C /* DynamicLinkServiceV1Impl.swift */,
-				0101EBEB242F8F6C00CB9B9C /* DynamicTableServiceEndpointsV1Impl.swift */,
-				0101EBFC242F8F6F00CB9B9C /* DynamicTableServiceTablesV1Impl.swift */,
-				0101EBEA242F8F6C00CB9B9C /* EmailControllerImpl.swift */,
-				0101EBEF242F8F6C00CB9B9C /* EventManagerServiceImpl.swift */,
-				0101EBE8242F8F6B00CB9B9C /* EventServiceImpl.swift */,
-				0101EBF5242F8F6E00CB9B9C /* FileManagerServiceV1Impl.swift */,
-				0101EBED242F8F6C00CB9B9C /* GameActionServiceV1Impl.swift */,
-				0101EBFA242F8F6F00CB9B9C /* GameActionServiceV2Impl.swift */,
-				0101EC01242F8F7000CB9B9C /* GameFeaturesServiceV1Impl.swift */,
-				0101EBEE242F8F6C00CB9B9C /* GameFeaturesServiceV2Impl.swift */,
-				0101EBFF242F8F6F00CB9B9C /* GameLeaderBoardServiceV1Impl.swift */,
-				0101EC04242F8F7000CB9B9C /* GameLeaderBoardServiceV2Impl.swift */,
-				0101EBF3242F8F6D00CB9B9C /* GamePointServiceV2Impl.swift */,
-				0101EC09242F8F7100CB9B9C /* GamePointTypeServiceV1Impl.swift */,
-				0101EBEC242F8F6C00CB9B9C /* GameUserServiceV2Impl.swift */,
-				0101EC0B242F8F7200CB9B9C /* GameUsersServiceV1Impl.swift */,
-				0101EC02242F8F7000CB9B9C /* GatewayServiceV1Impl.swift */,
-				0101EBF0242F8F6D00CB9B9C /* GeoServiceV1Impl.swift */,
-				0101EBFD242F8F6F00CB9B9C /* HambaziServiceV1Impl.swift */,
-				0101EBF1242F8F6D00CB9B9C /* KalingaServiceV1Impl.swift */,
-				0101EBE2242F8F6A00CB9B9C /* LeagueServiceV1Impl.swift */,
-				0101EBF2242F8F6D00CB9B9C /* MgsServiceV1Impl.swift */,
-				0101EBE6242F8F6B00CB9B9C /* OperatorsServiceV1Impl.swift */,
-				0101EBE4242F8F6B00CB9B9C /* PazhServiceV1Impl.swift */,
-				0101EBF6242F8F6E00CB9B9C /* PushControllerImpl.swift */,
-				0101EBF7242F8F6E00CB9B9C /* PushFCMServiceV1Impl.swift */,
-				0101EC03242F8F7000CB9B9C /* ReferralServiceV1Impl.swift */,
-				0101EC05242F8F7100CB9B9C /* ShopServiceV1Impl.swift */,
-				0101EC06242F8F7100CB9B9C /* SubscriberServiceV1_1Impl.swift */,
-				0101EC0A242F8F7100CB9B9C /* SubscriberServiceV1Impl.swift */,
-				0101EC0C242F8F7200CB9B9C /* SubscriberServiceV2Impl.swift */,
-				0101EBF8242F8F6E00CB9B9C /* SupportServiceV1Impl.swift */,
-				0101EBFB242F8F6F00CB9B9C /* UserDeviceControllerImpl.swift */,
+				01792EDA243256570051AF5E /* AnalyticServiceV1Impl.swift */,
+				01792EE62432565A0051AF5E /* AppServicesImpl.swift */,
+				01792EE0243256580051AF5E /* AppVersionServiceV1Impl.swift */,
+				01792EE4243256590051AF5E /* AvatarServiceV1Impl.swift */,
+				01792EF72432565C0051AF5E /* AvServiceImpl.swift */,
+				01792EE5243256590051AF5E /* billingImpl.swift */,
+				01792ED7243256570051AF5E /* BillingInappServiceV1Impl.swift */,
+				01792EEF2432565B0051AF5E /* ChargeServiceV1Impl.swift */,
+				01792EDF243256580051AF5E /* ContentServiceV1Impl.swift */,
+				01792EDE243256580051AF5E /* DynamicLinkServiceV1Impl.swift */,
+				01792ED8243256570051AF5E /* DynamicTableServiceEndpointsV1Impl.swift */,
+				01792EF82432565C0051AF5E /* DynamicTableServiceTablesV1Impl.swift */,
+				01792ED6243256560051AF5E /* EmailControllerImpl.swift */,
+				01792ED5243256560051AF5E /* EventManagerServiceImpl.swift */,
+				01792EEE2432565B0051AF5E /* EventServiceImpl.swift */,
+				01792ED3243256560051AF5E /* FileManagerServiceV1Impl.swift */,
+				01792ED2243256560051AF5E /* GameActionServiceV1Impl.swift */,
+				01792EFA2432565C0051AF5E /* GameActionServiceV2Impl.swift */,
+				01792EEA2432565A0051AF5E /* GameFeaturesServiceV1Impl.swift */,
+				01792EEB2432565A0051AF5E /* GameFeaturesServiceV2Impl.swift */,
+				01792ED0243256550051AF5E /* GameLeaderBoardServiceV1Impl.swift */,
+				01792ED4243256560051AF5E /* GameLeaderBoardServiceV2Impl.swift */,
+				01792EDD243256580051AF5E /* GamePointServiceV2Impl.swift */,
+				01792EF22432565B0051AF5E /* GamePointTypeServiceV1Impl.swift */,
+				01792EF02432565B0051AF5E /* GameUserServiceV2Impl.swift */,
+				01792EED2432565A0051AF5E /* GameUsersServiceV1Impl.swift */,
+				01792EF32432565B0051AF5E /* GatewayServiceV1Impl.swift */,
+				01792EF92432565C0051AF5E /* GeoServiceV1Impl.swift */,
+				01792EE92432565A0051AF5E /* HambaziServiceV1Impl.swift */,
+				01792EF52432565C0051AF5E /* KalingaServiceV1Impl.swift */,
+				01792EE72432565A0051AF5E /* LeagueServiceV1Impl.swift */,
+				01792EE3243256590051AF5E /* MgsServiceV1Impl.swift */,
+				01792EF62432565C0051AF5E /* OperatorsServiceV1Impl.swift */,
+				01792EDB243256570051AF5E /* PazhServiceV1Impl.swift */,
+				01792EE2243256590051AF5E /* PushControllerImpl.swift */,
+				01792EE1243256590051AF5E /* PushFCMServiceV1Impl.swift */,
+				01792EF42432565C0051AF5E /* ReferralServiceV1Impl.swift */,
+				01792EE82432565A0051AF5E /* ShopServiceV1Impl.swift */,
+				01792EEC2432565A0051AF5E /* SubscriberServiceV1_1Impl.swift */,
+				01792EF12432565B0051AF5E /* SubscriberServiceV1Impl.swift */,
+				01792ED1243256560051AF5E /* SubscriberServiceV2Impl.swift */,
+				01792EDC243256570051AF5E /* SupportServiceV1Impl.swift */,
+				01792ED9243256570051AF5E /* UserDeviceControllerImpl.swift */,
 				23588BCCD327B39F966871880DE68448 /* Services.swift */,
 			);
 			name = Module;
@@ -1202,101 +1202,101 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0101EC17242F8F7200CB9B9C /* GameUserServiceV2Impl.swift in Sources */,
+				01792F082432565C0051AF5E /* GamePointServiceV2Impl.swift in Sources */,
+				01792F69243256830051AF5E /* EventGlobal.pb.swift in Sources */,
+				01792F63243256830051AF5E /* ContentGlobalV1.pb.swift in Sources */,
+				01792F6B243256830051AF5E /* BillingInappGlobal.pb.swift in Sources */,
+				01792F56243256830051AF5E /* GameLeague.pb.swift in Sources */,
 				9A9C93EAA13DD710C1F11F4D8113E08E /* ContentModel.swift in Sources */,
-				0101EC74242F8F9400CB9B9C /* ChargeCard.pb.swift in Sources */,
-				0101EC1B242F8F7200CB9B9C /* GeoServiceV1Impl.swift in Sources */,
+				01792F54243256830051AF5E /* ChargeCard.pb.swift in Sources */,
+				01792F64243256830051AF5E /* CommentGlobal.pb.swift in Sources */,
 				74D67B312C5251E89DCCE892934070C4 /* enumFile.swift in Sources */,
-				0101EC2F242F8F7200CB9B9C /* GameLeaderBoardServiceV2Impl.swift in Sources */,
-				0101EC1D242F8F7200CB9B9C /* MgsServiceV1Impl.swift in Sources */,
-				0101EC0F242F8F7200CB9B9C /* PazhServiceV1Impl.swift in Sources */,
+				01792F52243256830051AF5E /* SupportGlobal.pb.swift in Sources */,
+				01792F222432565D0051AF5E /* AvServiceImpl.swift in Sources */,
+				01792F1A2432565C0051AF5E /* ChargeServiceV1Impl.swift in Sources */,
+				01792F112432565C0051AF5E /* AppServicesImpl.swift in Sources */,
 				4ADD6A0BA9E074D98FF6700B80D49490 /* MimeType.swift in Sources */,
-				0101EC24242F8F7200CB9B9C /* DynamicLinkServiceV1Impl.swift in Sources */,
-				0101EC67242F8F9400CB9B9C /* SupportGlobal.pb.swift in Sources */,
-				0101EC6A242F8F9400CB9B9C /* EventGlobal.pb.swift in Sources */,
-				0101EC10242F8F7200CB9B9C /* billingImpl.swift in Sources */,
+				01792F68243256830051AF5E /* Billing.pb.swift in Sources */,
+				01792F4D243256830051AF5E /* Poll.pb.swift in Sources */,
+				01792F0F2432565C0051AF5E /* AvatarServiceV1Impl.swift in Sources */,
+				01792F1E2432565D0051AF5E /* GatewayServiceV1Impl.swift in Sources */,
 				412EE7E8901D8070E7715F958FC444B6 /* NonceGenerator.swift in Sources */,
-				0101EC0E242F8F7200CB9B9C /* AvServiceImpl.swift in Sources */,
-				0101EC2E242F8F7200CB9B9C /* ReferralServiceV1Impl.swift in Sources */,
-				0101EC78242F8F9400CB9B9C /* GeoGlobalV1.pb.swift in Sources */,
-				0101EC20242F8F7200CB9B9C /* FileManagerServiceV1Impl.swift in Sources */,
-				0101EC71242F8F9400CB9B9C /* Global.pb.swift in Sources */,
-				0101EC64242F8F9400CB9B9C /* AnalyticGlobal.pb.swift in Sources */,
-				0101EC34242F8F7200CB9B9C /* GamePointTypeServiceV1Impl.swift in Sources */,
-				0101EC12242F8F7200CB9B9C /* BillingInappServiceV1Impl.swift in Sources */,
-				0101EC14242F8F7200CB9B9C /* AppVersionServiceV1Impl.swift in Sources */,
-				0101EC66242F8F9400CB9B9C /* Subscriber.pb.swift in Sources */,
-				0101EC1C242F8F7200CB9B9C /* KalingaServiceV1Impl.swift in Sources */,
-				0101EC29242F8F7200CB9B9C /* AvatarServiceV1Impl.swift in Sources */,
-				0101EC37242F8F7200CB9B9C /* SubscriberServiceV2Impl.swift in Sources */,
-				0101EC13242F8F7200CB9B9C /* EventServiceImpl.swift in Sources */,
-				0101EC6D242F8F9400CB9B9C /* AppVersion.pb.swift in Sources */,
-				0101EC75242F8F9400CB9B9C /* TimerGlobal.pb.swift in Sources */,
-				0101EC7B242F8F9400CB9B9C /* AppGlobal.pb.swift in Sources */,
-				0101EC68242F8F9400CB9B9C /* DynamicLink.pb.swift in Sources */,
-				0101EC2C242F8F7200CB9B9C /* GameFeaturesServiceV1Impl.swift in Sources */,
-				0101EC5F242F8F9400CB9B9C /* GameLeague.pb.swift in Sources */,
-				0101EC7F242F8F9400CB9B9C /* EventManager.pb.swift in Sources */,
-				0101EC2D242F8F7200CB9B9C /* GatewayServiceV1Impl.swift in Sources */,
-				0101EC61242F8F9400CB9B9C /* BillingInappGlobal.pb.swift in Sources */,
-				0101EC21242F8F7200CB9B9C /* PushControllerImpl.swift in Sources */,
-				0101EC80242F8F9400CB9B9C /* Health.pb.swift in Sources */,
-				0101EC33242F8F7200CB9B9C /* ContentServiceV1Impl.swift in Sources */,
-				0101EC32242F8F7200CB9B9C /* ChargeServiceV1Impl.swift in Sources */,
+				01792F152432565C0051AF5E /* GameFeaturesServiceV1Impl.swift in Sources */,
+				01792F052432565C0051AF5E /* AnalyticServiceV1Impl.swift in Sources */,
+				01792F002432565C0051AF5E /* EventManagerServiceImpl.swift in Sources */,
+				01792F032432565C0051AF5E /* DynamicTableServiceEndpointsV1Impl.swift in Sources */,
+				01792F0B2432565C0051AF5E /* AppVersionServiceV1Impl.swift in Sources */,
+				01792F4C243256830051AF5E /* FileGlobal.pb.swift in Sources */,
+				01792F5B243256830051AF5E /* PushFCMGlobal.pb.swift in Sources */,
+				01792F59243256830051AF5E /* AvatarGlobalV1.pb.swift in Sources */,
+				01792F5A243256830051AF5E /* client.pb.swift in Sources */,
+				01792F4F243256830051AF5E /* Av.pb.swift in Sources */,
+				01792F6E243256830051AF5E /* Pazh.pb.swift in Sources */,
+				01792F192432565C0051AF5E /* EventServiceImpl.swift in Sources */,
+				01792EFF2432565C0051AF5E /* GameLeaderBoardServiceV2Impl.swift in Sources */,
 				905FD2D51A3FD749C1B4CE6A53DAEF11 /* PubicValue.swift in Sources */,
-				0101EC5D242F8F9400CB9B9C /* CommentGlobal.pb.swift in Sources */,
-				0101EC73242F8F9400CB9B9C /* ContentGlobalV1.pb.swift in Sources */,
+				01792F57243256830051AF5E /* EngagementChanelGlobal.pb.swift in Sources */,
+				01792F66243256830051AF5E /* Subscriber.pb.swift in Sources */,
+				01792F162432565C0051AF5E /* GameFeaturesServiceV2Impl.swift in Sources */,
+				01792F60243256830051AF5E /* DynamicTable.pb.swift in Sources */,
+				01792EFE2432565C0051AF5E /* FileManagerServiceV1Impl.swift in Sources */,
+				01792F67243256830051AF5E /* AppGlobal.pb.swift in Sources */,
+				01792F182432565C0051AF5E /* GameUsersServiceV1Impl.swift in Sources */,
 				3D0B669A4D2BC5E8EFF5A03FE85E5704 /* RestService.swift in Sources */,
-				0101EC77242F8F9400CB9B9C /* Pazh.pb.swift in Sources */,
-				0101EC81242F8F9400CB9B9C /* Counseling.pb.swift in Sources */,
-				0101EC26242F8F7200CB9B9C /* UserDeviceControllerImpl.swift in Sources */,
-				0101EC70242F8F9400CB9B9C /* PushFCMGlobal.pb.swift in Sources */,
+				01792F4E243256830051AF5E /* DynamicLink.pb.swift in Sources */,
+				01792F042432565C0051AF5E /* UserDeviceControllerImpl.swift in Sources */,
+				01792F0E2432565C0051AF5E /* MgsServiceV1Impl.swift in Sources */,
+				01792F5E243256830051AF5E /* GateWay.pb.swift in Sources */,
+				01792F1C2432565C0051AF5E /* SubscriberServiceV1Impl.swift in Sources */,
+				01792F022432565C0051AF5E /* BillingInappServiceV1Impl.swift in Sources */,
 				6E48ED5C203CCADDD73BFCA3484F8032 /* Services.swift in Sources */,
-				0101EC7C242F8F9400CB9B9C /* GateWay.pb.swift in Sources */,
+				01792F5F243256830051AF5E /* Health.pb.swift in Sources */,
+				01792F6D243256830051AF5E /* GeoGlobalV1.pb.swift in Sources */,
+				01792F1D2432565D0051AF5E /* GamePointTypeServiceV1Impl.swift in Sources */,
 				59A9A521798C23E719A5964B8D731644 /* String.swift in Sources */,
-				0101EC6C242F8F9400CB9B9C /* EngagementChanelGlobal.pb.swift in Sources */,
-				0101EC5E242F8F9400CB9B9C /* OperatorsGlobalV1.pb.swift in Sources */,
-				0101EC72242F8F9400CB9B9C /* Billing.pb.swift in Sources */,
-				0101EC16242F8F7200CB9B9C /* DynamicTableServiceEndpointsV1Impl.swift in Sources */,
-				0101EC19242F8F7200CB9B9C /* GameFeaturesServiceV2Impl.swift in Sources */,
-				0101EC69242F8F9400CB9B9C /* Hambazi.pb.swift in Sources */,
-				0101EC23242F8F7200CB9B9C /* SupportServiceV1Impl.swift in Sources */,
-				0101EC15242F8F7200CB9B9C /* EmailControllerImpl.swift in Sources */,
-				0101EC7E242F8F9400CB9B9C /* DynamicTable.pb.swift in Sources */,
-				0101EC2A242F8F7200CB9B9C /* GameLeaderBoardServiceV1Impl.swift in Sources */,
+				01792F61243256830051AF5E /* Packets.pb.swift in Sources */,
+				01792F212432565D0051AF5E /* OperatorsServiceV1Impl.swift in Sources */,
+				01792F4B243256830051AF5E /* Global.pb.swift in Sources */,
+				01792F1F2432565D0051AF5E /* ReferralServiceV1Impl.swift in Sources */,
+				01792F092432565C0051AF5E /* DynamicLinkServiceV1Impl.swift in Sources */,
 				A6E4FBCCCBCCFA5607871CFE6881809A /* TokenInfoModel.swift in Sources */,
-				0101EC62242F8F9400CB9B9C /* AvatarGlobalV1.pb.swift in Sources */,
-				0101EC0D242F8F7200CB9B9C /* LeagueServiceV1Impl.swift in Sources */,
-				0101EC6B242F8F9400CB9B9C /* Av.pb.swift in Sources */,
-				0101EC1F242F8F7200CB9B9C /* AppServicesImpl.swift in Sources */,
-				0101EC35242F8F7200CB9B9C /* SubscriberServiceV1Impl.swift in Sources */,
+				01792F0A2432565C0051AF5E /* ContentServiceV1Impl.swift in Sources */,
+				01792F55243256830051AF5E /* MobileConnect.pb.swift in Sources */,
+				01792F6F243256830051AF5E /* AppVersion.pb.swift in Sources */,
+				01792F252432565D0051AF5E /* GameActionServiceV2Impl.swift in Sources */,
+				01792F5D243256830051AF5E /* Counseling.pb.swift in Sources */,
+				01792F202432565D0051AF5E /* KalingaServiceV1Impl.swift in Sources */,
 				4DB3D65F85596E3B13A58000BE2A2B51 /* Utils.swift in Sources */,
-				0101EC2B242F8F7200CB9B9C /* AnalyticServiceV1Impl.swift in Sources */,
-				0101EC22242F8F7200CB9B9C /* PushFCMServiceV1Impl.swift in Sources */,
-				0101EC65242F8F9400CB9B9C /* Poll.pb.swift in Sources */,
-				0101EC36242F8F7200CB9B9C /* GameUsersServiceV1Impl.swift in Sources */,
-				0101EC1E242F8F7200CB9B9C /* GamePointServiceV2Impl.swift in Sources */,
-				0101EC31242F8F7200CB9B9C /* SubscriberServiceV1_1Impl.swift in Sources */,
-				0101EC25242F8F7200CB9B9C /* GameActionServiceV2Impl.swift in Sources */,
-				0101EC27242F8F7200CB9B9C /* DynamicTableServiceTablesV1Impl.swift in Sources */,
+				01792F1B2432565C0051AF5E /* GameUserServiceV2Impl.swift in Sources */,
+				01792F232432565D0051AF5E /* DynamicTableServiceTablesV1Impl.swift in Sources */,
+				01792F172432565C0051AF5E /* SubscriberServiceV1_1Impl.swift in Sources */,
+				01792F122432565C0051AF5E /* LeagueServiceV1Impl.swift in Sources */,
+				01792F65243256830051AF5E /* Mgs.pb.swift in Sources */,
 				BFAD9DAC7B5EF7CCF01F8515AFDF5F28 /* UUID.swift in Sources */,
-				0101EC6F242F8F9400CB9B9C /* Packets.pb.swift in Sources */,
-				0101EC11242F8F7200CB9B9C /* OperatorsServiceV1Impl.swift in Sources */,
-				0101EC7A242F8F9400CB9B9C /* Shop.pb.swift in Sources */,
-				0101EC30242F8F7200CB9B9C /* ShopServiceV1Impl.swift in Sources */,
+				01792F062432565C0051AF5E /* PazhServiceV1Impl.swift in Sources */,
+				01792F132432565C0051AF5E /* ShopServiceV1Impl.swift in Sources */,
 				79598C7DBC7861073564F7A0C1539E6E /* UUIDTimeBasedGenerator.swift in Sources */,
-				0101EC79242F8F9400CB9B9C /* Mgs.pb.swift in Sources */,
-				0101EC18242F8F7200CB9B9C /* GameActionServiceV1Impl.swift in Sources */,
+				01792F0D2432565C0051AF5E /* PushControllerImpl.swift in Sources */,
+				01792F51243256830051AF5E /* Shop.pb.swift in Sources */,
+				01792F6C243256830051AF5E /* EventManager.pb.swift in Sources */,
+				01792F242432565D0051AF5E /* GeoServiceV1Impl.swift in Sources */,
+				01792EFC2432565C0051AF5E /* SubscriberServiceV2Impl.swift in Sources */,
+				01792EFB2432565C0051AF5E /* GameLeaderBoardServiceV1Impl.swift in Sources */,
+				01792F0C2432565C0051AF5E /* PushFCMServiceV1Impl.swift in Sources */,
+				01792F53243256830051AF5E /* TimerGlobal.pb.swift in Sources */,
+				01792F62243256830051AF5E /* OperatorsGlobalV1.pb.swift in Sources */,
+				01792EFD2432565C0051AF5E /* GameActionServiceV1Impl.swift in Sources */,
+				01792F6A243256830051AF5E /* Hambazi.pb.swift in Sources */,
+				01792F50243256830051AF5E /* AnalyticGlobal.pb.swift in Sources */,
 				6C78A3F8B98792E0B5123F63D75672F9 /* vaslAppSdk-dummy.m in Sources */,
-				0101EC7D242F8F9400CB9B9C /* MobileConnect.pb.swift in Sources */,
-				0101EC28242F8F7200CB9B9C /* HambaziServiceV1Impl.swift in Sources */,
-				0101EC63242F8F9400CB9B9C /* FileGlobal.pb.swift in Sources */,
 				2F64DF09CEFC4C930BC48F375D0B0817 /* VaslSdk.swift in Sources */,
-				0101EC1A242F8F7200CB9B9C /* EventManagerServiceImpl.swift in Sources */,
 				FB850DE57E252A89AECFA20D539651B9 /* webServiceResult.swift in Sources */,
-				0101EC6E242F8F9400CB9B9C /* Game.pb.swift in Sources */,
-				0101EC76242F8F9400CB9B9C /* ReferralGlobal.pb.swift in Sources */,
-				0101EC60242F8F9400CB9B9C /* client.pb.swift in Sources */,
+				01792F142432565C0051AF5E /* HambaziServiceV1Impl.swift in Sources */,
+				01792F012432565C0051AF5E /* EmailControllerImpl.swift in Sources */,
+				01792F072432565C0051AF5E /* SupportServiceV1Impl.swift in Sources */,
+				01792F58243256830051AF5E /* ReferralGlobal.pb.swift in Sources */,
+				01792F5C243256830051AF5E /* Game.pb.swift in Sources */,
+				01792F102432565C0051AF5E /* billingImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
