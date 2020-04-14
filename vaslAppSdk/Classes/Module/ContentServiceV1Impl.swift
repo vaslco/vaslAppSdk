@@ -28,6 +28,8 @@ protocol ContentServiceV1 {
 
     func toggleFavContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
 
+    func favContentList(sortType: String, page: String, order: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
+
     func contentCommentAdd(refId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void)
 
     func contentCommentUpdate(commentId: String, content: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentUpdate?,String?) -> Void)
@@ -35,8 +37,6 @@ protocol ContentServiceV1 {
     func contentCommentRemove(commentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentRemove?,String?) -> Void)
 
     func contentCommentsList(refId: String, sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentList?,String?) -> Void)
-
-    func favContentList(sortType: String, page: String, order: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void)
 
 
 }
@@ -509,6 +509,42 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
 
 
+    public func favContentList(sortType: String, page: String, order: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
+        favContentList(sortType: sortType, page: page, order: order, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func favContentList(sortType: String, page: String, order: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sortType            , forKey: "sortType")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav/list", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.favContentList(sortType: sortType, page: page, order: order, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func contentCommentAdd(refId: String, content: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Comment_Proto_Holder_CommentAdd?,String?) -> Void) {
         contentCommentAdd(refId: refId, content: content, sessionId: sessionId, completion: completion,force: true)
     }
@@ -638,42 +674,6 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.contentCommentsList(refId: refId, sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func favContentList(sortType: String, page: String, order: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void) {
-        favContentList(sortType: sortType, page: page, order: order, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func favContentList(sortType: String, page: String, order: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sortType            , forKey: "sortType")
-                    params.updateValue(page            , forKey: "page")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/content/fav/list", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentsList
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.favContentList(sortType: sortType, page: page, order: order, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

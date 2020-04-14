@@ -2,12 +2,6 @@ import Foundation
 
 protocol SubscriberServiceV2 {
 
-    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void)
-
-    func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void)
-
-    func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
-
     func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void)
 
     func activateLater(username: String, activationKey: String, activatedType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
@@ -20,122 +14,23 @@ protocol SubscriberServiceV2 {
 
     func inactivateSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckAllUser?,String?) -> Void)
 
+    func addFcmToken(token: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel?,String?) -> Void)
+
     func registerOperatorSubscriber(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void)
 
     func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
+
+    func checkUserRightel(mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void)
+
+    func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void)
+
+    func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void)
 
 
 }
 
 
 public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
-
-
-    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
-        checkUserRightel(mobile: mobile, completion: completion,force: true)
-    }
-    
-    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(mobile            , forKey: "mobile")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/user/rightel", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void) {
-        chargeOnDemandRequest(spid: spid, otpRequest: otpRequest, shortCode: shortCode, chargeCode: chargeCode, mobileNo: mobileNo, completion: completion,force: true)
-    }
-    
-    private func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(spid            , forKey: "spid")
-                    params.updateValue(otpRequest            , forKey: "otpRequest")
-                    params.updateValue(shortCode            , forKey: "shortCode")
-                    params.updateValue(chargeCode            , forKey: "chargeCode")
-                    params.updateValue(mobileNo            , forKey: "mobileNo")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/request/charge/ondemand", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.chargeOnDemandRequest(spid: spid, otpRequest: otpRequest, shortCode: shortCode, chargeCode: chargeCode, mobileNo: mobileNo, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void) {
-        chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: true)
-    }
-    
-    private func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(spid            , forKey: "spid")
-                    params.updateValue(shortCode            , forKey: "shortCode")
-                    params.updateValue(mobileNo            , forKey: "mobileNo")
-                    params.updateValue(otpTransactionId            , forKey: "otpTransactionId")
-                    params.updateValue(pin            , forKey: "pin")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/confirm/charge/ondemand", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func sendActivateCodeLater(username: String, mobile: String, email: String, activatedType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterUserNamePassword?,String?) -> Void) {
@@ -344,6 +239,40 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
     }
 
 
+    public func addFcmToken(token: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel?,String?) -> Void) {
+        addFcmToken(token: token, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addFcmToken(token: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(token            , forKey: "token")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/fcm/token", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_SaveProfileInfoJsonModel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addFcmToken(token: token, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func registerOperatorSubscriber(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_RegisterOperatorSubscriber?,String?) -> Void) {
         registerOperatorSubscriber(mobile: mobile, completion: completion,force: true)
     }
@@ -399,6 +328,113 @@ public class SubscriberServiceV2Impl  : SubscriberServiceV2 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.validateOperatorSubscriber(activationKey: activationKey, mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void) {
+        checkUserRightel(mobile: mobile, completion: completion,force: true)
+    }
+    
+    private func checkUserRightel(mobile: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(mobile            , forKey: "mobile")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/check/user/rightel", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckRightel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.checkUserRightel(mobile: mobile, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void) {
+        chargeOnDemandRequest(spid: spid, otpRequest: otpRequest, shortCode: shortCode, chargeCode: chargeCode, mobileNo: mobileNo, completion: completion,force: true)
+    }
+    
+    private func chargeOnDemandRequest(spid: String, otpRequest: String, shortCode: String, chargeCode: String, mobileNo: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(spid            , forKey: "spid")
+                    params.updateValue(otpRequest            , forKey: "otpRequest")
+                    params.updateValue(shortCode            , forKey: "shortCode")
+                    params.updateValue(chargeCode            , forKey: "chargeCode")
+                    params.updateValue(mobileNo            , forKey: "mobileNo")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/request/charge/ondemand", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemand
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.chargeOnDemandRequest(spid: spid, otpRequest: otpRequest, shortCode: shortCode, chargeCode: chargeCode, mobileNo: mobileNo, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void) {
+        chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: true)
+    }
+    
+    private func chargeOnDemandConfirm(spid: String, shortCode: String, mobileNo: String, otpTransactionId: String, pin: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(spid            , forKey: "spid")
+                    params.updateValue(shortCode            , forKey: "shortCode")
+                    params.updateValue(mobileNo            , forKey: "mobileNo")
+                    params.updateValue(otpTransactionId            , forKey: "otpTransactionId")
+                    params.updateValue(pin            , forKey: "pin")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/subscriber/confirm/charge/ondemand", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ChargeOnDemandConfirm
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.chargeOnDemandConfirm(spid: spid, shortCode: shortCode, mobileNo: mobileNo, otpTransactionId: otpTransactionId, pin: pin, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
