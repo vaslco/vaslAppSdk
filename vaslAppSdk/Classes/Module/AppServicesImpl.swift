@@ -16,7 +16,7 @@ public class AppServicesImpl  : AppServices {
     }
     
     private func nearLocation(completion: @escaping (Com_Vasl_Vaslapp_Modules_App_Global_Proto_Holder_TimeGet?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false
