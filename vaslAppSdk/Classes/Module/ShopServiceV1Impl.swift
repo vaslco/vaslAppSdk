@@ -2,9 +2,9 @@ import Foundation
 
 protocol ShopServiceV1 {
 
-    func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
-
     func addComment(productId: String, comment: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
+
+    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
 
     func listComment(productId: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_CommentListApi?,String?) -> Void)
 
@@ -30,8 +30,6 @@ protocol ShopServiceV1 {
 
     func listOrder(insertTime: String, orderStatus: String, payStatus: String, sort: String, order: String, page: String, limit: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListOrders?,String?) -> Void)
 
-    func addScore(productId: String, score: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void)
-
     func listUnits(type: String, list: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits?,String?) -> Void)
 
     func useCoupon(price: String, code: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_GetDiscountPrice?,String?) -> Void)
@@ -40,55 +38,13 @@ protocol ShopServiceV1 {
 
     func getProduct(productId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ProductGetApi?,String?) -> Void)
 
+    func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void)
+
 
 }
 
 
 public class ShopServiceV1Impl  : ShopServiceV1 {
-
-
-    public func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
-        addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(nickName            , forKey: "nickName")
-                    params.updateValue(mobile            , forKey: "mobile")
-                    params.updateValue(phone            , forKey: "phone")
-                    params.updateValue(city            , forKey: "city")
-                    params.updateValue(sector            , forKey: "sector")
-                    params.updateValue(address            , forKey: "address")
-                    params.updateValue(postalCode            , forKey: "postalCode")
-                    params.updateValue(recipientName            , forKey: "recipientName")
-                    params.updateValue(recipientPhone            , forKey: "recipientPhone")
-                    params.updateValue(locationLatitude            , forKey: "locationLatitude")
-                    params.updateValue(locationLongitude            , forKey: "locationLongitude")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/address", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func addComment(productId: String, comment: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
@@ -114,6 +70,41 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.addComment(productId: productId, comment: comment, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
+        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(productId            , forKey: "productId")
+                    params.updateValue(score            , forKey: "score")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -568,41 +559,6 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
     }
 
 
-    public func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void) {
-        addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func addScore(productId: String, score: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(productId            , forKey: "productId")
-                    params.updateValue(score            , forKey: "score")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/score", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListCities
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.addScore(productId: productId, score: score, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
     public func listUnits(type: String, list: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_ListUnits?,String?) -> Void) {
         listUnits(type: type, list: list, sessionId: sessionId, completion: completion,force: true)
     }
@@ -730,6 +686,50 @@ public class ShopServiceV1Impl  : ShopServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getProduct(productId: productId, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void) {
+        addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func addAddress(nickName: String, mobile: String, phone: String, city: String, sector: String, address: String, postalCode: String, recipientName: String, recipientPhone: String, locationLatitude: String, locationLongitude: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(nickName            , forKey: "nickName")
+                    params.updateValue(mobile            , forKey: "mobile")
+                    params.updateValue(phone            , forKey: "phone")
+                    params.updateValue(city            , forKey: "city")
+                    params.updateValue(sector            , forKey: "sector")
+                    params.updateValue(address            , forKey: "address")
+                    params.updateValue(postalCode            , forKey: "postalCode")
+                    params.updateValue(recipientName            , forKey: "recipientName")
+                    params.updateValue(recipientPhone            , forKey: "recipientPhone")
+                    params.updateValue(locationLatitude            , forKey: "locationLatitude")
+                    params.updateValue(locationLongitude            , forKey: "locationLongitude")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/shop/add/address", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct(serializedData: result) as Com_Vasl_Vaslapp_Modules_Shop_Global_Proto_Holder_AddProduct
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.addAddress(nickName: nickName, mobile: mobile, phone: phone, city: city, sector: sector, address: address, postalCode: postalCode, recipientName: recipientName, recipientPhone: recipientPhone, locationLatitude: locationLatitude, locationLongitude: locationLongitude, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
