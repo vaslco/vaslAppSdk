@@ -2,11 +2,11 @@ import Foundation
 
 protocol GameLeaderBoardServiceV2 {
 
-    func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
+    func getUserInLeaderboard(pointId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
     func getLeaderboardTop10(pointId: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
-    func getUserInLeaderboard(pointId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
+    func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void)
 
 
 }
@@ -15,19 +15,18 @@ protocol GameLeaderBoardServiceV2 {
 public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
 
 
-    public func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
-        getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: true)
+    public func getUserInLeaderboard(pointId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
+        getUserInLeaderboard(pointId: pointId, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
+    private func getUserInLeaderboard(pointId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
-                    params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/get", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/user/get", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -37,7 +36,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: false)
+                            self.getUserInLeaderboard(pointId: pointId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -85,18 +84,19 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
     }
 
 
-    public func getUserInLeaderboard(pointId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
-        getUserInLeaderboard(pointId: pointId, sessionId: sessionId, completion: completion,force: true)
+    public func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void) {
+        getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func getUserInLeaderboard(pointId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
+    private func getLeaderBoard(pointId: String, tag: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Game_Global_Proto_Holder_GetLeaderBoard?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(pointId            , forKey: "pointId")
+                    params.updateValue(tag            , forKey: "tag")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/user/get", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v2/game/leaderboard/get", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
@@ -106,7 +106,7 @@ public class GameLeaderBoardServiceV2Impl  : GameLeaderBoardServiceV2 {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.getUserInLeaderboard(pointId: pointId, sessionId: sessionId, completion: completion,force: false)
+                            self.getLeaderBoard(pointId: pointId, tag: tag, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

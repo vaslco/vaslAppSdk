@@ -2,15 +2,15 @@ import Foundation
 
 protocol AvService {
 
+    func listMeal(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void)
+
     func getSport(id: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetSportApi?,String?) -> Void)
 
-    func listSport(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi?,String?) -> Void)
+    func listSport(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void)
 
     func listFederation(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFederationApi?,String?) -> Void)
 
     func listSportEquipment(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportEquipmentApi?,String?) -> Void)
-
-    func listMeal(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void)
 
     func listPhrase(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListPhraseApi?,String?) -> Void)
 
@@ -40,17 +40,72 @@ protocol AvService {
 
     func listAthleteCoursesOfCoach(sort: String, order: String, page: String, athleteId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourseOfCoach?,String?) -> Void)
 
-    func createProgram(id: String, programs: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+    func createProgram(id: String, programs: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
 
     func athleteListForNutritionCoach(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach?,String?) -> Void)
 
-    func createDiet(id: String, diets: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+    func createDiet(id: String, diets: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
+    func updateDiet(id: String, diets: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
+    func athleteListForCorrectiveCoach(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach?,String?) -> Void)
+
+    func upateProgram(id: String, programs: Array<String>, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
+    func confirmProgram(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
+    func confirmDiet(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
+    func athleteCourseList(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourses?,String?) -> Void)
+
+    func athleteCourseGet(id: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteCourse?,String?) -> Void)
+
+    func athleteProgramGet(courseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthletePrograms?,String?) -> Void)
+
+    func athleteDietGet(courseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets?,String?) -> Void)
+
+    func listSportCategories(sort: String, order: String, page: String, parentId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void)
 
 
 }
 
 
 public class AvServiceImpl  : AvService {
+
+
+    public func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void) {
+        listMeal(sort: sort, order: order, page: page, completion: completion,force: true)
+    }
+    
+    private func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/meal", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMeal(sort: sort, order: order, page: page, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func getSport(id: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetSportApi?,String?) -> Void) {
@@ -86,11 +141,11 @@ public class AvServiceImpl  : AvService {
     }
 
 
-    public func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi?,String?) -> Void) {
+    public func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void) {
         listSport(sort: sort, order: order, page: page, completion: completion,force: true)
     }
     
-    private func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi?,String?) -> Void,force : Bool) {
+    private func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
@@ -102,7 +157,7 @@ public class AvServiceImpl  : AvService {
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportApi
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
@@ -179,41 +234,6 @@ public class AvServiceImpl  : AvService {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listSportEquipment(sort: sort, order: order, page: page, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void) {
-        listMeal(sort: sort, order: order, page: page, completion: completion,force: true)
-    }
-    
-    private func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/meal", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.listMeal(sort: sort, order: order, page: page, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -734,11 +754,11 @@ public class AvServiceImpl  : AvService {
     }
 
 
-    public func createProgram(id: String, programs: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+    public func createProgram(id: String, programs: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
         createProgram(id: id, programs: programs, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createProgram(id: String, programs: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func createProgram(id: String, programs: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(programs            , forKey: "programs")
@@ -805,11 +825,11 @@ public class AvServiceImpl  : AvService {
     }
 
 
-    public func createDiet(id: String, diets: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+    public func createDiet(id: String, diets: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
         createDiet(id: id, diets: diets, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createDiet(id: String, diets: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func createDiet(id: String, diets: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(diets            , forKey: "diets")
@@ -828,6 +848,356 @@ public class AvServiceImpl  : AvService {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.createDiet(id: id, diets: diets, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func updateDiet(id: String, diets: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        updateDiet(id: id, diets: diets, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func updateDiet(id: String, diets: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(diets            , forKey: "diets")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/correctiveCoach/updateDiet", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.updateDiet(id: id, diets: diets, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func athleteListForCorrectiveCoach(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach?,String?) -> Void) {
+        athleteListForCorrectiveCoach(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func athleteListForCorrectiveCoach(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/athlete/forCorrectiveCoach", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.athleteListForCorrectiveCoach(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func upateProgram(id: String, programs: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        upateProgram(id: id, programs: programs, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func upateProgram(id: String, programs: Array<String>, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(programs            , forKey: "programs")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/correctiveCoach/updateProgram", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.upateProgram(id: id, programs: programs, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func confirmProgram(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        confirmProgram(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func confirmProgram(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/correctiveCoach/confirmProgram", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.confirmProgram(id: id, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func confirmDiet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        confirmDiet(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func confirmDiet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/correctiveCoach/confirmDiet", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.confirmDiet(id: id, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func athleteCourseList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourses?,String?) -> Void) {
+        athleteCourseList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func athleteCourseList(sort: String, order: String, page: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourses?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/athleteCourses", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourses(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourses
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.athleteCourseList(sort: sort, order: order, page: page, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func athleteCourseGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteCourse?,String?) -> Void) {
+        athleteCourseGet(id: id, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func athleteCourseGet(id: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteCourse?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(id            , forKey: "id")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/get/athleteCourse", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteCourse(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteCourse
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.athleteCourseGet(id: id, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func athleteProgramGet(courseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthletePrograms?,String?) -> Void) {
+        athleteProgramGet(courseId: courseId, courseName: courseName, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func athleteProgramGet(courseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthletePrograms?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(courseId            , forKey: "courseId")
+                    params.updateValue(courseName            , forKey: "courseName")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/get/athleteProgram", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthletePrograms(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthletePrograms
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.athleteProgramGet(courseId: courseId, courseName: courseName, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func athleteDietGet(courseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets?,String?) -> Void) {
+        athleteDietGet(courseId: courseId, courseName: courseName, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func athleteDietGet(courseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(courseId            , forKey: "courseId")
+                    params.updateValue(courseName            , forKey: "courseName")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/get/athleteDiet", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.athleteDietGet(courseId: courseId, courseName: courseName, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func listSportCategories(sort: String, order: String, page: String, parentId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void) {
+        listSportCategories(sort: sort, order: order, page: page, parentId: parentId, completion: completion,force: true)
+    }
+    
+    private func listSportCategories(sort: String, order: String, page: String, parentId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+                    params.updateValue(parentId            , forKey: "parentId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/sport/category", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listSportCategories(sort: sort, order: order, page: page, parentId: parentId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
