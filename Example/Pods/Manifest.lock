@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.9.1)
   - SwiftProtobuf (1.8.0)
-  - vaslAppSdk (0.5.7):
+  - vaslAppSdk (0.7.3):
     - Alamofire (= 4.9.1)
     - SwiftProtobuf
 
@@ -22,8 +22,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
-  vaslAppSdk: 8c638efe7659d3ddbc6c4c9e43537472dee9d8db
+  vaslAppSdk: 97d6d181cb34d15a3f6cfebe75dcfade8e6a01c0
 
 PODFILE CHECKSUM: 87547e56c6598d241d785ca14f19545aead6e7ac
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

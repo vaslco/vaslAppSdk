@@ -28,80 +28,27 @@ class ViewController: UIViewController {
 ////http://sandbox.vaslapp.com
     //http://server.vaslapp.hambazisho.ir
     
-//    let appid                      = "b1355735-e177-4a9c-b1b6-50affe5f5151"
-//    let clientId                   = "b1355735-e177-4a9c-b1b6-50affe5f5151"
-//    let clientSecret               = "vMdRyEsSrDtdGGOzajVa"
-//    let username                   = "ios-iDXKEvKMXQM0et0sINuE"
-//    let password                   = "s1THAzWGgVN5JGYcJdzq"
-   
+
     var vmbas : VaslSdk!
-    
-    
     var generator = NonceGenerator("FPLFJ0pCx6")
-
-
-    
     let session = "39a74eec8aa2eca188e1e9a50be886136d174248"
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        if let generatedData = generator.generateSignature() as String?{
-//
-//            debugPrint(generatedData)
-//        }
-
-        
-        
         vmbas = VaslSdk.init(appId: appid,
                              baseUrl: "https://sandbox.vaslapp.com",
                             clientId: clientId,
                             clientSecret: clientSecret,
                             username: username,
                             password: password, nounce: "FPLFJ0pCx6")
-        
-
-        
-        
-        
-        vmbas.ArmanVarzeshServices()?.listSport(sort: "", order: "", page: "1", completion: { (data, error) in
+        vmbas.ArmanVarzeshServices()?.getSport(id: "5ea960211fc6c60009101a73", completion: { (data, error) in
             if error == nil{
                 debugPrint(data)
             }else{
                 debugPrint(error!)
             }
         })
-        
-        
-//        vmbas.DynamicTableEndPointService()?.endpointFind(tableName: "allleagues", find: "{}", projection: "{}", sort: "{}", skip: "", limit: "", sessionId: session, completion: { (data, error) in
-//            if error == nil{
-//                debugPrint(data!)
-//                if let item = data?.getDictionary() {
-//                    debugPrint(item)
-//                }
-//            }else{
-//                debugPrint(error!)
-//            }
-//        })
-
-        
-
-
-
-
     }
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
- 
 
 }
 
