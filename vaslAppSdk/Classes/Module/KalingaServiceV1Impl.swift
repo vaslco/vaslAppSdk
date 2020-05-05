@@ -148,7 +148,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(lat            , forKey: "lat")
                     params.updateValue(lng            , forKey: "lng")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
-                   // params.updateValue(language            , forKey: "language")
+                    params.updateValue(language            , forKey: "language")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/add", params, completion: { (result, error) in
@@ -237,7 +237,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(tags            , forKey: "tags")
                     params.updateValue(catIds            , forKey: "catIds")
                     params.updateValue(lat            , forKey: "lat")
-                    //params.updateValue(lng            , forKey: "lng")
+                    params.updateValue(lng            , forKey: "lng")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
                     params.updateValue(language            , forKey: "language")
                     params.updateValue(type            , forKey: "type")
@@ -340,7 +340,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
     
     private func listCategoryRoots(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false
@@ -441,7 +441,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
     }
     
     private func listContentRowTypes(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false

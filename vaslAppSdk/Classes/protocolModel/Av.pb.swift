@@ -1421,6 +1421,11 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi {
     set {_uniqueStorage()._energy = newValue}
   }
 
+  public var tag: [String] {
+    get {return _storage._tag}
+    set {_uniqueStorage()._tag = newValue}
+  }
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -1428,6 +1433,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+///test
 public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExercisePanel {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1739,7 +1745,6 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_CoursesDetail {
     set {_uniqueStorage()._sportID = newValue}
   }
 
-  ///    string subscriberId = 3;
   public var subscriberInfo: Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo {
     get {return _storage._subscriberInfo ?? Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo()}
     set {_uniqueStorage()._subscriberInfo = newValue}
@@ -1902,7 +1907,7 @@ public struct Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo {
 
   public var mobile: String = String()
 
-  public var imageURL: String = String()
+  public var image: [Com_Vasl_Vaslapp_Products_Av_Proto_Holder_Image] = []
 
   public var firstName: String = String()
 
@@ -5270,6 +5275,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
     15: .same(proto: "moveNumberPerSet"),
     16: .same(proto: "timePerSet"),
     17: .same(proto: "energy"),
+    18: .same(proto: "tag"),
   ]
 
   fileprivate class _StorageClass {
@@ -5290,6 +5296,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
     var _moveNumberPerSet: Int32 = 0
     var _timePerSet: String = String()
     var _energy: Int64 = 0
+    var _tag: [String] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -5313,6 +5320,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
       _moveNumberPerSet = source._moveNumberPerSet
       _timePerSet = source._timePerSet
       _energy = source._energy
+      _tag = source._tag
     }
   }
 
@@ -5345,6 +5353,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
         case 15: try decoder.decodeSingularInt32Field(value: &_storage._moveNumberPerSet)
         case 16: try decoder.decodeSingularStringField(value: &_storage._timePerSet)
         case 17: try decoder.decodeSingularInt64Field(value: &_storage._energy)
+        case 18: try decoder.decodeRepeatedStringField(value: &_storage._tag)
         default: break
         }
       }
@@ -5404,6 +5413,9 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
       if _storage._energy != 0 {
         try visitor.visitSingularInt64Field(value: _storage._energy, fieldNumber: 17)
       }
+      if !_storage._tag.isEmpty {
+        try visitor.visitRepeatedStringField(value: _storage._tag, fieldNumber: 18)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -5430,6 +5442,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ExerciseDetailApi: SwiftProt
         if _storage._moveNumberPerSet != rhs_storage._moveNumberPerSet {return false}
         if _storage._timePerSet != rhs_storage._timePerSet {return false}
         if _storage._energy != rhs_storage._energy {return false}
+        if _storage._tag != rhs_storage._tag {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -6581,7 +6594,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo: SwiftProtobu
     3: .same(proto: "username"),
     4: .same(proto: "email"),
     5: .same(proto: "mobile"),
-    6: .same(proto: "imageUrl"),
+    6: .same(proto: "image"),
     7: .same(proto: "firstName"),
     8: .same(proto: "lastName"),
     9: .same(proto: "subscriberType"),
@@ -6597,7 +6610,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo: SwiftProtobu
       case 3: try decoder.decodeSingularStringField(value: &self.username)
       case 4: try decoder.decodeSingularStringField(value: &self.email)
       case 5: try decoder.decodeSingularStringField(value: &self.mobile)
-      case 6: try decoder.decodeSingularStringField(value: &self.imageURL)
+      case 6: try decoder.decodeRepeatedMessageField(value: &self.image)
       case 7: try decoder.decodeSingularStringField(value: &self.firstName)
       case 8: try decoder.decodeSingularStringField(value: &self.lastName)
       case 9: try decoder.decodeSingularStringField(value: &self.subscriberType)
@@ -6624,8 +6637,8 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo: SwiftProtobu
     if !self.mobile.isEmpty {
       try visitor.visitSingularStringField(value: self.mobile, fieldNumber: 5)
     }
-    if !self.imageURL.isEmpty {
-      try visitor.visitSingularStringField(value: self.imageURL, fieldNumber: 6)
+    if !self.image.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.image, fieldNumber: 6)
     }
     if !self.firstName.isEmpty {
       try visitor.visitSingularStringField(value: self.firstName, fieldNumber: 7)
@@ -6651,7 +6664,7 @@ extension Com_Vasl_Vaslapp_Products_Av_Proto_Holder_SubscriberInfo: SwiftProtobu
     if lhs.username != rhs.username {return false}
     if lhs.email != rhs.email {return false}
     if lhs.mobile != rhs.mobile {return false}
-    if lhs.imageURL != rhs.imageURL {return false}
+    if lhs.image != rhs.image {return false}
     if lhs.firstName != rhs.firstName {return false}
     if lhs.lastName != rhs.lastName {return false}
     if lhs.subscriberType != rhs.subscriberType {return false}

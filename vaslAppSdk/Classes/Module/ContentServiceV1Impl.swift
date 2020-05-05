@@ -152,7 +152,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listCategoryRoots(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false
@@ -253,7 +253,7 @@ public class ContentServiceV1Impl  : ContentServiceV1 {
     }
     
     private func listContentRowTypes(completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void,force : Bool) {
-        let params = Dictionary<String,Any>()
+        var params = Dictionary<String,Any>()
 
 
         let hasNounce =  false

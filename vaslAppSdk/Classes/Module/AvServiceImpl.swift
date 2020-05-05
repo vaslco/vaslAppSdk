@@ -2,21 +2,21 @@ import Foundation
 
 protocol AvService {
 
-    func listMeal(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void)
+    func listSport(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void)
 
     func getSport(id: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetSportApi?,String?) -> Void)
-
-    func listSport(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void)
 
     func listFederation(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFederationApi?,String?) -> Void)
 
     func listSportEquipment(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportEquipmentApi?,String?) -> Void)
 
+    func listMeal(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void)
+
     func listPhrase(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListPhraseApi?,String?) -> Void)
 
     func listFoodPackage(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListFoodPackageApi?,String?) -> Void)
 
-    func listExercise(sort: String, order: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void)
+    func listExercise(sort: String, order: String, page: String, sportId: String, tag: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void)
 
     func listAvCourse(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListCourseApi?,String?) -> Void)
 
@@ -40,7 +40,7 @@ protocol AvService {
 
     func listAthleteCoursesOfCoach(sort: String, order: String, page: String, athleteId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteCourseOfCoach?,String?) -> Void)
 
-    func createProgram(id: String, programs: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+    func createProgram(id: String, programs: Array<String>, startProgramDate: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
 
     func athleteListForNutritionCoach(sort: String, order: String, page: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListAthleteRequestsForCoach?,String?) -> Void)
 
@@ -73,11 +73,11 @@ protocol AvService {
 public class AvServiceImpl  : AvService {
 
 
-    public func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void) {
-        listMeal(sort: sort, order: order, page: page, completion: completion,force: true)
+    public func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void) {
+        listSport(sort: sort, order: order, page: page, completion: completion,force: true)
     }
     
-    private func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void,force : Bool) {
+    private func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
@@ -85,17 +85,17 @@ public class AvServiceImpl  : AvService {
 
 
         let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/meal", params, completion: { (result, error) in
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/sport", params, completion: { (result, error) in
             do{
                 if let result = result {
                     
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel
                     
                     if serviceResponse.status == PublicValue.status_success {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listMeal(sort: sort, order: order, page: page, completion: completion,force: false)
+                            self.listSport(sort: sort, order: order, page: page, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -129,41 +129,6 @@ public class AvServiceImpl  : AvService {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getSport(id: id, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void) {
-        listSport(sort: sort, order: order, page: page, completion: completion,force: true)
-    }
-    
-    private func listSport(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sort            , forKey: "sort")
-                    params.updateValue(order            , forKey: "order")
-                    params.updateValue(page            , forKey: "page")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/sport", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.listSport(sort: sort, order: order, page: page, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -246,6 +211,41 @@ public class AvServiceImpl  : AvService {
     }
 
 
+    public func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void) {
+        listMeal(sort: sort, order: order, page: page, completion: completion,force: true)
+    }
+    
+    private func listMeal(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sort            , forKey: "sort")
+                    params.updateValue(order            , forKey: "order")
+                    params.updateValue(page            , forKey: "page")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/list/meal", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListMealApi
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.listMeal(sort: sort, order: order, page: page, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func listPhrase(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListPhraseApi?,String?) -> Void) {
         listPhrase(sort: sort, order: order, page: page, completion: completion,force: true)
     }
@@ -316,15 +316,17 @@ public class AvServiceImpl  : AvService {
     }
 
 
-    public func listExercise(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void) {
-        listExercise(sort: sort, order: order, page: page, completion: completion,force: true)
+    public func listExercise(sort: String, order: String, page: String, sportId: String, tag: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void) {
+        listExercise(sort: sort, order: order, page: page, sportId: sportId, tag: tag, completion: completion,force: true)
     }
     
-    private func listExercise(sort: String, order: String, page: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void,force : Bool) {
+    private func listExercise(sort: String, order: String, page: String, sportId: String, tag: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListExerciseApi?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(sort            , forKey: "sort")
                     params.updateValue(order            , forKey: "order")
                     params.updateValue(page            , forKey: "page")
+                    params.updateValue(sportId            , forKey: "sportId")
+                    params.updateValue(tag            , forKey: "tag")
 
 
         let hasNounce =  false
@@ -338,7 +340,7 @@ public class AvServiceImpl  : AvService {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.listExercise(sort: sort, order: order, page: page, completion: completion,force: false)
+                            self.listExercise(sort: sort, order: order, page: page, sportId: sportId, tag: tag, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -754,14 +756,15 @@ public class AvServiceImpl  : AvService {
     }
 
 
-    public func createProgram(id: String, programs: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
-        createProgram(id: id, programs: programs, sessionId: sessionId, completion: completion,force: true)
+    public func createProgram(id: String, programs: Array<String>, startProgramDate: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        createProgram(id: id, programs: programs, startProgramDate: startProgramDate, sessionId: sessionId, completion: completion,force: true)
     }
     
-    private func createProgram(id: String, programs: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+    private func createProgram(id: String, programs: Array<String>, startProgramDate: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
         var params = Dictionary<String,Any>()
                     params.updateValue(id            , forKey: "id")
                     params.updateValue(programs            , forKey: "programs")
+                    params.updateValue(startProgramDate            , forKey: "startProgramDate")
                     params.updateValue(sessionId            , forKey: "sessionId")
 
 
@@ -776,7 +779,7 @@ public class AvServiceImpl  : AvService {
                         completion(serviceResponse,nil)
                     } else {
                         if serviceResponse.code == 401 && force {
-                            self.createProgram(id: id, programs: programs, sessionId: sessionId, completion: completion,force: false)
+                            self.createProgram(id: id, programs: programs, startProgramDate: startProgramDate, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
