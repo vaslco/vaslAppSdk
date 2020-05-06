@@ -26,6 +26,8 @@ protocol AvService {
 
     func hireCoach(coachId: String, coachSportCourseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
 
+    func unHireCoach(coachId: String, coachSportCourseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
+
     func declineRequest(athleteId: String, coachSportCourseId: String, courseName: String, declineReason: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
 
     func acceptRequest(athleteId: String, coachSportCourseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void)
@@ -65,6 +67,8 @@ protocol AvService {
     func athleteDietGet(courseId: String, courseName: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetAthleteDiets?,String?) -> Void)
 
     func listSportCategories(sort: String, order: String, page: String, parentId: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_ListSportPanel?,String?) -> Void)
+
+    func getCourseDetail(courseId: String, courseName: String,completion : @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetCourseDetail?,String?) -> Void)
 
 
 }
@@ -487,6 +491,42 @@ public class AvServiceImpl  : AvService {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.hireCoach(coachId: coachId, coachSportCourseId: coachSportCourseId, courseName: courseName, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func unHireCoach(coachId: String, coachSportCourseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void) {
+        unHireCoach(coachId: coachId, coachSportCourseId: coachSportCourseId, courseName: courseName, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func unHireCoach(coachId: String, coachSportCourseId: String, courseName: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(coachId            , forKey: "coachId")
+                    params.updateValue(coachSportCourseId            , forKey: "coachSportCourseId")
+                    params.updateValue(courseName            , forKey: "courseName")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/unHire/coach", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_General
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.unHireCoach(coachId: coachId, coachSportCourseId: coachSportCourseId, courseName: courseName, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -1201,6 +1241,40 @@ public class AvServiceImpl  : AvService {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listSportCategories(sort: sort, order: order, page: page, parentId: parentId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func getCourseDetail(courseId: String, courseName: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetCourseDetail?,String?) -> Void) {
+        getCourseDetail(courseId: courseId, courseName: courseName, completion: completion,force: true)
+    }
+    
+    private func getCourseDetail(courseId: String, courseName: String,completion: @escaping (Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetCourseDetail?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(courseId            , forKey: "courseId")
+                    params.updateValue(courseName            , forKey: "courseName")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/av/get/course/detail", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetCourseDetail(serializedData: result) as Com_Vasl_Vaslapp_Products_Av_Proto_Holder_GetCourseDetail
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getCourseDetail(courseId: courseId, courseName: courseName, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

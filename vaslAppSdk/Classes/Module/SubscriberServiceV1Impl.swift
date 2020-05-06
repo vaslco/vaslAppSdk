@@ -2,13 +2,11 @@ import Foundation
 
 protocol SubscriberServiceV1 {
 
+    func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
+
     func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
-    func activate(username: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
-
     func registerWithNationalId(mobile: String, national_id: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
-
-    func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void)
 
     func checkShahkarSubscriber(requestId: String, serviceNumber: String, serviceType: String, identificationType: String, identificationNo: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_CheckShahkarSubscriber?,String?) -> Void)
 
@@ -18,9 +16,13 @@ protocol SubscriberServiceV1 {
 
     func getProfileInfo(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
 
+    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
+
     func saveProfileInfoJson(data: Dictionary<String,String>,completion : @escaping (webServiceResult?,String?) -> Void)
 
     func getProfileInfoJson(subscriberId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoJsonModel?,String?) -> Void)
+
+    func activate(username: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
     func activateAndLogin(username: String, activationKey: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void)
 
@@ -62,13 +64,48 @@ protocol SubscriberServiceV1 {
 
     func validateOperatorSubscriber(activationKey: String, mobile: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_ValidateOperatorSubscriber?,String?) -> Void)
 
-    func removeProfilePic(sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void)
-
 
 }
 
 
 public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
+
+
+    public func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
+        registerWithoutSubscriberType(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: true)
+    }
+    
+    private func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(password            , forKey: "password")
+                    params.updateValue(email            , forKey: "email")
+                    params.updateValue(mobile            , forKey: "mobile")
+                    params.updateValue(registrationType            , forKey: "registrationType")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/registerWithoutSubscriberType", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.registerWithoutSubscriberType(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
 
 
     public func register(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
@@ -108,40 +145,6 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
-    public func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
-        activate(username: username, activationKey: activationKey, completion: completion,force: true)
-    }
-    
-    private func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(activationKey            , forKey: "activationKey")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activate", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.activate(username: username, activationKey: activationKey, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
     public func registerWithNationalId(mobile: String, national_id: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
         registerWithNationalId(mobile: mobile, national_id: national_id, completion: completion,force: true)
     }
@@ -164,43 +167,6 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.registerWithNationalId(mobile: mobile, national_id: national_id, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void) {
-        registerWithoutSubscriberType(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: true)
-    }
-    
-    private func registerWithoutSubscriberType(username: String, password: String, email: String, mobile: String, registrationType: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(username            , forKey: "username")
-                    params.updateValue(password            , forKey: "password")
-                    params.updateValue(email            , forKey: "email")
-                    params.updateValue(mobile            , forKey: "mobile")
-                    params.updateValue(registrationType            , forKey: "registrationType")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/registerWithoutSubscriberType", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Register
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.registerWithoutSubscriberType(username: username, password: password, email: email, mobile: mobile, registrationType: registrationType, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -360,6 +326,39 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
     }
 
 
+    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
+        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
     public func saveProfileInfoJson(data: Dictionary<String,String>,completion: @escaping (webServiceResult?,String?) -> Void) {
         saveProfileInfoJson(data: data, completion: completion,force: true)
     }
@@ -413,6 +412,40 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.getProfileInfoJson(subscriberId: subscriberId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void) {
+        activate(username: username, activationKey: activationKey, completion: completion,force: true)
+    }
+    
+    private func activate(username: String, activationKey: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(username            , forKey: "username")
+                    params.updateValue(activationKey            , forKey: "activationKey")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/activate", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_Activate
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.activate(username: username, activationKey: activationKey, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
@@ -1089,39 +1122,6 @@ public class SubscriberServiceV1Impl  : SubscriberServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.validateOperatorSubscriber(activationKey: activationKey, mobile: mobile, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
-
-
-    public func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void) {
-        removeProfilePic(sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func removeProfilePic(sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/subscriber/removeProfilePic", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel(serializedData: result) as Com_Vasl_Vaslapp_Modules_Subscriber_Global_Proto_Holder_GetProfileInfoModel
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.removeProfilePic(sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }

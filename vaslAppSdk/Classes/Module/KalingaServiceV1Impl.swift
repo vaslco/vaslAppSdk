@@ -2,8 +2,6 @@ import Foundation
 
 protocol KalingaServiceV1 {
 
-    func getContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
-
     func addJsonContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void)
 
     func addContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion : @escaping (webServiceResult?,String?) -> Void)
@@ -21,6 +19,8 @@ protocol KalingaServiceV1 {
     func listCategoryByDepth(id: String, page: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryList?,String?) -> Void)
 
     func listCategoryClustered(page: String, keyWord: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_CategoryListCllustered?,String?) -> Void)
+
+    func getContent(contentId: String, sessionId: String,completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void)
 
     func listContentRowTypes(completion : @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentRowTypeList?,String?) -> Void)
 
@@ -51,40 +51,6 @@ protocol KalingaServiceV1 {
 
 
 public class KalingaServiceV1Impl  : KalingaServiceV1 {
-
-
-    public func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void) {
-        getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: true)
-    }
-    
-    private func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void,force : Bool) {
-        var params = Dictionary<String,Any>()
-                    params.updateValue(contentId            , forKey: "contentId")
-                    params.updateValue(sessionId            , forKey: "sessionId")
-
-
-        let hasNounce =  false
-        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/get", params, completion: { (result, error) in
-            do{
-                if let result = result {
-                    
-                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet
-                    
-                    if serviceResponse.status == PublicValue.status_success {
-                        completion(serviceResponse,nil)
-                    } else {
-                        if serviceResponse.code == 401 && force {
-                            self.getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: false)
-                        }else{
-                            completion(serviceResponse,serviceResponse.msg)
-                        }
-                    }
-                }
-            }catch{
-                completion(nil,"")
-            }
-        }, force,hasNounce)
-    }
 
 
     public func addJsonContent(headline: String, banner: String, summery: String, content: Array<String>, status: String, tags: Array<String>, catIds: Array<String>, lat: String, lng: String, propertyValue: Array<String>, language: String, type: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentAdd?,String?) -> Void) {
@@ -148,7 +114,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(lat            , forKey: "lat")
                     params.updateValue(lng            , forKey: "lng")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
-                    params.updateValue(language            , forKey: "language")
+              //      params.updateValue(language            , forKey: "language")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/add", params, completion: { (result, error) in
@@ -239,7 +205,7 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     params.updateValue(lat            , forKey: "lat")
                     params.updateValue(lng            , forKey: "lng")
                     params.updateValue(propertyValue            , forKey: "propertyValue")
-                    params.updateValue(language            , forKey: "language")
+                //    params.updateValue(language            , forKey: "language")
                     params.updateValue(type            , forKey: "type")
                     params.updateValue(sessionId            , forKey: "sessionId")
         RestService.postJson(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/edit", params, completion: { (result, error) in
@@ -424,6 +390,40 @@ public class KalingaServiceV1Impl  : KalingaServiceV1 {
                     } else {
                         if serviceResponse.code == 401 && force {
                             self.listCategoryClustered(page: page, keyWord: keyWord, sessionId: sessionId, completion: completion,force: false)
+                        }else{
+                            completion(serviceResponse,serviceResponse.msg)
+                        }
+                    }
+                }
+            }catch{
+                completion(nil,"")
+            }
+        }, force,hasNounce)
+    }
+
+
+    public func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void) {
+        getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: true)
+    }
+    
+    private func getContent(contentId: String, sessionId: String,completion: @escaping (Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet?,String?) -> Void,force : Bool) {
+        var params = Dictionary<String,Any>()
+                    params.updateValue(contentId            , forKey: "contentId")
+                    params.updateValue(sessionId            , forKey: "sessionId")
+
+
+        let hasNounce =  false
+        RestService.post(url: PublicValue.getUrlBase() + "/api/v1/Kalinga/content/get", params, completion: { (result, error) in
+            do{
+                if let result = result {
+                    
+                    let serviceResponse = try Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet(serializedData: result) as Com_Vasl_Vaslapp_Modules_Content_Global_Proto_Holder_ContentGet
+                    
+                    if serviceResponse.status == PublicValue.status_success {
+                        completion(serviceResponse,nil)
+                    } else {
+                        if serviceResponse.code == 401 && force {
+                            self.getContent(contentId: contentId, sessionId: sessionId, completion: completion,force: false)
                         }else{
                             completion(serviceResponse,serviceResponse.msg)
                         }
